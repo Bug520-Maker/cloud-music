@@ -1,0 +1,23 @@
+*
+{
+    margin:0px;
+    padding: 0px;
+}
+a
+{
+    text-decoration: none;
+}
+li
+{
+    list-style: none;
+}
+input
+{
+    outline: none;
+}
+.clearfix::before,.clearfix::after
+{
+    display: table;
+    content: '';
+    clear: both;
+}

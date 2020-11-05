@@ -1,0 +1,114 @@
+{
+  "id": "2136448",
+  "name": "yun1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "566417",
+      "name": "mini",
+      "font_class": "mini",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "679124",
+      "name": "叉",
+      "font_class": "cha",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "4927896",
+      "name": "缩放",
+      "font_class": "suofang",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "5524300",
+      "name": "arrow-1",
+      "font_class": "arrow-down",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "9176454",
+      "name": "arrow-1",
+      "font_class": "TopArrow",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "9234854",
+      "name": "最大化",
+      "font_class": "zuidahua",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "10027522",
+      "name": "e-mail, letter, envelope, post, mail",
+      "font_class": "e-mailletterenvelopepostmail",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "10621990",
+      "name": "MicrphoneOutline",
+      "font_class": "MicrphoneOutline",
+      "unicode": "e7cc",
+      "unicode_decimal": 59340
+    },
+    {
+      "icon_id": "12907497",
+      "name": "skin",
+      "font_class": "icon_skin",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "13165613",
+      "name": "setting",
+      "font_class": "setting-copy-copy",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "13381896",
+      "name": "Icon - Keyboard Arrow - Down - Rounded",
+      "font_class": "arrow-left",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "13447000",
+      "name": "two-windows",
+      "font_class": "two-windows",
+      "unicode": "ebc6",
+      "unicode_decimal": 60358
+    },
+    {
+      "icon_id": "14678556",
+      "name": "search",
+      "font_class": "sw_sousuo",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "15657637",
+      "name": "Icon - Keyboard Arrow - Down - Rounded",
+      "font_class": "arrow-right",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "16061481",
+      "name": "Delete Item CC And M",
+      "font_class": "DeleteItemCCAndM",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}
