@@ -14,7 +14,8 @@ const store= new Vuex.Store({
     newmv:[],/*最新mv*/
     mvurldata:{},/*获取相关视频的url等信息*/
     playlist:{},/*获取歌单详情*/
-    searchList:{}
+    searchList:{},
+    songId:''
   },
   mutations: {
     searchInfo(state,payload)
@@ -27,6 +28,7 @@ const store= new Vuex.Store({
     getSongUrl(state,payload)
     {
       state.songUrl=payload.url;
+      state.songId=payload.songId
     },
     getAlbumImg(state,payload)
     {

@@ -30,15 +30,7 @@ const vis=()=>import('../views/vision/vision/vision');
 const mv=()=>import('../views/vision/mv/mv');
 
 /*导入视频中的视频子路由*/
-const acg=()=>import('../views/vision/vision/acg/acg');
-const bestfan=()=>import('../views/vision/vision/bestfan/bestfan')
-const bgm=()=>import('../views/vision/vision/bgm/bgm');
-const dance=()=>import('../views/vision/vision/dance/dance')
-const fanchang=()=>import('../views/vision/vision/fanchang/fanchang');
-const game=()=>import('../views/vision/vision/game/game');
-const life=()=>import('../views/vision/vision/life/life');
-const visMv=()=>import('../views/vision/vision/mv/mv');
-const xianchang=()=>import('../views/vision/vision/xianchang/xianchang')
+
 
 /*导入mv子路由*/
 const neidi=()=>import('../views/vision/mv/neidi');
@@ -118,53 +110,6 @@ const routes = [
         path:'vis',
         name:'vis',
         component:vis,
-        children:[
-          {
-            path:'acg',
-            name:'acg',
-            component:acg
-          },
-          {
-            path:'bestfan',
-            name:'bestfan',
-            component:bestfan
-          },
-          {
-            path:'bgm',
-            name:'bgm',
-            component:bgm
-          },
-          {
-            path:'dance',
-            name:'dance',
-            component:dance
-          },
-          {
-            path:'fanchang',
-            name:'fanchang',
-            component:fanchang
-          },
-          {
-            path:'game',
-            name:'game',
-            component:game
-          },
-          {
-            path:'life',
-            name:'life',
-            component:life
-          },
-          {
-            path:'visMv',
-            name:'visMv',
-            component:visMv
-          },
-          {
-            path:'xianchang',
-            name:'xianchang',
-            component:xianchang
-          },
-        ]
       },
       {
         path:'mv',/*MV路由*/

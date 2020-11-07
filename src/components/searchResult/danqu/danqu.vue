@@ -20,17 +20,20 @@
         data()
         {
             return {
-                songUrl:''
+                songUrl:'',
+                songId:''
             }
         },
         methods:{
             playSong(index)
             {
+                this.songId=this.$store.state.songs[index].id;
                 musicUrl(this.$store.state.songs[index].id).then(res=>{
                     this.songUrl=res.data[0].url;
                     this.$store.commit({
                         type:'getSongUrl',
-                        url:this.songUrl
+                        url:this.songUrl,
+                        songId:this.songId
                     })
                 });
                 albumContent(this.$store.state.songs[index].album.id).then(data=>{

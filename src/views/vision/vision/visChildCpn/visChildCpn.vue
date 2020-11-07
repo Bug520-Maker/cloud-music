@@ -37,24 +37,9 @@
                 btnClick(index,item)
                 {
                     this.currentIndex=index;
-                    this.$router.push('/vision/vis'+'/'+this.path[index]);
                     this.$emit('item-click',item);
-
-                    labelList().then(res=>{
-                        //console.log(res.data[index]);
-                       console.log(res.data[index].id);
-                        visGroup(1101).then(res=>{
-                            console.log(res)
-                        })
-                    });
-                    allvideoList().then(data=>{
-                        console.log(data);
-                    })
                 }
-            },
-        created() {
-
-        }
+            }
     }
 </script>
 

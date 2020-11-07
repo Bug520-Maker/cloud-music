@@ -43,8 +43,8 @@
 </template>
 
 <script>
-     import swiper from "../../../components/swiper/swiper";
-     import swiperItem from "../../../components/swiper/swiperItem";
+     import swiper from "../../../components/swiper/Swiper";
+     import swiperItem from "../../../components/swiper/SwiperItem";
     import {recommendList} from "../../../network/recommend/recommendList";
     //import {listMsg} from "../../../network/recommend/listMsg";
     import {broadcast} from "../../../network/recommend/broadcast";
