@@ -17,7 +17,7 @@
            </tabbar-item>
            <tabbar-item>
                <ul class="operate">
-                   <li><i class="iconfont icon-setting-copy-copy"></i></li>
+                   <li><i class="iconfont icon-setting" style="font-size: 20px"></i></li>
                    <li><i class="iconfont icon-icon_skin"></i></li>
                    <li><i class="iconfont icon-e-mailletterenvelopepostmail"></i></li>
                    <li><i class="iconfont icon-suofang"></i></li>
@@ -69,5 +69,6 @@
 </script>
 
 <style scoped>
+    @import "../assets/font/searchResult/iconfont.css";
     @import "../assets/css/base.css";
 </style>

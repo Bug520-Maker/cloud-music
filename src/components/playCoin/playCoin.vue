@@ -52,7 +52,7 @@
                     //console.log(data.songs);
                 })
                 songLyric(this.$store.state.singleDetails.id).then(data=>{
-                    console.log(data.lrc.lyric)
+                   // console.log(data.lrc.lyric)
                     this.lyric=data.lrc.lyric;
                 })
             },
