@@ -1,11 +1,10 @@
 <template>
     <div class="container">
         <div class="recommend">
-            <div class="swiper-container"><!--设置轮播图-->
-                <swiper>
-                    <swiperItem v-for="(item,index) in imgList" :key="index">
-                        <img :src="item.imageUrl" />
-                    </swiperItem>
+            <div id="swiper-outer"><!--设置轮播图-->
+                <swiper ref="mySwiper" :options="swiperOptions" v-if="75>1">
+                    <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index"><img :src="item.imageUrl" class="swiper-img" /></swiper-slide>
+                    <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>
             <p class="rec-title">推荐歌单</p>
@@ -43,8 +42,8 @@
 </template>
 
 <script>
-     import swiper from "../../../components/swiper/Swiper";
-     import swiperItem from "../../../components/swiper/SwiperItem";
+    /* import swiper from "../../../components/swiper/swiper";
+     import swiperItem from "../../../components/swiper/swiperItem";*/
     import {recommendList} from "../../../network/recommend/recommendList";
     //import {listMsg} from "../../../network/recommend/listMsg";
     import {broadcast} from "../../../network/recommend/broadcast";
@@ -53,58 +52,84 @@
     import {singeralbum} from "../../../network/public/singerAlbum";
 
     import {banner} from "../../../network/recommend/123"
+     import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
+     import 'swiper/swiper-bundle.css'
+     import 'swiper/swiper-bundle.min.css'
     export default {
         name: "recommend",
-        data()
-        {
+        data() {
             return {
-                recList:[],
-                broadcastList:[],/*独家推送*/
-                newSong:[],/*最新歌曲*/
-                imgList:[]/*轮播图*/
+                recList: [],
+                broadcastList: [],/*独家推送*/
+                newSong: [],/*最新歌曲*/
+                imgList: [],/*轮播图*/
+                /*轮播图相关配置*/
+                swiperOptions: {
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    notNextTick: true,
+                    loop: true,
+                    autoplay: {
+                        disableOnInteraction: false,
+                    },
+                    observer: true,
+                    observeParents: true,
+                    direction: 'horizontal',
+                }
+                //轮播图配置
             }
         },
-        created(){
-            recommendList(10).then(data=>{
-                this.recList=data.result;
+        created() {
+            recommendList(10).then(data => {
+                this.recList = data.result;
                 //console.log(data.result);
             })
-            broadcast().then(data=>{
+            broadcast().then(data => {
                 //console.log(data.result)
-                this.broadcastList=data.result;
+                this.broadcastList = data.result;
             })
-            latestalbum().then(data=>{
+            latestalbum().then(data => {
                 //console.log(data.result);
-                this.newSong=data.result;
+                this.newSong = data.result;
             });
             // listMsg().then(data=>{
             //     console.log(data)
             // })
-            banner().then(data=>{//获取banner轮播图
-               //console.log(data);
-                this.imgList=data.banners;
+            banner().then(data => {//获取banner轮播图
+                //console.log(data);
+                this.imgList = data.banners;
             })
         },
-        components:{
-            swiper,
-            swiperItem
+        components: {
+            Swiper, SwiperSlide
         },
-        methods:{
-            singerMsg(singerId)
-            {
-                singeralbum(singerId).then(data=>{
+        methods: {
+            singerMsg(singerId) {
+                singeralbum(singerId).then(data => {
                     console.log(data)
                 })
             }
+        },
+        computed: {
+            swiper() {
+                return this.$refs.mySwiper.$swiper
+            }
+        },
+        mounted() {
+            // console.log('Current Swiper instance object', this.swiper)
+            this.swiper.slideTo(1, 1500, false)
+            //var that = this;
+            /*setInterval(function(){   
+              that.swiper.slideNext() },2000)
+          }*/
         }
     }
 </script>
 
 <style scoped>
-    .swiper-container
-    {
-        margin-top:25px ;
-    }
+
     .container
     {
         height: 490px;
@@ -205,5 +230,23 @@
     .new-song-list li .name:hover
     {
         color:rgb(140, 137, 135);
+    }
+    /*轮播图相关样式*/
+    .swiper-container
+    {
+        width: 540px;
+        border-radius: 10px;
+    }
+    .swiper-container{
+        --swiper-pagination-color: rgb(236, 65, 65);
+    }
+    .swiper-img/*轮播图中的图片样式*/
+    {
+        width: 540px;
+        vertical-align:bottom
+    }
+    #swiper-outer
+    {
+        margin: 20px 0 0 0;
     }
 </style>
