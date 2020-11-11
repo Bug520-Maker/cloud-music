@@ -4,7 +4,7 @@
         <div id="img-container" @click="imgClick"><img :src="this.$store.state.albumImgUrl" class="albumImg"/></div>
         <audio :src="this.$store.state.songUrl" controls="controls" class="play-song" ref="playSong" autoplay="autoplay"></audio>
         <div  class="playPage" ref="playPage" :class="{active:isActive}">
-            <div class="album-container"><img :src="this.$store.state.albumImgUrl"/></div>
+            <div class="album-container" :class="{disappear:isActive}"><img :src="this.$store.state.albumImgUrl" :class="{appear:isActive}"/></div>
             <div id="songMsg">
 
             </div>
@@ -17,7 +17,7 @@
     import {songDetailes} from "../../network/playCoin/songDetal";
     export default {
         name: "playCoin",
-        updated() {
+        mounted() {
             this.$refs.playSong.volume=0.2;
         },
         data()
@@ -82,10 +82,12 @@
         height: 0px;
         position: absolute;
         top: -536px;
-        transition-duration: 0.2s;
+        transition-duration: 0.5s;
         transition-property: width,height;
         overflow: hidden;
         position: relative;
+        z-index: 99;
+        background-color: white;
     }
     .play-coin div.active
     {
@@ -95,17 +97,27 @@
     }
     .album-container
     {
-        width: 310px;
-        height:310px;
-        background-color: #0077aa;
+        /*width: 310px;
+        height:310px;*/
+        width: 0px;
+        height: 0px;
+        background-color: white;
         border-radius: 50%;
         position: absolute;
         left: 80px;
         top: 60px;
-        border: 52px solid rgb(48, 49, 51);
+        border: none;
         box-sizing:border-box;
         overflow: hidden;
         animation: test infinite linear 15s;
+        transition-duration: 0.3s;
+        transition-property: width,height;
+    }
+    .playPage .disappear
+    {
+        width: 310px;
+        height:310px;
+        border: 52px solid rgb(48, 49, 51);
     }
     @keyframes test {
         from{
@@ -118,12 +130,19 @@
     }
     .album-container img
     {
-        width: 210px;
+        width: 0px;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
+        transition-duration: 0.3s;
+        transition-property: width;
     }
+    .album-container .appear
+    {
+        width: 210px;
+    }
+
     #songMsg
     {
         width: 400px;

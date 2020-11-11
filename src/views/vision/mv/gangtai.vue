@@ -56,6 +56,12 @@
     {
         font-size: 14px;
         color:rgb(55, 55, 55);
+        width: 240px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
     .gangtai-mv .artist
     {
