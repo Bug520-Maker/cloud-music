@@ -15,7 +15,16 @@ const store= new Vuex.Store({
     mvurldata:{},/*获取相关视频的url等信息*/
     playlist:{},/*获取歌单详情*/
     searchList:{},
-    songId:''
+    songId:'',
+    singleDetails:{/*获取搜索结果 单曲信息*/
+      name:'',
+      alias:[''],
+      artists:[''],
+      album:{
+        name:''
+      },
+      id:''
+    }/*获取搜索结果 单曲信息*/
   },
   mutations: {
     searchInfo(state,payload)
@@ -55,6 +64,10 @@ const store= new Vuex.Store({
     getSearchList(state,payload)
     {
       state.searchList=payload.searchList
+    },
+    getSingleInfo(state,payload)
+    {
+      state.singleDetails=payload.details
     }
   },
   actions: {

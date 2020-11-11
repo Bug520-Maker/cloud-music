@@ -1,0 +1,23 @@
+{
+  "id": "2197577",
+  "name": "searchResult",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "287702",
+      "name": "love",
+      "font_class": "love",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "6966150",
+      "name": "Add to download",
+      "font_class": "Addtodownload",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

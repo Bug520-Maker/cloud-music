@@ -69,7 +69,7 @@
 <style scoped>
     .searchNav
     {
-        border-bottom: 1px solid rgb(225, 225, 225);
+        border-bottom: 2px solid rgb(225, 225, 225);
     }
     .searchNav ul
     {

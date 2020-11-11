@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1605096322083'); /* IE9 */
+  src: url('iconfont.eot?t=1605096322083#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAO8AAsAAAAAB3QAAANwAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCVII+ATYCJAMMCwgABCAFhG0HPhuMBhHVm2HI/gZxjO0gUkVK6ahWh7mb8Wzv6Thzmjmz791bDSQ+/CwDJIFfgQQAAAAACJ6+sfZndk81HSoJbyKe4HUI1TXRIoRq0r1a3In9+VOiK5iWRSZ8JIgJUmhy4vWF/KDU7bpvkyqPMSVLEBqBmJrRCIsyKE+CxRIADRCwEL0vFBfr7f+alhS5OkzbzbWsVr+rH5D7kH/HuZdLycihkCjVjJnZ7qcj2GyDgQcUQxRwglkWtSuRElI3HzbgwoEHt1XWxW8AQNZ/SSEF6BP3Tn9LfD6gXMZctrf9iwJMqAt0zMmJFEiC3jB21VIa9HoIECSfELjLM7tBiQV3E0CWwlwClCkTtiZf8CN4S8ba6fIYgV/39R449b8v39SVoHgMuO/Y1KRB9eNtZs3N4RKIx3MA8iQwQC0QFmS+1DWHwkgtKEFT5fXpXiyCjuV344sshZf84YEiIF5wbhiAShRVeMNEsXpQctZrGQC8gAUWgXNgXbpvH83R6ansfpj5pPVHGA4d3l/cuHyYzFp9z1CU3WWqzfPk8NOd/KKHzpy+T8D3A02vIShR/Iv27QGi9Swg5ia1Nj8cbaRTVFmaG3Cs2/RyYUlpKS9x67HEmRvoKJe2e3JMdP7UowsyY35baDOm97WpL735+eta16RiGytflydWKwRg67HWNtwy7HbUd7h2Nps1yNvAiwvL5IofhMCe5XC1/zZ/clteb+FRcWd/4tMm/U+/67t1ERB03F6l/zJbsPHUL++X8My4Gvl/15NWxLjZZgDg0qrugjNAZvm//Ib/z7GYeM0C8PqfdV/SLhv8KLQW/4VGDuAORYrNxhpKakWOx9DS06EABYoXB/Yl/fTXZe40JvjJxFB85MHgp5RiGbXwEKIBXvy0IkgN3eQQKRWE2ABQrRtAiDuAEuUShrgHimV8w0NWHV7iCUFmjDBniPLksN4ZlaAFfYLQUOaoVepB/hX6u0RxUuoz75CL0A/L2SIb32KGPMaAYu+vRBw4phQ8sBkmCUHOFKGRWSCSb+ZzV/aimaG0VC91RiVoQZ8gNJQ5t77Uc5+/Qn+XKK4hNXnvkIuweVjOFi0oW1XWinQtlxR7fyXiwDGl4IFWmCQEeXmrCI3Mgh6hfDMntVxb1Wx+TfoAhXIV+DiVm8kcT2iPrdVaIUuHLCFlSyU=') format('woff2'),
+  url('iconfont.woff?t=1605096322083') format('woff'),
+  url('iconfont.ttf?t=1605096322083') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1605096322083#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-love:before {
+  content: "\e60b";
+}
+
+.icon-Addtodownload:before {
+  content: "\e600";
+}
+

@@ -19,7 +19,7 @@
     .container
     {
         height: 552px;
-        width:820px;
+        width: 820px;
         background-color:transparent;
         overflow: scroll;
     }
