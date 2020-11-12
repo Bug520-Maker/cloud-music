@@ -45,6 +45,9 @@ const videoplay=()=>import('../components/VideoPlay/videoPlay');
 
 /*歌单详情组件*/
 const sheetMsg=()=>import('../components/songSheetList/songSheetList')
+
+/*精品歌单*/
+const qualitySheet=()=>import('../components/qualitySheet/QualitySheet');
 const routes = [
   {
     path:'',
@@ -67,7 +70,15 @@ const routes = [
       {
         path:'songSheet',
         name:'songSheet',
-        component:songSheet
+        component:songSheet,
+        children: [
+          /*精品歌单*/
+          {
+            path: 'qualitySheet',
+            name:'qualitySheet',
+            component:qualitySheet
+          }
+        ]
       },
       {
         path:'radion',
@@ -210,7 +221,8 @@ const routes = [
     path:'/sheetMsg',
     name:'/sheetMsg',
     component:sheetMsg
-  }
+  },
+ 
 ]
 
 const router = new VueRouter({

@@ -1,5 +1,16 @@
 <template>
     <div class="歌单">
+        <router-view ></router-view>
+        <div class="quality-song-list" @click="qualityRouter">
+            <div><img :src="highquality[0].coverImgUrl" /></div>
+            <ul>
+                <li>精品歌单</li>
+                <li>{{highquality[0].name}}</li>
+                <li>{{highquality[0].copywriter}}</li>
+            </ul>
+
+        </div>
+
        <div id="header">
            <div class="title">{{title}} ></div>
            <sheet-child @sheetchild="btnclick"></sheet-child>
@@ -9,6 +20,9 @@
 
 <script>
     import SheetChild from "./sheetChild";
+    import {qualityList} from "../../../network/songsheet/songSheet";
+    import {highquality} from "../../../network/songsheet/songSheet";
+
     export default {
         name: "songSheet",
         components: {SheetChild},
@@ -16,13 +30,29 @@
             btnclick(name)
             {
                 this.title=name;
+            },
+            qualityRouter()
+            {
+                this.$router.push({
+                    path:'/findMusic/songSheet/qualitySheet',
+                    query:{
+                        hightSheet:this.highquality
+                    }
+                });
             }
         },
         data()
         {
             return {
-                title:'华语'
+                title:'华语',
+                highquality:[{coverImgUrl:''}]
             }
+        },
+        created() {
+            highquality().then(data=>{
+                // console.log(data.playlists);
+                this.highquality=data.playlists;
+            })
         }
     }
 </script>
@@ -32,7 +62,7 @@
     {
        display: flex;
         justify-content: space-between;
-        margin: 60px 0 0 0;
+        margin: 20px 0 0 0;
         position: relative;
     }
     .title
@@ -42,5 +72,45 @@
         text-align: center;
         border: 1px solid rgb(216, 216, 216);
         border-radius: 20px;
+    }
+    .quality-song-list
+    {
+        height: 170px;
+        width: 100%;
+        background-color: rgba(127, 95, 87,.6);
+        margin: 30px 0 0 0;
+        border-radius: 10px;
+        display: flex;
+        background-image: linear-gradient(to right,rgb(118, 115, 115) 50px,rgba(45, 42, 41,.6) 450px,rgb(147, 119, 115) 750px);
+        cursor:pointer;
+    }
+    .quality-song-list img
+    {
+        width: 140px;
+        display: block;
+        margin: 15px;
+        border-radius: 8px;
+    }
+    .quality-song-list ul li:nth-of-type(1)
+    {
+        width: 102px;
+        height: 30px;
+        border-radius: 15px;
+        border:1px solid rgb(231, 170, 90);
+        margin: 30px 0 20px 0;
+        color: rgb(231, 170, 90);
+        text-align: center;
+        font-size: 14px;
+        line-height: 30px;
+    }
+    .quality-song-list ul li:nth-of-type(2)
+    {
+        color: white;
+        margin: 0 0 15px 0;
+    }
+    .quality-song-list ul li:nth-of-type(3)
+    {
+        color:black; /*rgb(173, 164, 163);*/
+        font-size:13px;
     }
 </style>

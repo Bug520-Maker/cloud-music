@@ -56,7 +56,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        height: 390px;
+        height: 225px;
         overflow: auto;
     }
     .huayu ul::-webkit-scrollbar
