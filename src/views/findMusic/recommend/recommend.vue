@@ -7,7 +7,7 @@
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>
-            <p class="rec-title">推荐歌单</p>
+            <p class="rec-title" @click="recClick">推荐歌单 ></p>
             <div class="rec-list">
                 <ul>
                     <li v-for="(item,index) in recList" :key="index">
@@ -16,11 +16,11 @@
                     </li>
                 </ul>
             </div>
-            <p class="rec-title">独家放送</p>
+            <p class="rec-title" @click="excClick()">独家放送 ></p>
             <div class="broadcast">
                 <ul>
                     <li v-for="(item,index) in broadcastList" :key="index">
-                        <img :src="item.sPicUrl"  />
+                        <img :src="item.sPicUrl"  @click="mvClick(index)" />
                         <p>{{item.name}}</p>
                     </li>
                 </ul>
@@ -42,20 +42,20 @@
 </template>
 
 <script>
-    /* import swiper from "../../../components/swiper/swiper";
-     import swiperItem from "../../../components/swiper/swiperItem";*/
     import {recommendList} from "../../../network/recommend/recommendList";
     //import {listMsg} from "../../../network/recommend/listMsg";
     import {broadcast} from "../../../network/recommend/broadcast";
     import {latestalbum} from "../../../network/recommend/latestalbum";
-   // import {musicUrl} from "../../../network/public/musicUrl";
+
     import {singeralbum} from "../../../network/public/singerAlbum";
 
-    import {banner} from "../../../network/recommend/123"
+     import {banner} from "../../../network/recommend/123"
      import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
      import 'swiper/swiper-bundle.css'
      import 'swiper/swiper-bundle.min.css'
-    import {songListMsg} from "../../../network/playlist/playlist";
+     import {songListMsg} from "../../../network/playlist/playlist";
+
+     import {mvurl} from "../../../network/vision/mv/mvList";
     export default {
         name: "recommend",
         data() {
@@ -85,7 +85,7 @@
         created() {
             recommendList(10).then(data => {
                 this.recList = data.result;
-                console.log(data.result);
+                //console.log(data.result);
             })
             broadcast().then(data => {
                 //console.log(data.result)
@@ -95,9 +95,6 @@
                 //console.log(data.result);
                 this.newSong = data.result;
             });
-            // listMsg().then(data=>{
-            //     console.log(data)
-            // })
             banner().then(data => {//获取banner轮播图
                 //console.log(data);
                 this.imgList = data.banners;
@@ -116,7 +113,7 @@
             {
 
                 songListMsg(this.recList[index].id).then(res=>{
-                    console.log(res.playlist);
+                    //console.log(res.playlist);
                     this.$store.commit({
                         type:'songListMsg',
                         playlist:res.playlist
@@ -124,7 +121,31 @@
                     this.$router.push('/sheetMsg');
                 });
 
+            },
+            /*推荐歌单*/
+            recClick()
+            {
+                this.$router.push('/findMusic/songSheet');
+            },
+            /*独家放送title*/
+            excClick()
+            {
+               this.$router.push('/solePlay');
+            },
+            /*独家放送*/
+            mvClick(index)
+            {
+                mvurl(this.broadcastList[index].id).then(res=>{
+                    //console.log(res.data.url);
+                    this.$router.push({
+                        path:'/videoPlay',
+                        query:{
+                            url:res.data.url
+                        }
+                    })
+                })
             }
+
         },
         computed: {
             swiper() {
@@ -180,6 +201,7 @@
         font-size: 18px;
         font-weight: bold;
         margin: 20px 0 20px 0;
+        cursor:pointer;
     }
     .rec-list p
     {

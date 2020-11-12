@@ -1,26 +1,32 @@
 <template>
+
+
     <div class="video-play"><!--视频播放组件容器-->
-        <video :src="$store.state.mvurldata.url" controls="controls" v-if="this.$store.state.mvurldata.url!=null" ref="videoPlay" autoplay="autoplay"></video>
+        <video :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-if="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
         <div class="charge"  v-else>
         </div>
     </div>
 </template>
-
 <script>
+
     export default {
         name: "videoPlay",
         data()
         {
             return {
-                isCharge:true
+                isCharge:true,
+                mvurl:''
             }
         },
         methods:{
 
         },
-        updated() {
+        created() {
+            this.mvurl=this.$route.query.url
+        },
+        mounted() {
             this.$refs.videoPlay.volume=0.2
-        }
+        },
     }
 </script>
 
@@ -28,6 +34,7 @@
     video
     {
         width: 600px;
+        height: 338px;
         display: inline-block;
         margin: 50px 0 0 0;
     }

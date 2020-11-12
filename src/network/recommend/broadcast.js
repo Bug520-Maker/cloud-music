@@ -9,3 +9,12 @@ export function broadcast()
         }
     })
 }
+export function broadcastList()
+{
+    return request({
+        url:'/personalized/privatecontent/list',
+        params:{
+        
+        }
+    })
+}

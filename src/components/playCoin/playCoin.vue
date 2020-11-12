@@ -117,6 +117,7 @@
     #img-container .albumImg
     {
         width: 50px;
+        height: 50px;
         border-radius: 5px;
     }
     #img-container:hover

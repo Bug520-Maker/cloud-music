@@ -98,7 +98,7 @@
             for (let item of this.$store.state.playlist.tracks)
             {
                 songDetailes(item.id).then(data=>{
-                    console.log(data.songs)
+                   // console.log(data.songs)
                     this.songInformation.push(data.songs);
                 })
             }

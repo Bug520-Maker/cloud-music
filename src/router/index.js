@@ -48,6 +48,9 @@ const sheetMsg=()=>import('../components/songSheetList/songSheetList')
 
 /*精品歌单*/
 const qualitySheet=()=>import('../components/qualitySheet/QualitySheet');
+
+/*独家放送*/
+const solePlay=()=>import('../components/content/solePlay/SolePlay')
 const routes = [
   {
     path:'',
@@ -222,7 +225,12 @@ const routes = [
     name:'/sheetMsg',
     component:sheetMsg
   },
- 
+  /*独家放送*/
+  {
+    path: '/solePlay',
+    name: '/solePlay',
+    component:solePlay
+  }
 ]
 
 const router = new VueRouter({
