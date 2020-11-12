@@ -13,7 +13,11 @@ const store= new Vuex.Store({
     mvlist:[],/*mv排行*/
     newmv:[],/*最新mv*/
     mvurldata:{},/*获取相关视频的url等信息*/
-    playlist:{},/*获取歌单详情*/
+    playlist:{
+      creator:{
+        nickname:''
+      }
+    },/*获取歌单详情*/
     searchList:{},
     songId:'',
     singleDetails:{/*获取搜索结果 单曲信息*/

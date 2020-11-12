@@ -22,23 +22,27 @@
         data()
         {
            return {
-               qualitySheet:[]
+               qualitySheet:[],
            }
         },
         created() {
             this.qualitySheet=this.$route.query.hightSheet
-            //console.log(this.$route.query);
         },
         methods:{
             liClick(index,item)
             {
-                this.$router.replace('/sheetMsg');
                 songListMsg(this.qualitySheet[index].id).then(res=>{
                     console.log(res.playlist);
                     this.$store.commit({
                         type:'songListMsg',
                         playlist:res.playlist
                     })
+                    this.$router.replace({
+                        path:'/sheetMsg',
+                        query:{
+
+                        }
+                    });
                 });
 
             }

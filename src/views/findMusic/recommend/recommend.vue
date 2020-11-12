@@ -11,7 +11,7 @@
             <div class="rec-list">
                 <ul>
                     <li v-for="(item,index) in recList" :key="index">
-                        <img :src="item.picUrl" alt="">
+                        <img :src="item.picUrl" alt="" @click="sheetRouter(index,item)">
                         <p>{{item.name}}</p>
                     </li>
                 </ul>
@@ -55,6 +55,7 @@
      import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
      import 'swiper/swiper-bundle.css'
      import 'swiper/swiper-bundle.min.css'
+    import {songListMsg} from "../../../network/playlist/playlist";
     export default {
         name: "recommend",
         data() {
@@ -84,7 +85,7 @@
         created() {
             recommendList(10).then(data => {
                 this.recList = data.result;
-                //console.log(data.result);
+                console.log(data.result);
             })
             broadcast().then(data => {
                 //console.log(data.result)
@@ -110,6 +111,19 @@
                 singeralbum(singerId).then(data => {
                     console.log(data)
                 })
+            },
+            sheetRouter(index,item)
+            {
+
+                songListMsg(this.recList[index].id).then(res=>{
+                    console.log(res.playlist);
+                    this.$store.commit({
+                        type:'songListMsg',
+                        playlist:res.playlist
+                    })
+                    this.$router.push('/sheetMsg');
+                });
+
             }
         },
         computed: {

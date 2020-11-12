@@ -45,12 +45,11 @@
         methods:{
             imgClick()
             {
-                // this.$refs.playPage.style.display="none";
                 this.isActive ? this.isActive=false : this.isActive=true;
-                songDetailes(this.$store.state.songId).then(data=>{
-                    this.songInfo=data.songs;
-                    //console.log(data.songs);
-                })
+                // songDetailes(this.$store.state.songId).then(data=>{
+                //     this.songInfo=data.songs;
+                //     //console.log(data.songs);
+                // })
                 songLyric(this.$store.state.singleDetails.id).then(data=>{
                    // console.log(data.lrc.lyric)
                     this.lyric=data.lrc.lyric;
