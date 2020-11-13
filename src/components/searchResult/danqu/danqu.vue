@@ -11,7 +11,7 @@
             <li v-for="(item,index) in this.$store.state.songs" :key="index">
                 <i class="iconfont icon-love love" ></i>
                 <i class="iconfont icon-Addtodownload down" ></i>
-                <div class="songName" @click="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
+                <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
                 <div>{{duration(item.duration)}}</div>

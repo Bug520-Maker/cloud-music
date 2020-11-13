@@ -37,13 +37,24 @@
                     </div>
                 </li>
             </ul>
+            <p class="rec-title" @click="recMvClick">推荐MV ></p>
+            <ul class="recommend-mv">
+                <li v-for="(item,index) in recMv" :key="index">
+                    <div class="recImg"><img :src="item.picUrl" /></div>
+                    <div class="rec-name">{{item.name}}</div>
+                    <div class="rec-artist">
+                        {{item.artistName}}
+                    </div>
+                    <div class="tip">{{item.copywriter}}</div>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
     import {recommendList} from "../../../network/recommend/recommendList";
-    //import {listMsg} from "../../../network/recommend/listMsg";
+    import {recommendMv} from "../../../network/recommend/recommendMv";
     import {broadcast} from "../../../network/recommend/broadcast";
     import {latestalbum} from "../../../network/recommend/latestalbum";
 
@@ -64,6 +75,7 @@
                 broadcastList: [],/*独家推送*/
                 newSong: [],/*最新歌曲*/
                 imgList: [],/*轮播图*/
+                recMv:[],/*推荐mv*/
                 /*轮播图相关配置*/
                 swiperOptions: {
                     pagination: {
@@ -98,6 +110,10 @@
             banner().then(data => {//获取banner轮播图
                 //console.log(data);
                 this.imgList = data.banners;
+            })
+            recommendMv().then(data=>{
+                console.log(data.result);
+                this.recMv=data.result
             })
         },
         components: {
@@ -144,6 +160,11 @@
                         }
                     })
                 })
+            },
+            /*推荐mv*/
+            recMvClick()
+            {
+              this.$router.push('/vision/mv/neidi');
             }
 
         },
@@ -284,5 +305,52 @@
     #swiper-outer
     {
         margin: 20px 0 0 0;
+    }
+    .rec-title + .recommend-mv
+    {
+        display: flex;
+        overflow: hidden;
+    }
+    .rec-title + .recommend-mv li
+    {
+        margin: 0 15px 0 0;
+        position: relative;
+    }
+    .rec-title + .recommend-mv .recImg img
+    {
+        width: 240px;
+        border-radius: 8px;
+    }
+    .rec-title + .recommend-mv li .rec-name
+    {
+        font-size: 14px;
+        margin: 5px 0;
+        width: 240px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    .rec-title + .recommend-mv li .rec-artist
+    {
+        font-size: 13px;
+    }
+    .rec-title + .recommend-mv li .tip
+    {
+        position: absolute;
+        color: #ffffff;
+        left: 0;
+        font-size: 12px;
+        background-color:rgba(0,0,0,.3);
+        padding: 10px 5px;
+        width:230px;
+        transition: width 0.3s;
+        top: 0;
+        display: none;
+    }
+    .rec-title + .recommend-mv li:hover .tip
+    {
+        display: block;
     }
 </style>

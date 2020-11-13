@@ -30,7 +30,7 @@
             {
                 if(event.keyCode==13&&this.keywords!='')
                 {
-                    this.$router.push('/searchResult');
+                    this.$router.push('/searchResult/danqu');
                     search(this.keywords).then(data=>{
                         console.log(data);
                         this.songCount=data.result.songCount;

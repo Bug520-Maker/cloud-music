@@ -1,17 +1,21 @@
 <template>
     <div class="radion">
-        电台
+        <lunbo></lunbo>
         <banner :category="cateList" @itemClick="banClick"></banner>
     </div>
 </template>
 
 <script>
-    import {catrgoryRadio} from "../../../network/radio/radio";
+    import {catrgoryRadio, radionBanner} from "../../../network/radio/radio";
     import banner from "./childCpn/banner"
     import {catelistType} from "../../../network/radio/radio";
+
+    import lunbo from "./lunbo";
+    import Lunbo from "./lunbo";
     export default {
         name: "radion",
         components:{
+            Lunbo,
             banner
         },
         data()
@@ -42,7 +46,7 @@
 <style scoped>
     .radion
     {
-        background-color: #e7e1cd;
+        background-color: pink;
         margin: 25px 0 0 0;
     }
 </style>

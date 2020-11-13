@@ -30,13 +30,13 @@
         methods:{
             sheetRouter(index,item)
             {
-                this.$router.push('/sheetMsg');
                 songListMsg(this.huayuList[index].id).then(res=>{
                     console.log(res.playlist);
                     this.$store.commit({
                         type:'songListMsg',
                         playlist:res.playlist
                     })
+                    this.$router.push('/sheetMsg');
                 });
 
             }

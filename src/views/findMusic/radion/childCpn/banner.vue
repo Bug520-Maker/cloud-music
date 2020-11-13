@@ -36,15 +36,18 @@
     .banner
     {
         background-color: skyblue;
+        margin: 20px 0 0 0;
+        overflow: hidden;
     }
     .banner ul
     {
         display: flex;
-        justify-content: space-around;
+        padding: 0 0 0 30px;
     }
     .banner ul li
     {
         text-align: center;
+        margin: 0 30px 0 0;
     }
     .banner ul li .icon img
     {

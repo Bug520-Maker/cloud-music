@@ -19,3 +19,12 @@ export function catelistType(type)
         }
     })
 }
+/*获取电台banner*/
+export function radionBanner()
+{
+    return request({
+        url:'/dj/banner',
+        params:{
+        }
+    })
+}

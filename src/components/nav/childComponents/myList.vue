@@ -40,7 +40,12 @@
             aclick(index,event)
             {
                 this.currentIndex=index;
-                this.$router.push(this.path[index]);
+                try{
+                    this.$router.push(this.path[index]);
+                }
+                catch (e) {
+                    console.log(e+"您已在当前页");
+                }
             }
         },
         computed:{
