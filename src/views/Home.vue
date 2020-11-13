@@ -2,7 +2,7 @@
    <div>
        <tabbar>
            <tabbar-item class="logo"><!--设置logo-->
-               <img src="../assets/img/banner/logo.png" alt="logo"/>
+               <img src="../assets/img/banner/logo.png" alt="logo" @click="imgClick"/>
            </tabbar-item>
            <tabbar-item class="back"><!--设置回退按钮-->
                <div class="left" @click="leftBack()">
@@ -63,6 +63,10 @@
             leftBack()
             {
                 history.back();
+            },
+            imgClick()
+            {
+                this.$router.replace('/findMusic/recommend');
             }
         }
     }

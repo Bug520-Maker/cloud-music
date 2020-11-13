@@ -1,24 +1,24 @@
 <!--设置底部歌曲播放容器-->
 <template>
     <div class="play-coin">
-        <div id="img-container" @click="imgClick"><img :src="this.$store.state.albumImgUrl" class="albumImg"/></div>
+        <div id="img-container" @click="imgClick"><img :src="this.$store.state.albumImgUrl || normalUrl" class="albumImg"/></div>
         <div id="songInfo">
-            <p>{{this.$store.state.singleDetails.name}} <span>{{this.$store.state.singleDetails.alias[0]}} </span></p>
-            <p>{{this.$store.state.singleDetails.artists[0].name}}</p>
+            <p>{{this.$store.state.singleDetails.name||'网易云'}} <span>{{this.$store.state.singleDetails.alias[0]}} </span></p>
+            <p>{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>
         </div>
         <audio :src="this.$store.state.songUrl" controls="controls" class="play-song" ref="playSong" autoplay="autoplay"></audio>
         <div  class="playPage" ref="playPage" :class="{active:isActive}">
-            <div class="album-container" :class="{disappear:isActive}"><img :src="this.$store.state.albumImgUrl" :class="{appear:isActive}"/></div>
+            <div class="album-container" :class="{disappear:isActive}"><img :src="this.$store.state.albumImgUrl||normalUrl" :class="{appear:isActive}"/></div>
             <div id="songMsg">
                 <p>{{this.$store.state.singleDetails.name}}</p>
                 <p>{{this.$store.state.singleDetails.alias[0]}}</p>
                 <ul>
-                    <li>专辑：<span>{{this.$store.state.singleDetails.album.name}}</span></li>
-                    <li>歌手：<span>{{this.$store.state.singleDetails.artists[0].name}}</span></li>
+                    <li>专辑：<span>{{this.$store.state.singleDetails.album.name||'无'}}</span></li>
+                    <li>歌手：<span>{{this.$store.state.singleDetails.artists[0].name||'无'}}</span></li>
                     <li>来源  <span></span></li>
                 </ul>
                 <div class="lyric">
-                   <pre>{{lyric}}</pre>
+                   <pre>{{lyric||'暂无歌词'}}</pre>
                 </div>
             </div>
         </div>
@@ -39,7 +39,8 @@
             return {
                 isActive:false,
                 songInfo:[],
-                lyric:''
+                lyric:'',
+                normalUrl:'https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg'
             }
         },
         methods:{
@@ -52,7 +53,11 @@
                 // })
                 songLyric(this.$store.state.singleDetails.id).then(data=>{
                    // console.log(data.lrc.lyric)
-                    this.lyric=data.lrc.lyric;
+                    try{
+                        this.lyric=data.lrc.lyric;
+                    }catch (e) {
+                        
+                    }
                 })
             },
 
