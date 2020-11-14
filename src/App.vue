@@ -1,13 +1,15 @@
 <template>
   <div id="app" ref="app">
       <Home></Home>
+      <task-bar></task-bar>
   </div>
 </template>
 <script>
    import Home from "./views/Home";
+   import TaskBar from "./views/TaskBar";
    export default{
      name:'app',
-       components: {Home},
+       components: {TaskBar, Home},
        mounted() {
            let app=this.$refs.app;
            document.onselectstart=new Function("return false");
@@ -24,7 +26,7 @@
   {
     width:1021px;
     height:669px;
-    box-shadow: 0px 5px 15px rgba(0,0,0,.2);
+    box-shadow: 0px 10px 15px rgba(0,0,0,.5);
       left:50%;
       top:10px;
       transform: translateX(-50%);

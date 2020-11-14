@@ -66,8 +66,12 @@
             },
             imgClick()
             {
-                this.$router.replace('/findMusic/recommend');
-            }
+                this.$router.push('/findMusic/recommend');
+            },
+            // disappear()
+            // {
+            //     this.$refs.dis.parentNode.parentNode.parentNode.parentNode.parentNode.style.display="none";
+            // }
         }
     }
 </script>

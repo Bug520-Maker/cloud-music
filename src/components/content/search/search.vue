@@ -2,7 +2,7 @@
     <div class="searh-coin">
         <div class="search">
             <i class="iconfont icon-sw_sousuo"></i>
-            <input type="text" placeholder="搜索" @keydown="enter($event)" v-model="keywords"/><!--设置搜索框-->
+            <input type="text" placeholder="搜索" @keydown="enter($event)" v-model="keywords" @mousedown="inClick($event)" /><!--设置搜索框-->
         </div>
         <div class="micrphone"><!--语音搜索麦克风-->
             <i class="iconfont icon-MicrphoneOutline"></i>
@@ -45,6 +45,10 @@
                 }
 
             },
+            inClick(event)
+            {
+                event.stopPropagation();//防止搜索时拖拽
+            }
         }
     }
 </script>

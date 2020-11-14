@@ -16,6 +16,7 @@
     {
         width: 124px;
         margin: 17px 0 0 0;
+        cursor:pointer;
     }
     .logo
     {

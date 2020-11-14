@@ -18,14 +18,33 @@
                 let innerT=event.pageY-outer.offsetTop;
                 function fn(event)
                 {
-                    outer.style.left=(event.pageX-innerL)+"px";
-                    outer.style.top=(event.pageY-innerT)+"px";
+                    if(event.pageX-innerL>513)
+                    {
+                        outer.style.left=(event.pageX-innerL)+"px";
+                        event.preventDefault();
+                    }
+                    else if(event.pageX-innerL<=513)
+                    {
+                        outer.style.left=513+"px";
+                        event.preventDefault();
+                    }
+                    /*垂直方向*/
+                    if(event.pageY-innerT>0)
+                    {
+                        outer.style.top=(event.pageY-innerT)+"px";
+                        event.preventDefault();
+                    }
+                    else if(event.pageY-innerT<=0)
+                    {
+                        outer.style.top=0+"px";
+                        event.preventDefault();
+                    }
                 }
                 document.addEventListener('mousemove',fn);
                 document.addEventListener('mouseup',function () {
                         document.removeEventListener('mousemove',fn);
                     })
-                //event.preventDefault();
+                event.stopPropagation()
                 })
         }
 
