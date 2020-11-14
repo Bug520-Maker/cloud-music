@@ -47,7 +47,7 @@
             },
             inClick(event)
             {
-                event.stopPropagation();//防止搜索时拖拽
+                event.stopPropagation();//防止搜索时拖拽阻止冒泡
             }
         }
     }
