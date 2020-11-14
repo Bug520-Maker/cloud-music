@@ -46,7 +46,7 @@
 <style scoped>
     .radion
     {
-        background-color: pink;
+
         margin: 25px 0 0 0;
     }
 </style>
