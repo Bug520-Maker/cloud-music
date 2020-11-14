@@ -58,6 +58,7 @@
         justify-content: space-between;
         height: 225px;
         overflow: auto;
+        scrollbar-color: transparent transparent;
     }
     .huayu ul::-webkit-scrollbar
     {

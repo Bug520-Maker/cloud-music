@@ -21,3 +21,13 @@ input
     content: '';
     clear: both;
 }
+body
+{
+    background-image: url("../img/backgroundColor/window.png");
+    background-size:cover;
+    background-repeat: repeat-y;
+}
+body::-webkit-scrollbar
+{
+    width: 0px;
+}

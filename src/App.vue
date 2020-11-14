@@ -24,11 +24,11 @@
   {
     width:1021px;
     height:669px;
-    background-color:transparent;
     box-shadow: 0px 5px 15px rgba(0,0,0,.2);
       left:50%;
       top:10px;
       transform: translateX(-50%);
       position:relative;
+      background-color:white;
   }
 </style>

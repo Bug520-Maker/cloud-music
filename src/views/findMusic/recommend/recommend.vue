@@ -191,6 +191,7 @@
         height: 490px;
         background-color:transparent;
         overflow: scroll;
+        scrollbar-color: transparent transparent;
     }
     .recommend
     {

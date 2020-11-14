@@ -22,6 +22,7 @@
         width: 820px;
         background-color:transparent;
         overflow: scroll;
+        scrollbar-color: transparent transparent;
     }
     .container::-webkit-scrollbar
     {

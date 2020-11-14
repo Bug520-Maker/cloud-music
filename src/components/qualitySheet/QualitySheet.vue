@@ -59,7 +59,7 @@
         z-index: 999;
         overflow: auto;
         height: 460px;
-
+        scrollbar-color: transparent transparent;
     }
     .quality-sheet::-webkit-scrollbar {
         width: 5px;

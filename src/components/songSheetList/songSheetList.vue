@@ -118,6 +118,7 @@
         height: 506px;
         overflow: auto;
         width:760px;
+        scrollbar-color: transparent transparent;
     }
    .sheetMsg::-webkit-scrollbar
     {
