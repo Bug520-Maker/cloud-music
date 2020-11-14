@@ -23,7 +23,7 @@
                    <li><i class="iconfont icon-suofang"></i></li>
                    <li><i class="iconfont icon-mini"></i></li>
                    <li><i class="iconfont icon-zuidahua"></i></li>
-                   <li><i class="iconfont icon-cha"></i></li>
+                   <li @click="disappear()" ref="dis"><i class="iconfont icon-cha"></i></li>
                </ul>
            </tabbar-item>
        </tabbar>
@@ -68,10 +68,11 @@
             {
                 this.$router.push('/findMusic/recommend');
             },
-            // disappear()
-            // {
-            //     this.$refs.dis.parentNode.parentNode.parentNode.parentNode.parentNode.style.display="none";
-            // }
+            disappear()
+            {
+                this.$refs.dis.offsetParent.classList.add('active');
+                this.$refs.dis.offsetParent.nextSibling.style.display="block";
+            }
         }
     }
 </script>
