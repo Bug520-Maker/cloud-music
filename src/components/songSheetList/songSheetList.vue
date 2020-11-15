@@ -94,14 +94,22 @@
             }
         },
         created() {
-            console.log(this.$store.state.playlist.tracks)
+           // console.log(this.$store.state.playlist.tracks)
             for (let item of this.$store.state.playlist.tracks)
             {
+
                 songDetailes(item.id).then(data=>{
-                   // console.log(data.songs)
-                    this.songInformation.push(data.songs);
+                   //console.log(data.songs)
+                    try {
+                        this.songInformation.push(data.songs);
+                    }catch (e) {
+
+                    }
+
                 })
+
             }
+
         }
     }
 </script>
