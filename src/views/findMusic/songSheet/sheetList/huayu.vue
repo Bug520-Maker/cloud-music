@@ -1,8 +1,8 @@
 <template>
     <div class="huayu"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
         <ul>
-            <li v-for="(item,index) in huayuList" :key="index">
-               <div>
+            <li v-for="(item,index) in huayuList" :key="index" >
+               <div >
                    <img :src="item.coverImgUrl" @click="sheetRouter(index,item)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
                    <p class="name">{{item.name}}</p>
                </div>

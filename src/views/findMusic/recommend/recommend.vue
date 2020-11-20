@@ -2,7 +2,7 @@
     <div class="container">
         <div class="recommend">
             <div id="swiper-outer"><!--设置轮播图-->
-                <swiper ref="mySwiper" :options="swiperOptions" v-if="75>1">
+                <swiper ref="mySwiper" :options="swiperOptions" >
                     <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index"><img :src="item.imageUrl" class="swiper-img" /></swiper-slide>
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
@@ -180,6 +180,7 @@
             /*setInterval(function(){   
               that.swiper.slideNext() },2000)
           }*/
+
         }
     }
 </script>
@@ -307,6 +308,7 @@
     {
         margin: 20px 0 0 0;
     }
+
     .rec-title + .recommend-mv
     {
         display: flex;

@@ -28,7 +28,8 @@ const store= new Vuex.Store({
         name:''
       },
       id:''
-    }/*获取搜索结果 单曲信息*/
+    },/*获取搜索结果 单曲信息*/
+    singerLists:[]
   },
   mutations: {
     searchInfo(state,payload)
@@ -72,6 +73,10 @@ const store= new Vuex.Store({
     getSingleInfo(state,payload)
     {
       state.singleDetails=payload.details
+    },
+    getSingerList(state,payload)
+    {
+      state.singerLists=payload.singers;
     }
   },
   actions: {
