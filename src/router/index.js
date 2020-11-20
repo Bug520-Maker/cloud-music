@@ -45,8 +45,8 @@ const hanguo=()=>import('../views/vision/mv/hanguo');
 const riben=()=>import('../views/vision/mv/riben');
 
 /*视频播放组件路由*/
-
 const videoplay=()=>import('../components/VideoPlay/videoPlay');
+const singerDetails=()=>import("../components/singerDetail/SingerDetai");/*导入歌手信息详情页*/
 
 /*歌单详情组件*/
 const sheetMsg=()=>import('../components/songSheetList/songSheetList')
@@ -235,6 +235,12 @@ const routes = [
     path: '/solePlay',
     name: '/solePlay',
     component:solePlay
+  },
+  /*歌手详情页*/
+  {
+    path: "/singerDetails",
+    name:"/singerDetails",
+    component:singerDetails
   }
 ]
 

@@ -1,13 +1,13 @@
 <template>
     <div class="head-banner">
         <div class="container">
-            <span>语种 :</span><list :list="['全部','华语','欧美','日本','韩国','其他']" @btnclick="divClick"></list>
+            <span>语种 :</span><list :list="['全部','华语','欧美','日本','韩国','其他']" @btnclick="areaClick"></list>
         </div>
         <div class="container">
-            <span>分类 :</span><list :list="['全部','男歌手','女歌手','乐队组合']" @btnclick="divClick"></list>
+            <span>分类 :</span><list :list="['全部','男歌手','女歌手','乐队组合']" @btnclick="typeClick"></list>
         </div>
         <div class="container">
-            <span>筛选 :</span> <list :list="['热门','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',]" @btnclick="divClick"></list>
+            <span>筛选 :</span> <list :list="['热门','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',]" @btnclick="initClick"></list>
         </div>
     </div>
 </template>
@@ -19,26 +19,64 @@
         name: "HeadBanner",
         components: {List},
         methods:{
-            divClick(index)
+            areaClick(index)
             {
-                console.log(index);
+                this.param.set(0,"-1");
+                this.param.set(1,"7");
+                this.param.set(2,"96");
+                this.param.set(3,"8");
+                this.param.set(4,"16");
+                this.param.set(5,"0");
+                this.areaParam=this.param.get(index);
+                this.singerList();
             },
+            typeClick(index)
+            {
+                if(index==0)
+                {
+                    index=-1;
+                }
+                this.typeParam=index;
+                this.singerList();
+            },
+            initClick(index)
+            {
+                let param=index;
+                if(index==0)
+                {
+                    param=-1;
+                }
+                else
+                {
+                    param=String.fromCharCode(index+64);
+                }
+                this.initParam=param;
+                this.singerList();
+            },
+            singerList()
+            {
+                singerCategory(this.areaParam,this.typeParam,this.initParam).then(data=>{
+                    //console.log(data.artists);
+                    this.singer=data.artists;
+                    this.$store.commit({
+                        type:'getSingerList',
+                        singers:data.artists
+                    })
+                })
+            }
         },
         data()
         {
             return {
-                singer: []
+                singer: [],
+                areaParam:'',
+                typeParam:'',
+                initParam:'',
+                param:new Map()
             }
         },
         created() {
-            singerCategory().then(data=>{
-                console.log(data.artists);
-                this.singer=data.artists;
-                this.$store.commit({
-                    type:'getSingerList',
-                    singers:data.artists
-                })
-            })
+            this.singerList();
         }
     }
 </script>
