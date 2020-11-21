@@ -56,7 +56,7 @@
             singerList()
             {
                 singerCategory(this.areaParam,this.typeParam,this.initParam).then(data=>{
-                    //console.log(data.artists);
+                   // console.log(data.artists);
                     this.singer=data.artists;
                     this.$store.commit({
                         type:'getSingerList',

@@ -16,8 +16,8 @@
 </template>
 
 <script>
-    import {musicUrl} from "../../network/public/musicUrl";
-    import {albumContent} from "../../network/public/albumContent";
+    import {musicUrl} from "../../../network/public/musicUrl";
+    import {albumContent} from "../../../network/public/albumContent";
 
     export default {
         name: "SongLists",
@@ -74,7 +74,7 @@
 </script>
 
 <style scoped>
-    @import "../../assets/font/searchResult/iconfont.css";
+    @import "../../../assets/font/searchResult/iconfont.css";
     #song-list ul li
     {
         display: flex;

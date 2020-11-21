@@ -14,8 +14,8 @@
                 <p>{{this.$store.state.singleDetails.alias[0]}}</p>
                 <ul>
                     <li>专辑：<span>{{this.$store.state.singleDetails.album.name||'无'}}</span></li>
-                    <li>歌手：<span>{{this.$store.state.singleDetails.artists[0].name||'无'}}</span></li>
-                    <li>来源  <span></span></li>
+                    <li @click="singerClick">歌手：<span>{{this.$store.state.singleDetails.artists[0].name||'无'}}</span></li>
+                    <li>来源 <span></span></li>
                 </ul>
                 <div class="lyric">
                    <pre>{{lyric||'暂无歌词'}}</pre>
@@ -29,6 +29,7 @@
 <script>
     import {songDetailes} from "../../network/playCoin/songDetal";
     import {songLyric} from "../../network/playCoin/songDetal";
+    import {singeralbum} from "../../network/public/singerAlbum";
     export default {
         name: "playCoin",
         mounted() {
@@ -40,7 +41,8 @@
                 isActive:false,
                 songInfo:[],
                 lyric:'',
-                normalUrl:'https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg'
+                normalUrl:'https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg',
+                albumMsg:{}
             }
         },
         methods:{
@@ -60,7 +62,28 @@
                     }
                 })
             },
+            singerClick()
+            {
+                this.isActive=false;
+                singeralbum( this.$store.state.singleDetails.artists[0].id).then(data=>{
+                    console.log(data);
+                    this.albumMsg=data;
+                    let msg={
+                        singerId : this.$store.state.singleDetails.artists[0].id,
+                        singerName : this.$store.state.singleDetails.artists[0].name,
+                        albumSize: this.albumMsg.artist.albumSize,
+                        musicSize: this.albumMsg.artist.musicSize,
+                        picUrl:this.albumMsg.artist.picUrl,
+                    }
+                    this.$router.push({
+                        path:'/singerDetails',
+                        query:{
+                            singermsg:msg
+                        }
+                    })
+                })
 
+            }
         },
     }
 </script>

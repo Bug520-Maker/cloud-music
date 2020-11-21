@@ -45,7 +45,7 @@
 
 <script>
     import {mvofsinger, singerDesc, top50} from "../../network/singer/singer";
-    import SongLists from "../content/SongLists";
+    import SongLists from "../content/songList/SongLists";
     import {mvurl} from "../../network/vision/mv/mvList";
 
     export default {

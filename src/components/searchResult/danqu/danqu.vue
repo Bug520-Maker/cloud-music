@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import SongLists from "../../content/SongLists";
+    import SongLists from "../../content/songList/SongLists";
 
     export default {
         name: "danqu",
