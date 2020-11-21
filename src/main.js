@@ -12,9 +12,9 @@ Vue.use(getAwesomeSwiper(SwiperClass))
 const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
 import 'swiper/swiper-bundle.css'
 /*引入element-ui*/
-import ElementUI from 'element-ui';
+/*import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+Vue.use(ElementUI);*/
 
 Vue.use(VueAwesomeSwiper);
 Vue.use(VueLazyload);

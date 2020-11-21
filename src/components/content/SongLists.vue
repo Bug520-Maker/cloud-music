@@ -40,8 +40,9 @@
         methods:{
             playSong(index)
             {
-                this.songId=this.$store.state.songs[index].id;
-                musicUrl(this.$store.state.songs[index].id).then(res=>{
+                this.songId=this.songLists[index].id||this.$store.state.songs[index].id;
+                //console.log(this.songId);                                               /*向playCoin发送歌曲的url*/
+                musicUrl(this.songId).then(res=>{
                     this.songUrl=res.data[0].url;
                     this.$store.commit({
                         type:'getSongUrl',
@@ -49,16 +50,16 @@
                         songId:this.songId
                     })
                 });
-                albumContent(this.$store.state.songs[index].album.id).then(data=>{
-                    this.$store.commit({
+                albumContent(this.songLists[index].album.id||this.$store.state.songs[index].album.id).then(data=>{
+                    this.$store.commit({                                   /*向playCoin发送封面图片*/
                         type:'getAlbumImg',
-                        albumImgUrl:data.album.blurPicUrl
+                        albumImgUrl:this.songLists[index].alImgUrl || data.album.blurPicUrl
                     })
                 })
-                console.log(this.$store.state.searchList.songs[index]);
+               // console.log(this.$store.state.searchList.songs[index]);
                 this.$store.commit({
                     type:'getSingleInfo',
-                    details:this.$store.state.searchList.songs[index]
+                    details:this.songLists[index]||this.$store.state.searchList.songs[index]
                 })
             },
             duration(item)

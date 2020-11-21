@@ -1,6 +1,4 @@
 <template>
-
-
     <div class="video-play"><!--视频播放组件容器-->
         <video :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-if="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
         <div class="charge"  v-else>
@@ -22,7 +20,8 @@
 
         },
         created() {
-            this.mvurl=this.$route.query.url
+            this.mvurl=this.$route.query.url;
+            /*console.log(this.$route.query.url);*/
         },
         mounted() {
             this.$refs.videoPlay.volume=0.2

@@ -22,3 +22,32 @@ export function singerCategory(area,type,initial)
         }
     })
 }
+export function top50(id)
+{
+    return request({
+        url:'/artist/top/song',
+        params:{
+            id
+        }
+    })
+}
+/*获取歌手mv*/
+export function mvofsinger(id)
+{
+    return request({
+        url:'/artist/mv',
+        params:{
+            id
+        }
+    })
+}
+/*获取歌手描述*/
+export function singerDesc(id)
+{
+    return request({
+        url:'/artist/desc',
+        params:{
+            id
+        }
+    })
+}
