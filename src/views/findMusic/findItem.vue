@@ -55,10 +55,12 @@
         background-color:transparent;
         height:25px ;
         line-height: 25px;
+        padding: 0 0 6px 0;
     }
     .findItem ul .active
     {
         font-size: 18px;
         font-weight: bold;
+        border-bottom :4px solid rgb(236, 65, 65);
     }
 </style>

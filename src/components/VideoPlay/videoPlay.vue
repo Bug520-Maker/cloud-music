@@ -1,7 +1,9 @@
 <template>
+
+
     <div class="video-play"><!--视频播放组件容器-->
-        <video :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-if="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
-        <div class="charge"  v-else>
+        <video :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
+        <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null">
         </div>
     </div>
 </template>
