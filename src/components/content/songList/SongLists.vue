@@ -64,10 +64,21 @@
             },
             duration(item)
             {
-                let num=item/60000;
-                let number=num.toString().split(".");
-                let time="0"+number[0]+":"+number[1].slice(0,2);
-                return time;
+                if(item==undefined||item==null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    let num=item/60000;
+                    let number=num.toString().split(".");
+                    if(number[1]===undefined)
+                    {
+                           number[1]="00";
+                    }
+                    let time="0"+number[0]+":" +number[1].slice(0,2);
+                    return time;
+                }
             }
         },
     }
