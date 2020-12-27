@@ -2,7 +2,7 @@
 
 
     <div class="video-play"><!--视频播放组件容器-->
-        <video :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
+        <video :volume="0.2" :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
         <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null">
         </div>
     </div>
@@ -19,14 +19,17 @@
             }
         },
         methods:{
-
+            controlVolume(num)
+            {
+                this.$refs.videoPlay.volume=num
+            }
         },
         created() {
             this.mvurl=this.$route.query.url;
             /*console.log(this.$route.query.url);*/
         },
         mounted() {
-            this.$refs.videoPlay.volume=0.2
+            this.controlVolume(0.1);
         },
     }
 </script>
