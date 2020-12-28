@@ -7,12 +7,12 @@
             <div>时长</div>
             <div>热度</div>
         </div>
-        <song-lists :songLists="this.$store.state.songs"></song-lists>
+        <song-lists :songLists="this.$store.state.searchList.songs"></song-lists>
     </div>
 </template>
 
 <script>
-    import SongLists from "../../content/songList/SongLists";
+    import SongLists from "../../songList/SongLists";
 
     export default {
         name: "danqu",
@@ -28,7 +28,7 @@
         display: flex;
         width: 100%;
         position: absolute;
-        top: 93px ;
+        top: 113px ;
         left: 0;
     }
     .single-title div

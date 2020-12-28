@@ -1,8 +1,9 @@
+<!--顶部搜索框-->
 <template>
     <div class="searh-coin">
         <div class="search">
             <i class="iconfont icon-sw_sousuo"></i>
-            <input type="text" placeholder="搜索" @keydown="enter($event)" v-model="keywords" @mousedown="inClick($event)" /><!--设置搜索框-->
+            <input type="text" placeholder="搜索" @keydown="enter($event)" v-model="keyword" @mousedown="inClick($event)" /><!--设置搜索框-->
         </div>
         <div class="micrphone"><!--语音搜索麦克风-->
             <i class="iconfont icon-MicrphoneOutline"></i>
@@ -15,12 +16,11 @@
     export default {
         name: "search",
         components:{
-
         },
         data()
         {
             return {
-                keywords:'',
+                keyword:'',
                 songCount:'',
                 songs:[]
             }
@@ -28,20 +28,29 @@
         methods:{
             enter(event)
             {
-                if(event.keyCode==13&&this.keywords!='')
+                if(event.keyCode==13&&this.keyword!='')
                 {
-                    this.$router.push('/searchResult');
-                    search(this.keywords).then(data=>{
+                    this.$router.push({
+                        path:'/searchResult',
+                        query:{
+                            keyword:this.keyword
+                        }
+                    });
+                    this.$store.commit({
+                        type:'getSearchKeyWord',
+                        keyword:this.keyword
+                    })
+                   /* search(this.keywords).then(data=>{
                         console.log(data);
                         this.songCount=data.result.songCount;
                         this.songs=data.result.songs;
-                        this.$store.commit({
+                       this.$store.commit({
                             type:'searchInfo',
                             keywords: this.keywords,
                             songCount:this.songCount,
                             songs:this.songs,
                         })
-                    })
+                    })*/
                 }
 
             },

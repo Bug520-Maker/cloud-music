@@ -1,9 +1,9 @@
 <template>
-    <div class="huayu"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+    <div class="sheet-msg"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
         <ul>
             <li v-for="(item,index) in huayuList" :key="index" >
                <div >
-                   <img :src="item.coverImgUrl" @click="sheetRouter(index,item)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
+                   <img :src="item.coverImgUrl" @click="sheetRouter(index)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
                    <p class="name">{{item.name}}</p>
                </div>
             </li>
@@ -26,9 +26,8 @@
                 }
             }
         },
-
         methods:{
-            sheetRouter(index,item)
+            sheetRouter(index)
             {
                 songListMsg(this.huayuList[index].id).then(res=>{
                     console.log(res.playlist);
@@ -45,13 +44,13 @@
 </script>
 
 <style scoped>
-    .huayu
+    .sheet-msg
     {
         position: absolute;
         left: 0;
         top:40px
     }
-    .huayu ul
+    .sheet-msg ul
     {
         display: flex;
         flex-wrap: wrap;
@@ -60,25 +59,25 @@
         overflow: auto;
         scrollbar-color: transparent transparent;
     }
-    .huayu ul::-webkit-scrollbar
+    .sheet-msg ul::-webkit-scrollbar
     {
         width: 5px;
     }
-    .huayu ul::-webkit-scrollbar-thumb
+    .sheet-msg ul::-webkit-scrollbar-thumb
     {
         height: 30px;
         background-color: rgb(225, 225, 225);
     }
-    .huayu ul li
+    .sheet-msg ul li
     {
         margin: 0 0 15px 0;
     }
-    .huayu ul img
+    .sheet-msg ul img
     {
         width: 177px;
         border-radius:8px ;
     }
-    .huayu ul .name
+    .sheet-msg ul .name
     {
         width: 177px;
         overflow: hidden;

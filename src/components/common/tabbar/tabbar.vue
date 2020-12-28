@@ -52,7 +52,7 @@
 </script>
 
 <style scoped>
-    @import "../../assets/font/bannerFont/iconfont.css";
+    @import "../../../assets/font/bannerFont/iconfont.css";
     .tabbar
     {
         height: 60px;

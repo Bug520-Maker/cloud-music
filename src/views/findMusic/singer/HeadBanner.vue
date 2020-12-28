@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import List from "../../../components/list/List";
+    import List from "../../../components/common/list/List";
     import {singerCategory} from "../../../network/singer/singer";
     export default {
         name: "HeadBanner",

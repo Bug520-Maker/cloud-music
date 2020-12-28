@@ -29,3 +29,13 @@ export function allvideoList()
         url:'/video/timeline/all',
     })
 }
+/*获取视频播放地址*/
+export function videoUrl(id)
+{
+    return request({
+        url:'/video/url',
+        params:{
+            id
+        }
+    })
+}

@@ -44,9 +44,9 @@
 </template>
 
 <script>
-    import{musicUrl} from "../../network/public/musicUrl";
-    import {songDetailes} from "../../network/playCoin/songDetal";
-    import {albumContent} from "../../network/public/albumContent";
+    import{musicUrl} from "../../../network/public/musicUrl";
+    import {songDetailes} from "../../../network/playCoin/songDetal";
+    import {albumContent} from "../../../network/public/albumContent";
 
     export default {
         name: "songSheetList",
@@ -115,7 +115,7 @@
 </script>
 
 <style scoped>
-    @import "../../assets/font/searchResult/iconfont.css";
+    @import "../../../assets/font/searchResult/iconfont.css";
     .sheetMsg img
     {
         width: 184px;

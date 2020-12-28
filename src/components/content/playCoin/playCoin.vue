@@ -27,9 +27,9 @@
 </template>
 
 <script>
-    import {songDetailes} from "../../network/playCoin/songDetal";
-    import {songLyric} from "../../network/playCoin/songDetal";
-    import {singeralbum} from "../../network/public/singerAlbum";
+    import {songDetailes} from "../../../network/playCoin/songDetal";
+    import {songLyric} from "../../../network/playCoin/songDetal";
+    import {singeralbum} from "../../../network/public/singerAlbum";
     export default {
         name: "playCoin",
         mounted() {
@@ -166,7 +166,7 @@
         position: absolute;
         top: 10px;
         left: 15px;
-        background-image: url("../../assets/img/playCoin/play.png");
+        background-image: url("../../../assets/img/playCoin/play.png");
         background-size: cover;
         border-radius: 5px;
     }

@@ -12,7 +12,7 @@ const friend=()=> import('../views/friend/friend');
 const perFM=()=>import('../views/perFM/perFM');
 const vision=()=>import('../views/vision/vision')
 const zhibo=()=>import ('../views/zhibo/zhibo')
-const search=()=>import('../components/searchResult/searchResult')
+const search=()=>import('../components/content/searchResult/searchResult')
 /*导入子路由*/
 const newMusic=()=> import('../views/findMusic/newMusic/newMusic');
 const radion=()=> import('../views/findMusic/radion/radion');
@@ -21,14 +21,14 @@ const recommend=()=>import('../views/findMusic/recommend/recommend');
 const singer=()=> import('../views/findMusic/singer/singer');
 const songSheet=()=>import('../views/findMusic/songSheet/songSheet')
 
-const danqu=()=>import('../components/searchResult/danqu/danqu')
-const gedan=()=>import('../components/searchResult/gedan/gedan')
-const geshou=()=>import('../components/searchResult/geshou/geshou');
-const shipin=()=>import('../components/searchResult/shipin/shipin');
-const yonghu=()=>import('../components/searchResult/yonghu/yonghu');
-const zhuanji=()=>import('../components/searchResult/zhuanji/zhuanji');
-const zhubodiant=()=>import ('../components/searchResult/zubodiant/zhubodiant')
-const geci=()=>import('../components/searchResult/geci/geci')
+const danqu=()=>import('../components/content/searchResult/danqu/danqu')
+const gedan=()=>import('../components/content/searchResult/gedan/gedan')
+const geshou=()=>import('../components/content/searchResult/geshou/geshou');
+const shipin=()=>import('../components/content/searchResult/shipin/shipin');
+const yonghu=()=>import('../components/content/searchResult/yonghu/yonghu');
+const zhuanji=()=>import('../components/content/searchResult/zhuanji/zhuanji');
+const zhubodiant=()=>import ('../components/content/searchResult/zubodiant/zhubodiant')
+const geci=()=>import('../components/content/searchResult/geci/geci')
 
 /*导入视频子路由*/
 const vis=()=>import('../views/vision/vision/vision');
@@ -45,14 +45,14 @@ const hanguo=()=>import('../views/vision/mv/hanguo');
 const riben=()=>import('../views/vision/mv/riben');
 
 /*视频播放组件路由*/
-const videoplay=()=>import('../components/VideoPlay/videoPlay');
-const singerDetails=()=>import("../components/singerDetail/SingerDetai");/*导入歌手信息详情页*/
+const videoplay=()=>import('../components/content/VideoPlay/videoPlay');
+const singerDetails=()=>import("../components/content/singerDetail/SingerDetai");/*导入歌手信息详情页*/
 
 /*歌单详情组件*/
-const sheetMsg=()=>import('../components/songSheetList/songSheetList')
+const sheetMsg=()=>import('../components/content/songSheetList/songSheetList')
 
 /*精品歌单*/
-const qualitySheet=()=>import('../components/qualitySheet/QualitySheet');
+const qualitySheet=()=>import('../components/content/qualitySheet/QualitySheet');
 
 /*独家放送*/
 const solePlay=()=>import('../components/content/solePlay/SolePlay')

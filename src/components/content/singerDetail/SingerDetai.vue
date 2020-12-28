@@ -22,7 +22,7 @@
             <ul id="album" ref="album" v-show="currentIndex===albumindex" >
                 <li>
                     <div>
-                        <img src="../../assets/img/singerSongs/top50.png" width="150px"/>
+                        <img src="../../../assets/img/singerSongs/top50.png" width="150px"/>
                     </div>
                     <song-lists :songLists="singerSongs" class="songList"></song-lists>
                 </li>
@@ -44,9 +44,9 @@
 </template>
 
 <script>
-    import {mvofsinger, singerDesc, top50} from "../../network/singer/singer";
-    import SongLists from "../content/songList/SongLists";
-    import {mvurl} from "../../network/vision/mv/mvList";
+    import {mvofsinger, singerDesc, top50} from "../../../network/singer/singer";
+    import SongLists from "../songList/SongLists";
+    import {mvurl} from "../../../network/vision/mv/mvList";
 
     export default {
         name: "SingerDetai",

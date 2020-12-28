@@ -1,8 +1,12 @@
 <template>
-
-
     <div class="video-play"><!--视频播放组件容器-->
-        <video :volume="0.2" :src="mvurl|| this.$store.state.mvurldata.url" controls="controls" ref="videoPlay" autoplay="autoplay" v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"></video>
+        <video :volume="0.2"
+               :src="mvurl|| this.$store.state.mvurldata.url"
+               controls="controls"
+               ref="videoPlay"
+               autoplay="autoplay"
+               v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"
+        ></video>
         <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null">
         </div>
     </div>
@@ -49,7 +53,7 @@
         margin: 50px 0 0 30px;
         border-radius: 10px;
         box-shadow: 0px 0px 6px rgba(0,0,0,.2);
-        background-image: url("../../assets/img/video-mv/charge.png");
+        background-image: url("../../../assets/img/video-mv/charge.png");
         background-size:cover;
         background-position: -2px 0;
     }

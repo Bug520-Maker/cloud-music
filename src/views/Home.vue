@@ -38,13 +38,13 @@
 </template>
 
 <script>
-    import tabbar from "../components/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
-    import navigate from "../components/nav/naviagte";             //navigate from "./components/nav/naviagte";/*导入左侧导航条*/
-    import playCoin from "../components/playCoin/playCoin";        //playCoin from "./components/playCoin/playCoin";/*导入底部播放容器*/
+    import tabbar from "../components/common/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
+    import navigate from "../components/common/nav/naviagte";             //navigate from "./components/nav/naviagte";/*导入左侧导航条*/
+    import playCoin from "../components/content/playCoin/playCoin";        //playCoin from "./components/playCoin/playCoin";/*导入底部播放容器*/
 
-    import tabbarItem from "../components/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
-    import NavItem from "../components/nav/navItem"                //NavItem from "./components/nav/navItem";/*导入左侧导航item*/
-    import MyList from "../components/nav/childComponents/myList"   //MyList from "./components/nav/childComponents/myList";/*导入左侧导航子组件*/
+    import tabbarItem from "../components/common/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
+    import NavItem from "../components/common/nav/navItem"                //NavItem from "./components/nav/navItem";/*导入左侧导航item*/
+    import MyList from "../components/common/nav/childComponents/myList"   //MyList from "./components/nav/childComponents/myList";/*导入左侧导航子组件*/
 
     import search from "../components/content/search/search";      //search from "./components/content/search/search";
     export default {

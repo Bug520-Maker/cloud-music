@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import {songListMsg} from "../../network/playlist/playlist";
+    import {songListMsg} from "../../../network/playlist/playlist";
 
     export default {
         name: "QualitySheet",

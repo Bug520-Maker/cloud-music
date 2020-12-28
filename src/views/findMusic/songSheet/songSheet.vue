@@ -1,3 +1,4 @@
+<!--歌单整体页面-->
 <template>
     <div class="歌单">
         <router-view ></router-view>
@@ -10,7 +11,7 @@
             </ul>
 
         </div>
-
+        <!--设置 歌单导航 华语-流行-摇滚-民谣-电子-另类/独立-轻音乐等-->
        <div id="header">
            <div class="title">{{title}} ></div>
            <sheet-child @sheetchild="btnclick"></sheet-child>
@@ -20,7 +21,6 @@
 
 <script>
     import SheetChild from "./sheetChild";
-    import {qualityList} from "../../../network/songsheet/songSheet";
     import {highquality} from "../../../network/songsheet/songSheet";
 
     export default {

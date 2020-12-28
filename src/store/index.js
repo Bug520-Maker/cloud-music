@@ -5,8 +5,10 @@ Vue.use(Vuex)
 
 const store= new Vuex.Store({
   state: {
-    songCount:'',
-    keywords:'',
+    /*------------------------搜索-------------------------------------*/
+    keyword:'', /*头部搜索框输入的关键字*/
+    searchList:{},  /*搜索结果分类 单曲，歌手，专辑，视频 具体信息*/
+    /*--------------------------搜索-----------------------------------*/
     songs:[],
     songUrl:'',
     albumImgUrl:'',
@@ -18,7 +20,6 @@ const store= new Vuex.Store({
         nickname:''
       }
     },/*获取歌单详情*/
-    searchList:{},
     songId:'',
     singleDetails:{/*获取搜索结果 单曲信息*/
       name:'',
@@ -32,13 +33,16 @@ const store= new Vuex.Store({
     singerLists:[]
   },
   mutations: {
-    searchInfo(state,payload)
+    /*----------------------搜索--------------------------------*/
+    getSearchKeyWord(state,payload) /*头部搜索框输入的关键字*/
     {
-      state.songCount=payload.songCount
-      state.keywords=payload.keywords
-      state.songs=payload.songs
-      
+      state.keyword=payload.keyword;
     },
+    getSearchList(state,payload)/*获取搜索后的分类*/
+     {
+       state.searchList=payload.searchList
+     },
+    /*------------------------搜索-----------------------------*/
     getSongUrl(state,payload)
     {
       state.songUrl=payload.url;
@@ -64,11 +68,6 @@ const store= new Vuex.Store({
     songListMsg(state,payload)
     {
       state.playlist=payload.playlist
-    },
-    /*获取搜索后的分类*/
-    getSearchList(state,payload)
-    {
-      state.searchList=payload.searchList
     },
     getSingleInfo(state,payload)
     {

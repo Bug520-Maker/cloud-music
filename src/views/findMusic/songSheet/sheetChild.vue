@@ -1,46 +1,41 @@
 <template>
     <div class="gedan"><!--显示歌单的分类导航条-->
-
         <ul>
             <li v-for="(item,index) in hotList" :key="index" :class="{active:currentIndex==index}" @click="btnClick(index,item)" >
                 {{item.name}}
             </li>
         </ul>
-        <huayu :huayuList="huayu"></huayu>
+        <SheetMsg :huayuList="sheetMsg"></SheetMsg>
     </div>
 </template>
 
 <script>
     import {playlist,hotlist,songListMsg,songList} from "../../../network/playlist/playlist";
-    import {musicUrl} from "../../../network/public/musicUrl";
     /*导入子组件*/
-    import huayu from "./sheetList/huayu";
-    import Huayu from "./sheetList/huayu";
+    import SheetMsg from "./sheetList/SheetMsg";
     export default {
         name: "sheetChild",
         components: {
-            Huayu
+            SheetMsg
         },
         data()
         {
             return {
                 hotList:[],
                 currentIndex:0,
-                huayu:[]
+               sheetMsg:[]
             }
         },
         methods:{
             btnClick(index,item)
             {
                 this.currentIndex=index;
-               /* playlist().then(data=>{
-                    console.log(data);
-                });*/
+
                 hotlist().then(data=>{
-                    this.hotList=data.tags;
+                    this.hotList=data.tags;          /*获取分类标题 华语，流行，摇滚，民谣，电子等*/
                     songList(data.tags[index].name).then(data=>{
-                       //50 console.log(data.playlists);
-                        this.huayu=data.playlists;
+                        //console.log(data.playlists.slice(0,28));
+                        this.sheetMsg=data.playlists.slice(0,24);
                     })
                 });
                 this.$emit('sheetchild',item.name);
@@ -48,9 +43,9 @@
         },
         created() {
             hotlist().then(data=>{
-                this.hotList=data.tags;
-                //console.log(data.tags);
+                this.hotList=data.tags;  /*获取分类标题 华语，流行，摇滚，民谣，电子等*/
             })
+            this.btnClick(0, {name:"华语"});
         }
     }
 </script>
