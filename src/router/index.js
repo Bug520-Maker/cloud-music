@@ -37,13 +37,6 @@ const mv=()=>import('../views/vision/mv/mv');
 /*导入视频中的视频子路由*/
 
 
-/*导入mv子路由*/
-const neidi=()=>import('../views/vision/mv/neidi');
-const gangtai=()=>import('../views/vision/mv/gangtai');
-const oumei=()=>import('../views/vision/mv/oumei');
-const hanguo=()=>import('../views/vision/mv/hanguo');
-const riben=()=>import('../views/vision/mv/riben');
-
 /*视频播放组件路由*/
 const videoplay=()=>import('../components/content/VideoPlay/videoPlay');
 const singerDetails=()=>import("../components/content/singerDetail/SingerDetai");/*导入歌手信息详情页*/
@@ -126,6 +119,10 @@ const routes = [
     component:vision,
     children:[
       {
+        path: '/',
+        redirect: '/vision/vis'
+      },
+      {
         path:'vis',
         name:'vis',
         component:vis,
@@ -133,34 +130,7 @@ const routes = [
       {
         path:'mv',/*MV路由*/
         name:'mv',
-        component:mv,
-        children: [
-          {
-            path: 'neidi',
-            name:'neidi',
-            component:neidi
-          },
-          {
-            path:'gangtai' ,
-            name:'gangtai',
-            component:gangtai
-          },
-          {
-            path: 'oumei',
-            name: "oumei",
-            component:oumei
-          },
-          {
-            path: 'hanguo',
-            name:'hanguo',
-            component:hanguo
-          },
-          {
-            path:'riben',
-            name:'riben',
-            component:riben
-          }
-        ]
+        component:mv
       }
     ]
     

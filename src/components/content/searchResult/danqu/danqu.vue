@@ -7,7 +7,7 @@
             <div>时长</div>
             <div>热度</div>
         </div>
-        <song-lists :songLists="this.$store.state.searchList.songs"></song-lists>
+        <song-lists :songLists="this.$store.state.searchList.songs"></song-lists><!--提取搜索结果中的歌曲列表-->
     </div>
 </template>
 

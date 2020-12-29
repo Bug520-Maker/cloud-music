@@ -1,21 +1,22 @@
 <template>
     <div class="mvchildcpn">
-        <div></div>
         <ul>
             <li v-for="(item,index) in list" :key="index" :class="{active:currentIndex==index}" @click="btnClick(index,item)">
                 {{item}}
             </li>
         </ul>
-        <router-view class="mvrouter"></router-view>
+        <MvDetails :NewMv="newmv" class="mv-detail"/>
     </div>
 </template>
 
 <script>
    import {newmv} from "../../../network/vision/mv/mvList";
+   import MvDetails from "./MvDetails";
 
    export default {
         name: "childCpn",
-        props:{
+       components: {MvDetails},
+       props:{
             list:{
                 type:Array,
                 default()
@@ -33,27 +34,20 @@
         data()
         {
             return {
-                currentIndex:0
+                currentIndex:0,
+                newmv:[]
             }
         },
+       created() {
+            this.btnClick(0,'内地');
+       }
+       ,
         methods:{
             btnClick(index,item)
             {
                 this.currentIndex=index;
-                this.$router.push('/vision/mv/'+this.path[index])
-                /*mvList(item).then(res=>{
-                    console.log(res.data);
-                    this.$store.commit({
-                        type:'mvList',
-                        mvlist:res.data
-                    })
-                })*/
                 newmv(item).then(res=>{
-                    //console.log(res);
-                    this.$store.commit({
-                        type:'newMv',
-                        newmv:res.data
-                    })
+                    this.newmv=res.data
                 })
             }
         }
@@ -74,7 +68,7 @@
         color: rgb(103, 103, 103);
         cursor: pointer;
     }
-    .mvrouter
+    .mv-detail
     {
         /*background-color: pink;最新mv背景颜色*/
         position: absolute;

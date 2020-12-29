@@ -36,21 +36,10 @@
                             keyword:this.keyword
                         }
                     });
-                    this.$store.commit({
+                    this.$store.commit({  /*提取搜索关键字*/
                         type:'getSearchKeyWord',
                         keyword:this.keyword
                     })
-                   /* search(this.keywords).then(data=>{
-                        console.log(data);
-                        this.songCount=data.result.songCount;
-                        this.songs=data.result.songs;
-                       this.$store.commit({
-                            type:'searchInfo',
-                            keywords: this.keywords,
-                            songCount:this.songCount,
-                            songs:this.songs,
-                        })
-                    })*/
                 }
 
             },

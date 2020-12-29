@@ -10,10 +10,12 @@ const store= new Vuex.Store({
     searchList:{},  /*搜索结果分类 单曲，歌手，专辑，视频 具体信息*/
     /*--------------------------搜索-----------------------------------*/
     songs:[],
+    /*-----------------------playCoin---------------------------------*/
     songUrl:'',
     albumImgUrl:'',
+    /*-----------------------playCoin---------------------------------------*/
     mvlist:[],/*mv排行*/
-    newmv:[],/*最新mv*/
+   // newmv:[],/*最新mv*/
     mvurldata:{},/*获取相关视频的url等信息*/
     playlist:{
       creator:{
@@ -42,24 +44,31 @@ const store= new Vuex.Store({
      {
        state.searchList=payload.searchList
      },
-    /*------------------------搜索-----------------------------*/
-    getSongUrl(state,payload)
+    /*------------------------搜索--------------------------------*/
+    
+    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
+    getSongUrl(state,payload)//获取歌曲URL
     {
       state.songUrl=payload.url;
       state.songId=payload.songId
     },
-    getAlbumImg(state,payload)
+    getAlbumImg(state,payload)//获取歌曲封面
     {
       state.albumImgUrl=payload.albumImgUrl
     },
+    getSingleInfo(state,payload)/*获取一首歌的详细信息*/
+    {
+      state.singleDetails=payload.details
+    },
+    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
     mvList(state,payload)/*获取mv排行*/
     {
       state.mvlist=payload.mvlist
     },
-    newMv(state,payload)/*获取最新mv*/
+   /* newMv(state,payload)/!*获取最新mv*!/
     {
       state.newmv=payload.newmv
-    },
+    },*/
     mvPlay(state,payload)
     {
       state.mvurldata=payload.mvurldata
@@ -69,10 +78,7 @@ const store= new Vuex.Store({
     {
       state.playlist=payload.playlist
     },
-    getSingleInfo(state,payload)
-    {
-      state.singleDetails=payload.details
-    },
+   
     getSingerList(state,payload)
     {
       state.singerLists=payload.singers;

@@ -28,3 +28,12 @@ export function mvurl(id)/*获取mv播放地址*/
         }
     })
 }
+export function similarMv(id)
+{
+    return request({
+        url:"/simi/mv",
+        params:{
+            mvid:id
+        }
+    })
+}

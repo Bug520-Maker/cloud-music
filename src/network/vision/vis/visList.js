@@ -10,6 +10,9 @@ export function visCategory()
 {
     return request({
         url:'/video/category/list',
+        param:{
+            t:Date.parse(new Date())
+        }
     })
 }
 /*获取视频标签/分类下的视频*/
@@ -17,6 +20,7 @@ export function visGroup(id)
 {
     return request({
         url:'/video/group',
+        withCredentials:true,
         params:{
             id
         }
@@ -34,6 +38,26 @@ export function videoUrl(id)
 {
     return request({
         url:'/video/url',
+        params:{
+            id
+        }
+    })
+}
+/*获取相关视频*/
+export function relatedVideo(id)
+{
+    return request({
+        url:'/related/allvideo',
+        params: {
+            id
+        }
+    })
+}
+/*获取推荐视频*/
+export function Recvideo(id)
+{
+    return request({
+        url:'/video/timeline/recommend',
         params:{
             id
         }

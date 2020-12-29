@@ -7,47 +7,12 @@
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>
-            <p class="rec-title" @click="recClick">推荐歌单 ></p>
-            <div class="rec-list">
-                <ul>
-                    <li v-for="(item,index) in recList" :key="index">
-                        <img :src="item.picUrl" alt="" @click="sheetRouter(index,item)">
-                        <p>{{item.name}}</p>
-                    </li>
-                </ul>
-            </div>
-            <p class="rec-title" @click="excClick()">独家放送 ></p>
-            <div class="broadcast">
-                <ul>
-                    <li v-for="(item,index) in broadcastList" :key="index">
-                        <img :src="item.sPicUrl"  @click="mvClick(index)" />
-                        <p>{{item.name}}</p>
-                    </li>
-                </ul>
-            </div>
-            <p class="rec-title">最新音乐</p>
-            <ul class="new-song-list">
-                <li v-for="(item,index) in newSong" :key="index">
-                    <div class="imgcoin">
-                        <img :src="item.picUrl" />
-                    </div>
-                    <div>
-                        <p >{{item.name}}</p>
-                        <p class="name" @click="singerMsg(item.song.artists[0].id)">{{item.song.artists[0].name}}</p>
-                    </div>
-                </li>
-            </ul>
-            <p class="rec-title" @click="recMvClick">推荐MV ></p>
-            <ul class="recommend-mv">
-                <li v-for="(item,index) in recMv" :key="index">
-                    <div class="recImg"><img :src="item.picUrl" /></div>
-                    <div class="rec-name">{{item.name}}</div>
-                    <div class="rec-artist">
-                        {{item.artistName}}
-                    </div>
-                    <div class="tip">{{item.copywriter}}</div>
-                </li>
-            </ul>
+            <RecommendSongSheet/>
+            <ExclusiveBroadcast/>
+            <NewMusic/>
+            <RecommendMv/>
+
+
         </div>
     </div>
 </template>
@@ -67,15 +32,15 @@
      import {songListMsg} from "../../../network/playlist/playlist";
 
      import {mvurl} from "../../../network/vision/mv/mvList";
+    import RecommendSongSheet from "./recommendSongSheet/RecommendSongSheet";
+    import ExclusiveBroadcast from "./exclusiveBroadcast/ExclusiveBroadcast";
+    import NewMusic from "./newMusic/NewMusic";
+    import RecommendMv from "./recommendMv/RecommendMv";
     export default {
         name: "recommend",
         data() {
             return {
-                recList: [],
-                broadcastList: [],/*独家推送*/
-                newSong: [],/*最新歌曲*/
                 imgList: [],/*轮播图*/
-                recMv:[],/*推荐mv*/
                 /*轮播图相关配置*/
                 swiperOptions: {
                     pagination: {
@@ -95,77 +60,18 @@
             }
         },
         created() {
-            recommendList(10).then(data => {
-                this.recList = data.result;
-                //console.log(data.result);
-            })
-            broadcast().then(data => {
-                //console.log(data.result)
-                this.broadcastList = data.result;
-            })
-            latestalbum().then(data => {
-                //console.log(data.result);
-                this.newSong = data.result;
-            });
             banner().then(data => {//获取banner轮播图
                 //console.log(data);
                 this.imgList = data.banners;
             })
-            recommendMv().then(data=>{
-                console.log(data.result);
-                this.recMv=data.result
-            })
+
         },
         components: {
+            RecommendMv,
+            NewMusic,
+            ExclusiveBroadcast,
+            RecommendSongSheet,
             Swiper, SwiperSlide
-        },
-        methods: {
-            singerMsg(singerId) {
-                singeralbum(singerId).then(data => {
-                    console.log(data)
-                })
-            },
-            sheetRouter(index,item)
-            {
-
-                songListMsg(this.recList[index].id).then(res=>{
-                    //console.log(res.playlist);
-                    this.$store.commit({
-                        type:'songListMsg',
-                        playlist:res.playlist
-                    })
-                    this.$router.push('/sheetMsg');
-                });
-
-            },
-            /*推荐歌单*/
-            recClick()
-            {
-                this.$router.push('/findMusic/songSheet');
-            },
-            /*独家放送title*/
-            excClick()
-            {
-               this.$router.push('/solePlay');
-            },
-            /*独家放送*/
-            mvClick(index)
-            {
-                mvurl(this.broadcastList[index].id).then(res=>{
-                    //console.log(res.data.url);
-                    this.$router.push({
-                        path:'/videoPlay',
-                        query:{
-                            url:res.data.url
-                        }
-                    })
-                })
-            },
-            /*推荐mv*/
-            recMvClick()
-            {
-              this.$router.push('/vision/mv/neidi');
-            },
         },
         computed: {
             swiper() {
@@ -201,93 +107,6 @@
     {
         width: 1px;
     }
-    .rec-list ul
-    {
-        display: flex;
-        flex-wrap: wrap;
-        background-color:transparent;
-    }
-    .rec-list ul li
-    {
-        flex: 1;
-        margin: 0px 0 15px 0;
-    }
-    .rec-list ul img
-    {
-        width: 137px;
-        border-radius:5px ;
-    }
-    .rec-title
-    {
-        font-size: 18px;
-        font-weight: bold;
-        margin: 20px 0 20px 0;
-        cursor:pointer;
-    }
-    .rec-list p
-    {
-        width:137px ;
-
-        font-size: 14px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-    }
-    /**************独家放送***********************/
-    .broadcast ul
-    {
-        display: flex;
-    }
-    .broadcast ul li
-    {
-        flex: 1;
-    }
-    .broadcast ul li p
-    {
-        font-size: 14px;
-    }
-    .broadcast ul li img
-    {
-        border-radius:5px ;
-        width: 240px;
-    }
-    /***************最新音乐*****************************/
-    .new-song-list
-    {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .new-song-list li
-    {
-        display: flex;
-        font-size: 12px;
-        width: 240px;
-        margin: 0 5px 15px 0;
-    }
-    .new-song-list li:hover
-    {
-        background-color:rgb(234, 234, 234);
-        border-radius:5px ;
-    }
-    .new-song-list li img
-    {
-        width: 48px;
-        border-radius:5px ;
-    }
-    .imgcoin
-    {
-        margin: 0 10px 0 0;
-    }
-    .new-song-list li .name
-    {
-        color: rgb(153,153,153);
-        cursor: pointer;
-    }
-    .new-song-list li .name:hover
-    {
-        color:rgb(140, 137, 135);
-    }
     /*轮播图相关样式*/
     .swiper-container
     {
@@ -305,53 +124,5 @@
     #swiper-outer
     {
         margin: 20px 0 0 0;
-    }
-
-    .rec-title + .recommend-mv
-    {
-        display: flex;
-        overflow: hidden;
-    }
-    .rec-title + .recommend-mv li
-    {
-        margin: 0 15px 0 0;
-        position: relative;
-    }
-    .rec-title + .recommend-mv .recImg img
-    {
-        width: 240px;
-        border-radius: 8px;
-    }
-    .rec-title + .recommend-mv li .rec-name
-    {
-        font-size: 14px;
-        margin: 5px 0;
-        width: 240px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-    }
-    .rec-title + .recommend-mv li .rec-artist
-    {
-        font-size: 13px;
-    }
-    .rec-title + .recommend-mv li .tip
-    {
-        position: absolute;
-        color: #ffffff;
-        left: 0;
-        font-size: 12px;
-        background-color:rgba(0,0,0,.3);
-        padding: 10px 5px;
-        width:230px;
-        transition: width 0.3s;
-        top: 0;
-        display: none;
-    }
-    .rec-title + .recommend-mv li:hover .tip
-    {
-        display: block;
     }
 </style>

@@ -5,14 +5,16 @@
                 {{item}}
             </li>
         </ul>
-    <router-view></router-view>
+        <vis-msg></vis-msg>
     </div>
 </template>
 
 <script>
     import {labelList, visCategory, visGroup,allvideoList} from "../../../../network/vision/vis/visList";
+    import VisMsg from "../visMsg";
     export default {
         name: "visChildCpn",
+        components: {VisMsg},
         props: {
             path: {
                 type: Array,
@@ -27,13 +29,13 @@
                 }
             },
         },
-            data()
-            {
-                return {
-                    currentIndex:0,
-                }
-            },
-            methods:{
+        data()
+        {
+            return {
+                currentIndex:0,
+            }
+        },
+        methods:{
                 btnClick(index,item)
                 {
                     this.currentIndex=index;

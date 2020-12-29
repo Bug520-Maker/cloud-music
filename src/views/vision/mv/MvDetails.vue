@@ -1,7 +1,7 @@
 <template>
-    <div class="neidi">
-        <ul class="neidi-mv">
-            <li v-for="(item,index) in this.$store.state.newmv" :key="index">
+    <div class="mv-msg">
+        <ul class="mv-details">
+            <li v-for="(item,index) in NewMv" :key="index">
                 <div>
                     <img  :src="item.cover" @click="playmv(item)">
                     <p class="name">{{item.name}}</p>
@@ -13,27 +13,43 @@
 </template>
 
 <script>
-    import {mvurl} from "../../../network/vision/mv/mvList";
+    import {mvurl, newmv, similarMv} from "../../../network/vision/mv/mvList";
+    import {relatedVideo} from "../../../network/vision/vis/visList";
+
     export default {
-        name: "neidi",
+        name: "MvDetails",
         data()
         {
-            return{
-                mvurl:''
+          return {
+              mvurl:'',
+              newmv:[],
+              region:''/*获取MV地区*/
+          }
+        },
+        props:
+        {
+            NewMv:{
+                type:Array,
+                default()
+                {
+                    return []
+                }
             }
         },
-        methods:{
-            playmv(item)
-            {
-                mvurl(item.id).then(res=>{
+        methods: {
+            playmv(item) {
+                mvurl(item.id).then(res => {
                     console.log('-----')
                     console.log(res.data);
-                    this.mvurl=res.data.url;
+                    this.mvurl = res.data.url;
                     this.$store.commit({
-                        type:'mvPlay',
-                        mvurldata:res.data
+                        type: 'mvPlay',
+                        mvurldata: res.data
                     })
                 });
+                relatedVideo(item.id).then(data=>{
+                    console.log(data);
+                })
                 this.$router.push('/videoPlay');
             }
         }
@@ -41,24 +57,24 @@
 </script>
 
 <style scoped>
-    .neidi-mv
+    .mv-msg .mv-details
     {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
-    .neidi-mv li
+    .mv-msg .mv-details li
     {
 
         margin: 0 0 20px 0;
     }
-    .neidi-mv img
+    .mv-msg .mv-details img
     {
         width: 240px;
         height: 136px;
         border-radius: 5px;
     }
-    .neidi-mv .name
+    .mv-msg .mv-details .name
     {
         font-size: 14px;
         color:rgb(55, 55, 55);
@@ -69,7 +85,7 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
     }
-    .neidi-mv .artist
+    .mv-msg .mv-details .artist
     {
         font-size: 12px;
         color: rgb(103,103,103);

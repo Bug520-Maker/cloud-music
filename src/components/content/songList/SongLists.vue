@@ -41,8 +41,7 @@
             playSong(index)
             {
                 this.songId=this.songLists[index].id||this.$store.state.songs[index].id;
-                //console.log(this.songId);                                               /*向playCoin发送歌曲的url*/
-                musicUrl(this.songId).then(res=>{
+                musicUrl(this.songId).then(res=>{               /*向playCoin发送歌曲的url*/
                     this.songUrl=res.data[0].url;
                     this.$store.commit({
                         type:'getSongUrl',
@@ -50,13 +49,14 @@
                         songId:this.songId
                     })
                 });
+                /*向playCoin发送封面图片*/
                 albumContent(this.songLists[index].album.id||this.$store.state.songs[index].album.id).then(data=>{
-                    this.$store.commit({                                   /*向playCoin发送封面图片*/
+                    this.$store.commit({
                         type:'getAlbumImg',
                         albumImgUrl:this.songLists[index].alImgUrl || data.album.blurPicUrl
                     })
                 })
-               // console.log(this.$store.state.searchList.songs[index]);
+               /*搜索结果中的单曲详细信息*/
                 this.$store.commit({
                     type:'getSingleInfo',
                     details:this.songLists[index]||this.$store.state.searchList.songs[index]
