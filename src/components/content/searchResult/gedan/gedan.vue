@@ -4,7 +4,7 @@
           <ul>
              <li v-for="(item,index) in playList">
                 <div>
-                    <img :src="item.coverImgUrl"/>
+                    <img :src="item.coverImgUrl+'?param=60y60'"/>
                 </div>
                  <div class="playList-name">{{item.name}}</div>
                  <div class="playList-track-count">{{item.trackCount}}首</div>

@@ -3,7 +3,7 @@
         <ul>
             <li v-for="(item,index) in huayuList" :key="index" >
                <div >
-                   <img :src="item.coverImgUrl" @click="sheetRouter(index)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
+                   <img v-lazy="item.coverImgUrl+'?param=177y177'" @click="sheetRouter(index)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
                    <p class="name">{{item.name}}</p>
                </div>
             </li>
@@ -14,7 +14,6 @@
 <script>
     import {musicUrl} from "../../../../network/public/musicUrl";
     import {songListMsg} from "../../../../network/playlist/playlist";
-
     export default {
         name: "huayu",
         props:{

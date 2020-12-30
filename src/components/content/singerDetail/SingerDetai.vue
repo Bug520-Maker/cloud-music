@@ -2,7 +2,7 @@
     <div class="singer-details">
         <div class="banner-header">
             <div>
-                <img :src="singerBaseMsg.picUrl" />
+                <img :src="singerBaseMsg.picUrl+'?param=184y184'" />
             </div>
             <ul>
                 <li>{{singerBaseMsg.singerName}}</li>
@@ -31,7 +31,7 @@
             <ul id="mv-coin" ref="mvCoin" v-show="currentIndex===mvcoinindex" >
                 <li v-for="(item,index) in singerMvs" @click="mvplay(index)">
                     <div>
-                        <img :src="item.imgurl" />
+                        <img :src="item.imgurl+'?param=242y181.63'" />
                     </div>
                     <p>{{item.name}}</p>
                 </li>
@@ -141,6 +141,10 @@
     .singer-details::-webkit-scrollbar
     {
         width: 2px;
+    }
+    .banner-header div:nth-of-type(1)
+    {
+        height: 184px;
     }
     .banner-header div:nth-of-type(1) img
     {

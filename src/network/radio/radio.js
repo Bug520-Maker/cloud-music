@@ -28,3 +28,63 @@ export function radionBanner()
         }
     })
 }
+/*推荐电台*/
+export function recRadio()
+{
+    return request({
+        url:'/personalized/djprogram',
+    })
+}
+/*个性推荐*/
+export function PersionalizedRec()
+{
+    return request({
+        url:'/dj/personalize/recommend',
+        params:{
+            limit:5
+        }
+    })
+}
+export function Rec()
+{
+    return request({
+        url:'/dj/recommend',
+    })
+}
+/*付费精品*/
+export function PayFan()
+{
+    return request({
+        url:'/dj/toplist/pay',
+        params:{
+            limit:40
+        }
+    })
+}
+/*电台详情*/
+export function RadioMsg(id)
+{
+    return request({
+        url:'/dj/detail',
+        params:{
+            rid:id
+        }
+    })
+}
+//推荐类型
+export function cateRec()
+{
+    return request({
+        url:'dj/category/recommend',
+    })
+}
+/*类别热门*/
+export function cateTop(id)
+{
+    return request({
+        url:'/dj/radio/hot',
+        params:{
+            cateId:id
+        }
+    })
+}

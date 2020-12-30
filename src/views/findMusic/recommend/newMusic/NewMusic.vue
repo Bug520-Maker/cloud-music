@@ -4,7 +4,7 @@
         <ul class="new-song-list">
             <li v-for="(item,index) in newSong" :key="index">
                 <div class="imgcoin">
-                    <img :src="item.picUrl" @click="playSong(item,index)" />
+                    <img :src="item.picUrl+'?param=48y48'" @click="playSong(item,index)" />
                 </div>
                 <div>
                     <p >{{item.name}}</p>
@@ -31,7 +31,7 @@
         },
         created() {
             latestalbum().then(data => {
-                console.log(data.result);
+               // console.log(data.result);
                 this.newSong = data.result;
             });
         },

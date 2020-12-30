@@ -1,9 +1,12 @@
 <template>
     <div id="new-song-body">
         <ul class="newsong-list">
-            <li v-for="(item,index) in newSong" :key="index">
-                <div>
+            <li v-for="(item,index) in newSongsList" :key="index">
+                <div class="img-container" @click="imgClick(item)">
                     <img :src="item.album.picUrl" />
+                    <div class="play">
+                        <div></div>
+                    </div>
                 </div>
                 <div :title="item.name">
                     {{item.name}}
@@ -22,20 +25,26 @@
 
 <script>
     import {newSong} from "../../../network/newMusic/newMusic";
+    import {musicUrl} from "../../../network/public/musicUrl";
 
     export default {
         name: "NewSongBody",
         data()
         {
             return {
-                newSong:[]
+                newSong:[],
+                songUrl:"",
+                songId:''
             }
         },
-        created() {
-            newSong(0).then(res=>{
-                //console.log(res.data.slice(0,50));
-                this.newSong=res.data.slice(0,50);
-            })
+        props:{
+            newSongsList:{
+                type:Array,
+                default()
+                {
+                    return []
+                }
+            }
         },
         methods:{
             duration(item)
@@ -44,6 +53,25 @@
                 let number=num.toString().split(".");
                 let time="0"+number[0]+":"+number[1].slice(0,2);
                 return time;
+            },
+            imgClick(item)
+            {
+                musicUrl(item.id).then(res=>{
+                    this.songUrl=res.data[0].url;
+                    this.$store.commit({
+                        type:'getSongUrl',
+                        url:this.songUrl,
+                        songId:this.songId
+                    })
+                })
+                this.$store.commit({
+                    type:'getAlbumImg',
+                    albumImgUrl:item.album.blurPicUrl
+                })
+                this.$store.commit({
+                    type:'getSingleInfo',
+                    details:item
+                })
             }
         }
     }
@@ -107,5 +135,26 @@
         line-height: 60px;
         color: rgb(103,103,103);
         cursor: default;
+    }
+    .img-container
+    {
+        position: relative;
+    }
+    .img-container .play
+    {
+        position: absolute;
+        width: 25px;
+        height:25px;
+        background-color: #ffffff;
+        top: 17px;
+        left: 17px;
+        border-radius: 50%;
+    }
+    .play div
+    {
+        border: 8px solid rgb(236, 65, 65);
+        border-color: transparent transparent transparent rgb(236, 65, 65);
+        margin: 5px 0 0 10px;
+        border-radius: 4px;
     }
 </style>

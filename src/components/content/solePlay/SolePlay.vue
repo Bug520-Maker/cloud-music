@@ -1,9 +1,10 @@
+<!--独家放送页面-->
 <template>
     <div class="sole-play">
         <div id="title">独家放送</div>
         <ul>
             <li v-for="(item,index) in broadcastList " @click="liClick(index)">
-                <div><img :src="item.picUrl" /></div>
+                <div><img :src="item.picUrl+'?param=372y137.43'" /></div>
                 <div id="sole-name">{{item.name}}</div>
             </li>
         </ul>

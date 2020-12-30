@@ -3,7 +3,7 @@
         <div class="recommend">
             <div id="swiper-outer"><!--设置轮播图-->
                 <swiper ref="mySwiper" :options="swiperOptions">
-                    <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index"><img :src="item.imageUrl" class="swiper-img" /></swiper-slide>
+                    <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index"><img :src="item.imageUrl+'?param=540y200'" class="swiper-img" /></swiper-slide>
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>
@@ -11,7 +11,7 @@
             <ExclusiveBroadcast/>
             <NewMusic/>
             <RecommendMv/>
-
+            <recommend-radio/>
 
         </div>
     </div>
@@ -36,6 +36,7 @@
     import ExclusiveBroadcast from "./exclusiveBroadcast/ExclusiveBroadcast";
     import NewMusic from "./newMusic/NewMusic";
     import RecommendMv from "./recommendMv/RecommendMv";
+    import RecommendRadio from "./recommendRadio/RecommendRadio";
     export default {
         name: "recommend",
         data() {
@@ -67,6 +68,7 @@
 
         },
         components: {
+            RecommendRadio,
             RecommendMv,
             NewMusic,
             ExclusiveBroadcast,

@@ -1,7 +1,7 @@
 <template>
     <div class="sheetMsg"><!--显示歌单下的歌曲列表和歌单信息-->
         <div class="introduce">
-            <div><img :src="this.$store.state.playlist.coverImgUrl" /></div>
+            <div><img :src="this.$store.state.playlist.coverImgUrl+'?param=184y184'" /></div>
             <div class="msg">
                 <span >{{this.$store.state.playlist.name}}</span>
                 <span>{{this.$store.state.playlist.creator.nickname}}</span>

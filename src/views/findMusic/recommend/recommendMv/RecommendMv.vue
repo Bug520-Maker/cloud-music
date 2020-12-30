@@ -3,7 +3,9 @@
         <p class="rec-title" @click="recMvClick">推荐MV > </p>
         <ul class="recommend-mv">
             <li v-for="(item,index) in recMv" :key="index">
-                <div class="recImg"><img :src="item.picUrl" /></div>
+                <div class="recImg" @click="playMv(item,index)">
+                    <img :src="item.picUrl+'?param=240y134.88'" />
+                </div>
                 <div class="rec-name">{{item.name}}</div>
                 <div class="rec-artist">
                     {{item.artistName}}
@@ -16,6 +18,7 @@
 
 <script>
     import {recommendMv} from "../../../../network/recommend/recommendMv";
+    import {mvurl} from "../../../../network/vision/mv/mvList";
 
     export default {
         name: "RecommendMv",
@@ -27,16 +30,29 @@
         },
         created() {
             recommendMv().then(data=>{
-                console.log(data.result);
-                this.recMv=data.result
+               // console.log(data.result.slice(0,3));
+                this.recMv=data.result.slice(0,3);
             })
         },
         methods:{
             /*推荐mv*/
             recMvClick()
             {
+
                 this.$router.push('/vision/mv');
             },
+            playMv(item,index)
+            {
+                mvurl(item.id).then(res=>{
+                    console.log(res.data.url);
+                    this.$router.push({
+                        path:'/videoPlay',
+                        query:{
+                            url:res.data.url
+                        }
+                    })
+                })
+            }
         }
     }
 </script>

@@ -4,7 +4,7 @@
        <div class="rec-list">
            <ul>
                <li v-for="(item,index) in recList" :key="index">
-                   <img :src="item.picUrl" alt="" @click="sheetRouter(index,item)">
+                   <img v-lazy="item.picUrl+'?param=137y137'" alt="" @click="sheetRouter(index,item)">
                    <p>{{item.name}}</p>
                </li>
            </ul>

@@ -4,7 +4,7 @@
            <ul>
                <li v-for="(item,index) in albums" :key="index">
                    <div slot="img">
-                       <img :src="item.picUrl" />
+                       <img :src="item.picUrl+'?param=60y60'" />
                    </div>
                    <div class="album-name">
                        {{item.name}}

@@ -23,7 +23,7 @@
 <style scoped>
     .singer
     {
-        height: 490px;
+        height: 460px;
         overflow: auto;
         margin: 20px 0 0 0;
     }

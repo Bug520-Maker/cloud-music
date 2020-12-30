@@ -35,7 +35,7 @@
 <style scoped>
     .banner
     {
-        background-color: skyblue;
+        /*background-color: skyblue;*/
         margin: 20px 0 0 0;
         overflow: hidden;
     }

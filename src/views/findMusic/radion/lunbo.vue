@@ -56,7 +56,7 @@
         created() {
             radionBanner().then(result=>{
                 this.imgList=result.data;
-                console.log(result.data)
+                //console.log(result.data)
             })
         }
     }

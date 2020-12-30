@@ -3,7 +3,7 @@
         <ul class="mv-details">
             <li v-for="(item,index) in NewMv" :key="index">
                 <div>
-                    <img  :src="item.cover" @click="playmv(item)">
+                    <img  :src="item.cover+'?param=240y136'" @click="playmv(item)">
                     <p class="name">{{item.name}}</p>
                     <p class="artist">{{item.artistName}}</p>
                 </div>

@@ -3,7 +3,7 @@
     <div class="歌单">
         <router-view ></router-view>
         <div class="quality-song-list" @click="qualityRouter">
-            <div><img :src="highquality[0].coverImgUrl" /></div>
+            <div><img v-lazy="highquality[0].coverImgUrl+'?param=140y140'" /></div>
             <ul>
                 <li>精品歌单</li>
                 <li>{{highquality[0].name}}</li>

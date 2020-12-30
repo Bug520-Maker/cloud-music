@@ -3,7 +3,7 @@
         <div class="title">精品歌单</div>
         <ul>
             <li v-for="(item,index) in qualitySheet" :key="index">
-                <div class="sheetImg"><img :src="qualitySheet[index].coverImgUrl"></div>
+                <div class="sheetImg"><img :src="qualitySheet[index].coverImgUrl+'?param=134y134'"></div>
                 <ul class="sheetInfo">
                     <li @click="liClick(index,item)">{{qualitySheet[index].name}}</li>
                     <li>{{qualitySheet[index].creator.nickname}}</li>

@@ -2,7 +2,7 @@
     <div class="body-content">
         <ul>
             <li v-for="(item,index) in this.$store.state.singerLists" :key="index" @click="liClick(index)">
-                <div><img :src="item.img1v1Url" /></div>
+                <div><img v-lazy="item.img1v1Url+'?param=139y139'" /></div>
                 <div>
                     {{item.name}}
                 </div>

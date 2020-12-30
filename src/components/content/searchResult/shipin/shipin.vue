@@ -3,7 +3,7 @@
         <ul>
             <li v-for="(item,index) in videos" :key="index">
                 <div class="img-container" @click="playVideo(item,index)">
-                    <img :src="item.coverUrl" />
+                    <img :src="item.coverUrl+'?param=232y130.65'" />
                     <div>
                         {{(item.playTime>100000)? Math.floor(item.playTime/10000):item.playTime}}
                         <span v-show="item.playTime>100000">万</span>

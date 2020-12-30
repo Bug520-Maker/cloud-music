@@ -4,7 +4,7 @@
             <ul>
                 <li v-for="(item,index) in artists">
                     <div class="outer">
-                        <img :src="item.img1v1Url" />
+                        <img :src="item.img1v1Url+'?param=60y60'" />
                         <p>{{item.name}}</p>
                     </div>
                     <!-- <div class="artist-name">

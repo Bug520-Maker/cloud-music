@@ -1,8 +1,8 @@
 <!--歌曲播放页面-->
 <template>
-    <div  class="playPage" ref="playPage" :class="{active:isActive}">
-        <div class="album-container" :class="{disappear:isActive}">
-            <img :src="this.$store.state.albumImgUrl||normalUrl" :class="{appear:isActive}"/>  <!--封面旋转图片-->
+    <div  class="playPage" ref="playPage" :class="{active:isActive.isLive}">
+        <div class="album-container" :class="{disappear:isActive.isLive}">
+            <img :src="this.$store.state.albumImgUrl==''?this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=210y210'||normalUrl" :class="{appear:isActive.isLive}"/>  <!--封面旋转图片-->
         </div>
 
         <div id="songMsg">
@@ -22,8 +22,6 @@
 
 <script>
     import {singeralbum} from "../../../network/public/singerAlbum";
-    import {songLyric} from "../../../network/playCoin/songDetal";
-
     export default {
         name: "PlayPage",
         data()
@@ -35,8 +33,11 @@
         },
         props:{
           isActive:{
-              type:Boolean,
-              default:false
+              type:Object,
+              default()
+              {
+                  return {}
+              }
           },
            oLRC: {
               type:Object,
@@ -46,10 +47,9 @@
         methods:{
             singerClick()
             {
-                this.isActive=false;
-                console.log(this.$store.state.singleDetails.artists[0].id);
+                this.$refs.playPage.classList.remove("active");
                 singeralbum( this.$store.state.singleDetails.artists[0].id).then(data=>{
-                    console.log(data);
+                    // console.log(data);
                     this.albumMsg=data;
                     let msg={
                         singerId : this.$store.state.singleDetails.artists[0].id,

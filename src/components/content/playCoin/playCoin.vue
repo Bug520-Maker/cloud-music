@@ -2,7 +2,7 @@
 <template>
     <div class="play-coin">
         <div id="img-container">
-            <img :src="this.$store.state.albumImgUrl || normalUrl"
+            <img :src="((this.$store.state.albumImgUrl=='') ? this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=50y50' )|| normalUrl"
                  class="albumImg"
                  @click="imgClick"
             /><!--获取歌曲封面图片-->
@@ -21,7 +21,7 @@
                ref="playSong"
                autoplay="autoplay">
         </audio>
-        <PlayPage id="playPage" :isActive="isActive" :oLRC="oLRC"/>
+        <PlayPage id="playPage" :isActive="{isLive:isActive}" :oLRC="oLRC"/>
     </div>
 </template>
 
@@ -51,6 +51,7 @@
                     ms: [] //歌词数组{t:时间,c:歌词}
                 },
                 lyric:'',//歌词
+
             }
         },
         methods:{

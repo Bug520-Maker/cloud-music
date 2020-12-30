@@ -4,7 +4,7 @@
         <ul id="list">
             <li v-for="(item,index) in officialList" :key="index">
                 <div>
-                    <img :src="item.coverImgUrl" @click="imgClick(index)"/>
+                    <img :src="item.coverImgUrl+'?param=172y172'" @click="imgClick(index)"/>
                 </div>
                 <ul class="songlist-container">
                     <li v-for="(item,index) in 5" class="songlist">1</li>
