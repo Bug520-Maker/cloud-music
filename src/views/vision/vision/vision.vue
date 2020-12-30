@@ -31,7 +31,7 @@
             }
         },
         created() {
-            labelList().then(result=>{
+           /* labelList().then(result=>{
                 //console.log(result.data);
                 this.allVideoTags=result.data;
             });
@@ -40,7 +40,7 @@
             })
             allvideoList().then(data=>{
                 console.log(data);
-            })
+            })*/
         },
         methods:{
             titleClick()

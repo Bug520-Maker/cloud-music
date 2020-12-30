@@ -60,8 +60,8 @@ const routes = [
     component:findMusic,
     children:[
       {
-        path:'',
-        redirect:'recommend'
+        path:'/findMusic',
+        redirect:'/findMusic/recommend'
       },
       {
         path:'recommend',
@@ -119,7 +119,7 @@ const routes = [
     component:vision,
     children:[
       {
-        path: '/',
+        path: '/vision',
         redirect: '/vision/vis'
       },
       {

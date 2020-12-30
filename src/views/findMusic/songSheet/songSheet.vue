@@ -1,6 +1,6 @@
 <!--歌单整体页面-->
 <template>
-    <div class="歌单">
+    <div id="song-sheet">
         <router-view ></router-view>
         <div class="quality-song-list" @click="qualityRouter">
             <div><img v-lazy="highquality[0].coverImgUrl+'?param=140y140'" /></div>
@@ -58,6 +58,14 @@
 </script>
 
 <style scoped>
+    #song-sheet
+    {
+        overflow: scroll;
+        height: 480px;
+    }
+    #song-sheet::-webkit-scrollbar{
+        width: 2px;
+    }
     #header
     {
        display: flex;

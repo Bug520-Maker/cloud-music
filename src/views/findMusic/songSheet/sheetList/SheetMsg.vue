@@ -54,10 +54,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
         height: 225px;
-        overflow: auto;
         scrollbar-color: transparent transparent;
     }
-    .sheet-msg ul::-webkit-scrollbar
+    /*.sheet-msg ul::-webkit-scrollbar
     {
         width: 5px;
     }
@@ -65,7 +64,7 @@
     {
         height: 30px;
         background-color: rgb(225, 225, 225);
-    }
+    }*/
     .sheet-msg ul li
     {
         margin: 0 0 15px 0;

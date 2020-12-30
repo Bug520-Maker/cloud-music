@@ -1,70 +1,86 @@
 <template>
     <div class="ranking-list clearfix">
-        <div id="title">官方榜</div>
-        <ul id="list">
-            <li v-for="(item,index) in officialList" :key="index">
-                <div>
-                    <img :src="item.coverImgUrl+'?param=172y172'" @click="imgClick(index)"/>
-                </div>
-                <ul class="songlist-container">
-                    <li v-for="(item,index) in 5" class="songlist">1</li>
-                    <li>查看全部</li>
-                </ul>
-            </li>
-        </ul>
+        <child-cpn :rank-list="officialList" title="官方榜" :songList="allRank"/>
+        <global-rank :globalRank="globalRank"></global-rank>
     </div>
 </template>
 
 <script>
     import {allList, listcontentDetail} from "../../../network/recommend/topList/toplist";
+    import ChildCpn from "./childCpn/ChildCpn";
     import {songListMsg} from "../../../network/playlist/playlist";
+    import GlobalRank from "./childCpn/GlobalRank";
 
     export default {
         name: "RankingList",
+        components: {GlobalRank, ChildCpn},
         data()
         {
           return {
               officialList:[],
-              listMsg:{}
+              listMsg:{},
+              rankMap:new Map(),
+              soar:[],//飙升
+              newSong:[],//新歌
+              original:[],//原创
+              hotSong:[],//热歌
+              allRank:[],
+              globalRank:[]
           }
         },
         created() {
             allList().then(data=>{
-                console.log(data.list);
+
+               // this.globalRank=this.globalRank.splice(0,4);
+                //console.log(data.list);
                 let rise="飙升榜";
                 let newSong="新歌榜";
-                let original="网易原创歌曲榜";
-                let hotSong="云音乐热歌榜";
+                let original="原创榜";
+                let hotSong="热歌榜";
+                let singer="歌手榜";
+                let listLink=[];
                 for(let list of data.list)
                 {
-                    if(new RegExp(rise).test(list.name)||new RegExp(newSong).test(list.name)||new RegExp(original).test(list.name)||new RegExp(hotSong).test(list.name))
+                    if(rise==list.name||newSong==list.name||original==list.name||hotSong==list.name||singer==list.name)
                     {
-                        this.officialList.push(list);
+                        listLink.push(list);
+                        this.rankMap.set(list.name,list.id);
                     }
                 }
-               /* for(let i of this.officialList)
+                this.officialList=[...listLink];
+                //console.log(...this.officialList);
+                for(let key of this.rankMap.keys())
                 {
-                    console.log(i);
-                }*/
-                this.officialList.pop();
-            })
-            /*listcontentDetail().then(data=>{
-                console.log(data);
-            })*/
-        },
-        methods:{
-            imgClick(index)
-            {
-                songListMsg(this.officialList[index].id).then(res=> {
-                    //console.log(res.playlist);
-                    this.$store.commit({
-                        type: 'songListMsg',
-                        playlist: res.playlist
+                    songListMsg(this.rankMap.get(key)).then(data=>{
+                        if(key==='飙升榜')
+                        {
+                            this.soar=data.playlist.tracks.slice(0,5);
+                            this.allRank.push(this.soar)
+                        }
+                        else if(key==='新歌榜')
+                        {
+                            this.newSong=data.playlist.tracks.slice(0,5);
+                            this.allRank.push(this.newSong)
+                        }
+                        else if(key==='原创榜')
+                        {
+                            this.original=data.playlist.tracks.slice(0,5);
+                            this.allRank.push( this.original)
+                        }
+                        else if(key==='热歌榜')
+                        {
+                            this.hotSong=data.playlist.tracks.slice(0,5);
+                            this.allRank.push( this.hotSong)
+                            //console.log(this.hotSong);
+                        }
                     })
-                    this.$router.push('/sheetMsg');
-                })
-            }
-        }
+                }
+                //console.log(data.list);
+                this.globalRank=data.list;
+                this.globalRank.splice(0,4);
+                //console.log(this.globalRank)
+            })
+        },
     }
 </script>
 
@@ -79,39 +95,5 @@
     {
         width: 2px;
     }
-    #title
-    {
-        font-size: 20px;
-        font-weight: 700;
-        margin: 40px 0 20px 0;
-    }
-    #list > li
-    {
-        background-color: skyblue;
-        margin: 0 0 30px 0;
-        display: flex;
-    }
-    #list li >div img
-    {
-        width: 172px;
-        vertical-align: bottom;
-        border-radius:8px ;
-    }
-    .songlist-container
-    {
-        margin: 0 0 0 35px;
-        width: 550px;
-    }
-    .songlist-container li:last-of-type
-    {
-        font-size: 12px;
-    }
-    .songlist
-    {
-        background-color: #55a532;
-        width: 100%;
-        margin: 5px 0 0 0;
-        padding: 5px 0;
-        font-size: 12px;
-    }
+
 </style>
