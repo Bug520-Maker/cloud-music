@@ -1,3 +1,4 @@
+<!--mv导航 华语，欧美，韩国-->
 <template>
     <div class="mvchildcpn">
         <ul>
@@ -5,17 +6,14 @@
                 {{item}}
             </li>
         </ul>
-        <MvDetails :NewMv="newmv" class="mv-detail"/>
     </div>
 </template>
 
 <script>
    import {newmv} from "../../../network/vision/mv/mvList";
-   import MvDetails from "./MvDetails";
-
    export default {
         name: "childCpn",
-       components: {MvDetails},
+       components: {},
        props:{
             list:{
                 type:Array,
@@ -48,6 +46,7 @@
                 this.currentIndex=index;
                 newmv(item).then(res=>{
                     this.newmv=res.data
+                    this.$emit('titleClick',this.newmv);
                 })
             }
         }
@@ -71,7 +70,7 @@
     .mv-detail
     {
         /*background-color: pink;最新mv背景颜色*/
-        position: absolute;
+        /*position: absolute;*/
         left: 25px;
         top: 110px;
         width: 770px;

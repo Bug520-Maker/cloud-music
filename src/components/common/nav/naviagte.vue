@@ -17,7 +17,6 @@
         width: 180px;
         height: 516px;
         border-right: 1px solid rgb(225, 225, 225);
-        background-color: transparent;
         padding: 10px;
     }
 </style>

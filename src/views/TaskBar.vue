@@ -1,3 +1,4 @@
+<!--最底部task-->
 <template>
     <div class="task-bar" ref="taskBar" @click="taskClick()">
         <div id="img-container">

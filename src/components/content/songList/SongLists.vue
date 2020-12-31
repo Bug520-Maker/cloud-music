@@ -4,7 +4,7 @@
         <ul>
             <li v-for="(item,index) in songLists">
                 <i class="iconfont icon-love love" ></i>
-                <i class="iconfont icon-Addtodownload down" ></i>
+                <i class="iconfont icon-download down" ></i>
                 <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
@@ -85,7 +85,7 @@
 </script>
 
 <style scoped>
-    @import "../../../assets/font/searchResult/iconfont.css";
+    @import "../../../assets/font/163.music_font/iconfont.css";
     #song-list ul li
     {
         display: flex;
@@ -155,7 +155,7 @@
     }
     .down
     {
-        font-size: 12px;
+        font-size: 14px;
         margin: 0 10px;
     }
 </style>

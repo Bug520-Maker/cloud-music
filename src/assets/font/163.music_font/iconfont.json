@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "806829",
+      "name": "love",
+      "font_class": "love",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
+      "icon_id": "2073568",
+      "name": "icon_Music2",
+      "font_class": "icon_MyMusicBook",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "13714481",
+      "name": "Ionicons ios cloud outline",
+      "font_class": "Ioniconsioscloudoutline",
+      "unicode": "ee77",
+      "unicode_decimal": 61047
+    },
+    {
+      "icon_id": "17565204",
+      "name": "用户收藏",
+      "font_class": "yonghushoucang",
+      "unicode": "f013",
+      "unicode_decimal": 61459
+    },
+    {
+      "icon_id": "18202598",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "18520115",
+      "name": "music-on",
+      "font_class": "music-on",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
       "icon_id": "566417",
       "name": "mini",
       "font_class": "mini",

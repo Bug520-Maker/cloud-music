@@ -28,12 +28,34 @@ export function mvurl(id)/*获取mv播放地址*/
         }
     })
 }
-export function similarMv(id)
+export function similarMv(id)/*相似MV*/
 {
     return request({
         url:"/simi/mv",
         params:{
             mvid:id
+        }
+    })
+}
+export function allMv(type,area,order,limit)/*全部MV*/
+{
+    return request({
+        url:'/mv/all',
+        params:{
+            area,
+            type,
+            order,
+            limit
+        }
+    })
+}
+/*网易出品MV*/
+export function wangYiPro(limit)
+{
+    return request({
+        url:'/mv/exclusive/rcmd',
+        params:{
+            limit
         }
     })
 }

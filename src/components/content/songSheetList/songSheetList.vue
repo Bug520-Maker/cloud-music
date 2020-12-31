@@ -115,7 +115,7 @@
 </script>
 
 <style scoped>
-    @import "../../../assets/font/searchResult/iconfont.css";
+    @import "../../../assets/font/163.music_font/iconfont.css";
     .sheetMsg img
     {
         width: 184px;
