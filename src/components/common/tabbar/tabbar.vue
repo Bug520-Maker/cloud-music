@@ -12,7 +12,7 @@
         },
         mounted() {
             let header=this.$refs.header;
-            let outer=header.parentNode.parentNode;
+            let outer=header.parentNode.parentNode.parentNode;
             header.addEventListener('mousedown',function(event){
                 let innerL=event.pageX-outer.offsetLeft;//鼠标在盒子内部的距离
                 let innerT=event.pageY-outer.offsetTop;
