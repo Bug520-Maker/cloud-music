@@ -48,7 +48,15 @@ const sheetMsg=()=>import('../components/content/songSheetList/songSheetList')
 const qualitySheet=()=>import('../components/content/qualitySheet/QualitySheet');
 
 /*独家放送*/
-const solePlay=()=>import('../components/content/solePlay/SolePlay')
+const solePlay=()=>import('../components/content/solePlay/SolePlay');
+
+/*我的音乐*/
+const localMusic=()=>import('../views/myMusic/localMusic/LocalMusic');/*本地音乐*/
+const downloadManage=()=>import('../views/myMusic/download/DownloadManage')/*下载管理*/
+const myYunPan=()=>import('../views/myMusic/myYunPan/MyYunPan');/*我的音乐云盘*/
+const myRadio=()=>import('../views/myMusic/myRadio/MyRadio')/*我的电台*/
+const myCollection=()=>import('../views/myMusic/myCollection/MyCollection')/*我的收藏*/
+
 const routes = [
   {
     path:'',
@@ -211,7 +219,32 @@ const routes = [
     path: "/singerDetails",
     name:"/singerDetails",
     component:singerDetails
-  }
+  },
+  {/*本地音乐*/
+    path: '/localMusic',
+    name:'localMusic',
+    component:localMusic
+  },
+  {
+    path: '/downloadManage',
+    name:'downloadManage',
+    component:downloadManage
+  },
+  {
+    path: '/myYunPan',
+    name:'myYunPan',
+    component:myYunPan
+  },
+  {
+    path: '/myRadio',
+    name:'myRadio',
+    component:myRadio
+  },
+  {
+    path: '/myCollection',
+    name:'myCollection',
+    component:myCollection
+  },
 ]
 
 const router = new VueRouter({

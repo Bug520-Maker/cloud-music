@@ -3,8 +3,11 @@
         <p class="rec-title">最新音乐> </p>
         <ul class="new-song-list">
             <li v-for="(item,index) in newSong" :key="index">
-                <div class="imgcoin">
-                    <img :src="item.picUrl+'?param=48y48'" @click="playSong(item,index)" />
+                <div class="imgcoin" @click="playSong(item,index)">
+                    <img :src="item.picUrl+'?param=48y48'"  />
+                    <div class="play">
+                        <i class="iconfont icon-play3"></i>
+                    </div>
                 </div>
                 <div>
                     <p >{{item.name}}</p>
@@ -89,10 +92,29 @@
     {
         width: 48px;
         border-radius:5px ;
+        border: 1px solid rgba(153,153,153,.5);
     }
     .imgcoin
     {
         margin: 0 10px 0 0;
+        position: relative;
+    }
+    .play
+    {
+        width:25px;
+        height: 25px;
+        background-color: #ffffff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 25px;
+    }
+    .play i
+    {
+        color: rgb(221, 0, 27);
     }
     .new-song-list li .name
     {

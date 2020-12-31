@@ -5,7 +5,9 @@
                 <div class="img-container" @click="imgClick(item)">
                     <img :src="item.album.picUrl" />
                     <div class="play">
-                        <div></div>
+                        <div>
+                            <i class="iconfont icon-play3"></i>
+                        </div>
                     </div>
                 </div>
                 <div :title="item.name">
@@ -149,12 +151,11 @@
         top: 17px;
         left: 17px;
         border-radius: 50%;
+        text-align: center;
+        line-height: 25px;
     }
-    .play div
+    .play div i
     {
-        border: 8px solid rgb(236, 65, 65);
-        border-color: transparent transparent transparent rgb(236, 65, 65);
-        margin: 5px 0 0 10px;
-        border-radius: 4px;
+        color:rgb(236, 65, 65);
     }
 </style>

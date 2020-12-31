@@ -6,6 +6,125 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1064777",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "4755617",
+      "name": "火",
+      "font_class": "huo",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "4933432",
+      "name": "扬声器",
+      "font_class": "yangshengqi",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "6231422",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "6377513",
+      "name": "加",
+      "font_class": "jia1",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "7049082",
+      "name": "play",
+      "font_class": "play1",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "7644698",
+      "name": "火",
+      "font_class": "huo1",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "8139097",
+      "name": "心 爱心",
+      "font_class": "xinaixin",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "8467024",
+      "name": "点赞",
+      "font_class": "dianzan_active-copy",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "9215294",
+      "name": "play",
+      "font_class": "play2",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "10547946",
+      "name": "分享 转发 发送至 箭头 圆形 shar",
+      "font_class": "fenxiangzhuanfafasongzhijiantouyuanxingshar",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "11303329",
+      "name": "love",
+      "font_class": "love1",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "12086648",
+      "name": "分 享",
+      "font_class": "fenxiang",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "13760359",
+      "name": "play",
+      "font_class": "play3",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "18091164",
+      "name": "点赞",
+      "font_class": "zanpress",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "19026533",
+      "name": "评 论备份",
+      "font_class": "pinglunbeifen",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "13330295",
+      "name": "我的电台",
+      "font_class": "wodediantai",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
       "icon_id": "806829",
       "name": "love",
       "font_class": "love",

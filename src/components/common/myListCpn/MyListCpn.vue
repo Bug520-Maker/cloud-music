@@ -1,9 +1,9 @@
 <template>
     <div class="my-list">
         <ul>
-            <li v-for="(item,index) in list" :key="index">
-                <div class="left-icon"><slot name="left-icon"></slot></div>
-                <div class="context" @click="aclick(index,$event)" :class="{active:currentIndex==index}">
+            <li v-for="(item,index) in list" :key="index" @click="aclick(index,$event)" :class="{active:currentIndex==index}">
+                <div class="left-icon"><slot :name="index"></slot></div>
+                <div class="context" >
                     {{item}}
                 </div>
                 <div class="right-icon">
@@ -42,12 +42,12 @@
             aclick(index,event)
             {
                 this.currentIndex=index;
-                /*try{
+                try{
                     this.$router.push(this.path[index]);
                 }
                 catch (e) {
-                    console.log(e+"您已在当前页");
-                }*/
+                    console.log(e);
+                }
             }
         }
     }
@@ -65,19 +65,25 @@
         display: block ;
         padding: 8px 0px 8px 10px;
     }
-    .my-list ul li .context:hover
+    .my-list ul li:hover
     {
         background-color:rgb(246, 246, 247);
         cursor: pointer;
     }
     .my-list ul li
     {
-
+        display: flex;
         margin: 0 0 3px 0;
     }
-    .my-list ul li .active
+    .my-list ul li.active
     {
         background-color:rgb(246, 246, 247);
         font-size: 14px;
+    }
+    .my-list ul li .left-icon,.right-icon
+    {
+        font-size: 18px;
+        line-height: 35px;
+        margin: 0 0 0 8px;
     }
 </style>
