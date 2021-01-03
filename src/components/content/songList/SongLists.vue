@@ -8,7 +8,7 @@
                 <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
-                <div>{{duration(item.duration)}}</div>
+                <div style="color: #9f9f9f">{{duration(item.duration)}}</div>
                 <div></div>
             </li>
         </ul>
@@ -72,11 +72,21 @@
                 {
                     let num=item/60000;
                     let number=num.toString().split(".");
+                    let time='';
                     if(number[1]===undefined)
                     {
                            number[1]="00";
                     }
-                    let time="0"+number[0]+":" +number[1].slice(0,2);
+                    let floatNum=parseFloat('0.'+number[1]);/*取到小数部分*/
+                   // console.log(floatNum,typeof floatNum);
+                    if(parseInt(floatNum*60)<10)
+                    {
+                        time="0"+number[0]+":" +'0'+(floatNum*60).toString().slice(0,1);
+                    }
+                    else
+                    {
+                        time="0"+number[0]+":" +(floatNum*60).toString().slice(0,2);
+                    }
                     return time;
                 }
             }

@@ -33,7 +33,7 @@ const geci=()=>import('../components/content/searchResult/geci/geci')
 /*导入视频子路由*/
 const vis=()=>import('../views/vision/vision/vision');
 const mv=()=>import('../views/vision/mv/mv');
-
+const allMv=()=>import('../views/vision/mv/allMv/AllMv');
 /*导入视频中的视频子路由*/
 
 
@@ -245,6 +245,11 @@ const routes = [
     name:'myCollection',
     component:myCollection
   },
+  {
+    path:'/allMv',
+    name:allMv,
+    component:allMv
+  }
 ]
 
 const router = new VueRouter({

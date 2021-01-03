@@ -1,4 +1,4 @@
-<!--歌单整体页面-->
+<!--发现音乐=》歌单 整体页面-->
 <template>
     <div id="song-sheet">
         <router-view ></router-view>

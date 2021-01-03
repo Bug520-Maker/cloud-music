@@ -1,3 +1,4 @@
+<!--首页推荐歌单-->
 <template>
    <div>
        <p class="rec-title" @click="recClick">推荐歌单 ></p>
@@ -35,12 +36,13 @@
             {
 
                 songListMsg(this.recList[index].id).then(res=>{
-                    //console.log(res.playlist);
-                    this.$store.commit({
-                        type:'songListMsg',
-                        playlist:res.playlist
-                    })
-                    this.$router.push('/sheetMsg');
+                    console.log(res.playlist);
+                    this.$router.push({
+                        path:'/sheetMsg',
+                        query:{
+                            songListMsg:res.playlist
+                        }
+                    });
                 });
 
             },

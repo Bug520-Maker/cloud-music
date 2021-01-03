@@ -1,7 +1,7 @@
 <template>
     <div class="mv">
         <div class="head">
-            <div class="title">最新MV > </div>
+            <div class="title" @click="divClick">最新MV > </div>
             <mvchild-cpn :list="['内地','港台','欧美','日本','韩国']" @titleClick="newMV"></mvchild-cpn>
         </div>
         <new-mv :newMv="newMv"></new-mv>
@@ -33,6 +33,10 @@
             newMV(newmv)
             {
                 this.newMv=newmv;
+            },
+            divClick()
+            {
+                this.$router.push('/allMv');
             }
         }
     }

@@ -1,3 +1,4 @@
+<!--精品歌单-->
 <template>
     <div class="quality-sheet">
         <div class="title">精品歌单</div>
@@ -33,14 +34,10 @@
             {
                 songListMsg(this.qualitySheet[index].id).then(res=>{
                     console.log(res.playlist);
-                    this.$store.commit({
-                        type:'songListMsg',
-                        playlist:res.playlist
-                    })
-                    this.$router.replace({
+                    this.$router.push({
                         path:'/sheetMsg',
                         query:{
-
+                            songListMsg:res.playlist
                         }
                     });
                 });
