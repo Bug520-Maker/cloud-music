@@ -10,7 +10,11 @@
             <p>{{this.$store.state.singleDetails.alias[0]}}</p>
             <ul>
                 <li>专辑：<span>{{this.$store.state.singleDetails.album.name||'无'}}</span></li>
-                <li @click="singerClick">歌手：<span>{{this.$store.state.singleDetails.artists[0].name||'无'}}</span></li>
+                <li @click="singerClick">歌手：
+                    <span>
+                    {{this.$store.state.singleDetails.artists[0].name||'无'}}
+                  </span>
+                </li>
                 <li>来源 <span></span></li>
             </ul>
             <div class="lyric">
@@ -22,6 +26,7 @@
 
 <script>
     import {singeralbum} from "../../../network/public/singerAlbum";
+    import {singerMsg} from "../../../network/singer/singer";
     export default {
         name: "PlayPage",
         data()
@@ -48,24 +53,17 @@
             singerClick()
             {
                 this.$refs.playPage.classList.remove("active");
-                singeralbum( this.$store.state.singleDetails.artists[0].id).then(data=>{
-                    // console.log(data);
-                    this.albumMsg=data;
-                    let msg={
-                        singerId : this.$store.state.singleDetails.artists[0].id,
-                        singerName : this.$store.state.singleDetails.artists[0].name,
-                        albumSize: this.albumMsg.artist.albumSize,
-                        musicSize: this.albumMsg.artist.musicSize,
-                        picUrl:this.albumMsg.artist.picUrl,
-                    }
+                /*获取歌手详细信息*/
+                singerMsg(this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/).then(res=>{
+                    /*路由至歌手详情页*/
                     this.$router.push({
                         path:'/singerDetails',
                         query:{
-                            singermsg:msg
+                            singerBaseMsg:res.data
                         }
                     })
+                    //console.log(res.data);
                 })
-
             },
 
         }

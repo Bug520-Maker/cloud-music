@@ -1,98 +1,121 @@
 <template>
     <div class="singer-details">
-        <div class="banner-header">
-            <div>
-                <img v-lazy="singerBaseMsg.picUrl+'?param=184y184'" />
+        <details-page>
+            <!--歌手封面-->
+            <div slot="imgContainer">
+                <img v-lazy="singerBaseMsg.artist.cover+'?param=184y184'" />
             </div>
-            <ul>
-                <li>{{singerBaseMsg.singerName}}</li>
-                <li></li>
+            <!--歌手姓名-->
+            <div slot="title">
+                {{singerBaseMsg.artist.name}}
+            </div>
+            <div slot="creator" class="creator">
+                {{singerBaseMsg.artist.transNames[0]}}
+            </div>
+            <!--按钮-->
+            <button slot="controlBtn" class="controlBtn">
+                <i class="iconfont icon-jiarushoucang"></i>
+                 收藏
+            </button>
+            <button slot="controlBtn" class="controlBtn">个人主页</button>
+            <ul slot="targetMsg" class="targetMsg">
                 <li>
-                    <span>单曲数：{{singerBaseMsg.musicSize}}</span>
-                    <span>专辑数：{{singerBaseMsg.albumSize}}</span>
+                    <span>单曲数:</span>{{singerBaseMsg.artist.musicSize}}
                 </li>
-            </ul>
-        </div>
-        <div class="body-content">
-            <ul class="nav-list">
-                <li v-for="(item,index) in navList" :key="index" :class="{active:index==currentIndex}" @click="liCLick(index)">
-                    {{item}}
-                </li>
-            </ul>
-            <ul id="album" ref="album" v-show="currentIndex===albumindex" >
                 <li>
-                    <div>
-                        <img src="../../../assets/img/singerSongs/top50.png" width="150px"/>
-                    </div>
-                    <song-lists :songLists="singerSongs" class="songList"></song-lists>
+                    <span>专辑数:</span>{{singerBaseMsg.artist.albumSize}}
                 </li>
-                <p class="more" @click="pClick" ref="checkmore">点击查看更多></p>
-            </ul>
-            <ul id="mv-coin" ref="mvCoin" v-show="currentIndex===mvcoinindex" >
-                <li v-for="(item,index) in singerMvs" @click="mvplay(index)">
-                    <div>
-                        <img v-lazy="item.imgurl+'?param=242y181.63'" />
-                    </div>
-                    <p>{{item.name}}</p>
+                <li>
+                    <span>MV数:</span>{{singerBaseMsg.artist.mvSize}}
                 </li>
             </ul>
-            <pre id="singer-desc" v-show="currentIndex===singerdescribel">
-                {{singerDesc}}
-            </pre>
-        </div>
+        </details-page>
+        <tab-control :list="['专辑','MV','歌手详情','相似歌手']">
+            <!--专辑组件-->
+            <div slot="专辑">
+                <AlbumCpn album-name="热门50首" :songs="top520Msg">
+                    <div slot="album-img">
+                        <img src="../../../assets/img/singerSongs/top50.png" />
+                    </div>
+                </AlbumCpn>
+                <AlbumCpn v-for="(item,index) in hotAlbum" :key="index" :album-name="item.name" :songs="albumContent[index]">
+                    <div slot="album-img">
+                        <img :src="item.picUrl+'?param=148y148'"/>
+                    </div>
+                </AlbumCpn>
+            </div>
+            <!--MV组件-->
+           <div slot="MV">
+               <mvs :list="mvs"/>
+           </div>
+            <!--歌手详情-->
+            <div slot="歌手详情">
+                <singer-description :list="singerDescription" />
+            </div>
+        </tab-control>
     </div>
 </template>
 
 <script>
-    import {mvofsinger, singerDesc, top50} from "../../../network/singer/singer";
+    import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50} from "../../../network/singer/singer";
     import SongLists from "../songList/SongLists";
     import {mvurl} from "../../../network/vision/mv/mvList";
+    import DetailsPage from "../../common/detailsPage/DetailsPage";
+    import TabControl from "../../common/tabController/TabControl";
+    import AlbumCpn from "./album/AlbumCpn";
+    import MsgList from "../../common/msgList/MsgList";
+    import Mvs from "./mvs/Mvs";
+    import SingerDescription from "./desc/SingerDescription";
 
     export default {
         name: "SingerDetai",
-        components: {SongLists},
+        components: {SingerDescription, Mvs, MsgList, AlbumCpn, TabControl, DetailsPage, SongLists},
         data()
         {
             return {
-                singerBaseMsg:{},
-                navList:['专辑','mv','歌手详情','相似歌手'],
-                currentIndex:0,
-                singerSongs:[],
-                singerMvs:[],/*歌手mv*/
-                singerDesc:'',
-                albumindex:0,
-                mvcoinindex:1,
-                singerdescribel:2
+                singerBaseMsg:{},/*当前歌手信息*/
+                top520Msg:[],    /*歌手热门50首歌曲*/
+                hotAlbum:[],/*歌手专辑*/
+                albumContent:[],/*专辑内容*/
+                mvs:[]/*歌手MV*/,
+                singerDescription:[]/*歌手描述*/
             }
         },
         created() {
-            this.singerBaseMsg=this.$route.query.singermsg;
-            //console.log(this.singerBaseMsg);
-            top50(this.singerBaseMsg.singerId).then(data=>{
-               // console.log(data);
-                for(let item of data.songs)
+            this.singerBaseMsg=this.$route.query.singerBaseMsg;
+            /*获取歌手热门50首歌曲*/
+            top50(this.singerBaseMsg.artist.id).then(data=>{
+                //console.log(data.songs);
+                this.top520Msg=data.songs;
+            })
+            /*获取歌手专辑*/
+            singeralbum(this.singerBaseMsg.artist.id).then(data=>{
+               // console.log(data.hotAlbums);
+                this.hotAlbum=data.hotAlbums;
+
+                /*获取专辑内容*/
+                for(let index in this.hotAlbum)
                 {
-                    let obj={
-                        id:item.id,
-                        name:item.name,
-                        alias:[''],
-                        artists:[
-                            {name:item.ar[0].name}
-                        ],
-                        album:{
-                            name:item.al.name,
-                            id:item.al.id
-                        },
-                        duration:143365.562,
-                        alImgUrl:item.al.picUrl,
-                    }
-                   // console.log(obj)
-                    this.singerSongs.push(obj);
+                    albumContent(this.hotAlbum[index].id).then(data=>{
+                       // console.log(data.songs);
+                        this.albumContent.push(data.songs);
+                    })
                 }
             })
+            /*获取歌手MV*/
+            mvofsinger(this.singerBaseMsg.artist.id).then(data=>{
+                //console.log(data.mvs);
+                this.mvs=data.mvs;
+            })
+            /*歌手描述*/
+            singerDesc(this.singerBaseMsg.artist.id).then(data=>{
+                console.log(data.introduction);
+                this.singerDescription=data.introduction;
+            })
+
         },
-        methods:{
-            liCLick(index)
+        methods: {
+            /* liCLick(index)
             {
                 this.currentIndex=index;
                 if(index==1)
@@ -103,7 +126,7 @@
                     })
                 }
                 if(index==2)
-                {/*获取歌手描述*/
+                {/!*获取歌手描述*!/
                     singerDesc(this.singerBaseMsg.singerId).then(data=>{
                         this.singerDesc=data.briefDesc;
                     })
@@ -126,7 +149,8 @@
                     })
                 })
             }
-        },
+        },*/
+        }
 
     }
 </script>
@@ -134,121 +158,34 @@
 <style scoped>
     .singer-details
     {
-        padding: 20px 20px 0px 20px;
-        height: 515px;
-        overflow: auto;
+        height: 532px;
+        width: 795px;
+        overflow-y: scroll;
     }
     .singer-details::-webkit-scrollbar
     {
         width: 2px;
     }
-    .banner-header div:nth-of-type(1)
+    .creator
     {
-        height: 184px;
+        font-size: 13px;
     }
-    .banner-header div:nth-of-type(1) img
-    {
-        width: 184px;
-        border-radius: 10px;
-    }
-    .banner-header
-    {
-        display: flex;
-    }
-    .banner-header ul
-    {
-        margin: 0 0 0 30px;
-    }
-    .banner-header ul li:nth-of-type(3) span
+    .controlBtn
     {
         font-size: 14px;
+        padding: 3px 15px;
+        border: 1px solid #e0e0e0;
+        border-radius:18px ;
         margin: 0 20px 0 0;
+        background-color: #ffffff;
+        outline: none;
     }
-    .banner-header ul li:nth-of-type(1)
-    {
-        font-size: 22px;
-        font-weight: 700;
-    }
-    .body-content
-    {
-        margin: 20px 0 0 0;
-    }
-    .body-content  ul:nth-of-type(1)
+    .targetMsg
     {
         display: flex;
     }
-    .body-content ul:nth-of-type(1) li
+    .targetMsg li
     {
-        font-size: 14px;
-        color: rgb(0, 0, 0);
-        margin: 0 20px 0 0;
-        cursor: pointer;
-        padding-bottom: 3px;
-    }
-    .body-content ul:nth-of-type(1) .active
-    {
-        font-weight: 700;
-        border-bottom: 3px solid rgb(236, 65, 65);
-    }
-    .body-content .songList
-    {
-        margin: 0 0 0 20px;
-        width: 600px;
-        height: 280px;
-        overflow: hidden;
-    }
-    .body-content #album
-    {
-        margin: 20px 0 0 0;
-    }
-    .body-content #album li
-    {
-        display: flex;
-    }
-    #album .more
-    {
-        font-size: 12px;
-        margin: 0 0 0 170px;
-        background-color:rgb(249, 249, 249);
-        padding: 5px 0;
-        color: rgb(97, 97, 98);
-        width: 600px;
-        text-align: right;
-        cursor: pointer;
-    }
-    #mv-coin
-    {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 20px 0 0 0;
-    }
-    #mv-coin li
-    {
-        margin: 0 0 20px 0;
-        cursor: pointer;
-    }
-    #mv-coin li div img
-    {
-        width: 242px;
-        border-radius: 8px;
-    }
-    #mv-coin li p
-    {
-        font-size: 14px;
-        width: 242px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    #singer-desc
-    {
-        margin: 20px 0 0 0;
-        color:rgb(103, 103, 103);
-        white-space: normal;
-        text-indent: 28px;
-        font-size: 14px;
-        font-family: "微软雅黑";
-        line-height: 30px;
+        margin: 0 15px 0 0;
     }
 </style>

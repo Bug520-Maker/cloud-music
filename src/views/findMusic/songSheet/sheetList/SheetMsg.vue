@@ -78,6 +78,7 @@
     {
         width: 177px;
         border-radius:8px ;
+        border: 1px solid rgba(153,153,153,.4);
     }
     .sheet-msg ul .name
     {

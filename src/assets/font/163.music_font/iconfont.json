@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3642035",
+      "name": "play",
+      "font_class": "play4",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "3270893",
+      "name": "加入收藏",
+      "font_class": "jiarushoucang",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
       "icon_id": "1064777",
       "name": "play",
       "font_class": "play",

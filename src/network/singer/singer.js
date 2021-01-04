@@ -51,3 +51,33 @@ export function singerDesc(id)
         }
     })
 }
+/*获取歌手详细信息*/
+export function singerMsg(id)
+{
+    return request({
+        url:'/artist/detail',
+        params:{
+            id
+        }
+    })
+}
+/*获取歌手专辑*/
+export function singeralbum(singerId)
+{
+    return request({
+        url:'/artist/album',
+        params:{
+            id:singerId
+        }
+    })
+}
+/*获取专辑内容*/
+export function albumContent(id)
+{
+    return request({
+        url:'/album',
+        params:{
+            id
+        }
+    })
+}

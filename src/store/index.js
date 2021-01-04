@@ -61,6 +61,7 @@ const store= new Vuex.Store({
       state.singleDetails=payload.details
     },
     /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
+    
     mvList(state,payload)/*获取mv排行*/
     {
       state.mvlist=payload.mvlist
