@@ -13,24 +13,22 @@
 </template>
 
 <script>
+    import {singerMsg} from "@/network/singer/singer";
+
     export default {
         name: "BodyContent",
         methods:{
             liClick(index)
             {
-                let msg={
-                    singerId:this.$store.state.singerLists[index].id,
-                    singerName:this.$store.state.singerLists[index].name,
-                    albumSize:this.$store.state.singerLists[index].albumSize,
-                    musicSize:this.$store.state.singerLists[index].musicSize,
-                    picUrl:this.$store.state.singerLists[index].img1v1Url
-                }
-                this.$router.push({
+                let singerId=this.$store.state.singerLists[index].id;
+                singerMsg(singerId).then(res=>{
+                  this.$router.push({
                     path:"/singerDetails",
                     query:{
-                        singermsg:msg
+                      singerBaseMsg:res.data
                     }
-                });
+                  });
+                })
             }
         }
     }

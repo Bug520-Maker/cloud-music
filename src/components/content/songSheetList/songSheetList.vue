@@ -27,16 +27,18 @@
                 <button>
                     <i class="iconfont"></i>
                     收藏
-                    <span></span>
+                    <span>
+                      ({{songListMsg.subscribedCount}})
+                    </span>
                 </button>
                 <button>
                     <i class="iconfont icon-fenxiangzhuanfafasongzhijiantouyuanxingshar"></i>
                     分享
-                   <span>{{songListMsg.shareCount}}</span>
+                   <span>({{songListMsg.shareCount}})</span>
                 </button>
                 <button>
                     <i class="iconfont icon-download"></i>
-                    下载
+                    下载全部
                 </button>
             </div>
             <div slot="targetMsg" id="targetMsg">
@@ -60,6 +62,12 @@
             <div slot="歌曲列表">
                 <song-lists :songLists="songLists"/>
             </div>
+          <div slot="评论">
+            <comment :comments="comments" />
+          </div>
+          <div slot="收藏者">
+            <subscribers :collector="subscribers"/>
+          </div>
         </tab-control>
     </div>
 </template>
@@ -67,17 +75,21 @@
 <script>
     import DetailsPage from "../../common/detailsPage/DetailsPage";
     import TabControl from "../../common/tabController/TabControl";
-    import {songDetailes} from "../../../network/playCoin/songDetal";
     import SongLists from "../songList/SongLists";
+    import {songSheetComm,songSheetCollect} from "@/network/songsheet/songSheet";
+    import Comment from "@/components/content/comment/Comment";
+    import Subscribers from "@/components/content/songSheetList/subscribers/Subscribers";
 
     export default {
         name: "songSheetList",
-        components: {SongLists, TabControl, DetailsPage},
+        components: {Subscribers, Comment, SongLists, TabControl, DetailsPage},
         data()
         {
             return {
                 songListMsg:{},
                 songLists:[],
+              comments:[],/*用户评论*/
+              subscribers:[]
             }
         },
         methods:{
@@ -119,6 +131,16 @@
                 tmp.duration=this.songListMsg.tracks[index].dt;
                 this.songLists[index]=tmp
             }
+            /*获取歌单评论*/
+            songSheetComm(this.songListMsg.id).then(data=>{
+              //console.log(data);
+              this.comments=data.comments;
+            })
+          /*获取歌单收藏者*/
+          songSheetCollect(this.songListMsg.id).then(data=>{
+           // console.log(data.subscribers);
+            this.subscribers=data.subscribers;
+          })
         }
     }
 </script>

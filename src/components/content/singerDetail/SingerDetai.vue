@@ -30,6 +30,7 @@
                 </li>
             </ul>
         </details-page>
+        <!--歌手相关专辑，MV，歌手详情，相似歌手-->
         <tab-control :list="['专辑','MV','歌手详情','相似歌手']">
             <!--专辑组件-->
             <div slot="专辑">
@@ -52,12 +53,16 @@
             <div slot="歌手详情">
                 <singer-description :list="singerDescription" />
             </div>
+            <!--相似歌手-->
+            <div slot="相似歌手">
+                <similar-singer :list="similarSinger"/>
+            </div>
         </tab-control>
     </div>
 </template>
 
 <script>
-    import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50} from "../../../network/singer/singer";
+    import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50,simiArtist} from "../../../network/singer/singer";
     import SongLists from "../songList/SongLists";
     import {mvurl} from "../../../network/vision/mv/mvList";
     import DetailsPage from "../../common/detailsPage/DetailsPage";
@@ -66,10 +71,11 @@
     import MsgList from "../../common/msgList/MsgList";
     import Mvs from "./mvs/Mvs";
     import SingerDescription from "./desc/SingerDescription";
+    import SimilarSinger from "@/components/content/singerDetail/similarSinger/SimilarSinger";
 
     export default {
         name: "SingerDetai",
-        components: {SingerDescription, Mvs, MsgList, AlbumCpn, TabControl, DetailsPage, SongLists},
+        components: {SimilarSinger, SingerDescription, Mvs, MsgList, AlbumCpn, TabControl, DetailsPage, SongLists},
         data()
         {
             return {
@@ -78,7 +84,8 @@
                 hotAlbum:[],/*歌手专辑*/
                 albumContent:[],/*专辑内容*/
                 mvs:[]/*歌手MV*/,
-                singerDescription:[]/*歌手描述*/
+                singerDescription:[],/*歌手描述*/
+                similarSinger:[]/*相似歌手*/
             }
         },
         created() {
@@ -109,9 +116,14 @@
             })
             /*歌手描述*/
             singerDesc(this.singerBaseMsg.artist.id).then(data=>{
-                console.log(data.introduction);
+               // console.log(data.introduction);
                 this.singerDescription=data.introduction;
             })
+           /*获取相似歌手*/
+          simiArtist(this.singerBaseMsg.artist.id).then(data=>{
+            //console.log(data.artists);
+            this.similarSinger=data.artists;
+          })
 
         },
         methods: {

@@ -21,39 +21,55 @@
 
 <script>
     import SheetChild from "./sheetChild";
-    import {highquality} from "../../../network/songsheet/songSheet";
+    import {highquality,highTags} from "@/network/songsheet/songSheet";
 
     export default {
         name: "songSheet",
         components: {SheetChild},
-        methods:{
-            btnclick(name)
-            {
-                this.title=name;
-            },
-            qualityRouter()
-            {
-                this.$router.push({
-                    path:'/findMusic/songSheet/qualitySheet',
-                    query:{
-                        hightSheet:this.highquality
-                    }
-                });
-            }
-        },
         data()
         {
             return {
                 title:'华语',
-                highquality:[{coverImgUrl:''}]
+                highquality:[{coverImgUrl:''}],
+                tags:[],/*精品歌单标签*/
+                tagName:''
             }
         },
         created() {
-            highquality().then(data=>{
-                // console.log(data.playlists);
+            highTags().then(data=>{
+              //console.log(data.tags);
+              this.tags=data.tags;
+              let index=this.random(0,this.tags.length);
+              highquality(this.tags[index].name).then(data=>{
+                //console.log(data.playlists);
                 this.highquality=data.playlists;
+                this.tagName=this.tags[index].name;
+              })
             })
+
+        },
+      methods:{
+        btnclick(name)
+        {
+          this.title=name;
+        },
+        qualityRouter()
+        {
+          this.$router.push({
+            path:'/findMusic/songSheet/qualitySheet',
+            query:{
+              hightSheet:this.highquality,
+              tagName:this.tagName,
+              tags:this.tags
+            }
+          });
+        },
+        /*生成随机数*/
+        random(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
         }
+
+      },
     }
 </script>
 

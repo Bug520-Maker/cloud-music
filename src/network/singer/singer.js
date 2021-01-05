@@ -81,3 +81,13 @@ export function albumContent(id)
         }
     })
 }
+/*获取相似歌手*/
+export function simiArtist(id)
+{
+    return request({
+        url:'/simi/artist',
+        params:{
+            id
+        }
+    })
+}
