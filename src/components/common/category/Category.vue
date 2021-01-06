@@ -47,8 +47,6 @@ export default {
   mounted() {
     for(let index in this.list)
     {
-      console.log(this.tag);
-
       if(this.list[index].name==this.tag)
       {
         this.currentIndex=index;

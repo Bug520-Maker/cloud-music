@@ -2,9 +2,23 @@
 <template>
     <div  class="playPage" ref="playPage" :class="{active:isActive.isLive}">
         <div class="album-container" :class="{disappear:isActive.isLive}">
-            <img :src="this.$store.state.albumImgUrl==''?this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=210y210'||normalUrl" :class="{appear:isActive.isLive}"/>  <!--封面旋转图片-->
+            <img :src="((this.$store.state.albumImgUrl=='')?this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=210y210')||normalUrl" :class="{appear:isActive.isLive}"/>  <!--封面旋转图片-->
         </div>
-
+        <!--控制按钮-->
+        <ul class="control-btn">
+          <li title="喜欢">
+            <i class="iconfont icon-love"></i>
+          </li>
+          <li title="收藏">
+            <i class="iconfont icon-jiarushoucang"></i>
+          </li>
+          <li title="下载">
+            <i class="iconfont icon-download"></i>
+          </li>
+          <li title="分享">
+            <i class="iconfont icon-fenxiangzhuanfafasongzhijiantouyuanxingshar"></i>
+          </li>
+        </ul>
         <div id="songMsg">
             <p>{{this.$store.state.singleDetails.name}}</p>
             <p>{{this.$store.state.singleDetails.alias[0]}}</p>
@@ -33,7 +47,7 @@
         {
           return{
               albumMsg:{},
-              normalUrl:'https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg',
+              normalUrl:'http://p1.music.126.net/evuHH8Wjhl5DJOXaCFOMVA==/109951165545747317.jpg?param=400y400',
           }
         },
         props:{
@@ -116,6 +130,39 @@
     .album-container .appear
     {
         width: 210px;
+    }
+    /*控制按钮*/
+    .control-btn
+    {
+      display: flex;
+      margin:410px 0 0 80px;
+    }
+    .control-btn li
+    {
+      width: 40px;
+      height: 40px;
+      background-color:#f5f5f5;
+      margin: 0 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+    }
+    .control-btn li i
+    {
+      font-size: 18px;
+      color: #595959;
+    }
+    .control-btn li:hover
+    {
+      background-color: #ebebeb;
+    }
+    .control-btn li:nth-child(1) i
+    {
+      font-size: 22px;
+    }
+    .control-btn li:nth-child(4) i,.control-btn li:nth-child(3) i
+    {
+      font-size: 20px;
     }
     #songMsg
     {

@@ -13,7 +13,7 @@
                     {{this.$store.state.singleDetails.alias[0]}}    <!--获取歌曲简介-->
                 </span>
             </p>
-            <p>{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
+            <p @click="pClick">{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
         </div>
         <audio :src="this.$store.state.songUrl"
                controls="controls"
@@ -28,6 +28,7 @@
 <script>
     import PlayPage from "./PlayPage";
     import {songLyric} from "../../../network/playCoin/songDetal";
+    import {singerMsg} from "@/network/singer/singer";
     export default {
         name: "playCoin",
         components: {
@@ -68,6 +69,19 @@
                     }
                 })
             },
+             pClick()
+             {
+               singerMsg(this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/).then(res=>{
+                 /*路由至歌手详情页*/
+                 this.$router.push({
+                   path:'/singerDetails',
+                   query:{
+                     singerBaseMsg:res.data
+                   }
+                 })
+               })
+             },
+
             createLrcObj(lrc) {
                 if (lrc.length == 0) {
                     return;
@@ -163,6 +177,7 @@
         font-size: 13px;
         color: rgb(53, 53, 124);
         margin: 10px 0 0 0;
+      cursor: pointer;
     }
     #img-container .albumImg
     {

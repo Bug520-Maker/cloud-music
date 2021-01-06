@@ -5,7 +5,7 @@
         <ul id="list">
             <li v-for="(item,i) in rankList" :key="i">
                 <div>
-                    <img :src="item.coverImgUrl+'?param=172y172'" @click="imgClick(i)"/>
+                    <img v-lazy="item.coverImgUrl+'?param=172y172'" @click="imgClick(i)"/>
                 </div>
                 <ul class="songlist-container">
                     <li v-for="(item,index) in songList[i]" class="songlist">
@@ -50,13 +50,14 @@
             imgClick(index)
             {
                 //console.log(this.officialList[index].id);
-                songListMsg(this.officialList[index].id).then(res=> {
+                songListMsg(this.rankList[index].id).then(res=> {
                     //console.log(res.playlist);
-                    this.$store.commit({
-                        type: 'songListMsg',
-                        playlist: res.playlist
-                    })
-                    this.$router.push('/sheetMsg');
+                  this.$router.push({
+                    path:'/sheetMsg',
+                    query:{
+                      songListMsg:res.playlist
+                    }
+                  });
                 })
             },
             ergodic(arr)//遍历
@@ -66,9 +67,6 @@
                 })
                 return newArr.join(' / ');
             }
-        },
-        created() {
-            console.log(this.songList);
         }
     }
 </script>

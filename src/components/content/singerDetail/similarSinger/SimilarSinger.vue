@@ -3,7 +3,7 @@
         <ul>
           <li v-for="(item,index) in list" :key="index">
             <msg-list>
-              <div slot="imgContainer">
+              <div slot="imgContainer" @click="singerClick(item)">
                 <img v-lazy="item.picUrl+'?param=137y137'">
               </div>
               <div slot="state"><!--item.id可以获取相似歌手id-->
@@ -17,6 +17,7 @@
 
 <script>
 import MsgList from "@/components/common/msgList/MsgList";
+import {singerMsg} from "@/network/singer/singer";
 export default {
      name: "SimilarSinger",
   components: {MsgList},
@@ -28,7 +29,14 @@ export default {
            return []
          }
        }
-     }
+     },
+  methods:{
+       singerClick(item) {
+         singerMsg(item.id).then(res=>{
+           this.$emit('singer-click',res.data);
+         })
+       }
+  }
 }
 </script>
 

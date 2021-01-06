@@ -8,16 +8,17 @@
                 <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
-                <div style="color: #9f9f9f">{{duration(item.duration)}}</div>
-                <div></div>
+                <div class="duartion">{{duration(item.duration)}}</div>
+                <div ></div>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-    import {musicUrl} from "../../../network/public/musicUrl";
-    import {albumContent} from "../../../network/public/albumContent";
+    import {musicUrl} from "@/network/public/musicUrl";
+    import {albumContent} from "@/network/public/albumContent";
+    import {formatDt} from "@/assets/function/formatDt";
 
     export default {
         name: "SongLists",
@@ -64,31 +65,7 @@
             },
             duration(item)
             {
-                if(item==undefined||item==null)
-                {
-                    return 0;
-                }
-                else
-                {
-                    let num=item/60000;
-                    let number=num.toString().split(".");
-                    let time='';
-                    if(number[1]===undefined)
-                    {
-                           number[1]="00";
-                    }
-                    let floatNum=parseFloat('0.'+number[1]);/*取到小数部分*/
-                   // console.log(floatNum,typeof floatNum);
-                    if(parseInt(floatNum*60)<10)
-                    {
-                        time="0"+number[0]+":" +'0'+(floatNum*60).toString().slice(0,1);
-                    }
-                    else
-                    {
-                        time="0"+number[0]+":" +(floatNum*60).toString().slice(0,2);
-                    }
-                    return time;
-                }
+                return formatDt(item);
             }
         },
     }
@@ -96,11 +73,15 @@
 
 <style scoped>
     @import "../../../assets/font/163.music_font/iconfont.css";
+    #song-list
+    {
+      width: 730px;
+    }
     #song-list ul li
     {
         display: flex;
-        padding: 5px 0 5px 30px;
-        font-size: 13px;
+        padding: 5px 0 5px 20px;
+        font-size: 12px;
     }
     #song-list ul
     {
@@ -110,11 +91,9 @@
     #song-list ul li div
     {
         flex:1;
-
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
         overflow: hidden;
+        white-space: nowrap;
     }
     #song-list ul li div:nth-child(1) span
     {
@@ -167,5 +146,13 @@
     {
         font-size: 14px;
         margin: 0 10px;
+    }
+    .duartion
+    {
+      color: #9f9f9f;
+    }
+    #song-list ul li:hover
+    {
+      background-color: #f0f1f2;
     }
 </style>

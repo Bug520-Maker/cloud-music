@@ -25,20 +25,20 @@
                     <i class="iconfont icon-jia1"></i>
                 </button>
                 <button>
-                    <i class="iconfont"></i>
-                    收藏
+                    <i class="iconfont"> </i>
+                     收藏
                     <span>
-                      ({{songListMsg.subscribedCount}})
+                      ({{formatNum(songListMsg.subscribedCount)}})
                     </span>
                 </button>
                 <button>
-                    <i class="iconfont icon-fenxiangzhuanfafasongzhijiantouyuanxingshar"></i>
-                    分享
-                   <span>({{songListMsg.shareCount}})</span>
+                    <i class="iconfont icon-fenxiangzhuanfafasongzhijiantouyuanxingshar"> </i>
+                     分享
+                   <span>({{formatNum(songListMsg.shareCount)}})</span>
                 </button>
                 <button>
-                    <i class="iconfont icon-download"></i>
-                    下载全部
+                    <i class="iconfont icon-download"> </i>
+                     下载全部
                 </button>
             </div>
             <div slot="targetMsg" id="targetMsg">
@@ -93,7 +93,6 @@
             }
         },
         methods:{
-
             toString(arr)
             {
                 return arr.join(" / ")
@@ -108,7 +107,18 @@
                 {
                     return parseInt((playCount/10000))+'万';
                 }
+            },
+          formatNum(count)
+          {
+            if(count>=10000)
+            {
+              return Math.floor(count/10000)+'万'
             }
+            else
+            {
+              return count;
+            }
+          }
         },
         created() {
             this.songListMsg=this.$route.query.songListMsg;
@@ -173,7 +183,7 @@
     {
         border: 1px solid #d8d8d8;
         padding:3px 15px;
-        font-size: 16px;
+        font-size: 14px;
         border-radius: 18px;
         background-color: #ffffff;
         margin: 0 10px 0 0 ;

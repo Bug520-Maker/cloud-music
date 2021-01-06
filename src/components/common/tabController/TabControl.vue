@@ -29,7 +29,11 @@
                 {
                     return []
                 }
-            }
+            },
+          index:{
+              type:Number,
+              default:0
+          }
         },
         methods:{
             liClick(index)

@@ -1,4 +1,4 @@
-<!--精品歌单-->
+<!--精品歌单列表-->
 <template>
     <div class="quality-sheet">
         <div id="head">
@@ -17,7 +17,9 @@
         </div>
         <ul>
             <li v-for="(item,index) in qualitySheet" :key="item.id">
-                <div class="sheetImg"><img v-lazy="qualitySheet[index].coverImgUrl+'?param=134y134'"></div>
+                <div class="sheetImg" @click="liClick(index,item)">
+                  <img v-lazy="qualitySheet[index].coverImgUrl+'?param=134y134'">
+                </div>
                 <ul class="sheetInfo">
                     <li @click="liClick(index,item)">{{qualitySheet[index].name}}</li>
                     <li>{{qualitySheet[index].creator.nickname}}</li>
@@ -144,6 +146,7 @@
   width: 134px;
   margin: 0 10px 0 0;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .sheetInfo li:nth-of-type(1) {
@@ -155,6 +158,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  cursor: pointer;
 }
 
 .sheetInfo li:nth-of-type(2) {

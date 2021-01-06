@@ -31,7 +31,7 @@
             </ul>
         </details-page>
         <!--歌手相关专辑，MV，歌手详情，相似歌手-->
-        <tab-control :list="['专辑','MV','歌手详情','相似歌手']">
+        <tab-control :list="['专辑','MV','歌手详情','相似歌手']" ref="tabControl">
             <!--专辑组件-->
             <div slot="专辑">
                 <AlbumCpn album-name="热门50首" :songs="top520Msg">
@@ -55,7 +55,7 @@
             </div>
             <!--相似歌手-->
             <div slot="相似歌手">
-                <similar-singer :list="similarSinger"/>
+                <similar-singer :list="similarSinger" @singer-click="simiMsg"/>
             </div>
         </tab-control>
     </div>
@@ -85,48 +85,20 @@
                 albumContent:[],/*专辑内容*/
                 mvs:[]/*歌手MV*/,
                 singerDescription:[],/*歌手描述*/
-                similarSinger:[]/*相似歌手*/
+                similarSinger:[],/*相似歌手*/
             }
         },
         created() {
             this.singerBaseMsg=this.$route.query.singerBaseMsg;
-            /*获取歌手热门50首歌曲*/
-            top50(this.singerBaseMsg.artist.id).then(data=>{
-                //console.log(data.songs);
-                this.top520Msg=data.songs;
-            })
-            /*获取歌手专辑*/
-            singeralbum(this.singerBaseMsg.artist.id).then(data=>{
-               // console.log(data.hotAlbums);
-                this.hotAlbum=data.hotAlbums;
-
-                /*获取专辑内容*/
-                for(let index in this.hotAlbum)
-                {
-                    albumContent(this.hotAlbum[index].id).then(data=>{
-                       // console.log(data.songs);
-                        this.albumContent.push(data.songs);
-                    })
-                }
-            })
-            /*获取歌手MV*/
-            mvofsinger(this.singerBaseMsg.artist.id).then(data=>{
-                //console.log(data.mvs);
-                this.mvs=data.mvs;
-            })
-            /*歌手描述*/
-            singerDesc(this.singerBaseMsg.artist.id).then(data=>{
-               // console.log(data.introduction);
-                this.singerDescription=data.introduction;
-            })
-           /*获取相似歌手*/
-          simiArtist(this.singerBaseMsg.artist.id).then(data=>{
-            //console.log(data.artists);
-            this.similarSinger=data.artists;
-          })
-
+          this.networkOperate();
         },
         methods: {
+          simiMsg(item)
+          {
+            this.singerBaseMsg=item;
+            this.networkOperate();
+            this.$refs.tabControl.liClick(0);
+          }
             /* liCLick(index)
             {
                 this.currentIndex=index;
@@ -161,7 +133,44 @@
                     })
                 })
             }
-        },*/
+        },*/,
+          networkOperate()
+          {
+            /*获取歌手热门50首歌曲*/
+            top50(this.singerBaseMsg.artist.id).then(data=>{
+              //console.log(data.songs);
+              this.top520Msg=data.songs;
+            })
+            /*获取歌手专辑*/
+            singeralbum(this.singerBaseMsg.artist.id).then(data=>{
+              // console.log(data.hotAlbums);
+              this.hotAlbum=data.hotAlbums;
+
+              /*获取专辑内容*/
+              for(let index in this.hotAlbum)
+              {
+                albumContent(this.hotAlbum[index].id).then(data=>{
+                  // console.log(data.songs);
+                  this.albumContent.push(data.songs);
+                })
+              }
+            })
+            /*获取歌手MV*/
+            mvofsinger(this.singerBaseMsg.artist.id).then(data=>{
+              //console.log(data.mvs);
+              this.mvs=data.mvs;
+            })
+            /*歌手描述*/
+            singerDesc(this.singerBaseMsg.artist.id).then(data=>{
+              // console.log(data.introduction);
+              this.singerDescription=data.introduction;
+            })
+            /*获取相似歌手*/
+            simiArtist(this.singerBaseMsg.artist.id).then(data=>{
+              //console.log(data.artists);
+              this.similarSinger=data.artists;
+            })
+          }
         }
 
     }
