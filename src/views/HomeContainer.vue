@@ -30,18 +30,17 @@
         box-shadow: 0px 10px 15px rgba(0,0,0,.5);
         left:50%;
         top:10px;
-        transform: translateX(-50%);
+        transform: translateX(-50%) scale(1);
         position:relative;
         background-color:white;
-        transition: 0.2s ;
-        transition-property: height,width;
+        transition:all 0.3s ;
+        transform-origin: left bottom;
     }
      div.active
     {
-        width:0px;
-        height:0px;
          overflow: hidden;
          background-color:white;
          opacity: 0.1;
+         transform: scale(0);
     }
 </style>

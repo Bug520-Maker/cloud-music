@@ -21,7 +21,7 @@
                ref="playSong"
                autoplay="autoplay">
         </audio>
-        <PlayPage id="playPage" :isActive="{isLive:isActive}" :oLRC="oLRC"/>
+        <PlayPage id="play-page"  :isActive="{isLive:isActive}" :oLRC="oLRC" :class="{active:isActive}"/>
     </div>
 </template>
 
@@ -190,23 +190,21 @@
         cursor: pointer;
     }
     /*设置播放页面样式*/
-    #playPage
-    {
-        width:0px ;
-        height: 0px;
-        position: absolute;
-        top: -536px;
-        transition-duration: 0.5s;
-        transition-property: width,height;
-        overflow: hidden;
-        position: relative;
-        z-index: 99;
-        background-color: white;
+    #play-page {
+      width: 1021px;
+      height: 535px;
+      position: absolute;
+      top:-536px;
+      transition: all 0.3s;
+      z-index: 99;
+      background-color:white;
+      overflow: hidden;
+      transform: scale(0);
+      transform-origin: left bottom;
     }
-    #playPage.active
-    {
-        width:1021px ;
-        height: 535px;
-        background-color: white;
+
+    #play-page.active {
+      background-color: #ffffff;
+      transform: scale(1);
     }
 </style>

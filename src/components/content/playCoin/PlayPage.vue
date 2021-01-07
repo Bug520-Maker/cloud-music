@@ -1,6 +1,6 @@
 <!--歌曲播放页面-->
 <template>
-    <div  class="playPage" ref="playPage" :class="{active:isActive.isLive}">
+    <div  class="playPage" ref="playPage" ><!--:class="{active:isActive.isLive}-->
         <div class="album-container" :class="{disappear:isActive.isLive}">
             <img :src="((this.$store.state.albumImgUrl=='')?this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=210y210')||normalUrl" :class="{appear:isActive.isLive}"/>  <!--封面旋转图片-->
         </div>
@@ -85,11 +85,10 @@
 </script>
 
 <style scoped>
-
     .album-container
     {
-        width: 0px;
-        height: 0px;
+        width: 310px;
+        height:310px;
         background-color: white;
         border-radius: 50%;
         position: absolute;
@@ -99,13 +98,12 @@
         box-sizing:border-box;
         overflow: hidden;
         animation: test infinite linear 15s;
-        transition-duration: 0.3s;
-        transition-property: width,height;
+        transition:all  0.3s;
+        transform: scale(0);
     }
     .playPage .disappear
     {
-        width: 310px;
-        height:310px;
+       transform: scale(1);
         border: 52px solid rgb(48, 49, 51);
     }
     @keyframes test {
@@ -123,12 +121,14 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        transform: translate(-50%,-50%);
         transition-duration: 0.3s;
         transition-property: width;
+        opacity: 0;
     }
     .album-container .appear
     {
+      opacity: 1;
         width: 210px;
     }
     /*控制按钮*/

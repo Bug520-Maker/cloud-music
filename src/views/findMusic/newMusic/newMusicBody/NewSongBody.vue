@@ -1,7 +1,12 @@
 <template>
     <div id="new-song-body">
+      <ul class="bannerNav"><!--新歌导航 全部，华语，欧美，韩国，日本-->
+        <li v-for="(item,index) in navList" :class="{active:currentIndex===index}" @click="liClick(index)" :key="item">
+          {{item}}
+        </li>
+      </ul>
         <ul class="newsong-list">
-            <li v-for="(item,index) in newSongsList" :key="index">
+            <li v-for="(item,index) in newSongs" :key="index">
                 <div class="img-container" @click="imgClick(item)">
                     <img :src="item.album.picUrl" />
                     <div class="play">
@@ -26,8 +31,9 @@
 </template>
 
 <script>
-    import {newSong} from "../../../network/newMusic/newMusic";
-    import {musicUrl} from "../../../network/public/musicUrl";
+    import {newSong} from "../../../../network/newMusic/newMusic";
+    import {musicUrl} from "../../../../network/public/musicUrl";
+    import {formatDt} from "@/assets/function/formatDt";
 
     export default {
         name: "NewSongBody",
@@ -36,25 +42,23 @@
             return {
                 newSong:[],
                 songUrl:"",
-                songId:''
+                songId:'',
+                currentIndex:0,
+                newSongs:[]
             }
         },
         props:{
-            newSongsList:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
+          navList:{
+              type:Array,
+              default() {
+              return [];
             }
+          }
         },
         methods:{
             duration(item)
             {
-                let num=item/60000;
-                let number=num.toString().split(".");
-                let time="0"+number[0]+":"+number[1].slice(0,2);
-                return time;
+                return formatDt(item);
             },
             imgClick(item)
             {
@@ -74,12 +78,51 @@
                     type:'getSingleInfo',
                     details:item
                 })
+            },
+          liClick(index)
+          {
+            this.currentIndex=index;
+            let type=0;
+            switch(index)
+            {
+              case 0:type=0;break;
+              case 1:type=7;break;
+              case 2:type=96;break;
+              case 3:type=16;break;
+              case 4:type=8;break;
             }
-        }
+            newSong(type).then(res=>{
+              this.newSongs=res.data.slice(0,40);
+              for(let i in this.newSongs)
+                this.newSongs[i].album.picUrl+="?param=60y60";
+              //console.log(this.newSongs);
+            })
+          }
+        },
+      created() {
+          this.liClick(0);
+      }
     }
 </script>
 
 <style scoped>
+.bannerNav
+{
+  display: flex;
+  margin: 0 0 20px 0;
+}
+.bannerNav li
+{
+  margin: 0 0 0 20px;
+  color: rgb(103,103,103);
+  font-size: 14px;
+  cursor: pointer;
+}
+.bannerNav .active
+{
+  font-weight: 700;
+  color: #000000;
+}
     #new-song-body .newsong-list li
     {
         display: flex;
@@ -158,4 +201,6 @@
     {
         color:rgb(236, 65, 65);
     }
+
+
 </style>
