@@ -3,20 +3,27 @@
     <div class="mv-child-cpn">
         <ul class="mv-details">
             <li v-for="(item,index) in mvList" :key="index">
-                <div>
-                    <img  v-lazy="item.cover+'?param=240y136'" @click="playmv(item)">
-                    <p class="name">{{item.name}}</p>
-                    <p class="artist">{{item.artistName}}</p>
+              <msg-list>
+                <div slot="imgContainer">
+                  <img  v-lazy="item.cover+'?param=240y136'" @click="playmv(item)">
                 </div>
+                <div slot="state" class="name">{{item.name}}</div>
+                <div slot="creator" class="artist">{{item.artistName}}</div>
+                <div slot="playCount">{{playCount(item.playCount)}}</div>
+              </msg-list>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+    import MsgList from "@/components/common/msgList/MsgList";
+    import {formatPlayCount} from "@/assets/function/formatDt";
+
     export default {
         name: "ChildCpn",
-        props:{
+      components: {MsgList},
+      props:{
             mvList:{
                 type:Array,
                 default()
@@ -24,7 +31,13 @@
                     return []
                 }
             }
-        }
+        },
+      methods:{
+          playCount(item)
+          {
+            return formatPlayCount(item)
+          }
+      }
     }
 </script>
 

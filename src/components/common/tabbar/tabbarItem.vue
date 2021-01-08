@@ -56,9 +56,10 @@
     .operate
     {
         display: flex;
-        margin: 21px 0 0 230px;
+        margin: 15px 0 0 84px;
+      line-height: 30px;
     }
-    .operate li
+    .operate li:not(:nth-child(1))
     {
         margin: 0 20px 0 0;
     }
@@ -71,4 +72,5 @@
     {
         color: white;
     }
+
 </style>

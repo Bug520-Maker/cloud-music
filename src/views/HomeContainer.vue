@@ -31,16 +31,17 @@
         left:50%;
         top:10px;
         transform: translateX(-50%) scale(1);
+        transform-origin: left bottom;
         position:relative;
         background-color:white;
-        transition:all 0.3s ;
-        transform-origin: left bottom;
+        opacity: 1;
+        transition:transform 0.3s,opacity 0.3s;
     }
-     div.active
+    div.home-container.active
     {
          overflow: hidden;
          background-color:white;
-         opacity: 0.1;
+         opacity: 0;
          transform: scale(0);
     }
 </style>

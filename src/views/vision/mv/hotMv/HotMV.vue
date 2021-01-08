@@ -1,7 +1,7 @@
 <!--热播MV-->
 <template>
     <div class="hot-mv">
-        <div class="title">热播MV ></div>
+        <div class="title" @click="divClick">热播MV <i class="iconfont icon-arrow-right1"></i></div>
         <child-cpn :mv-list="hotMv"/>
     </div>
 </template>
@@ -23,7 +23,20 @@
                 //console.log(res.data);
                 this.hotMv=res.data;
             })
+        },
+      methods:{
+        divClick()
+        {
+          this.$router.push({
+            path:'/allMv',
+            query:{
+              area:'全部',
+              type:'全部',
+              sort:'最热'
+            }
+          })
         }
+      }
     }
 </script>
 
@@ -36,5 +49,11 @@
         line-height: 28px;
         font-weight: bold;
         margin: 0 0 20px 0;
+      cursor: pointer;
+    }
+    .title i
+    {
+      color: #666666;
+      font-size:14px ;
     }
 </style>

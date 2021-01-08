@@ -38,3 +38,8 @@ export function formatPlayCount(count)
         return count+'万'
     }
 }
+/*随机数*/
+export function rand(m,n)
+{
+    return Math.ceil(Math.random()*(n-m+1)+m-1);
+}

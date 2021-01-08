@@ -37,7 +37,7 @@ export function similarMv(id)/*相似MV*/
         }
     })
 }
-export function allMv(type,area,order,limit)/*全部MV*/
+export function allMv(area,type,order,limit)/*全部MV*/
 {
     return request({
         url:'/mv/all',

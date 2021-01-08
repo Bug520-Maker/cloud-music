@@ -1,7 +1,10 @@
 <template>
     <div class="public-list">
+      <div class="type">
+        <slot name="type"></slot>
+      </div>
         <ul>
-            <li v-for="(item,index) in list" :key="index" :class="{active:currentIndex==index}" @click="btnClick(index,item)">
+            <li v-for="(item,index) in list" :key="item" :class="{active:currentIndex===index}" @click="btnClick(index,item)">
                 {{item}}
             </li>
         </ul>
@@ -11,7 +14,7 @@
 
 <script>
     export default {
-        name: "List",
+        name: "ChooseList",
         props: {
             path: {
                 type: Array,
@@ -25,6 +28,10 @@
                     return []
                 }
             },
+          tag:{
+              type:String,
+              default:''
+          }
         },
         data()
         {
@@ -32,25 +39,35 @@
                 currentIndex:0,
             }
         },
-        methods:{
+      created() {
+          this.btnClick(this.list.indexOf(this.tag),this.tag);
+      },
+      methods:{
             btnClick(index,item)
             {
                 this.currentIndex=index;
-                this.$emit("btnclick",index);
+                this.$emit("btn-click",index,item);
             }
         }
     }
 </script>
 
 <style scoped>
+    .public-list
+    {
+      display: flex;
+      font-size: 12px;
+      color: #373737;
+    }
+    .type
+    {
+      margin: 6px 10px 0 0;
+      white-space: nowrap;
+    }
     .public-list ul
     {
         display: flex;
         flex-wrap: wrap;
-    }
-    .public-list
-    {
-        margin:  0 0 0 20px;
     }
     .public-list ul li
     {
