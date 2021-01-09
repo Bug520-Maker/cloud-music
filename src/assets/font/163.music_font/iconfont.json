@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1752779",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "514074",
+      "name": "网易",
+      "font_class": "wangyi",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "691051",
+      "name": "手机",
+      "font_class": "9kaobei",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "748655",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "10255957",
+      "name": "锁",
+      "font_class": "suo",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "10436789",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "10884771",
+      "name": "changge wechat",
+      "font_class": "changgewechat",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "14070867",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
       "icon_id": "14453479",
       "name": "user",
       "font_class": "user",

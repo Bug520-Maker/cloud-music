@@ -25,10 +25,7 @@
                       <i class="iconfont icon-arrow-down arr-down"> </i>
                       <span class="vip"> 开通VIP</span>
                       <!--登录-->
-                      <div class="login" :class="{active:isShow}">
-                        <i class="iconfont icon-cha" @click="exitClick" title="关闭窗口"></i>
-                        <p class="code-login">扫码登录</p>
-                      </div>
+                      <login :class="{active:isShow}" @exit="exitClick"/>
                     </li>
                     <li><i class="iconfont icon-setting-copy-copy" style="font-size: 16px"></i></li>
                     <li><i class="iconfont icon-icon_skin"></i></li>
@@ -47,6 +44,7 @@
     import tabbar from "../components/common/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
     import tabbarItem from "../components/common/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
     import search from "../components/content/search/search";
+    import Login from "@/components/content/login/Login";
     export default {
         name: "Header",
         data(){
@@ -55,6 +53,7 @@
           }
         },
         components:{
+          Login,
             tabbar,
             tabbarItem,
             search,
@@ -73,15 +72,17 @@
                 this.$refs.dis.offsetParent.classList.add('active');
                 this.$refs.dis.offsetParent.nextSibling.style.display="block";
             },
-          loginClick()
-          {
+            /*点击头像弹出扫码登录*/
+            loginClick()
+           {
             setTimeout(()=>{
               this.isShow=true;
             },800)
           },
+          /*退出登录*/
           exitClick()
           {
-            this.isShow=false
+            this.isShow=false;
           }
         }
     }
@@ -129,38 +130,11 @@
    {
      font-size: 12px;
    }
-   .login
-   {
-     position: absolute;
-     top: 35px;
-     left: -150px;
-     width:349px ;
-     height: 530px;
-     background-color: #ffffff;
-     z-index: 999999;
-     box-shadow: 0 0 10px rgba(0,0,0,.4);
-     transform: scale(0);
-     transition: all 0.3s;
-     transform-origin: center top;
-     opacity: 0;
-   }
-   .login.active
-   {
+  /*为登录组件加上active*/
+  .operate li:nth-child(1) .active
+  {
      transform: scale(1);
      opacity: 1;
-   }
-   .operate li:nth-child(1) .login i
-   {
-     color: #9f9f9f;
-     margin: 320px;
-     font-size: 20px;
-   }
-   /*扫码登录*/
-   .code-login
-   {
-     font-size: 26px;
-     width: 105px;
-     margin: 50px auto 0;
-     color: #333333;
-   }
+  }
+
 </style>

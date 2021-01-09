@@ -56,7 +56,6 @@ const downloadManage=()=>import('../views/myMusic/download/DownloadManage')/*下
 const myYunPan=()=>import('../views/myMusic/myYunPan/MyYunPan');/*我的音乐云盘*/
 const myRadio=()=>import('../views/myMusic/myRadio/MyRadio')/*我的电台*/
 const myCollection=()=>import('../views/myMusic/myCollection/MyCollection')/*我的收藏*/
-
 const routes = [
   {
     path:'',
@@ -249,7 +248,7 @@ const routes = [
     path:'/allMv',
     name:allMv,
     component:allMv
-  }
+  },
 ]
 
 const router = new VueRouter({
