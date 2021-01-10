@@ -32,3 +32,8 @@ body::-webkit-scrollbar
 {
     width: 0px;
 }
+button
+{
+    border: none;
+    outline: none;
+}

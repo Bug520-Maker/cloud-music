@@ -29,7 +29,7 @@
             </nav-item>
             <nav-item>
                 <div class="title" style="margin:20px 0 10px  0">创建的歌单 <span><i class="iconfont icon-jia"></i></span></div>
-                <MyListCpn :list="['我喜欢的音乐']">
+                <MyListCpn :list="['我喜欢的音乐']" :path="['/myFavoriteMusic']">
                     <div slot="0">
                         <i class="iconfont icon-love"></i>
                     </div>

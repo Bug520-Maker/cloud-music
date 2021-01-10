@@ -56,6 +56,7 @@ const downloadManage=()=>import('../views/myMusic/download/DownloadManage')/*下
 const myYunPan=()=>import('../views/myMusic/myYunPan/MyYunPan');/*我的音乐云盘*/
 const myRadio=()=>import('../views/myMusic/myRadio/MyRadio')/*我的电台*/
 const myCollection=()=>import('../views/myMusic/myCollection/MyCollection')/*我的收藏*/
+const myFavoriteMusic=()=>import('../views/myMusic/myFavoriteMusic/FavoriteMusic')/*我喜欢的音乐*/
 const routes = [
   {
     path:'',
@@ -243,6 +244,12 @@ const routes = [
     path: '/myCollection',
     name:'myCollection',
     component:myCollection
+  },
+    /*我喜欢的音乐*/
+  {
+    path:'/myFavoriteMusic',
+    name:'myFavoriteMusic',
+    component:myFavoriteMusic
   },
   {
     path:'/allMv',

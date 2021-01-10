@@ -85,14 +85,18 @@ export default {
       if((this.number!==''&&this.number.trim().length!==0&&this.number!==null)&&(this.password!==''&&this.password.trim().length!==0&&this.password!==null))
       {
         this.correct=false;
-        userLogin(this.number,this.password).then(data=>{
+       /* userLogin(this.number,this.password).then(data=>{
           console.log(data);
-          this.$emit('login-correct');
-          loginStatus().then(data=>{
-            console.log(data);
+          this.$store.commit({
+            type:'userMsg',
+            userMsg:data
           })
+        })*/
+        this.$store.commit({
+          type:'changeLoginType',
+          loginType:1
         })
-
+        this.$emit('login-correct');
       }
       else if(this.number===''||this.number.trim().length===0||this.number===null)
       {
@@ -106,14 +110,6 @@ export default {
       }
     }
   },
-  created() {
-    loginStatus().then(data=>{
-      console.log(data);
-    })
-    logout().then(data=>{
-      console.log(data);
-    })
-  }
 }
 </script>
 

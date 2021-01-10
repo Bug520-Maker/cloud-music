@@ -32,7 +32,16 @@ const store= new Vuex.Store({
       },
       id:''
     },/*获取搜索结果 单曲信息*/
-    singerLists:[]
+    singerLists:[],
+    /**************************************登录状态***************************************/
+    loginType:0,
+    /**************************用户信息***********************************/
+    userMsg:{
+      profile:{
+        nickname: '未登录',
+        avatarUrl:require('../assets/img/logo/logo.jpg'),
+      }
+    }
   },
   mutations: {
     /*----------------------搜索--------------------------------*/
@@ -83,6 +92,15 @@ const store= new Vuex.Store({
     getSingerList(state,payload)
     {
       state.singerLists=payload.singers;
+    },
+    /*获取登录状态*/
+    changeLoginType(state,payload)
+    {
+      state.loginType=payload.loginType;
+    },
+    userMsg(state,payload)
+    {
+      state.userMsg=payload.userMsg;
     }
   },
   actions: {

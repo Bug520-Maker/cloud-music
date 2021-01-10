@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4099657",
+      "name": "等级",
+      "font_class": "dengji",
+      "unicode": "e8a7",
+      "unicode_decimal": 59559
+    },
+    {
+      "icon_id": "7624513",
+      "name": "签到",
+      "font_class": "qiandao",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "7848080",
+      "name": "绑定",
+      "font_class": "link",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "10279455",
+      "name": "退出",
+      "font_class": "tuichu2",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
+      "icon_id": "12720018",
+      "name": "用户信息",
+      "font_class": "yonghuxinxi",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "14737343",
+      "name": "商 城",
+      "font_class": "shangcheng",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "15838830",
+      "name": "音乐会员",
+      "font_class": "yinlehuiyuan",
+      "unicode": "e7a3",
+      "unicode_decimal": 59299
+    },
+    {
       "icon_id": "1752779",
       "name": "微信",
       "font_class": "weixin",

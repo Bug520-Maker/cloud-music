@@ -30,17 +30,16 @@ export default {
   data()
   {
     return {
-      isMove:false,
-      isShow:false,
+      isMove:false,/*鼠标是否移入二维码*/
       isDisplay:true,/*是否显示扫码登录*/
     }
   },
   methods:{
-    loginOver()
+    loginOver()/*鼠标移入扫码登陆和二维码*/
     {
       this.isMove=true;
     },
-    loginLeave()
+    loginLeave()/*鼠标离开 扫码登陆和二维码*/
     {
       this.isMove=false;
     },
@@ -48,14 +47,14 @@ export default {
     {
       this.$emit('exit');
     },
-    pClick()
+    pClick()/*选择更多登录模式文字点击*/
     {
       this.isDisplay=false
     },
-    moreClick()
+    moreClick()/*扫码登陆更安全*/
     {
       this.isDisplay=!this.isDisplay;
-    }
+    },
   }
 }
 </script>
@@ -149,13 +148,19 @@ a {
   margin: 50px auto 0;
   color: #333333;
 }
-
+.scan-login
+{
+  position: relative;
+}
 /*其它登录模式*/
 .moreModel {
   font-size: 12px;
   width: 120px;
-  margin: 10px auto 0;
+  position: absolute;
   color: #666666;
   cursor: pointer;
+  transform: translateX(-50%);
+  left:50%;
+  top: 360px;
 }
 </style>
