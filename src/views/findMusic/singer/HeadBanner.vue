@@ -1,20 +1,21 @@
 <template>
     <div class="head-banner">
         <div class="container">
-           <ChooseList :list="['全部','华语','欧美','日本','韩国','其他']" @btn-click="areaClick">
+           <ChooseList :list="['全部','华语','欧美','日本','韩国','其他']" @btn-click="areaClick" tag="全部">
              <span slot="type">
                语种:
              </span>
            </ChooseList>
         </div>
         <div class="container">
-            <ChooseList :list="['全部','男歌手','女歌手','乐队组合']" @btn-click="typeClick">
+            <ChooseList :list="['全部','男歌手','女歌手','乐队组合']" @btn-click="typeClick" tag="全部">
               <span slot="type">分类:</span>
             </ChooseList>
         </div>
         <div class="container">
             <ChooseList :list="['热门','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',]"
-                        @btn-click="initClick">
+                        @btn-click="initClick"
+                        tag="热门">
                         <span slot="type">筛选:</span>
             </ChooseList>
         </div>

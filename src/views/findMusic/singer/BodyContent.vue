@@ -1,5 +1,5 @@
 <template>
-    <div class="body-content">
+    <div class="body-content" >
         <ul>
             <li v-for="(item,index) in this.$store.state.singerLists" :key="index" @click="liClick(index)">
                 <div><img v-lazy="item.img1v1Url+'?param=139y139'" /></div>

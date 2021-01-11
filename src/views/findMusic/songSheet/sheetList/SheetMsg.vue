@@ -1,5 +1,5 @@
 <template>
-    <div class="sheet-msg"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+    <div class="sheet-msg" v-loading="this.$store.state.loading"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
         <ul>
             <li v-for="(item,index) in huayuList" :key="index" >
                <div >

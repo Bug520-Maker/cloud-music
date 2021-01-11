@@ -26,36 +26,35 @@
     .single-title/*显示音乐标题 ，歌手 ，专辑，时长*/
     {
         display: flex;
-        width: 100%;
+        width: 730px;
         position: absolute;
         top: 113px ;
         left: 0;
+        padding: 0 0px 10px 68px;
     }
     .single-title div
     {
-        text-align: center;
+        text-align:left;
         color: rgb(136, 150, 150);
         font-size: 13px;
     }
     .single-title div:nth-child(1)
     {
-        flex-grow: 1;
+        width: 34%;
     }
     .single-title div:nth-child(2)
     {
-        flex-grow: 0.5;
+
+       width:16%;
     }
     .single-title div:nth-child(3)
     {
-        flex-grow: 0.5;
+
+      width: 17%;
     }
     .single-title div:nth-child(4)
     {
-        flex-grow: 0.1;
-    }
-    .single-title div:nth-child(5)
-    {
-        flex-grow: 0.5;
+      width: 7%;
     }
     .search-result
     {

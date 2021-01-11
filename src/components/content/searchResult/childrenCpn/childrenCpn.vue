@@ -6,7 +6,6 @@
                    {{item}}
                </li>
            </ul>
-
        </div>
        <router-view></router-view>
    </div>
@@ -55,7 +54,7 @@
                 }
                 /*发送请求得到 单曲，歌手，专辑，视频，歌单等分类信息*/
                 search(this.$store.state.keyword,this.type).then(data=>{
-                   // console.log(data.result);
+                     //console.log(data.result);
                     this.$store.commit({
                         type:'getSearchList',
                         searchList:data.result
@@ -67,7 +66,6 @@
                     /*获取结果条目*/
                     let count=data.result.songCount||data.result.artistCount||data.result.albumCount||data.result.videoCount||data.result.playlistCount||data.result.songCount||data.result.djRadiosCount||data.result.userprofileCount;
                     this.$emit('number',count,index);
-                    console.log("123");
                 })
             }
         }

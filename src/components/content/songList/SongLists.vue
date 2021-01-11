@@ -6,18 +6,17 @@
                 <i class="iconfont icon-love love" ></i>
                 <i class="iconfont icon-download down" ></i>
                 <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
-                <div class="singerName">{{item.artists[0].name}}</div>
+                <div class="singerName" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
                 <div class="duartion">{{duration(item.duration)}}</div>
-                <div ></div>
+                <div v-show="isShowHot" ></div>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
-    import {musicUrl} from "@/network/public/musicUrl";
-    import {albumContent} from "@/network/public/albumContent";
+    import {singerMsg} from "@/network/singer/singer";
     import {formatDt} from "@/assets/function/formatDt";
 
     export default {
@@ -29,6 +28,10 @@
                 {
                     return []
                 }
+            },
+            isShowHot:{
+              type:Boolean,
+              default:true
             }
         },
         data()
@@ -41,32 +44,41 @@
         methods:{
             playSong(index)
             {
-                this.songId=this.songLists[index].id||this.$store.state.songs[index].id;
-                musicUrl(this.songId).then(res=>{               /*向playCoin发送歌曲的url*/
-                    this.songUrl=res.data[0].url;
-                    this.$store.commit({
-                        type:'getSongUrl',
-                        url:this.songUrl,
-                        songId:this.songId
-                    })
-                });
-                /*向playCoin发送封面图片*/
-                albumContent(this.songLists[index].album.id||this.$store.state.songs[index].album.id).then(data=>{
-                    this.$store.commit({
-                        type:'getAlbumImg',
-                        albumImgUrl:this.songLists[index].alImgUrl || data.album.blurPicUrl
-                    })
+                /*向PlayCoin发送歌曲的URL*/
+                this.songId=this.songLists[index].id;
+                this.$store.dispatch({
+                  type:'getMusicUrl',
+                   songId:this.songId
                 })
-               /*搜索结果中的单曲详细信息*/
+                /*向专辑发送封面*/
+                this.$store.dispatch({
+                  type:'getMusicAlbum',
+                  albumId:this.songLists[index].album.id
+                })
+               /*搜索结果中的单曲详细信息(一首歌)*/
                 this.$store.commit({
                     type:'getSingleInfo',
-                    details:this.songLists[index]||this.$store.state.searchList.songs[index]
+                    details:this.songLists[index]
                 })
+              console.log(this.songLists[index]);
             },
             duration(item)
             {
                 return formatDt(item);
-            }
+            },
+            /*歌手详情*/
+          singerDetail(item,index)
+          {
+            singerMsg(this.songLists[index].artists[0].id).then(res=>{
+              /*路由至歌手详情页*/
+              this.$router.push({
+                path:'/singerDetails',
+                query:{
+                  singerBaseMsg:res.data
+                }
+              })
+            })
+          }
         },
     }
 </script>
@@ -76,11 +88,12 @@
     #song-list
     {
       width: 730px;
+      margin: 8px 0 0 0;
     }
     #song-list ul li
     {
         display: flex;
-        padding: 5px 0 5px 20px;
+        padding: 6px 0 6px 20px;
         font-size: 12px;
     }
     #song-list ul
@@ -129,12 +142,17 @@
     }
     .singerName,.albumName
     {
-        color: rgb(97, 97, 98);
+        color:#616162;
     }
     .songName
     {
         color: rgb(80, 145, 202);
         cursor: pointer;
+    }
+    .singerName:hover
+    {
+      color: #343434;
+      cursor: pointer;
     }
     /*设置图标字体样式*/
     .love,.down

@@ -1,13 +1,13 @@
 <!--专辑歌单列表-->
 <template>
     <div class="song-list">
-        <ul class="list-outer" ref="listOuter">
+        <ul class="list-outer" ref="listOuter" :style="{height:listHeight}">
             <li v-for="(item,index) in songList" :key="index" ref="li">
                 <span class="index">{{index<9? '0'+(index+1) : index+1}} </span>
                 <i class="iconfont icon-love"></i>
                 <i class="iconfont icon-download"></i>
                 <span class="outer">
-                     <span class="name">{{item.name}}</span>
+                     <span class="name" @click="playSong(item,index)">{{item.name}}</span>
                      <span class="alia" v-show="typeof item.alia[0]!='undefined'"> ({{item.alia[0]}})</span>
                 </span>
                 <span class="dt">{{duration(item.dt)}}</span>
@@ -21,6 +21,12 @@
     import {formatDt} from "../../../../assets/function/formatDt";
     export default {
         name: "SongListCpn",
+        data()
+        {
+          return {
+            listHeight:''
+          }
+        },
         props:{
             songList:{
                 type:Array,
@@ -39,8 +45,51 @@
             {
                 this.$refs.listOuter.style.overflow='visible';
                 this.$refs.more.style.display='none';
-            }
+                this.listHeight=this.$refs.listOuter.children.length*(this.$refs.listOuter.children[0].offsetHeight)+"px";
+            },
+            /*播放歌曲*/
+          playSong(item,index)
+          {
+            console.log(item);
+            this.$store.dispatch({
+              type:'getMusicUrl',
+              songId:item.id
+            })
+            this.$store.dispatch({
+              type:'getMusicAlbum',
+              albumId:item.al.id
+            })
+            let tmp={
+              name:'',
+              alias:[],
+              artists:[{name:''}],
+              album:{
+                name:'',
+                id:''
+              },
+              duration:0
+            };
+            tmp.name=item.name;
+            tmp.alias[0]=item.alia[0];
+            tmp.artists[0].name=item.ar[0].name;
+            tmp.album.name=item.al.name;
+            tmp.album.id=item.al.id;
+            tmp.duration=item.dt;
+            tmp.id=item.id
+            /*搜索结果中的单曲详细信息(一首歌)*/
+            this.$store.commit({
+              type:'getSingleInfo',
+              details:tmp
+            })
+
+          }
         },
+      mounted() {
+         this.$nextTick(()=>{
+           this.listHeight='291px';
+         })
+      }
+
     }
 </script>
 
@@ -52,7 +101,6 @@
     }
     .list-outer
     {
-        height: 308px;
         overflow: hidden;
     }
     .index
@@ -87,6 +135,11 @@
         color: #9b9b9b;
         display: inline-block;
         margin: 0 10px 0 0;
+    }
+    .song-list ul li:hover
+    {
+      background-color: #f0f1f2;
+      cursor: pointer;
     }
     .dt
     {

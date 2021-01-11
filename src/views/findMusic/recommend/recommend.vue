@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-loading="this.$store.state.loading">
         <div class="recommend">
             <div id="swiper-outer"><!--设置轮播图-->
                 <swiper ref="mySwiper" :options="swiperOptions">

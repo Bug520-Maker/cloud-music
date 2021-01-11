@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import mutations from "@/store/mutations";
+import actions from "@/store/actions";
 Vue.use(Vuex)
 
 const store= new Vuex.Store({
@@ -12,7 +13,16 @@ const store= new Vuex.Store({
     songs:[],
     /*-----------------------playCoin---------------------------------*/
     songUrl:'',
-    albumImgUrl:'',
+    albumImgUrl:'',/*专辑URL*/
+    singleDetails:{/*获取搜索结果 单曲信息*/
+      name:'',
+      alias:[''],
+      artists:[''],
+      album:{
+        name:''
+      },
+      id:''
+    },
     /*-----------------------playCoin---------------------------------------*/
     mvlist:[],/*mv排行*/
    // newmv:[],/*最新mv*/
@@ -23,15 +33,7 @@ const store= new Vuex.Store({
       }
     },/*获取歌单详情*/
     songId:'',
-    singleDetails:{/*获取搜索结果 单曲信息*/
-      name:'',
-      alias:[''],
-      artists:[''],
-      album:{
-        name:''
-      },
-      id:''
-    },/*获取搜索结果 单曲信息*/
+    /*获取搜索结果 单曲信息*/
     singerLists:[],
     /**************************************登录状态***************************************/
     loginType:0,
@@ -41,70 +43,11 @@ const store= new Vuex.Store({
         nickname: '未登录',
         avatarUrl:require('../assets/img/logo/logo.jpg'),
       }
-    }
+    },
+    loading:false
   },
-  mutations: {
-    /*----------------------搜索--------------------------------*/
-    getSearchKeyWord(state,payload) /*头部搜索框输入的关键字*/
-    {
-      state.keyword=payload.keyword;
-    },
-    getSearchList(state,payload)/*获取搜索后的分类*/
-     {
-       state.searchList=payload.searchList
-     },
-    /*------------------------搜索--------------------------------*/
-    
-    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
-    getSongUrl(state,payload)//获取歌曲URL
-    {
-      state.songUrl=payload.url;
-      state.songId=payload.songId
-    },
-    getAlbumImg(state,payload)//获取歌曲封面
-    {
-      state.albumImgUrl=payload.albumImgUrl
-    },
-    getSingleInfo(state,payload)/*获取一首歌的详细信息*/
-    {
-      state.singleDetails=payload.details
-    },
-    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
-    
-    mvList(state,payload)/*获取mv排行*/
-    {
-      state.mvlist=payload.mvlist
-    },
-   /* newMv(state,payload)/!*获取最新mv*!/
-    {
-      state.newmv=payload.newmv
-    },*/
-    mvPlay(state,payload)
-    {
-      state.mvurldata=payload.mvurldata
-    },
-    /*获取歌单详情*/
-    songListMsg(state,payload)
-    {
-      state.playlist=payload.playlist
-    },
-   
-    getSingerList(state,payload)
-    {
-      state.singerLists=payload.singers;
-    },
-    /*获取登录状态*/
-    changeLoginType(state,payload)
-    {
-      state.loginType=payload.loginType;
-    },
-    userMsg(state,payload)
-    {
-      state.userMsg=payload.userMsg;
-    }
-  },
-  actions: {
-  },
+  mutations,
+  actions,
   modules: {
   }
 })

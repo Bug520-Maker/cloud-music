@@ -12,7 +12,11 @@ Vue.use(getAwesomeSwiper(SwiperClass))
 const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
 import 'swiper/swiper-bundle.css'
 
+/*element-ui*/
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(VueAwesomeSwiper);
+Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
   loading:require('./assets/img/placeholder/OIP.jpg'),

@@ -28,7 +28,7 @@
         methods:{
             enter(event)
             {
-                if(event.keyCode==13&&this.keyword!='')
+                if(event.keyCode===13&&this.keyword!=='')
                 {
                     this.$router.push({
                         path:'/searchResult',

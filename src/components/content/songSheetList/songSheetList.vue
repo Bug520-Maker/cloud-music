@@ -60,7 +60,7 @@
         </details-page>
         <tab-control :list="['歌曲列表','评论','收藏者']">
             <div slot="歌曲列表">
-                <song-lists :songLists="songLists"/>
+                <song-lists :songLists="songLists" :is-show-hot="false"/>
             </div>
           <div slot="评论">
             <comment :comments="comments" />
@@ -130,7 +130,8 @@
                     alias:[],
                     artists:[{name:''}],
                     album:{
-                        name:''
+                        name:'',
+                        id:''
                     },
                     duration:0
                 };
@@ -138,9 +139,12 @@
                 tmp.alias[0]=this.songListMsg.tracks[index].alia[0];
                 tmp.artists[0].name=this.songListMsg.tracks[index].ar[0].name;
                 tmp.album.name=this.songListMsg.tracks[index].al.name;
+                tmp.album.id=this.songListMsg.tracks[index].al.id;
                 tmp.duration=this.songListMsg.tracks[index].dt;
+                tmp.id=this.songListMsg.tracks[index].id
                 this.songLists[index]=tmp
             }
+            console.log(tmp);
             /*获取歌单评论*/
             songSheetComm(this.songListMsg.id).then(data=>{
               //console.log(data);
