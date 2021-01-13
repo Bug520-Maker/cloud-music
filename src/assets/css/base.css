@@ -37,3 +37,16 @@ button
     border: none;
     outline: none;
 }
+.el-loading-parent--relative .el-loading-spinner
+{
+    top:20% ;
+
+}
+.el-loading-parent--relative .el-loading-spinner i
+{
+    color: #4b4b4b;
+}
+.el-loading-parent--relative .el-loading-spinner .el-loading-text
+{
+    color :#4b4b4b;
+}

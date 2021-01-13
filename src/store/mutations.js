@@ -57,8 +57,30 @@ export default{
     {
         state.userMsg=payload.userMsg;
     },
+    /**********更改loading组件的显示*****************************/
     changeLoadingStatus(state,payload)
     {
         state.loading=payload.loadStatus
+    },
+    /**********************************************************/
+
+    /******************获取登录的cookie*******************/
+    getLoginCookie(state,payload)
+    {
+      state.loginCookie=payload.cookie
+    },
+
+    /*******************token**********************************/
+    setToken(state,payload)
+    {
+        state.token=payload.data;
+        window.sessionStorage.setItem('token',payload.data);
+    },
+    /*******************************************************路由传参保存************************************************/
+    getSessionSongList(state,payload)
+    {
+        state.sessionSongListMsg=payload.data;
+        window.sessionStorage.setItem('songList',JSON.stringify(payload.data) )
     }
+    /*******************************************************路由传参保存************************************************/
 }

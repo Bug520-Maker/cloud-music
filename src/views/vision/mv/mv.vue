@@ -4,7 +4,10 @@
           <div class="title" @click="divClick">最新MV <i class="iconfont icon-arrow-right1"></i> </div>
             <mvchild-cpn :list="mvArea" @titleClick="newMV"></mvchild-cpn>
         </div>
-        <new-mv :newMv="newMv"></new-mv>
+        <new-mv :newMv="newMv"  v-loading="this.$store.state.loading"
+                element-loading-text="载入中..."
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="#ffffff"></new-mv>
         <HotMV></HotMV><!--热播MV-->
         <wang-yi-pro></wang-yi-pro><!--网易出品-->
         <div class="mv-rank">

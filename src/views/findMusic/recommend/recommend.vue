@@ -1,5 +1,9 @@
 <template>
-    <div class="container" v-loading="this.$store.state.loading">
+    <div class="container"
+         v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
         <div class="recommend">
             <div id="swiper-outer"><!--设置轮播图-->
                 <swiper ref="mySwiper" :options="swiperOptions">
@@ -12,7 +16,6 @@
             <NewMusic/>
             <RecommendMv/>
             <recommend-radio/>
-
         </div>
     </div>
 </template>

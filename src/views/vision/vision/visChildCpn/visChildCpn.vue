@@ -5,7 +5,6 @@
                 {{item}}
             </li>
         </ul>
-        <vis-msg></vis-msg>
     </div>
 </template>
 
@@ -27,7 +26,7 @@
                 default() {
                     return []
                 }
-            },
+            }
         },
         data()
         {

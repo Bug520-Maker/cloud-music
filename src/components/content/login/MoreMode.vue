@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import {userLogin, loginStatus, logout} from "@/network/login/login";
+import {userLogin, loginStatus,refreshLogin} from "@/network/login/login";
 
 export default {
   name: "MoreMode",
@@ -85,17 +85,49 @@ export default {
       if((this.number!==''&&this.number.trim().length!==0&&this.number!==null)&&(this.password!==''&&this.password.trim().length!==0&&this.password!==null))
       {
         this.correct=false;
-       /* userLogin(this.number,this.password).then(data=>{
+        window.sessionStorage.removeItem('userMsg');
+        window.sessionStorage.removeItem('loginType');
+
+        userLogin(this.number,this.password).then(data=>{
           console.log(data);
+          window.sessionStorage.setItem('userMsg',JSON.stringify(data))
+          this.$store.commit({
+            type:'userMsg',
+            userMsg:JSON.parse(window.sessionStorage.getItem('userMsg'))
+          })
+          loginStatus().then(data=>{
+            console.log(data);
+          })
+          refreshLogin().then(data=>{
+            console.log(data);
+          })
+        })
+         /* userLogin(this.number,this.password).then(data=>{
+          console.log(data);
+            /!*手动设置cookie*!/
+          this.$store.commit({
+            type:'getLoginCookie',
+            cookie:data.cookie
+          });
+           /!*用户信息*!/
           this.$store.commit({
             type:'userMsg',
             userMsg:data
           })
-        })*/
+            /!*保持登录状态*!/
+            this.$store.commit({
+              type:'setToken',
+              data:data.token
+            })
+          })*/
+
+        /*设置登录状态*/
+        window.sessionStorage.setItem('loginType','1')
         this.$store.commit({
           type:'changeLoginType',
-          loginType:1
+          loginType:parseInt(window.sessionStorage.getItem('loginType'))
         })
+
         this.$emit('login-correct');
       }
       else if(this.number===''||this.number.trim().length===0||this.number===null)

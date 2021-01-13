@@ -1,5 +1,9 @@
-<template>
-    <div class="sheet-msg" v-loading="this.$store.state.loading"><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+<template><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+    <div class="sheet-msg"
+         v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
         <ul>
             <li v-for="(item,index) in huayuList" :key="index" >
                <div >
@@ -29,13 +33,18 @@
             sheetRouter(index)
             {
                 songListMsg(this.huayuList[index].id).then(res=>{
-                    console.log(res.playlist);
+                   // console.log(res.playlist);
                     this.$router.push({
                         path:'/sheetMsg',
                         query:{
                             songListMsg:res.playlist
                         }
                     });
+                    this.$store.commit({
+                      type:'getSessionSongList',
+                      data:res.playlist
+                    })
+
                 });
             }
         }
@@ -43,18 +52,20 @@
 </script>
 
 <style scoped>
+     @import '../../../../assets/css/base.css';
     .sheet-msg
     {
         position: absolute;
         left: 0;
-        top:40px
+        top:40px;
+        width: 760px;
     }
     .sheet-msg ul
     {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        height: 225px;
+       /* height: 225px;*/
         scrollbar-color: transparent transparent;
     }
     /*.sheet-msg ul::-webkit-scrollbar
@@ -88,5 +99,4 @@
         margin: 7px 0 0 0;
         color: rgb(55, 55, 55);
     }
-
 </style>

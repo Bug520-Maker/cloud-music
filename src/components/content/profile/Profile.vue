@@ -91,12 +91,29 @@ name: "Profile",
   methods:{
     exitLogin()/*退出网易云账号*/
     {
-     /* logout().then(data=>{
+      logout().then(data=>{
         console.log(data);
-      })*/
+        this.$store.commit({
+          type:'changeLoginType',
+          loginType:0
+        });
+      })
+
+      window.sessionStorage.removeItem('loginType');
+      window.sessionStorage.removeItem('userMsg');
+
       this.$store.commit({
         type:'changeLoginType',
         loginType:0
+      });
+      this.$store.commit({
+        type:'userMsg',
+        userMsg:{
+          profile:{
+            nickname: '未登录',
+            avatarUrl:require('../../../assets/img/login/loginPlaceholder.jpg'),
+          }
+        }
       });
       this.$emit('exit-login');
     }

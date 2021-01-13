@@ -37,7 +37,7 @@
             {
 
                 songListMsg(this.recList[index].id).then(res=>{
-                    console.log(res.playlist);
+                   // console.log(res.playlist);
                     this.$router.push({
                         path:'/sheetMsg',
                         query:{

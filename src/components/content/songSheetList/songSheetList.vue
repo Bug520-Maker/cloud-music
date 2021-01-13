@@ -121,8 +121,9 @@
           }
         },
         created() {
-            this.songListMsg=this.$route.query.songListMsg;
-            console.log(this.songListMsg.tracks);
+            this.songListMsg=JSON.parse(window.sessionStorage.getItem('songList'))/*this.$route.query.songListMsg*/;
+            console.log(this.songListMsg);
+            console.log("-----------------")
             let tmp=null;
             for(let index in this.songListMsg.tracks) {
                 tmp={
@@ -144,7 +145,7 @@
                 tmp.id=this.songListMsg.tracks[index].id
                 this.songLists[index]=tmp
             }
-            console.log(tmp);
+            //console.log(tmp);
             /*获取歌单评论*/
             songSheetComm(this.songListMsg.id).then(data=>{
               //console.log(data);

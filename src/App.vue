@@ -11,6 +11,7 @@
      name:'app',
        components: {HomeContainer, TaskBar},
    }
+
 </script>
 <style>
   @import "./assets/css/base.css";

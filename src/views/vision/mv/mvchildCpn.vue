@@ -1,6 +1,6 @@
 <!--mv导航 华语，欧美，韩国-->
 <template>
-    <div class="mvchildcpn">
+    <div class="mvchildcpn" >
         <ul>
             <li v-for="(item,index) in list" :key="index" :class="{active:currentIndex==index}" @click="btnClick(index,item)">
                 {{item}}

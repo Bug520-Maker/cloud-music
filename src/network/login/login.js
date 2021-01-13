@@ -1,4 +1,5 @@
 import {request} from "@/network/request";
+import store from '@/store/index'
 /*登录*/
 export function userLogin(phone,password)
 {
@@ -16,7 +17,7 @@ export function loginStatus()
     return request({
         url:'/login/status',
         params:{
-            timemap:new Date().getTime()
+            cookie:store.state.userMsg.cookie
         }
     })
 }
@@ -25,5 +26,16 @@ export function logout()
 {
     return request({
         url:'/logout',
+    })
+}
+/*刷新登录*/
+export function refreshLogin()
+{
+    return request({
+        url:'/login/refresh',
+        params:{
+            cookie:store.state.userMsg.cookie,
+            timestamp:new Date().getTime()
+        }
     })
 }

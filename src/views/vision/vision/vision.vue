@@ -1,25 +1,36 @@
 <template>
     <div class="vis">
         <div class="head">
-            <div class="title" @click="titleClick">{{title}} >
-                <div class="all-video" ref="allVideo"><!--所有视频标签-->
+            <div class="title" @click="titleClick">
+              {{title}}
+              <i class="iconfont icon-arrow-r"></i>
+                <div class="all-video" ref="allVideo">
+                  <!--所有视频标签-->
                     <div class="all">全部视频</div>
                     <ul>
-                        <li v-for="(item,index) in allVideoTags" @click="liClick(item,index)" :class="{active:currentIndex==index}">{{item.name}}</li>
+                        <li v-for="(item,index) in allVideoTags" @click="liClick(item,index)" :class="{active:currentIndex===index}">{{item.name}}</li>
                     </ul>
                 </div>
             </div>
-           <vis-child-cpn :list="['现场','翻唱','舞蹈','听BGM','MV','生活','游戏','ACG音乐','最佳饭制']" :path="['xianchang','fanchang','dance','bgm','visMv','life','game','acg','bestfan']" @item-click="cpnClick"></vis-child-cpn>
+           <vis-child-cpn
+               ref="videoTag"
+               :list="['现场','翻唱','舞蹈','听BGM','MV','生活','游戏','ACG音乐','最佳饭制']"
+               :path="['xianchang','fanchang','dance','bgm','visMv','life','game','acg','bestfan']"
+               @item-click="cpnClick"></vis-child-cpn>
         </div>
+      <vis-msg :videoMsg="videoMsg"/>
     </div>
 </template>
 
 <script>
     import VisChildCpn from "./visChildCpn/visChildCpn";
     import {allvideoList, labelList, Recvideo, visCategory, visGroup} from "../../../network/vision/vis/visList";
+    import VisMsg from "@/views/vision/vision/visMsg";
+
     export default {
         name: "vision",
         components: {
+          VisMsg,
             VisChildCpn
         },
         data()
@@ -27,46 +38,60 @@
             return {
                 title:'现场',
                 allVideoTags:[],
-                currentIndex:0
+                currentIndex:0,
+                videoMsg:[]
             }
         },
         created() {
-           /* labelList().then(result=>{
-                //console.log(result.data);
+           labelList().then(result=>{
+                //console.log(result.data);//可以直接取ID
                 this.allVideoTags=result.data;
-            });
-            visCategory().then(data=>{
-                console.log(data);
             })
-            allvideoList().then(data=>{
-                console.log(data);
-            })*/
         },
         methods:{
             titleClick()
             {
-                this.$refs.allVideo.style.display=="none"?this.$refs.allVideo.style.display="block":this.$refs.allVideo.style.display="none";
+                this.$refs.allVideo.style.display==="none" ? this.$refs.allVideo.style.display="block":this.$refs.allVideo.style.display="none";
             },
-            cpnClick(item)
+            cpnClick(item)/*子组件点击将 视频标签传过来*/
             {
                 this.title=item;
             },
+            /*所有视频标签点击*/
             liClick(item,index)
             {
                 this.currentIndex=index;
-                this.title=item.name
-                Recvideo(485).then(data=>{
-                    console.log(data);
-                })
-                visGroup(item.id).then(data=>{
-                    console.log(data);
-                })
+                this.title=item.name;
+                let location=this.$refs.videoTag.list.findIndex((tagName,index)=>{
+                return tagName==item.name
+              })
+              if(location>=0)
+              {
+                this.$refs.videoTag.btnClick(location,item.name);
+              }
+              /*获取标签分类下视频*/
+              visGroup(item.id).then(data=>{
+                console.log(data);
+                this.videoMsg=data.datas;
+              })
+             /* allvideoList().then(data=>{
+                console.log(data);
+              })*/
             }
         }
     }
 </script>
 
 <style scoped>
+    .vis
+    {
+      height: 470px;
+      overflow-y:auto;
+    }
+    .vis::-webkit-scrollbar
+    {
+      width: 2px;
+    }
     .head
     {
         display:flex;
@@ -95,6 +120,8 @@
         overflow: scroll;
         top: 38px;
         display: none;
+      background-color: #ffffff;
+       z-index: 9;
     }
     .title .all-video::-webkit-scrollbar
     {

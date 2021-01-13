@@ -16,7 +16,10 @@
                     :tag="mvType.sort">
           <span slot="type">排序:</span>
         </ChooseList>
-      <all-mv-body :list="mvList" />
+      <all-mv-body :list="mvList"  v-loading="this.$store.state.loading"
+                   element-loading-text="载入中..."
+                   element-loading-spinner="el-icon-loading"
+                   element-loading-background="#ffffff"/>
     </div>
 </template>
 

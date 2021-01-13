@@ -66,6 +66,8 @@
             {
                 return formatDt(item);
             },
+
+
             /*歌手详情*/
           singerDetail(item,index)
           {

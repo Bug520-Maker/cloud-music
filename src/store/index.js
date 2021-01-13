@@ -36,15 +36,23 @@ const store= new Vuex.Store({
     /*获取搜索结果 单曲信息*/
     singerLists:[],
     /**************************************登录状态***************************************/
-    loginType:0,
+    loginType:parseInt(window.sessionStorage.getItem('loginType'))||0,
     /**************************用户信息***********************************/
-    userMsg:{
-      profile:{
-        nickname: '未登录',
-        avatarUrl:require('../assets/img/logo/logo.jpg'),
-      }
-    },
-    loading:false
+    userMsg:JSON.parse(window.sessionStorage.getItem('userMsg')||JSON.stringify(
+        {
+          profile:{
+            nickname: '未登录',
+            avatarUrl:require('../assets/img/login/loginPlaceholder.jpg'),
+          }
+        },
+    )),
+    /*************************是否显示loading组件***************/
+    loading:false,
+    /********************************************/
+
+    /************************************路由传参保存**************************************************************/
+    sessionSongListMsg:'',
+    /************************************路由传参保存**************************************************************/
   },
   mutations,
   actions,

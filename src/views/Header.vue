@@ -24,7 +24,7 @@
                           <img :src="this.$store.state.userMsg.profile.avatarUrl" />
                         </div>
                       </div>
-                      <span  @click="nickNameLoginClick">{{nickname}}</span><!--用户nickname-->
+                      <span  @click="nickNameLoginClick">{{this.$store.state.userMsg.profile.nickname}}</span><!--用户nickname-->
                       <i class="iconfont icon-arrow-down arr-down"> </i>
                       <span class="vip"> 开通VIP</span>
                       <!--用户登录成功后小窗-->
@@ -58,26 +58,36 @@
     import search from "../components/content/search/search";
     import Login from "@/components/content/login/Login";
     import Profile from "@/components/content/profile/Profile";
+    import {loginStatus, logout, refreshLogin} from "@/network/login/login";
     export default {
         name: "Header",
         data(){
           return {
             isShow:false,/*扫码登录界面*/
-            nickname:'未登录',
+           // nickname:'未登录',
             isLive:false,/*用户登录成功小窗口*/
           }
         },
-        components:{
+      created() {
+      },
+      components:{
           Profile,
           Login,
             tabbar,
             tabbarItem,
             search,
         },
-        methods:{
+      methods:{
             leftBack()
             {
-                history.back();
+              refreshLogin().then(data=>{
+                console.log(data);
+              })
+                /*history.back();*/
+              loginStatus().then(data=>{
+                console.log(data);
+              })
+
             },
             imgClick()/*点击logo回到首页*/
             {
@@ -91,6 +101,7 @@
             /*点击昵称弹出扫码登录*/
             nickNameLoginClick()
            {
+
              if(this.$store.state.loginType===0)/*如果是未登录状态*/
              {
                setTimeout(()=>{/*弹出扫码登录*/
@@ -99,6 +110,7 @@
              }
              else if(this.$store.state.loginType===1)/*如果是登录状态*/
              {
+               //console.log(this.$store.state.loginType)
                 this.isLive=!this.isLive;/*弹出用户成功登录后的小窗口*/
              }
           },
@@ -120,16 +132,15 @@
           exitClick()
           {
             this.isShow=false;
-            if(this.$store.state.loginType===1)
+            /*if(this.$store.state.loginType===1)
             {
-              this.nickname=this.$store.state.userMsg.profile.nickname;
-            }
+              this.nickName=this.$store.state.userMsg.profile.nickname;
+            }*/
           },
           /*退出登录状态 ，用户登陆成功后的小窗口消失*/
           exitLogin()
           {
             this.isLive=false;
-            this.nickname='未登录'
           }
         }
     }

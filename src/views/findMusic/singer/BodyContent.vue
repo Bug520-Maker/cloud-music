@@ -1,6 +1,9 @@
 <template>
-    <div class="body-content" >
-        <ul>
+    <div class="body-content" v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
+        <ul >
             <li v-for="(item,index) in this.$store.state.singerLists" :key="index" @click="liClick(index)">
                 <div><img v-lazy="item.img1v1Url+'?param=139y139'" /></div>
                 <div>

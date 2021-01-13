@@ -1,3 +1,5 @@
+import store from '../../../store/index';
+
 /*获取视频标签链表*/
 import {request} from "../../request"
 export function labelList()
@@ -6,12 +8,14 @@ export function labelList()
         url:'/video/group/list',
     })
 }
+/*获取视频分类列表*/
 export function visCategory()
 {
     return request({
         url:'/video/category/list',
-        param:{
-            t:Date.parse(new Date())
+        params:{
+            cookie:store.state.userMsg.cookie,
+            timestamp:new Date().getTime()
         }
     })
 }
@@ -21,8 +25,10 @@ export function visGroup(id)
     return request({
         url:'/video/group',
         withCredentials:true,
-        params:{
-            id
+        method:'post',
+        data:{
+            id,
+            cookie:store.state.userMsg.cookie
         }
     })
 }
@@ -31,6 +37,9 @@ export function allvideoList()
 {
     return request({
         url:'/video/timeline/all',
+        params:{
+            cookie:store.state.userMsg.cookie
+        }
     })
 }
 /*获取视频播放地址*/
@@ -54,12 +63,11 @@ export function relatedVideo(id)
     })
 }
 /*获取推荐视频*/
-export function Recvideo(id)
+export function Recvideo()
 {
     return request({
         url:'/video/timeline/recommend',
         params:{
-            id
         }
     })
 }

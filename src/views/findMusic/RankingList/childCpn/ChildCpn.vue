@@ -1,13 +1,15 @@
 <!--新歌榜，飙升榜cpn-->
 <template>
-    <div class="child-cpn">
+    <div class="child-cpn"  v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading">
         <div id="title">{{title}}</div>
         <ul id="list">
             <li v-for="(item,i) in rankList" :key="i">
                 <div>
                     <img v-lazy="item.coverImgUrl+'?param=172y172'" @click="imgClick(i)"/>
                 </div>
-                <ul class="songlist-container">
+                <ul class="songlist-container" >
                     <li v-for="(item,index) in songList[i]" class="songlist">
                         <p><span>{{index+1 }}</span> {{ item.name}}</p>
                         <p>{{ergodic(item.ar)}}</p>

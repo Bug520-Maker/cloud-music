@@ -34,6 +34,10 @@
         components: {
             PlayPage
         },
+        created()
+        {
+
+        },
         mounted() {
             this.$refs.playSong.volume=0.2;
         },
@@ -52,6 +56,9 @@
                     ms: [] //歌词数组{t:时间,c:歌词}
                 },
                 lyric:'',//歌词
+              songDetails:{},
+              musicURL:'',
+              albumImg:'',
 
             }
         },
