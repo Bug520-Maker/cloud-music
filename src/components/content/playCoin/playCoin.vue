@@ -90,7 +90,7 @@
              },
 
             createLrcObj(lrc) {
-                if (lrc.length == 0) {
+                if (lrc.length === 0) {
                     return;
                 }
                 this.oLRC.ms.length = 0;

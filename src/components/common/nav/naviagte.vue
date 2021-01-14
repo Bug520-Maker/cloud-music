@@ -18,5 +18,10 @@
         height: 516px;
         border-right: 1px solid rgb(225, 225, 225);
         padding: 10px;
+        overflow-y:auto ;
+    }
+    #nav::-webkit-scrollbar
+    {
+      width: 2px;
     }
 </style>

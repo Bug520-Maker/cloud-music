@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "15277691",
+      "name": "音乐 - 列表",
+      "font_class": "yinle-liebiao",
+      "unicode": "e83e",
+      "unicode_decimal": 59454
+    },
+    {
       "icon_id": "4099657",
       "name": "等级",
       "font_class": "dengji",

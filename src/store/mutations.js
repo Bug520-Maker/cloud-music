@@ -64,6 +64,13 @@ export default{
     },
     /**********************************************************/
 
+    /******************获取用户歌单信息*******************/
+    getUserSongListMsg(state,payload)
+    {
+        state.userSongListMsg=payload.userSongListMsg
+    },
+    /***************************************************/
+
     /******************获取登录的cookie*******************/
     getLoginCookie(state,payload)
     {

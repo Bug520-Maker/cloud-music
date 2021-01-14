@@ -2,12 +2,12 @@
     <div class="my-list">
         <ul>
             <li v-for="(item,index) in list" :key="index" @click="aclick(index,$event)" :class="{active:currentIndex==index}">
-                <div class="left-icon"><slot :name="index"></slot></div>
+                <div class="left-icon"><slot :name="'left-'+index"></slot></div>
                 <div class="context" >
-                    {{item}}
+                    {{item.name||item}}
                 </div>
                 <div class="right-icon">
-                    <slot name="right-icon"></slot>
+                    <slot :name="'right-'+index"></slot>
                 </div>
             </li>
         </ul>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "MvListCpn",
+        name: "MyListCpn",
         data()
         {
             return {
@@ -36,24 +36,31 @@
                 default() {
                     return [];
                 }
-            }
+            },
         },
         methods:{
             aclick(index,event)
             {
                 this.currentIndex=index;
-                try{
-                    this.$router.push(this.path[index]);
+                this.$emit('item-click',index);
+                if (this.path.length === 1)
+                {
+                    this.$router.push(this.path[0]);
                 }
-                catch (e) {
-                    console.log(e);
+                else {
+                  this.$router.push(this.path[index]);
                 }
+
             }
         }
     }
 </script>
 
 <style scoped>
+   .user-songlist-msg
+   {
+     background-color: #42b983;
+   }
     .my-list
     {
         /*background-color: skyblue;*/

@@ -121,7 +121,7 @@
           }
         },
         created() {
-            this.songListMsg=JSON.parse(window.sessionStorage.getItem('songList'))/*this.$route.query.songListMsg*/;
+            this.songListMsg=this.$route.query.songListMsg;
             console.log(this.songListMsg);
             console.log("-----------------")
             let tmp=null;

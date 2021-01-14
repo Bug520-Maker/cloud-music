@@ -90,7 +90,7 @@
         },
         created() {
             this.singerBaseMsg=this.$route.query.singerBaseMsg;
-          this.networkOperate();
+            this.networkOperate();
         },
         methods: {
           simiMsg(item)
