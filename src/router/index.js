@@ -1,266 +1,65 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import findMusic from "@/router/findMusic/findMusic";
+import video from "@/router/video/video";
+import search from "@/router/search/search";
+import {localMusicRouter,downloadManageRouter,myCollectionRouter,myRadioRouter,myYunPanRouter,UserPlayListRouter} from "@/router/myMusic/myMusic";
+import {sheetMsgRuoter,singerDetailsRuoter,solePlayRuoter,videoplayRuoter,allMvRuoter} from '@/router/features/features';
+
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
 Vue.use(VueRouter)
-const findMusic=()=> import("../views/findMusic/findMusic");
+
 const friend=()=> import('../views/friend/friend');
 const perFM=()=>import('../views/perFM/perFM');
-const vision=()=>import('../views/vision/vision')
 const zhibo=()=>import ('../views/zhibo/zhibo')
-const search=()=>import('../components/content/searchResult/searchResult')
-/*导入子路由*/
-const newMusic=()=> import('../views/findMusic/newMusic/newMusic');
-const radion=()=> import('../views/findMusic/radion/radion');
-const rankingList=()=> import('../views/findMusic/RankingList/RankingList');
-const recommend=()=>import('../views/findMusic/recommend/recommend');
-const singer=()=> import('../views/findMusic/singer/singer');
-const songSheet=()=>import('../views/findMusic/songSheet/songSheet')
 
-const danqu=()=>import('../components/content/searchResult/danqu/danqu')
-const gedan=()=>import('../components/content/searchResult/gedan/gedan')
-const geshou=()=>import('../components/content/searchResult/geshou/geshou');
-const shipin=()=>import('../components/content/searchResult/shipin/shipin');
-const yonghu=()=>import('../components/content/searchResult/yonghu/yonghu');
-const zhuanji=()=>import('../components/content/searchResult/zhuanji/zhuanji');
-const zhubodiant=()=>import ('../components/content/searchResult/zubodiant/zhubodiant')
-const geci=()=>import('../components/content/searchResult/geci/geci')
-
-/*导入视频子路由*/
-const vis=()=>import('../views/vision/vision/vision');
-const mv=()=>import('../views/vision/mv/mv');
-const allMv=()=>import('../views/vision/mv/allMv/AllMv');
-/*导入视频中的视频子路由*/
-
-
-/*视频播放组件路由*/
-const videoplay=()=>import('../components/content/VideoPlay/videoPlay');
-const singerDetails=()=>import("../components/content/singerDetail/SingerDetai");/*导入歌手信息详情页*/
-
-/*歌单详情组件*/
-const sheetMsg=()=>import('../components/content/songSheetList/songSheetList')
-
-/*精品歌单*/
-const qualitySheet=()=>import('../components/content/qualitySheet/QualitySheet');
-
-/*独家放送*/
-const solePlay=()=>import('../components/content/solePlay/SolePlay');
-
-/*我的音乐*/
-const localMusic=()=>import('../views/myMusic/localMusic/LocalMusic');/*本地音乐*/
-const downloadManage=()=>import('../views/myMusic/download/DownloadManage')/*下载管理*/
-const myYunPan=()=>import('../views/myMusic/myYunPan/MyYunPan');/*我的音乐云盘*/
-const myRadio=()=>import('../views/myMusic/myRadio/MyRadio')/*我的电台*/
-const myCollection=()=>import('../views/myMusic/myCollection/MyCollection')/*我的收藏*/
-const UserPlayList=()=>import('../components/content/userPlayList/UserPlayList')/*我喜欢的音乐*/
 const routes = [
   {
-    path:'',
-    redirect:'/findMusic'
+    path: '',
+    redirect: '/findMusic'
   },
-  {/*发现音乐路由*/
-    path:'/findMusic',
-    name:'findMusic',
-    component:findMusic,
-    children:[
-      {
-        path:'/findMusic',
-        redirect:'/findMusic/recommend'
-      },
-      {
-        path:'recommend',
-        name:'recommend',
-        component:recommend
-      },
-      {
-        path:'songSheet',
-        name:'songSheet',
-        component:songSheet,
-        children: [
-          /*精品歌单*/
-          {
-            path: 'qualitySheet',
-            name:'qualitySheet',
-            component:qualitySheet
-          }
-        ]
-      },
-      {
-        path:'radion',
-        name:'radion',
-        component:radion
-      },
-      {
-        path:'rankingList',
-        name:'rankingList',
-        component:rankingList
-      },
-      {
-        path:'singer',
-        name:'singer',
-        component:singer
-      },
-      {
-        path:'newMusic',
-        name:'newMusic',
-        component:newMusic
-      },
-    ]
-  },
+  findMusic,
   {/*朋友路由*/
-    path:'/friend',
-    name:'friend',
-    component:friend
+    path: '/friend',
+    name: 'friend',
+    component: friend
   },
   {/*私人FM路由*/
-    path:'/perFM',
-    name:'perFM',
-    component:perFM
+    path: '/perFM',
+    name: 'perFM',
+    component: perFM
   },
-  {/*视频路由*/
-    path:'/vision',
-    name:'vision',
-    component:vision,
-    children:[
-      {
-        path: '/vision',
-        redirect: '/vision/vis'
-      },
-      {
-        path:'vis',
-        name:'vis',
-        component:vis,
-      },
-      {
-        path:'mv',/*MV路由*/
-        name:'mv',
-        component:mv
-      }
-    ]
-    
-  },
+  video,
   {/*直播路由*/
-    path:'/zhibo',
-    name:'zhibo',
-    component:zhibo
+    path: '/zhibo',
+    name: 'zhibo',
+    component: zhibo
   },
-  {/*搜索结果*/
-    path:'/searchResult',
-    name:"searchResult",
-    component:search,
-    children: [
-      
-      {
-        path:'danqu',
-        name:'danqu',
-        component:danqu
-      },
-      {
-        path:'geshou',
-        name:'geshou',
-        component:geshou
-      },
-      {
-        path: "shipin",
-        name:'shipin',
-        component:shipin
-      },
-      
-      {
-        path:'yonghu',
-        name:'yonghu',
-        component:yonghu
-      },
-      {
-        path:'zhuanji',
-        name:'zhuanji',
-        component:zhuanji
-      },
-      {
-        path:'zhubodiant',
-        name:'zhubodiant',
-        component:zhubodiant
-      },
-      {
-        path:'geci',
-        name:'geci',
-        component:geci
-      },
-      {
-        path: 'gedan',
-        name:'gedan',
-        component:gedan
-      }
-    ]
-  },
-  {
-    path: '/videoPlay',
-    name:'videoPlay',
-    component:videoplay
-  },
-    /*歌单详情*/
-  {
-    path:'/sheetMsg',
-    name:'/sheetMsg',
-    component:sheetMsg
-  },
-  /*独家放送*/
-  {
-    path: '/solePlay',
-    name: '/solePlay',
-    component:solePlay
-  },
-  /*歌手详情页*/
-  {
-    path: "/singerDetails",
-    name:"/singerDetails",
-    component:singerDetails
-  },
-  {/*本地音乐*/
-    path: '/localMusic',
-    name:'localMusic',
-    component:localMusic
-  },
-  {
-    path: '/downloadManage',
-    name:'downloadManage',
-    component:downloadManage
-  },
-  {
-    path: '/myYunPan',
-    name:'myYunPan',
-    component:myYunPan
-  },
-  {
-    path: '/myRadio',
-    name:'myRadio',
-    component:myRadio
-  },
-  {
-    path: '/myCollection',
-    name:'myCollection',
-    component:myCollection
-  },
-    /*我喜欢的音乐*/
-  {
-    path:'/UserPlayList',
-    name:'UserPlayList',
-    component:UserPlayList
-  },
-  {
-    path:'/allMv',
-    name:allMv,
-    component:allMv
-  },
+  /*独立组件*/
+  sheetMsgRuoter,
+  singerDetailsRuoter,
+  solePlayRuoter,
+  videoplayRuoter,
+  allMvRuoter,
+  /*搜索*/
+  search,
+  /*我的音乐*/
+  localMusicRouter,
+  downloadManageRouter,
+  myCollectionRouter,
+  myRadioRouter,
+  myYunPanRouter,
+  UserPlayListRouter
 ]
 
 const router = new VueRouter({
   routes,
-  mode:'history'
+  mode: 'history'
 })
 
 export default router
