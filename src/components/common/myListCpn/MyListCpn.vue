@@ -42,10 +42,16 @@
             aclick(index,event)
             {
                 this.currentIndex=index;
-                this.$emit('item-click',index);
+                //this.$emit('item-click',index);
                 if (this.path.length === 1)
                 {
+                  this.$store.dispatch({
+                    type:"userSongList",
+                    songListId:this.list[index].id
+                  }).then(()=>{
                     this.$router.push(this.path[0]);
+                  })
+
                 }
                 else {
                   this.$router.push(this.path[index]);

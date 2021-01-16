@@ -121,8 +121,9 @@
           }
         },
         created() {
-            this.songListMsg=this.$route.query.songListMsg;
+            this.songListMsg=this.$store.state.userSongListMsg||this.$route.query.songListMsg;
             console.log(this.songListMsg);
+            //console.log(this.$store.userSongListMsg)
             console.log("-----------------")
             let tmp=null;
             for(let index in this.songListMsg.tracks) {

@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12892362",
+      "name": "歌单",
+      "font_class": "gedan",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "40242",
+      "name": "歌手",
+      "font_class": "ttpodicon",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "159271",
+      "name": "专辑",
+      "font_class": "zhuanji",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    },
+    {
+      "icon_id": "1453476",
+      "name": "音符",
+      "font_class": "yinfu",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
       "icon_id": "15277691",
       "name": "音乐 - 列表",
       "font_class": "yinle-liebiao",

@@ -2,8 +2,7 @@
     <div class="created-play-list">
       <favorite-music/>
       <my-list-cpn :list="userPlayList"
-                   :path="['/UserPlayList']"
-                   @item-click="songListClick"
+                   :path="['/sheetMsg']"
                    :songListId="songListId">
         <div slot="left-0">
           <i class="iconfont icon-love"></i>
@@ -40,14 +39,14 @@ export default {
     })
   },
   methods:{
-    songListClick(index)
+    /*songListClick(index)
     {
       this.songListId=this.userPlayList[index].id;
       this.$store.dispatch({
         type:'userSongList',
         songListId:this.songListId
       })
-    }
+    }*/
   }
 }
 </script>

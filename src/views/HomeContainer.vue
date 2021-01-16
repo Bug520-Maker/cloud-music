@@ -15,9 +15,9 @@
         mounted() {
             let homeContainer=this.$refs.homeContainer;
             document.onselectstart=new Function("return false");
-            homeContainer.addEventListener("mousemove",function(event){
+           /* homeContainer.addEventListener("mousemove",function(event){
                 event.preventDefault()
-            })
+            })*/
         }
     }
 </script>

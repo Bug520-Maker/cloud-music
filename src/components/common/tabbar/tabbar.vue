@@ -44,7 +44,7 @@
                 document.addEventListener('mouseup',function () {
                         document.removeEventListener('mousemove',fn);
                     })
-                event.stopPropagation()
+                //event.stopPropagation()
                 })
         }
 

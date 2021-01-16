@@ -2,7 +2,7 @@
     <div id="header">
         <tabbar>
             <tabbar-item class="logo"><!--设置logo-->
-                <img src="../assets/img/banner/logo.png" alt="logo" @click="imgClick"/>
+                <img src="../assets/img/banner/logo.png" alt="logo" @click="imgClick" />
             </tabbar-item>
             <tabbar-item class="back"><!--设置回退按钮-->
                 <div class="left" @click="leftBack()">
@@ -16,7 +16,7 @@
                 <search></search>
             </tabbar-item>
             <tabbar-item>
-                <ul class="operate"><!--相关操作如用户登录，设置，换肤，退出等-->
+                <ul class="operate" @mousedown.stop><!--相关操作如用户登录，设置，换肤，退出等-->
                     <li>
                       <div class="user" @click="avatarLoginClick"><!--用户头像-->
                         <i class="iconfont icon-user" v-show="this.$store.state.loginType===0"></i>

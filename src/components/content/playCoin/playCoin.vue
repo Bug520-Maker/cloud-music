@@ -16,7 +16,7 @@
             <p @click="pClick">{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
         </div>
         <audio :src="this.$store.state.songUrl"
-               controls="controls"
+                controls="controls"
                class="play-song"
                ref="playSong"
                autoplay="autoplay">
@@ -144,8 +144,10 @@
         width: 500px;
         position:absolute;
         left: 50%;
-        transform: translateX(-50%);
+        top:50%;
+        transform: translate(-50%,-50%);
         outline: none;
+        height: 50px;
     }
     #img-container
     {

@@ -1,9 +1,12 @@
 <!--顶部搜索框-->
 <template>
-    <div class="searh-coin">
+    <div class="searh-coin" @mousedown.stop>
         <div class="search">
-            <i class="iconfont icon-sw_sousuo"></i>
-            <input type="text" placeholder="搜索" @keydown="enter($event)" v-model="keyword" @mousedown="inClick($event)" /><!--设置搜索框-->
+            <i class="iconfont icon-sw_sousuo" @click="enter"></i>
+            <input type="text" placeholder="搜索" @keydown.enter="enter" v-model="keyword" @focus="changeShow" /><!--设置搜索框-->
+            <transition name="search-match">
+              <search-match :searchMatch="searchMatch" :keyword="keyword" v-show="isShow && keyword!==''" @search-match="matchRes"/>
+            </transition>
         </div>
         <div class="micrphone"><!--语音搜索麦克风-->
             <i class="iconfont icon-MicrphoneOutline"></i>
@@ -12,41 +15,58 @@
 </template>
 
 <script>
-    import {search,searchMult} from "../../../network/searchResult/searchMsg";
+    import SearchMatch from "@/components/content/search/SearchMatch";
+    import {searchMsg} from "@/network/searchResult/searchMsg";
+
     export default {
         name: "search",
         components:{
+          SearchMatch
         },
         data()
         {
             return {
                 keyword:'',
                 songCount:'',
-                songs:[]
+                songs:[],
+                searchMatch:{},
+                isShow:true
             }
         },
         methods:{
-            enter(event)
-            {
-                if(event.keyCode===13&&this.keyword!=='')
-                {
-                    this.$router.push({
-                        path:'/searchResult',
-                        query:{
-                            keyword:this.keyword
-                        }
-                    });
-                    this.$store.commit({  /*提取搜索关键字*/
-                        type:'getSearchKeyWord',
-                        keyword:this.keyword
-                    })
-                }
+          enter() {
+            this.$router.push({
+              path: '/searchResult',
+              query: {
+                keyword: this.keyword
+              }
+            });
+            this.$store.commit({  /*提取搜索关键字*/
+              type: 'getSearchKeyWord',
+              keyword: this.keyword
+            })
 
-            },
-            inClick(event)
-            {
-                event.stopPropagation();//防止搜索时拖拽阻止冒泡
+          },
+          matchRes(val)
+          {
+            this.keyword=val;
+            this.isShow=false;
+          },
+          changeShow()
+          {
+            this.isShow=true;
+          }
+        },
+        watch:{
+          keyword:function(newVal,oldVal)
+          {
+            if(newVal!==''&&newVal!==null&&newVal.trim().length!==0) {
+              searchMsg(newVal).then(data => {
+                //console.log(data.result);
+                this.searchMatch = data.result;
+              })
             }
+          }
         }
     }
 </script>
@@ -97,5 +117,27 @@
     .searh-coin .micrphone i
     {
         color: rgb(246, 197, 197);
+    }
+    .search
+    {
+      position: relative;
+    }
+    /*设置搜索建议的动画*/
+    .search-match-enter-active{
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.2s,transform 0.2s;
+      transform-origin: top center;
+    }
+    .search-match-enter-to{
+      transform: scale(1);
+      opacity: 1;
+    }
+    .search-match-leave-active{
+      transition: opacity 0.2s;
+      opacity: 1;
+    }
+    .search-match-leave-to{
+      opacity: 0;
     }
 </style>

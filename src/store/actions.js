@@ -28,11 +28,14 @@ export default {
     /*用户歌单信息*/
     userSongList(context,payload)
     {
-        songListMsg(payload.songListId).then(data=>{
-            //console.log(data);
-            context.commit({
-                type:'getUserSongListMsg',
-                userSongListMsg:data.playlist
+        return new Promise((resolve,reject)=>{
+            songListMsg(payload.songListId).then(data=>{
+                console.log(data);
+                context.commit({
+                    type:'getUserSongListMsg',
+                    userSongListMsg:data.playlist
+                });
+                resolve()
             })
         })
     }
