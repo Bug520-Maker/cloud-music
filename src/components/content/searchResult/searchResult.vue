@@ -12,7 +12,7 @@
 
 <script>
     import childrenCpn from "./childrenCpn/childrenCpn";
-    import {search} from "../../../network/searchResult/searchMsg";   /*导入搜索函数*/
+    import {search} from "@/network/searchResult/searchMsg";   /*导入搜索函数*/
 
     export default {
         name: "searchResult",

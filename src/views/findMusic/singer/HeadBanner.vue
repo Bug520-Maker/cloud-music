@@ -24,7 +24,7 @@
 
 <script>
     import ChooseList from "../../../components/common/chooseList/ChooseList";
-    import {singerCategory} from "../../../network/singer/singer";
+    import {singerCategory} from "@/network/singer/singer";
     export default {
         name: "HeadBanner",
         components: {ChooseList},

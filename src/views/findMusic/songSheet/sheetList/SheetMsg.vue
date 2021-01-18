@@ -16,8 +16,7 @@
 </template>
 
 <script>
-    import {musicUrl} from "../../../../network/public/musicUrl";
-    import {songListMsg} from "../../../../network/playlist/playlist";
+    import {songListMsg} from "@/network/playlist/playlist";
     export default {
         name: "huayu",
         props:{

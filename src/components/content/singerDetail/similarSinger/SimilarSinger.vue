@@ -2,7 +2,7 @@
     <div class="similar-singer">
         <ul>
           <li v-for="(item,index) in list" :key="index">
-            <msg-list>
+            <msg-list :is-show="false">
               <div slot="imgContainer" @click="singerClick(item)">
                 <img v-lazy="item.picUrl+'?param=137y137'">
               </div>

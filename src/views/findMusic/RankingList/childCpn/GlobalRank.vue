@@ -3,7 +3,7 @@
         <div id="title">全球榜</div>
       <ul>
         <li v-for="(item,index) in globalRank">
-          <msg-list>
+          <msg-list play-count-l="80%">
             <div slot="imgContainer" class="img-container">
               <img v-lazy="item.coverImgUrl+'?param=137y137'" @click="imgClick(item,index)"/>
               <div class="play">
@@ -26,7 +26,7 @@
 
 <script>
     import MsgList from "@/components/common/msgList/MsgList";
-    import {formatPlayCount} from "@/assets/function/formatDt";
+    import {formatPlayCount} from "@/utils/format/format";
     import {songListMsg} from "@/network/playlist/playlist";
 
     export default {

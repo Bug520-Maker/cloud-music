@@ -8,7 +8,8 @@ const singerDetails=()=>import("../../components/content/singerDetail/SingerDeta
 const sheetMsg=()=>import('../../components/content/songSheetList/songSheetList')
 /*独家放送*/
 const solePlay=()=>import('../../components/content/solePlay/SolePlay');
-
+/*专辑详情*/
+const albumMsg=()=>import('../../components/content/albumDetail/AlbumDetail');
 /*视频播放*/
 export const videoplayRuoter = {
     path: '/videoPlay',
@@ -43,3 +44,8 @@ export const allMvRuoter =
         name: allMv,
         component: allMv
     }
+export const albumMsgRouter = {
+    path: '/albumMsg',
+    name: 'albumMsg',
+    component: albumMsg
+}

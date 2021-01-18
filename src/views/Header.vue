@@ -80,14 +80,7 @@
       methods:{
             leftBack()
             {
-              refreshLogin().then(data=>{
-                console.log(data);
-              })
-                /*history.back();*/
-              loginStatus().then(data=>{
-                console.log(data);
-              })
-
+                history.back();
             },
             imgClick()/*点击logo回到首页*/
             {

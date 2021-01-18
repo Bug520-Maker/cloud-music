@@ -26,7 +26,7 @@
 
 <script>
     import MsgList from "../../../components/common/msgList/MsgList";
-    import {formatDt} from "@/assets/function/formatDt";
+    import {formatDt} from "@/utils/format/format";
 
     export default {
         name: "visMsg",

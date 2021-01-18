@@ -3,7 +3,7 @@
     <div class="mv-child-cpn">
         <ul class="mv-details">
             <li v-for="(item,index) in mvList" :key="index">
-              <msg-list>
+              <msg-list play-count-l="78%">
                 <div slot="imgContainer">
                   <img  v-lazy="item.cover+'?param=240y136'" @click="playmv(item)">
                 </div>
@@ -18,7 +18,8 @@
 
 <script>
     import MsgList from "@/components/common/msgList/MsgList";
-    import {formatPlayCount} from "@/assets/function/formatDt";
+    import {formatPlayCount} from "@/utils/format/format";
+    import {mvurl} from "@/network/vision/mv/mvList";
 
     export default {
         name: "ChildCpn",
@@ -32,11 +33,22 @@
                 }
             }
         },
-      methods:{
-          playCount(item)
-          {
-            return formatPlayCount(item)
-          }
+      methods: {
+        playCount(item) {
+          return formatPlayCount(item)
+        },
+        playmv(item) {
+          console.log(item);
+          mvurl(item.id).then(data => {
+            this.$router.push({
+              path: '/videoPlay',
+              query:{
+                url: data.data.url,
+                mvId:item.id
+              }
+            })
+          })
+        }
       }
     }
 </script>

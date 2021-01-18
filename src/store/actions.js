@@ -1,5 +1,5 @@
 import {musicUrl} from "@/network/public/musicUrl";
-import {albumContent} from "@/network/public/albumContent";
+import {albumContent} from "@/network/singer/singer";
 import {songListMsg} from "@/network/playlist/playlist";
 
 export default {

@@ -1,6 +1,6 @@
 <!--搜索匹配-->
 <template>
-  <div class="search-match">
+  <div class="search-match" ref="searchMatch" >
     <span>
       搜<span class="keyword">"{{keyword}}"</span>相关结果 >
     </span>
@@ -16,7 +16,7 @@
         </div>
         <ul class="music-content">
           <!--歌单，歌手，专辑下具体内容-->
-          <li v-for="(i,index) in searchMatch[item]" :key="index" @click="musicCon(i.name,item,i)">
+          <li v-for="(i,index) in searchMatch[item]" :key="index" @click.stop="musicCon(i.name,item,i)">
             {{i.name}}
             <span class="artist-name" v-show="item==='songs'"> - {{toString(i.artists)}}</span>
           </li>
@@ -69,6 +69,10 @@ name: "SearchMatch",
         return names.join("/")
       }
     },
+    /*searchClick()
+    {
+      this.$refs.searchMatch.previousElementSibling;
+    },*/
     musicCon(val,item,i)
     {
       this.$emit('search-match',val);
@@ -105,7 +109,8 @@ name: "SearchMatch",
 
       }
     }
-  }
+  },
+
 }
 </script>
 

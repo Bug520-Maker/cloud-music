@@ -72,10 +72,26 @@
     #control-btn
     {
         margin: 10px 0 ;
-      font-size: 16px;
+        font-size: 16px;
     }
     #targets
     {
         font-size: 13px;
+    }
+    #control-btn button
+    {
+      border: 1px solid #d8d8d8;
+      padding:5px 15px;
+      font-size: 14px;
+      border-radius: 18px;
+      background-color: #ffffff;
+      margin: 0 10px 0 0 ;
+      outline: none;
+    }
+    #control-btn button:nth-child(1)
+    {
+      background-color: #ec4141;
+      color: #ffffff;
+      border-color:#ec4141 ;
     }
 </style>

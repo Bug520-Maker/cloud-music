@@ -31,9 +31,9 @@
 </template>
 
 <script>
-    import {newSong} from "../../../../network/newMusic/newMusic";
-    import {musicUrl} from "../../../../network/public/musicUrl";
-    import {formatDt} from "@/assets/function/formatDt";
+    import {newSong} from "@/network/newMusic/newMusic";
+    import {musicUrl} from "@/network/public/musicUrl";
+    import {formatDt} from "@/utils/format/format";
 
     export default {
         name: "NewSongBody",

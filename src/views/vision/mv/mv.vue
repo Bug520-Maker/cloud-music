@@ -1,13 +1,14 @@
 <template>
-    <div class="mv">
+    <div class="mv"
+         v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
         <div class="head">
           <div class="title" @click="divClick">最新MV <i class="iconfont icon-arrow-right1"></i> </div>
             <mvchild-cpn :list="mvArea" @titleClick="newMV"></mvchild-cpn>
         </div>
-        <new-mv :newMv="newMv"  v-loading="this.$store.state.loading"
-                element-loading-text="载入中..."
-                element-loading-spinner="el-icon-loading"
-                element-loading-background="#ffffff"></new-mv>
+        <new-mv :newMv="newMv"></new-mv>
         <HotMV></HotMV><!--热播MV-->
         <wang-yi-pro></wang-yi-pro><!--网易出品-->
         <div class="mv-rank">
@@ -25,7 +26,7 @@
    import HotMV from "./hotMv/HotMV";
    import NewMv from "./newMv/NewMv";
    import WangYiPro from "./wangYiPro/WangYiPro";
-   import {rand} from "@/assets/function/formatDt";
+   import {rand} from "@/utils/format/format";
    import MvRank from "@/views/vision/mv/mvRank/MvRank";
 
    export default {

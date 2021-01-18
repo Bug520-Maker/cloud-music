@@ -49,7 +49,9 @@
                     type:"userSongList",
                     songListId:this.list[index].id
                   }).then(()=>{
-                    this.$router.push(this.path[0]);
+                    this.$router.push({
+                      path:this.path[0],
+                    });
                   })
 
                 }

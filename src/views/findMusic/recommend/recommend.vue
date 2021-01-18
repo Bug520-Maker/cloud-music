@@ -21,20 +21,10 @@
 </template>
 
 <script>
-    import {recommendList} from "../../../network/recommend/recommendList";
-    import {recommendMv} from "../../../network/recommend/recommendMv";
-    import {broadcast} from "../../../network/recommend/broadcast";
-    import {latestalbum} from "../../../network/recommend/latestalbum";
-
-    import {singeralbum} from "../../../network/public/singerAlbum";
-
-     import {banner} from "../../../network/recommend/123"
+     import {banner} from "@/network/recommend/123"
      import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
      import 'swiper/swiper-bundle.css'
      import 'swiper/swiper-bundle.min.css'
-     import {songListMsg} from "../../../network/playlist/playlist";
-
-     import {mvurl} from "../../../network/vision/mv/mvList";
     import RecommendSongSheet from "./recommendSongSheet/RecommendSongSheet";
     import ExclusiveBroadcast from "./exclusiveBroadcast/ExclusiveBroadcast";
     import NewMusic from "./newMusic/NewMusic";

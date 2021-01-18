@@ -1,27 +1,30 @@
 <!--为所有列表item封装cpn-->
 <template>
-    <div>
+    <div :style="{display:isFlex}">
         <div class="item">
             <!--图片-->
             <div class="img-container">
                 <slot name="imgContainer"></slot>
             </div>
             <!--时长-->
-            <div class="duration">
+            <div class="duration" :style="{top:durationXY.y,left:durationXY.x}">
                 <slot name="duration"></slot>
             </div>
             <!--playCount-->
-            <div class="playCount">
+            <div class="playCount" :style="{left:playCountL}">
+                <i class="iconfont icon-play2" v-show="isShow"></i>
                 <slot name="playCount"></slot>
             </div>
         </div>
-        <!--描述-->
-        <div class="state">
+        <div>
+          <!--描述-->
+          <div class="state">
             <slot name="state"></slot>
-        </div>
-        <!--作者-->
-        <div class="creator">
+          </div>
+          <!--作者-->
+          <div class="creator">
             <slot name="creator"></slot>
+          </div>
         </div>
     </div>
 </template>
@@ -35,7 +38,29 @@
                 default() {
                     return '';
                 }
-            }
+            },
+            isFlex:{
+              type:String,
+              default:''
+            },
+          durationXY:{
+              type:Object,
+              default()
+              {
+                return {
+                    y:'60%',
+                    x:'60%'
+                }
+              }
+          },
+          playCountL:{
+              type:String,
+              default:'60%'
+          },
+          isShow:{
+              type:Boolean,
+              default:true
+          }
         },
         divClick(index)
         {
@@ -63,8 +88,6 @@
     .duration
     {
         position: absolute;
-        top:80%;
-        left: 85%;
         font-size: 13px;
         color: #ffffff;
     }
@@ -73,8 +96,7 @@
         color: #ffffff;
         font-size: 12px;
         position: absolute;
+        display: flex;
         top: 3%;
-        left: 80%;
-        transform: translateX(10%);
     }
 </style>

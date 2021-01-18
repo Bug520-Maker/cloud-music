@@ -14,8 +14,8 @@
 </template>
 
 <script>
-    import {songListMsg} from "../../../../network/playlist/playlist";
-    import {recommendList} from "../../../../network/recommend/recommendList";
+    import {songListMsg} from "@/network/playlist/playlist";
+    import {recommendList} from "@/network/recommend/recommendList";
 
     export default {
         name: "recommendSongSheet",

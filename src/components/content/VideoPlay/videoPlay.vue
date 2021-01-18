@@ -1,25 +1,35 @@
 <template>
     <div class="video-play"><!--视频播放组件容器-->
-        <video :volume="0.2"
-               :src="mvurl|| this.$store.state.mvurldata.url"
-               controls="controls"
-               ref="videoPlay"
-               autoplay="autoplay"
-               v-show="this.$store.state.mvurldata.url!=null||mvurl!=null"
-        ></video>
-        <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null">
+        <div class="video-container">
+          <video :volume="0.2"
+                 :src="mvurl|| this.$store.state.mvurldata.url"
+                 controls="controls"
+                 ref="videoPlay"
+                 autoplay="autoplay"
+                 v-show="this.$store.state.mvurldata.url!=null||mvurl!=null">
+          </video>
+          <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null"></div>
+          <!--MV简略介绍-->
+          <video-msg :mvId="mvId"/>
         </div>
+      <!--相关Mv推荐-->
+      <related-rec :mvId="mvId"/>
+
     </div>
 </template>
 <script>
 
+    import RelatedRec from "@/components/content/VideoPlay/relatedRec/relatedRec";
+    import VideoMsg from "@/components/content/VideoPlay/videoMsg/VideoMsg";
     export default {
         name: "videoPlay",
-        data()
+      components: {VideoMsg, RelatedRec},
+      data()
         {
             return {
                 isCharge:true,
-                mvurl:''
+                mvurl:'',
+                mvId:''
             }
         },
         methods:{
@@ -30,6 +40,7 @@
         },
         created() {
             this.mvurl=this.$route.query.url;
+            this.mvId=this.$route.query.mvId;
             /*console.log(this.$route.query.url);*/
         },
         mounted() {
@@ -39,12 +50,27 @@
 </script>
 
 <style scoped>
+    .video-play
+    {
+      display: flex;
+      padding: 20px;
+      height: 495px;
+      overflow:auto;
+    }
+    .video-play::-webkit-scrollbar
+    {
+      width: 2px;
+    }
+    .video-container{
+      margin: 0 20px 0 0;
+    }
     video
     {
-        width: 600px;
-        height: 338px;
-        display: inline-block;
-        margin: 50px 0 0 0;
+       /* width: 600px;
+        height: 338px;*/
+      width:480px;
+      height:320px;
+      display: inline-block;
     }
     .charge
     {

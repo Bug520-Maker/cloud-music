@@ -19,9 +19,8 @@
 </template>
 
 <script>
-    import {singeralbum} from "../../../../network/public/singerAlbum";
-    import {latestalbum} from "../../../../network/recommend/latestalbum";
-    import {musicUrl} from "../../../../network/public/musicUrl";
+    import {latestalbum} from "@/network/recommend/latestalbum";
+    import {musicUrl} from "@/network/public/musicUrl";
 
     export default {
         name: "NewMusic",

@@ -25,7 +25,7 @@
                     <i class="iconfont icon-jia1"></i>
                 </button>
                 <button>
-                    <i class="iconfont"> </i>
+                    <i class="iconfont icon-jiarushoucang"> </i>
                      收藏
                     <span>
                       ({{formatNum(songListMsg.subscribedCount)}})
@@ -118,45 +118,65 @@
             {
               return count;
             }
-          }
-        },
-        created() {
-            this.songListMsg=this.$store.state.userSongListMsg||this.$route.query.songListMsg;
-            console.log(this.songListMsg);
-            //console.log(this.$store.userSongListMsg)
-            console.log("-----------------")
-            let tmp=null;
-            for(let index in this.songListMsg.tracks) {
-                tmp={
-                    name:'',
-                    alias:[],
-                    artists:[{name:''}],
-                    album:{
-                        name:'',
-                        id:''
-                    },
-                    duration:0
-                };
-                tmp.name=this.songListMsg.tracks[index].name;
-                tmp.alias[0]=this.songListMsg.tracks[index].alia[0];
-                tmp.artists[0].name=this.songListMsg.tracks[index].ar[0].name;
-                tmp.album.name=this.songListMsg.tracks[index].al.name;
-                tmp.album.id=this.songListMsg.tracks[index].al.id;
-                tmp.duration=this.songListMsg.tracks[index].dt;
-                tmp.id=this.songListMsg.tracks[index].id
-                this.songLists[index]=tmp
-            }
+          },
+          songlistNet()
+          {
             //console.log(tmp);
             /*获取歌单评论*/
             songSheetComm(this.songListMsg.id).then(data=>{
               //console.log(data);
               this.comments=data.comments;
             })
-          /*获取歌单收藏者*/
-          songSheetCollect(this.songListMsg.id).then(data=>{
-           // console.log(data.subscribers);
-            this.subscribers=data.subscribers;
-          })
+            /*获取歌单收藏者*/
+            songSheetCollect(this.songListMsg.id).then(data=>{
+              // console.log(data.subscribers);
+              this.subscribers=data.subscribers;
+            })
+          },
+          setSongList()/*生成歌单信息*/
+          {
+            this.songLists=[];
+            let tmp=null;
+            for(let index in this.songListMsg.tracks) {
+              tmp={
+                name:'',
+                alias:[],
+                artists:[{name:'',id:''}],
+                album:{
+                  name:'',
+                  id:''
+                },
+                duration:0
+              };
+              tmp.name=this.songListMsg.tracks[index].name;
+              tmp.alias[0]=this.songListMsg.tracks[index].alia[0];
+              tmp.artists[0].name=this.songListMsg.tracks[index].ar[0].name;
+              tmp.artists[0].id=this.songListMsg.tracks[index].ar[0].id;
+              tmp.album.name=this.songListMsg.tracks[index].al.name;
+              tmp.album.id=this.songListMsg.tracks[index].al.id;
+              tmp.duration=this.songListMsg.tracks[index].dt;
+              tmp.id=this.songListMsg.tracks[index].id
+              this.songLists[index]=tmp
+            }
+          }
+        },
+        created() {
+            /*监听store中的数据是否发生变化*/
+            this.$store.watch((state,getters)=>{
+              return state.userSongListMsg;
+            },()=>{
+              this.songListMsg=this.$store.state.userSongListMsg;
+              console.log(this.songListMsg);
+              this.setSongList();/*生成歌单信息*/
+              this.songlistNet();/*调用网络请求*/
+            })
+
+            this.songListMsg=this.$route.query.songListMsg||this.$store.state.userSongListMsg;
+            console.log(this.songListMsg);
+
+            console.log("-----------------")
+            this.setSongList();/*生成歌单信息*/
+            this.songlistNet();/*调用网络请求*/
         }
     }
 </script>
@@ -185,7 +205,7 @@
         cursor: pointer;
     }
     /*按钮*/
-    .controlBtn button
+   /* .controlBtn button
     {
         border: 1px solid #d8d8d8;
         padding:3px 15px;
@@ -200,7 +220,7 @@
         background-color: #ec4141;
         color: #ffffff;
         border-color:#ec4141 ;
-    }
+    }*/
     #targetMsg ul li
     {
         margin: 0 0 7px 0;

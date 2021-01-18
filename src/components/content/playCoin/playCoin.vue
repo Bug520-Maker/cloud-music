@@ -27,7 +27,7 @@
 
 <script>
     import PlayPage from "./PlayPage";
-    import {songLyric} from "../../../network/playCoin/songDetal";
+    import {songLyric} from "@/network/playCoin/songDetal";
     import {singerMsg} from "@/network/singer/singer";
     export default {
         name: "playCoin",

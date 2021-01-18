@@ -13,8 +13,8 @@
 </template>
 
 <script>
-    import {mvurl} from "../../../../network/vision/mv/mvList";
-    import {broadcast} from "../../../../network/recommend/broadcast";
+    import {mvurl} from "@/network/vision/mv/mvList";
+    import {broadcast} from "@/network/recommend/broadcast";
 
     export default {
         name: "ExclusiveBroadcast",
@@ -44,7 +44,8 @@
                     this.$router.push({
                         path:'/videoPlay',
                         query:{
-                            url:res.data.url
+                            url:res.data.url,
+                            mvId:this.broadcastList[index].id
                         }
                     })
                 })

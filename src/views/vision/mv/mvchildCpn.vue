@@ -10,7 +10,7 @@
 </template>
 
 <script>
-   import {newmv} from "../../../network/vision/mv/mvList";
+   import {newmv} from "@/network/vision/mv/mvList";
    export default {
         name: "childCpn",
        components: {},

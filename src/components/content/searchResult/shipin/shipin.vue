@@ -5,11 +5,10 @@
                 <div class="img-container" @click="playVideo(item,index)">
                     <img :src="item.coverUrl+'?param=232y130.65'" />
                     <div>
-                        {{(item.playTime>100000)? Math.floor(item.playTime/10000):item.playTime}}
-                        <span v-show="item.playTime>100000">万</span>
+                      {{playCount(item.playTime)}}
                     </div>
                     <p>
-                        {{parseInt(item.durationms/1000/60)<10? "0"+parseInt(item.durationms/1000/60):parseInt(item.durationms/1000/60)}} : {{getSecond(item.durationms/1000/60)}}
+                        {{duration(item.durationms)}}
                     </p>
                 </div>
                <div class="video-name">
@@ -24,8 +23,9 @@
 </template>
 
 <script>
-    import {mvurl} from "../../../../network/vision/mv/mvList";
-    import {videoUrl} from "../../../../network/vision/vis/visList";
+    import {mvurl} from "@/network/vision/mv/mvList";
+    import {videoUrl} from "@/network/vision/vis/visList";
+    import {formatDt, formatPlayCount} from "@/utils/format/format";
     export default {
         name: "shipin",
         data()
@@ -56,7 +56,7 @@
                         this.videoRouter(this.url);
                    })
                 }
-                if(item.type==1)
+                if(item.type===1)
                 {
                     videoUrl(item.vid).then(data=>{
                         this.url=data.urls[0].url;
@@ -72,6 +72,14 @@
                         url
                     }
                 })
+            },
+            playCount(item)
+            {
+              return formatPlayCount(item);
+            },
+            duration(item)
+            {
+              return formatDt(item);
             }
         },
 

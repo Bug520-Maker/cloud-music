@@ -2,11 +2,7 @@
 <template>
     <div id="song-sheet">
         <router-view ></router-view>
-        <div class="quality-song-list" @click="qualityRouter"
-             v-loading="this.$store.state.loading"
-             element-loading-text="载入中..."
-             element-loading-spinner="el-icon-loading"
-             element-loading-background="#ffffff">
+        <div class="quality-song-list" @click="qualityRouter">
             <div><img v-lazy="highquality[0].coverImgUrl+'?param=140y140'" /></div>
             <ul>
                 <li>精品歌单</li>

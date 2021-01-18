@@ -39,8 +39,7 @@
 </template>
 
 <script>
-    import {singeralbum} from "../../../network/public/singerAlbum";
-    import {singerMsg} from "../../../network/singer/singer";
+    import {singerMsg} from "@/network/singer/singer";
     export default {
         name: "PlayPage",
         data()

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import {search} from "../../../../network/searchResult/searchMsg";
+    import {search} from "@/network/searchResult/searchMsg";
     export default {
         name: "childrenCpn",
         props:{

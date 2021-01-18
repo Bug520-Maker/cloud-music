@@ -13,6 +13,7 @@
             </button>
           </li>
         </ul>
+        <div v-show="this.$store.state.loginType===0" class="no-dynamic">暂无动态</div>
       </div>
       <div class="side">
         <div class="askLogin">
@@ -20,13 +21,38 @@
           <div class="loginTip">登录网易云音乐。可以享受无线收藏的乐趣，并且无限同步到手机</div>
           <button class="imm-login">立即登录</button>
         </div>
+        <!--热门话题-->
+        <div class="top-title" v-show="this.$store.state.loginType===1">
+          <div>热门话题</div>
+          <div class="more">更多 ></div>
+        </div>
+        <topic :list="top" v-show="this.$store.state.loginType===1" />
       </div>
     </div>
 </template>
 
 <script>
+    import {hotTopic} from "@/network/friends/hotTopic";
+    import Topic from "@/views/friend/topic/Topic";
+
     export default {
-        name: "friend"
+        name: "friend",
+      components: {Topic},
+      data()
+      {
+        return {
+          top:[]
+        }
+      },
+      created() {
+         if(this.$store.state.loginType===1)
+         {
+           hotTopic().then(data=>{
+             //console.log(data.hot);
+             this.top=data.hot;
+           })
+         }
+      }
     }
 </script>
 
@@ -68,6 +94,12 @@
     {
       width: 205px;
       padding: 0 15px;
+      height: 535px;
+      overflow-y: auto;
+    }
+    .side::-webkit-scrollbar
+    {
+      width: 2px;
     }
     /*要求登录网易云*/
     .askLogin img
@@ -92,5 +124,28 @@
       color: #ffffff;
       background-color: #ec4141;
       border-radius: 18px;
+    }
+    /*暂无动态*/
+    .no-dynamic
+    {
+      font-size: 12px;
+      color: #676767;
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%,-50%);
+    }
+    /*更多热门话题*/
+    .top-title
+    {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin: 20px 0 10px 0;
+    }
+    .more
+    {
+      color: #676767;
+      cursor: pointer;
     }
 </style>

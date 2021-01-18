@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "16578017",
+      "name": "点赞",
+      "font_class": "zanpress1",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
       "icon_id": "12892362",
       "name": "歌单",
       "font_class": "gedan",

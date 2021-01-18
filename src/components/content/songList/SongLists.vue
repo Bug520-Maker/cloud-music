@@ -9,7 +9,7 @@
                 <div class="singerName" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
                 <div class="albumName">{{item.album.name}}</div>
                 <div class="duartion">{{duration(item.duration)}}</div>
-                <div v-show="isShowHot" ></div>
+                <div v-show="isShowHot" class="hotStatus"></div>
             </li>
         </ul>
     </div>
@@ -17,7 +17,7 @@
 
 <script>
     import {singerMsg} from "@/network/singer/singer";
-    import {formatDt} from "@/assets/function/formatDt";
+    import {formatDt} from "@/utils/format/format";
 
     export default {
         name: "SongLists",
@@ -174,5 +174,11 @@
     #song-list ul li:hover
     {
       background-color: #f0f1f2;
+    }
+    /*热度*/
+    .hotStatus
+    {
+      height:7px;
+      border-radius: 5px;
     }
 </style>

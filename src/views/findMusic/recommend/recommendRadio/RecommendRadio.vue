@@ -17,7 +17,7 @@
 
 <script>
     import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
-    import {recRadio, PersonalizedRec, Rec, catrgoryRadio} from "../../../../network/radio/radio";
+    import {recRadio, PersonalizedRec, Rec, catrgoryRadio} from "@/network/radio/radio";
     export default {
         name: "RecommendRadio",
         data()

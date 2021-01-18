@@ -17,8 +17,8 @@
 </template>
 
 <script>
-    import {recommendMv} from "../../../../network/recommend/recommendMv";
-    import {mvurl} from "../../../../network/vision/mv/mvList";
+    import {recommendMv} from "@/network/recommend/recommendMv";
+    import {mvurl} from "@/network/vision/mv/mvList";
 
     export default {
         name: "RecommendMv",
@@ -48,7 +48,8 @@
                     this.$router.push({
                         path:'/videoPlay',
                         query:{
-                            url:res.data.url
+                            url:res.data.url,
+                          mvId:item.id
                         }
                     })
                 })
@@ -104,12 +105,13 @@
         background-color:rgba(0,0,0,.3);
         padding: 10px 5px;
         width:230px;
-        transition: width 0.3s;
+        transition: transform 0.3s;
         top: 0;
-        display: none;
+        transform: scale(0);
+        transform-origin:top center ;
     }
     .rec-title + .recommend-mv li:hover .tip
     {
-        display: block;
+        transform: scale(1);
     }
 </style>

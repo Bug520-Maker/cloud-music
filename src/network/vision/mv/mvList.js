@@ -59,3 +59,12 @@ export function wangYiPro(limit)
         }
     })
 }
+export function mvData(mvid)
+{
+    return request({
+        url:'/mv/detail',
+        params:{
+            mvid
+        }
+    })
+}

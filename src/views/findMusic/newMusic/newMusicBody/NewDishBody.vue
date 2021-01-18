@@ -15,7 +15,7 @@
     <!--新碟上架内容-->
     <ul class="new-albums">
       <li v-for="(item,index) in allNewAlbum" :key="item.id">
-        <msg-list>
+        <msg-list :is-show="false">
           <div slot="imgContainer">
             <img v-lazy="item.blurPicUrl+'?param=137y137'" @click="imgClick(item,index)"/>
           </div>
@@ -92,8 +92,14 @@ export default {
     },
     imgClick(item,index)
     {
-      albumConent(this.allNewAlbum[2].id).then(data=>{
-        console.log(data);
+      albumConent(this.allNewAlbum[index].id).then(data=>{
+        //console.log(data);
+        this.$router.push({
+          path:'/albumMsg',
+          query:{
+            albumMsg:data
+          }
+        })
       })
     }
   },

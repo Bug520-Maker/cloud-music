@@ -2,9 +2,10 @@
     <div class="mvs">
         <ul>
             <li v-for="(item,index) in list" :key="index">
-                <MsgList>
+                <MsgList play-count-l="76%"
+                         :duration-x-y="{x:'80%',y:'80%'}">
                     <div slot="imgContainer" class="imgContainer">
-                        <img v-lazy="item.imgurl+'?param=242y136'" />
+                        <img v-lazy="item.imgurl+'?param=242y136'" @click="playMv(item)"/>
                     </div>
                     <div slot="duration">
                         {{duration(item.duration)}}
@@ -23,7 +24,8 @@
 
 <script>
     import MsgList from "../../../common/msgList/MsgList";
-    import {formatDt, formatPlayCount} from "../../../../assets/function/formatDt";
+    import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import {mvurl} from "@/network/vision/mv/mvList";
     export default {
         name: "Mvs",
         components: {MsgList},
@@ -44,7 +46,22 @@
             duration(duration)
             {
                 return formatDt(duration);
+            },
+            playMv(item)
+            {
+             // console.log(item);
+              mvurl(item.id).then(res=>{
+                //console.log(res.data.url);
+                this.$router.push({
+                  path:'/videoPlay',
+                  query:{
+                    url:res.data.url,
+                    mvId:item.id
+                  }
+                })
+              })
             }
+
         }
     }
 </script>

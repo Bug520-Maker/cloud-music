@@ -17,7 +17,7 @@
 
 <script>
 import MsgList from "@/components/common/msgList/MsgList";
-import {formatPlayCount} from "@/assets/function/formatDt";
+import {formatPlayCount} from "@/utils/format/format";
 
 export default {
   name: "AllMvBody",

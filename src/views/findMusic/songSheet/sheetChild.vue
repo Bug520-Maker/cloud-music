@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {playlist,hotlist,songListMsg,songList} from "../../../network/playlist/playlist";
+    import {playlist,hotlist,songListMsg,songList} from "@/network/playlist/playlist";
     /*导入子组件*/
     import SheetMsg from "./sheetList/SheetMsg";
     export default {

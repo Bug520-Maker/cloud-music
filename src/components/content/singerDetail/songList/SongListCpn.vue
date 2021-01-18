@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import {formatDt} from "../../../../assets/function/formatDt";
+    import {formatDt} from "@/utils/format/format";
     export default {
         name: "SongListCpn",
         data()
