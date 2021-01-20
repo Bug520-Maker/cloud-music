@@ -7,7 +7,9 @@
         <div class="recommend">
             <div id="swiper-outer"><!--设置轮播图-->
                 <swiper ref="mySwiper" :options="swiperOptions">
-                    <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index"><img :src="item.imageUrl+'?param=540y200'" class="swiper-img" /></swiper-slide>
+                    <swiper-slide class="swiper-slide" v-for="(item,index) in imgList" :key="index">
+                      <img :src="item.imageUrl+'?param=540y200'" class="swiper-img" />
+                    </swiper-slide>
                     <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>

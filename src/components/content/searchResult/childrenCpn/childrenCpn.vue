@@ -2,7 +2,7 @@
    <div>
        <div class="searchNav">
            <ul>
-               <li v-for="(item,index) in list" :key="index" @click="routerClick(index)" :class="{active:currentIndex==index}">
+               <li v-for="(item,index) in list" :key="index" @click="routerClick(index)" :class="{active:currentIndex===index}">
                    {{item}}
                </li>
            </ul>

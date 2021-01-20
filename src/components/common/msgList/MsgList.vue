@@ -1,6 +1,6 @@
 <!--为所有列表item封装cpn-->
 <template>
-    <div :style="{display:isFlex}">
+    <div :style="{display:isFlex}" id="msg-list">
         <div class="item">
             <!--图片-->
             <div class="img-container">
@@ -15,6 +15,12 @@
                 <i class="iconfont icon-play2" v-show="isShow"></i>
                 <slot name="playCount"></slot>
             </div>
+          <div class="play" v-show="showPlay.show"
+               :style="{width:showPlay.width,height:showPlay.height,lineHeight:showPlay.height}">
+            <slot name="playIcon">
+              <i class="iconfont icon-play3"></i>
+            </slot>
+          </div>
         </div>
         <div>
           <!--描述-->
@@ -60,6 +66,17 @@
           isShow:{
               type:Boolean,
               default:true
+          },
+          showPlay:{
+              type:Object,
+              default()
+              {
+                return {
+                  show:false,
+                  width:'30px',
+                  height:'30px',
+                }
+              }
           }
         },
         divClick(index)
@@ -98,5 +115,28 @@
         position: absolute;
         display: flex;
         top: 3%;
+    }
+    .play
+    {
+      position: absolute;
+      left: 65%;
+      top:62%;
+      background-color:#ffffff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .play i
+    {
+      color: #ec4141;
+      font-size: 18px;
+    }
+    .item:hover .play
+    {
+      opacity: 1;
     }
 </style>

@@ -1,13 +1,13 @@
 const search=()=>import('../../components/content/searchResult/searchResult')
 
-const danqu=()=>import('../../components/content/searchResult/danqu/danqu')
-const gedan=()=>import('../../components/content/searchResult/gedan/gedan')
-const geshou=()=>import('../../components/content/searchResult/geshou/geshou');
-const shipin=()=>import('../../components/content/searchResult/shipin/shipin');
-const yonghu=()=>import('../../components/content/searchResult/yonghu/yonghu');
-const zhuanji=()=>import('../../components/content/searchResult/zhuanji/zhuanji');
-const zhubodiant=()=>import ('../../components/content/searchResult/zubodiant/zhubodiant')
-const geci=()=>import('../../components/content/searchResult/geci/geci')
+const single=()=>import('../../components/content/searchResult/single/Single')
+const playList=()=>import('../../components/content/searchResult/playList/PlayList')
+const artist=()=>import('../../components/content/searchResult/artist/Artist');
+const video=()=>import('../../components/content/searchResult/video/Video');
+const user=()=>import('../../components/content/searchResult/user/User');
+const album=()=>import('../../components/content/searchResult/album/Album');
+const djRadio=()=>import ('../../components/content/searchResult/djRadio/DjRadio')
+const lyrics=()=>import('../../components/content/searchResult/lyrics/Lyrics')
 export default {
     /*搜索结果*/
     path: '/searchResult',
@@ -16,45 +16,45 @@ export default {
     children: [
 
         {
-            path: 'danqu',
-            name: 'danqu',
-            component: danqu
+            path: 'single',
+            name: 'single',
+            component: single
         },
         {
-            path: 'geshou',
-            name: 'geshou',
-            component: geshou
+            path: 'artist',
+            name: 'artist',
+            component: artist
         },
         {
-            path: "shipin",
-            name: 'shipin',
-            component: shipin
+            path: "video",
+            name: 'video',
+            component: video
         },
 
         {
-            path: 'yonghu',
-            name: 'yonghu',
-            component: yonghu
+            path: 'user',
+            name: 'user',
+            component: user
         },
         {
-            path: 'zhuanji',
-            name: 'zhuanji',
-            component: zhuanji
+            path: 'album',
+            name: 'album',
+            component: album
         },
         {
-            path: 'zhubodiant',
-            name: 'zhubodiant',
-            component: zhubodiant
+            path: 'djRadio',
+            name: 'djRadio',
+            component: djRadio
         },
         {
-            path: 'geci',
-            name: 'geci',
-            component: geci
+            path: 'lyrics',
+            name: 'lyrics',
+            component: lyrics
         },
         {
-            path: 'gedan',
-            name: 'gedan',
-            component: gedan
+            path: 'playList',
+            name: 'playList',
+            component: playList
         }
     ]
 }

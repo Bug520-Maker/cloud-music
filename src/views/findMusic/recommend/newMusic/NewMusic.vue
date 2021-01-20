@@ -1,6 +1,8 @@
 <template>
     <div>
-        <p class="rec-title">最新音乐> </p>
+        <p class="rec-title" @click="newMusicRoute">最新音乐
+          <i class="iconfont icon-arrow-right1"></i>
+        </p>
         <ul class="new-song-list">
             <li v-for="(item,index) in newSong" :key="index">
                 <div class="imgcoin" @click="playSong(item,index)">
@@ -10,8 +12,11 @@
                     </div>
                 </div>
                 <div>
-                    <p >{{item.name}}</p>
-                    <p class="name">{{item.song.artists[0].name}}</p>
+                    <p class="songName">
+                      {{item.name}}
+                      <span v-show="item.song.alias.length>0">({{item.song.alias[0]}})</span>
+                    </p>
+                    <p class="name">{{toString(item.song.artists)}}</p>
                 </div>
             </li>
         </ul>
@@ -33,7 +38,7 @@
         },
         created() {
             latestalbum().then(data => {
-               // console.log(data.result);
+                //console.log(data.result);
                 this.newSong = data.result;
             });
         },
@@ -56,7 +61,20 @@
                     type:'getSingleInfo',
                     details:item.song
                 })
-            }
+            },
+            toString(artists)
+            {
+              let names=[]
+              for(let item of artists)
+              {
+                names.push(item.name);
+              }
+              return names.join('/')
+            },
+          newMusicRoute()
+          {
+            this.$router.push('/findMusic/newMusic');
+          }
         }
     }
 </script>
@@ -117,11 +135,26 @@
     }
     .new-song-list li .name
     {
+        width: 170px;
         color: rgb(153,153,153);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
         cursor: pointer;
     }
     .new-song-list li .name:hover
     {
         color:rgb(140, 137, 135);
+    }
+    .songName
+    {
+      white-space: nowrap;
+      width: 170px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .songName span{
+      color: #929292;
     }
 </style>

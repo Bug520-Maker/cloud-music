@@ -17,7 +17,7 @@
     import SongLists from "../../songList/SongLists";
 
     export default {
-        name: "danqu",
+        name: "Single",
         components: {
             SongLists
         },

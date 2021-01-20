@@ -2,7 +2,8 @@
     <div class="rec-radio">
         <recommend-cpn>
             <div slot="title">
-                主播电台 >
+                主播电台
+              <i class="iconfont icon-arrow-right1"></i>
             </div>
             <div slot="list">
                 <ul>

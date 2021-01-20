@@ -1,24 +1,50 @@
-<template><!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+<!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
+<template>
     <div class="sheet-msg"
          v-loading="this.$store.state.loading"
          element-loading-text="载入中..."
          element-loading-spinner="el-icon-loading"
          element-loading-background="#ffffff">
-        <ul>
-            <li v-for="(item,index) in huayuList" :key="index" >
-               <div >
-                   <img v-lazy="item.coverImgUrl+'?param=177y177'" @click="sheetRouter(index)"/><!--点击后跳转到 songSheetList显示具体的歌单下内容-->
-                   <p class="name">{{item.name}}</p>
-               </div>
-            </li>
-        </ul>
+      <ul>
+        <li v-for="(item,index) in huayuList" :key="index">
+          <msg-list :duration-x-y="{x:'7%',y:'80%'}"
+                    :show-play="{show:true,width:'45px',height:'45px'}">
+            <div slot="imgContainer">
+              <img v-lazy="item.coverImgUrl+'?param=177y177'" @click="sheetRouter(index)"/>
+            </div>
+            <div slot="state" class="name">
+              {{item.name}}
+            </div>
+            <div slot="playCount">
+              {{playCount(item.playCount)}}
+            </div>
+            <!--使用组件的user替换duration-->
+            <div slot="duration" class="user">
+              <i class="iconfont icon-ttpodicon"></i>
+              {{item.creator.nickname}}</div>
+            <div slot="playIcon" class="play-icon">
+              <i class="iconfont icon-play3"></i>
+            </div>
+          </msg-list>
+        </li>
+      </ul>
     </div>
 </template>
 
 <script>
     import {songListMsg} from "@/network/playlist/playlist";
+    import MsgList from "@/components/common/msgList/MsgList";
+    import {formatPlayCount} from "@/utils/format/format";
     export default {
-        name: "huayu",
+        name: "SheetMsg",
+      components: {MsgList},
+      data()
+        {
+          return {
+            loading:true,
+            src:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+          }
+        },
         props:{
             huayuList:{
                 type:Array,
@@ -45,7 +71,11 @@
                     })
 
                 });
-            }
+            },
+          playCount(item)
+          {
+            return formatPlayCount(item);
+          }
         }
     }
 </script>
@@ -96,6 +126,14 @@
         -webkit-box-orient: vertical;
         font-size: 14px;
         margin: 7px 0 0 0;
-        color: rgb(55, 55, 55);
+        color: #373737;
+    }
+    .user i
+    {
+      font-size: 12px;
+    }
+    .play-icon i
+    {
+      font-size: 24px;
     }
 </style>

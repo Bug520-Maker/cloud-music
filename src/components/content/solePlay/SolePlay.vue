@@ -1,10 +1,17 @@
 <!--独家放送页面-->
 <template>
-    <div class="sole-play">
+    <div class="sole-play"
+         v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
         <div id="title">独家放送</div>
         <ul>
             <li v-for="(item,index) in broadcastList " @click="liClick(index)">
-                <div><img :src="item.picUrl+'?param=372y137.43'" /></div>
+                <div v-lazy-container="{ selector: 'img' }">
+                  <img :data-src="item.picUrl+'?param=372y137.43'"
+                       :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
+                </div>
                 <div id="sole-name">{{item.name}}</div>
             </li>
         </ul>

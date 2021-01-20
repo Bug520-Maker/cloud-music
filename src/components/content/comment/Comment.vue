@@ -2,7 +2,7 @@
 <template>
    <div class="comment">
      <ul>
-       <li v-for="(item,inddex) in comments">
+       <li v-for="(item,index) in comments">
          <div class="img-container">
            <img v-lazy="item.user.avatarUrl+'?param=40y40'" />
          </div>
@@ -13,17 +13,17 @@
              <span>{{item.content}}</span>
            </li>
 
-           <li v-show="item.beReplied.length!=0">
+           <li v-show="item.beReplied.length!==0">
              <!--评论回复-->
              <ul class="user-reply">
-                <li v-for="(i,index) in item.beReplied">
+                <li v-for="(i,index) in item.beReplied" :style="{width: commentsWidth}">
                   <span>{{i.user.nickname}}: </span>
                   <span>{{i.content}}</span>
                 </li>
               </ul>
 
            </li>
-           <li class="user-thumbs-up">
+           <li class="user-thumbs-up" :style="{width:commentsWidth}">
              <span>举报</span>
              <div>
                <span>
@@ -53,16 +53,16 @@ export default {
       {
         return []
       }
+    },
+    commentsWidth:{
+        type:String,
+        default:'680px'
     }
   }
 }
 </script>
 
 <style scoped>
-  .comment
-  {
-    width: 750px;
-  }
   .comment > ul> li
   {
     display: flex;
@@ -99,12 +99,12 @@ export default {
   .user-thumbs-up
   {
     display: flex;
-    width: 680px;
     line-height: 25px;
+    justify-content: flex-end;
   }
   .user-thumbs-up>span
   {
-    margin: 0 10px 0 500px;
+    margin: 0 10px 0 0px;/*500*/
     font-size: 12px;
   }
   .user-thumbs-up >div span
@@ -133,6 +133,5 @@ export default {
     background-color: #f4f4f4;
     line-height: 30px;
     padding: 0 10px;
-    width: 680px;
   }
 </style>

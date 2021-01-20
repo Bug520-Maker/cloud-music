@@ -41,7 +41,7 @@
         created() {
             this.mvurl=this.$route.query.url;
             this.mvId=this.$route.query.mvId;
-            /*console.log(this.$route.query.url);*/
+            console.log(this.$route.query.mvId);
         },
         mounted() {
             this.controlVolume(0.1);

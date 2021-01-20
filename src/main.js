@@ -19,8 +19,8 @@ Vue.use(VueAwesomeSwiper);
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
-  loading:require('./assets/img/placeholder/OIP.jpg'),
-  lazyComponent:true
+  loading:require('./assets/img/placeholder/placeholder01.png'),
+  preLoad:1.3
 })
 new Vue({
   router,

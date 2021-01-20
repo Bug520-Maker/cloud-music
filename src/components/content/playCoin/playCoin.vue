@@ -207,7 +207,7 @@
       transition: all 0.3s;
       z-index: 99;
       background-color:white;
-      overflow: hidden;
+      /*overflow: hidden;*/
       transform: scale(0);
       transform-origin: left bottom;
     }

@@ -4,8 +4,9 @@
         <ul class="mv-details">
             <li v-for="(item,index) in mvList" :key="index">
               <msg-list play-count-l="78%">
-                <div slot="imgContainer">
-                  <img  v-lazy="item.cover+'?param=240y136'" @click="playmv(item)">
+                <div slot="imgContainer" v-lazy-container="{ selector: 'img' }">
+                  <img  :data-src="item.cover+'?param=240y136'" @click="playmv(item)"
+                        :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
                 </div>
                 <div slot="state" class="name">{{item.name}}</div>
                 <div slot="creator" class="artist">{{item.artistName}}</div>

@@ -79,6 +79,7 @@
     import {songSheetComm,songSheetCollect} from "@/network/songsheet/songSheet";
     import Comment from "@/components/content/comment/Comment";
     import Subscribers from "@/components/content/songSheetList/subscribers/Subscribers";
+    import {songDetailes} from "@/network/playCoin/songDetal";
 
     export default {
         name: "songSheetList",
@@ -135,28 +136,32 @@
           },
           setSongList()/*生成歌单信息*/
           {
-            this.songLists=[];
-            let tmp=null;
-            for(let index in this.songListMsg.tracks) {
-              tmp={
-                name:'',
-                alias:[],
-                artists:[{name:'',id:''}],
-                album:{
-                  name:'',
-                  id:''
+            //this.songListMsg=[];
+            for (let item of this.songListMsg.trackIds.slice(0,30))
+            {
+              let song = {
+                name: '',
+                alias: [{}],
+                artists: [{
+                  name: ''
+                }],
+                album: {
+                  name: ''
                 },
-                duration:0
+                duration: 0
               };
-              tmp.name=this.songListMsg.tracks[index].name;
-              tmp.alias[0]=this.songListMsg.tracks[index].alia[0];
-              tmp.artists[0].name=this.songListMsg.tracks[index].ar[0].name;
-              tmp.artists[0].id=this.songListMsg.tracks[index].ar[0].id;
-              tmp.album.name=this.songListMsg.tracks[index].al.name;
-              tmp.album.id=this.songListMsg.tracks[index].al.id;
-              tmp.duration=this.songListMsg.tracks[index].dt;
-              tmp.id=this.songListMsg.tracks[index].id
-              this.songLists[index]=tmp
+              songDetailes(item.id).then(data => {
+                //console.log(data.songs[0]);
+                song.name = data.songs[0].name;
+                song.alias[0] = data.songs[0].alia[0];
+                song.artists[0].name = data.songs[0].ar[0].name;
+                song.artists[0].id = data.songs[0].ar[0].id;
+                song.album.name = data.songs[0].al.name;
+                song.duration = data.songs[0].dt;
+                song.id = data.songs[0].id;
+                song.album.id = data.songs[0].al.id;
+                this.songLists.push(song);
+              })
             }
           }
         },
@@ -165,16 +170,16 @@
             this.$store.watch((state,getters)=>{
               return state.userSongListMsg;
             },()=>{
+              this.songLists=[];
               this.songListMsg=this.$store.state.userSongListMsg;
-              console.log(this.songListMsg);
+              //console.log(this.songListMsg);
               this.setSongList();/*生成歌单信息*/
               this.songlistNet();/*调用网络请求*/
             })
 
             this.songListMsg=this.$route.query.songListMsg||this.$store.state.userSongListMsg;
-            console.log(this.songListMsg);
+           //console.log(this.songListMsg);
 
-            console.log("-----------------")
             this.setSongList();/*生成歌单信息*/
             this.songlistNet();/*调用网络请求*/
         }

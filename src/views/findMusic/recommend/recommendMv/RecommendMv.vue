@@ -1,6 +1,8 @@
 <template>
     <div>
-        <p class="rec-title" @click="recMvClick">推荐MV > </p>
+        <p class="rec-title" @click="recMvClick">推荐MV
+          <i class="iconfont icon-arrow-right1"></i>
+        </p>
         <ul class="recommend-mv">
             <li v-for="(item,index) in recMv" :key="index">
                 <div class="recImg" @click="playMv(item,index)">
@@ -100,7 +102,7 @@
     {
         position: absolute;
         color: #ffffff;
-        left: 0;
+        border-radius:8px 8px 0 0 ;
         font-size: 12px;
         background-color:rgba(0,0,0,.3);
         padding: 10px 5px;

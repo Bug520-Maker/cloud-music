@@ -4,7 +4,7 @@
         <p class="find"> {{title}} </p>
         <children-cpn
                 :list="['单曲','歌手','专辑','视频','歌单','歌词','主播电台','用户']"
-                :path="['/danqu','/geshou','/zhuanji','/shipin','/gedan','/geci','/zhubodiant','/yonghu']"
+                :path="['/single','/artist','/album','/video','/playList','/lyrics','/djRadio','/user']"
                 @number="counter"
         ></children-cpn>
     </div>

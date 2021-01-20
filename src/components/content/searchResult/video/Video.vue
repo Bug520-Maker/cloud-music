@@ -2,21 +2,31 @@
     <div class="search-result-video">
         <ul>
             <li v-for="(item,index) in videos" :key="index">
-                <div class="img-container" @click="playVideo(item,index)">
-                    <img :src="item.coverUrl+'?param=232y130.65'" />
-                    <div>
-                      {{playCount(item.playTime)}}
-                    </div>
-                    <p>
-                        {{duration(item.durationms)}}
-                    </p>
-                </div>
-               <div class="video-name">
-                    {{item.title}}
-                </div>
-                <div class="video-creator">
-                    {{item.creator[0].userName||''}}
-                </div>
+               <msg-list play-count-l="74%"
+                         :duration-x-y="{x:'80%',y:'80%'}">
+                 <div slot="imgContainer"
+                      @click="playVideo(item,index)"
+                      v-lazy-container="{ selector: 'img' }">
+                   <img :data-src="item.coverUrl+'?param=232y130.65'"
+                        :data-loading="require('@/assets/img/placeholder/placeholder02.png')" :alt="item.title"/>
+                 </div>
+                 <!--视频播放量-->
+                 <div slot="playCount">
+                   {{playCount(item.playTime)}}
+                 </div>
+                 <!--视频时长-->
+                 <p slot="duration">
+                   {{duration(item.durationms)}}
+                 </p>
+                 <!--视频title-->
+                 <div slot="state" class="state">
+                   {{item.title}}
+                 </div>
+                 <!--视频作者-->
+                 <div slot="creator" class="creator">
+                   {{item.creator[0].userName||''}}
+                 </div>
+               </msg-list>
             </li>
         </ul>
     </div>
@@ -26,9 +36,11 @@
     import {mvurl} from "@/network/vision/mv/mvList";
     import {videoUrl} from "@/network/vision/vis/visList";
     import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import MsgList from "@/components/common/msgList/MsgList";
     export default {
-        name: "shipin",
-        data()
+        name: "Video",
+      components: {MsgList},
+      data()
         {
            return {
                videos:[],/*视频列表*/
@@ -53,23 +65,24 @@
                 {
                     mvurl(item.vid).then(result=>{
                         this.url=result.data.url;
-                        this.videoRouter(this.url);
+                        this.videoRouter(this.url,item.vid);
                    })
                 }
                 if(item.type===1)
                 {
                     videoUrl(item.vid).then(data=>{
                         this.url=data.urls[0].url;
-                        this.videoRouter(this.url);
+                        this.videoRouter(this.url,item.vid);
                     })
                 }
             },
-            videoRouter(url)
+            videoRouter(url,mvId)
             {
                 this.$router.push({
                     path:'/videoPlay',
                     query:{
-                        url
+                        url,
+                        mvId
                     }
                 })
             },
@@ -107,12 +120,12 @@
     {
         margin: 0 0 20px 0;
     }
-    .search-result-video .video-name,.video-creator
+    .search-result-video .state,.creator
     {
         font-size: 12px;
         font-family: "微软雅黑";
     }
-    .video-name
+    .state
     {
         width: 232px;
         white-space: nowrap;
@@ -120,28 +133,8 @@
         overflow: hidden;
         color: rgb(80, 145, 202);
     }
-    .video-creator
+    .creator
     {
         color: rgb(223, 207, 223);
-    }
-    .img-container
-    {
-        position: relative;
-    }
-    .img-container div
-    {
-        position: absolute;
-        top: 3px;
-        color: #ffffff;
-        font-size: 12px;
-        left: 180px;
-    }
-    .img-container p
-    {
-        position: absolute;
-        top:110px;
-        color: #ffffff;
-        font-size: 12px;
-        left: 180px;
     }
 </style>

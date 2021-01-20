@@ -1,5 +1,10 @@
 <template>
-    <div class="radion">
+    <div class="radion"
+         v-loading="this.$store.state.loading"
+         element-loading-text="载入中..."
+         element-loading-spinner="el-icon-loading"
+         element-loading-background="#ffffff">
+
         <lunbo></lunbo>
         <banner :category="cateList" @itemClick="banClick"></banner>
         <pay-fantastic/><!--付费精品-->

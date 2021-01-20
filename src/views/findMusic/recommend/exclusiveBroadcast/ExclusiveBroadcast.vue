@@ -1,6 +1,9 @@
 <template>
     <div>
-        <p class="rec-title" @click="excClick()">独家放送 ></p>
+        <p class="rec-title" @click="excClick()">
+          独家放送
+          <i class="iconfont icon-arrow-right1"></i>
+        </p>
         <div class="broadcast">
             <ul>
                 <li v-for="(item,index) in broadcastList" :key="index">
@@ -78,6 +81,7 @@
     .broadcast ul li img
     {
         border-radius:5px ;
+        border: 1px solid rgba(153,153,153,.4);
         width: 240px;
     }
 </style>

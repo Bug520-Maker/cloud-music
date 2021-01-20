@@ -19,3 +19,24 @@ export function songLyric(id)
         }
     })
 }
+/*获取歌曲评论*/
+export function songComment(id)
+{
+    return request({
+        url:'/comment/music',
+        params:{
+            id,
+            limit:30
+        }
+    })
+}
+/*相似音乐*/
+export function simiSongs(id)
+{
+    return request({
+        url:'/simi/song',
+        params:{
+            id
+        }
+    })
+}

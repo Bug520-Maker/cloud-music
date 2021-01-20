@@ -35,14 +35,19 @@
                 <pre v-for="(item,index) in oLRC.ms" :key="index">{{item.c}}</pre>
             </div>
         </div>
+      <song-comment/>
+      <simi-songs/>
     </div>
 </template>
 
 <script>
     import {singerMsg} from "@/network/singer/singer";
+    import SongComment from "@/components/content/playCoin/songComment/SongComment";
+    import SimiSongs from "@/components/content/playCoin/simiSongs/SimiSongs";
     export default {
         name: "PlayPage",
-        data()
+      components: {SimiSongs, SongComment},
+      data()
         {
           return{
               albumMsg:{},
@@ -84,6 +89,19 @@
 </script>
 
 <style scoped>
+    .playPage
+    {
+      overflow-y: auto;
+    }
+    .playPage::-webkit-scrollbar
+    {
+      width: 5px;
+    }
+    .playPage::-webkit-scrollbar-thumb
+    {
+      height: 8px;
+      background-color: #e1e1e1;
+    }
     .album-container
     {
         width: 310px;

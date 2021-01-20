@@ -2,7 +2,7 @@
 <template>
     <div class="gedan"><!--显示歌单的分类导航条-->
         <ul>
-            <li v-for="(item,index) in hotList" :key="index" :class="{active:currentIndex==index}" @click="btnClick(index,item)" >
+            <li v-for="(item,index) in hotList" :key="index" :class="{active:currentIndex===index}" @click="btnClick(index,item)" >
                 {{item.name}}
             </li>
         </ul>

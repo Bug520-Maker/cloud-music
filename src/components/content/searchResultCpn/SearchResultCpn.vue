@@ -1,8 +1,21 @@
 <!--专辑，用户，单曲共享组件-->
 <template>
     <div id="outer">
-       <slot>
-       </slot>
+      <!--图片-->
+       <div class="img-container">
+         <slot name="imgContainer"></slot>
+       </div>
+      <!--歌手或专辑名称-->
+       <div class="state-name">
+         <slot name="stateName"></slot>
+       </div>
+      <!--count-->
+      <div class="count">
+        <slot name="count"></slot>
+      </div>
+      <div class="creator">
+        <slot name="creator"></slot>
+      </div>
     </div>
 </template>
 
@@ -22,25 +35,27 @@
 </script>
 
 <style scoped>
-    #outer ul li
+    #outer
     {
         display: flex;
         padding: 5px 30px ;
         cursor: pointer;
     }
-    #outer ul li:nth-child(odd)
+    #outer .img-container img
     {
-        background-color: rgb(249, 249, 249);
+      width:60px;
+      height:60px;
+      border-radius: 5px;
+      border: 1px solid rgba(153,153,153,.4);
     }
-    #outer ul li:hover
+    .state-name
     {
-        background-color:rgb(240, 241, 242);
+      margin:18px 0 0 20px;
+      font-size: 14px;
     }
-    #outer img
+    .creator,.count
     {
-        width: 60px;
-        height: 60px;
-        border:1px solid rgb(228, 228, 228);
-        border-radius: 5px;
+      font-size: 12px;
+      line-height: 60px;
     }
 </style>
