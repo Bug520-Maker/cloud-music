@@ -13,7 +13,8 @@ export function visCategory()
 {
     return request({
         url:'/video/category/list',
-        params:{
+        method:"post",
+        data:{
             cookie:store.state.userMsg.cookie,
             timestamp:new Date().getTime()
         }
@@ -24,11 +25,10 @@ export function visGroup(id)
 {
     return request({
         url:'/video/group',
-        withCredentials:true,
-        method:'post',
-        data:{
+        params:{
             id,
-            cookie:store.state.userMsg.cookie
+            cookie:store.state.userMsg.cookie,
+            timestamp:new Date().getTime()
         }
     })
 }
@@ -37,8 +37,10 @@ export function allvideoList()
 {
     return request({
         url:'/video/timeline/all',
-        params:{
-            cookie:store.state.userMsg.cookie
+        method:"post",
+        data:{
+            cookie:store.state.userMsg.cookie,
+            timestamp:new Date().getTime()
         }
     })
 }
@@ -68,6 +70,26 @@ export function Recvideo()
     return request({
         url:'/video/timeline/recommend',
         params:{
+        }
+    })
+}
+/*获取视频详情*/
+export function videoData(id)
+{
+    return request({
+        url:'/video/detail',
+        params:{
+            id
+        }
+    })
+}
+/*获取视频评论*/
+export function videoComm(id)
+{
+    return request({
+        url:'/comment/video',
+        params:{
+            id
         }
     })
 }

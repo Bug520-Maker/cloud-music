@@ -61,6 +61,7 @@ export default {
 </script>
 
 <style scoped>
+
   .related-rec h4
   {
     margin: 0 0 10px 0;
@@ -73,7 +74,7 @@ export default {
   {
     font-size: 13px;
     margin-top: 10px;
-    width: 128px;
+    width: 126px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;

@@ -10,7 +10,7 @@
                     <img v-lazy="item.coverImgUrl+'?param=172y172'" @click="imgClick(i)"/>
                 </div>
                 <ul class="songlist-container" >
-                    <li v-for="(item,index) in songList[i]" class="songlist">
+                    <li v-for="(item,index) in songList[i]" class="songlist" :key="item.id">
                         <p><span>{{index+1 }}</span> {{ item.name}}</p>
                         <p>{{ergodic(item.ar)}}</p>
                     </li>
@@ -69,7 +69,10 @@
                 })
                 return newArr.join(' / ');
             }
-        }
+        },
+      created() {
+          console.log(this.songList)
+      }
     }
 </script>
 

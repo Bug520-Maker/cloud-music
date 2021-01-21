@@ -23,7 +23,7 @@
 </template>
 
 <script>
-     import {banner} from "@/network/recommend/123"
+     import {banner} from "@/network/recommend/banner/banner"
      import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
      import 'swiper/swiper-bundle.css'
      import 'swiper/swiper-bundle.min.css'

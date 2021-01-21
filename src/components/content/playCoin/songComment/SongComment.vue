@@ -55,4 +55,5 @@ export default {
   {
     margin: 50px 0 0 0;
   }
+
 </style>

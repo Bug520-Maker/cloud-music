@@ -1,3 +1,4 @@
+<!--分类下视频内容-->
 <template>
     <div class="vis-msg">
       <div class="loginTip" :class="{isShow:this.$store.state.loginType===1}">
@@ -7,9 +8,11 @@
       <!--视频内容-->
       <ul class="video-body" v-show="this.$store.state.loginType===1">
         <li v-for="(item,index) in videoMsg" :key="item.data.threadId">
-          <msg-list>
-            <div slot="imgContainer" class="img-container">
-              <img v-lazy="item.data.coverUrl+'?param=243y137.6'" />
+          <msg-list play-count-l="75%"
+                    :duration-x-y="{x:'80%',y:'82%'}">
+            <div slot="imgContainer" class="img-container" v-lazy-container="{ selector: 'img' }" @click="playVideo(item)">
+              <img :data-src="item.data.coverUrl+'?param=243y137.6'"
+                   :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
             </div>
             <div slot="state" class="state">
               {{item.data.title}}
@@ -18,15 +21,19 @@
               {{item.data.creator.nickname}}
             </div>
             <div slot="duration">{{duration(item.data.durationms)}}</div>
+            <div slot="playCount">{{playCount(item.data.playTime)}}</div>
           </msg-list>
         </li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
 </template>
 
 <script>
     import MsgList from "../../../components/common/msgList/MsgList";
-    import {formatDt} from "@/utils/format/format";
+    import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import {videoUrl} from "@/network/vision/vis/visList";
 
     export default {
         name: "visMsg",
@@ -44,7 +51,23 @@
           duration(item)
           {
             return formatDt(item);
-          }
+          },
+        playCount(item)
+        {
+          return formatPlayCount(item);
+        },
+        playVideo(item) {
+          videoUrl(item.data.vid).then(data=>{
+            //console.log(data.urls[0].url);
+            this.$router.push({
+              path:'/videoPlay',
+              query:{
+                url:data.urls[0].url,
+                mvId:item.data.vid
+              }
+            })
+          })
+        }
       }
     }
 </script>
@@ -88,6 +111,7 @@
      .video-body li
      {
        margin: 0 0 15px 0;
+       width: 241px;
      }
     .state
     {

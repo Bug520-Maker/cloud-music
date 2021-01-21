@@ -8,7 +8,7 @@
          </div>
          <!--用户评论-->
          <ul class="comment-msg">
-           <li class="user-comment">
+           <li class="user-comment" :style="{width:commentsWidth}">
              <span>{{item.user.nickname}}: </span>
              <span>{{item.content}}</span>
            </li>

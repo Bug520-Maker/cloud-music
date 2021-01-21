@@ -14,22 +14,24 @@
         </div>
       <!--相关Mv推荐-->
       <related-rec :mvId="mvId"/>
-
+      <!--视频评论-->
+      <video-comment :vId="mvId"/>
     </div>
 </template>
 <script>
 
     import RelatedRec from "@/components/content/VideoPlay/relatedRec/relatedRec";
     import VideoMsg from "@/components/content/VideoPlay/videoMsg/VideoMsg";
+    import VideoComment from "@/components/content/VideoPlay/videoComment/VideoComment";
     export default {
         name: "videoPlay",
-      components: {VideoMsg, RelatedRec},
+      components: {VideoComment, Comment, VideoMsg, RelatedRec},
       data()
         {
             return {
                 isCharge:true,
                 mvurl:'',
-                mvId:''
+                mvId:'',
             }
         },
         methods:{
@@ -41,7 +43,6 @@
         created() {
             this.mvurl=this.$route.query.url;
             this.mvId=this.$route.query.mvId;
-            console.log(this.$route.query.mvId);
         },
         mounted() {
             this.controlVolume(0.1);
@@ -53,6 +54,7 @@
     .video-play
     {
       display: flex;
+      flex-wrap: wrap;
       padding: 20px;
       height: 495px;
       overflow:auto;

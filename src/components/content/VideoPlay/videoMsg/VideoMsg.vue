@@ -2,15 +2,15 @@
 <template>
   <div class="mv-msg">
     <div class="avatar">
-      <img :src="videoData.cover" />
-      <span class="artist-name">{{videoData.artistName}}</span>
+      <img v-lazy="(videoData.cover===undefined) ? videoData.avatarUrl+'?param=50y50' : videoData.cover+'param=50y50'" />
+      <span class="artist-name">{{videoData.artistName||videoData.creator['nickname']}}</span>
     </div>
-    <div class="name">{{videoData.name}}</div>
+    <div class="name">{{videoData.name||videoData.title}}</div>
     <div class="publish-play">
       <span>发布：{{videoData.publishTime}}</span>
-      <span>播放：{{videoData.playCount}}次</span>
+      <span>播放：{{videoData.playCount||videoData.playTime}}次</span>
     </div>
-    <div class="desc">{{videoData.desc}}</div>
+    <div class="desc">{{videoData.desc||videoData.description}}</div>
     <div class="control-btn">
       <button>
         <i class="iconfont icon-zanpress1"></i>
@@ -30,27 +30,53 @@
 
 <script>
 import {mvData} from "@/network/vision/mv/mvList";
+import {videoData} from "@/network/vision/vis/visList";
+import {singerMsg} from "@/network/singer/singer";
 
 export default {
   name: "VideoMsg",
   data()
   {
     return {
-      videoData:{}
+      videoData:{
+        creator:{
+          nickname:''
+        }
+      }
     }
   },
   props:{
     mvId:{
       type:String,
       default:'',
+    },
+    path:{
+      type:String,
+      default:''
     }
   },
   created() {
-    mvData(this.mvId).then(data=>{
-      console.log(data.data);
+    if(this.mvId.length<=15)/*MV*/
+    {
+      mvData(this.mvId).then(data=>{
+     // console.log(data.data);
       this.videoData=data.data;
+        singerMsg(this.videoData.artists[0].id).then(data=>{
+          //console.log(data.data.artist);
+          this.videoData.cover=data.data.artist.cover
+        })
     })
-  }
+    }
+    else if(this.mvId.length>15)/*视频*/
+    {
+      videoData(this.mvId).then(data=>{
+        console.log(data.data)
+        this.videoData=data.data;
+
+      })
+    }
+  },
+
 }
 </script>
 
@@ -64,12 +90,13 @@ export default {
   .avatar
   {
     display: flex;
+    margin: 10px 0 0 0;
   }
   /*artist的name*/
   .artist-name
   {
     color:#676767;
-    margin:16px 0 0 10px;
+    margin:14px 0 0 10px;
   }
   /*设置state样式*/
   .name
@@ -77,6 +104,7 @@ export default {
     font-size: 20px;
     font-weight: bolder;
     margin: 25px 0 15px;
+    width: 480px;
   }
   /*发布/播放*/
   .publish-play span

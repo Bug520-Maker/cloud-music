@@ -30,15 +30,17 @@
         },
         created() {
             allList().then(data=>{
+              //console.log(data);
                 let rise="飙升榜";
                 let newSong="新歌榜";
                 let original="原创榜";
                 let hotSong="热歌榜";
                 let singer="歌手榜";
                 let listLink=[];
+
                 for(let list of data.list)
                 {
-                    if(rise==list.name||newSong==list.name||original==list.name||hotSong==list.name||singer==list.name)
+                    if(rise===list.name||newSong===list.name||original===list.name||hotSong===list.name||singer===list.name)
                     {
                         listLink.push(list);
                         this.rankMap.set(list.name,list.id);
@@ -53,25 +55,28 @@
                         if(key==='飙升榜')
                         {
                             this.soar=data.playlist.tracks.slice(0,5);
+
                         }
                         else if(key==='新歌榜')
                         {
                             this.newSong=data.playlist.tracks.slice(0,5);
+
                         }
                         else if(key==='原创榜')
                         {
                             this.original=data.playlist.tracks.slice(0,5);
+
                         }
                         else if(key==='热歌榜')
                         {
                             this.hotSong=data.playlist.tracks.slice(0,5);
+
                         }
                     }).then(()=>{
                       this.allRank.splice(0,0,this.soar,this.newSong,this.original,this.hotSong)
                     })
                 }
 
-               // console.log(this.allRank);
                 this.globalRank=data.list;
                 this.globalRank.splice(0,4);
                console.log(this.globalRank)

@@ -1,7 +1,7 @@
 <template>
     <div class="child-cpn clearfix">
         <ul>
-            <li v-for="(item,index) in list" :key="index" @click="liClick(index)" :class="{active:currentIndex==index}">
+            <li v-for="(item,index) in list" :key="index" @click="liClick(index)" :class="{active:currentIndex===index}">
                 {{item}}
             </li>
         </ul>

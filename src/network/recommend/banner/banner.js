@@ -1,4 +1,4 @@
-import {request} from "../request"
+import {request} from "../../request"
 
 export function banner()/*获取歌单详情*/
 {
