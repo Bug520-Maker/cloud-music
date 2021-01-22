@@ -68,3 +68,13 @@ export function mvData(mvid)
         }
     })
 }
+/*MV评论*/
+export function mvComment(id)
+{
+    return request({
+        url:'/comment/mv',
+        params:{
+            id
+        }
+    })
+}

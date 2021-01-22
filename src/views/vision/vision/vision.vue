@@ -46,11 +46,14 @@
             }
         },
         created() {
-           labelList().then(result=>{
-                //console.log(result.data);//可以直接取ID
-                this.allVideoTags=result.data;
-                this.liClick({name:'现场',id:58100},0)
-            })
+           if(this.$store.state.loginType===1)
+           {
+             labelList().then(result=>{
+               //console.log(result.data);//可以直接取ID
+               this.allVideoTags=result.data;
+               this.liClick({name:'现场',id:58100},0)
+             })
+           }
         },
         methods:{
             titleClick()
@@ -79,11 +82,14 @@
               {
                 this.$refs.videoTag.btnClick(location,item.name);
               }
-              /*获取标签分类下视频*/
-              visGroup(item.id).then(data=>{
-                //console.log(data.datas);
-                this.videoMsg=data.datas;
-              })
+              if(this.$store.state.loginType===1)
+              {
+                /*获取标签分类下视频*/
+                visGroup(item.id).then(data=>{
+                  //console.log(data.datas);
+                  this.videoMsg=data.datas;
+                })
+              }
             },
           allVideo()
           {

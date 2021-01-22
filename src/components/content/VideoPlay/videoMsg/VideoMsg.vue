@@ -2,7 +2,7 @@
 <template>
   <div class="mv-msg">
     <div class="avatar">
-      <img v-lazy="(videoData.cover===undefined) ? videoData.avatarUrl+'?param=50y50' : videoData.cover+'param=50y50'" />
+      <img v-lazy="(videoData.cover===undefined||null||'') ? videoData.avatarUrl+'?param=50y50' : videoData.cover+'?param=50y50'" />
       <span class="artist-name">{{videoData.artistName||videoData.creator['nickname']}}</span>
     </div>
     <div class="name">{{videoData.name||videoData.title}}</div>
@@ -56,7 +56,7 @@ export default {
     }
   },
   created() {
-    if(this.mvId.length<=15)/*MV*/
+    if(this.path==='/vision/mv'||this.path==='/singerDetails')/*MV*/
     {
       mvData(this.mvId).then(data=>{
      // console.log(data.data);
@@ -67,12 +67,11 @@ export default {
         })
     })
     }
-    else if(this.mvId.length>15)/*视频*/
+    else if(this.path==='/vision/vis')/*视频*/
     {
       videoData(this.mvId).then(data=>{
-        console.log(data.data)
+        //console.log(data.data)
         this.videoData=data.data;
-
       })
     }
   },
@@ -117,6 +116,7 @@ export default {
     color: #373737;
     font-size: 13px;
     margin: 10px 0 30px;
+    width: 480px;
   }
   /*控制按钮*/
   .control-btn button

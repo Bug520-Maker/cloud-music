@@ -6,7 +6,9 @@
 
             </li>
         </ul>
-        <router-view ></router-view><!--个性推荐，歌单,主播电台，排行榜等的路由显示-->
+      <keep-alive>
+        <router-view ></router-view>
+      </keep-alive><!--个性推荐，歌单,主播电台，排行榜等的路由显示-->
     </div>
 </template>
 

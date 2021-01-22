@@ -1,16 +1,17 @@
-<!--专辑歌单列表-->
+<!--歌手详情页 专辑歌单列表-->
 <template>
     <div class="song-list">
         <ul class="list-outer" ref="listOuter" :style="{height:listHeight}">
             <li v-for="(item,index) in songList" :key="index" ref="li">
-                <span class="index">{{index<9? '0'+(index+1) : index+1}} </span>
+                <span class="index">{{index<9? '0'+(index+1) : index+1}} </span><!--歌曲序号-->
                 <i class="iconfont icon-love"></i>
                 <i class="iconfont icon-download"></i>
+
                 <span class="outer">
-                     <span class="name" @click="playSong(item,index)">{{item.name}}</span>
-                     <span class="alia" v-show="typeof item.alia[0]!='undefined'"> ({{item.alia[0]}})</span>
+                     <span class="name" @click="playSong(item,index)">{{item.name}}</span>  <!--歌曲名称-->
+                     <span class="alia" v-show="typeof item.alia[0]!='undefined'"> ({{item.alia[0]}})</span> <!--歌曲描述-->
                 </span>
-                <span class="dt">{{duration(item.dt)}}</span>
+                <span class="dt">{{duration(item.dt)}}</span>  <!--持续时间-->
             </li>
         </ul>
         <div class="more" v-show="songList.length>10" @click="moreClick" ref="more">查看全部 ></div>
@@ -87,6 +88,7 @@
       mounted() {
          this.$nextTick(()=>{
            this.listHeight='291px';
+           console.log(this.$refs.listOuter.offsetHeight);
          })
       }
 

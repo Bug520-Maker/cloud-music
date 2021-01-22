@@ -8,7 +8,7 @@
             is-flex="flex"
             :duration-x-y="{x:'65%',y:'75%'}"
             play-count-l="60%">
-          <div slot="imgContainer" class="img-container">
+          <div slot="imgContainer" class="img-container" @click="playVideo(item)">
             <img :src="item.coverUrl+'?param=140y80'" />
           </div>
             <div slot="state" class="state">{{item.title}}</div>
@@ -22,9 +22,10 @@
 </template>
 
 <script>
-import {relatedVideo} from "@/network/vision/vis/visList";
+import {relatedVideo, videoUrl} from "@/network/vision/vis/visList";
 import MsgList from "@/components/common/msgList/MsgList";
 import {formatDt, formatPlayCount} from "@/utils/format/format";
+import {mvurl} from "@/network/vision/mv/mvList";
 
 export default {
   name: "relatedRec",
@@ -55,6 +56,32 @@ export default {
     playCount(item)
     {
       return formatPlayCount(item)
+    },
+    playVideo(item)
+    {
+      switch (item.type) {
+        case 1:
+          videoUrl(item.vid).then(data => {
+            //console.log(data.urls[0].url);
+              let simiRec={
+              url:data.urls[0].url,
+              mvId:item.vid
+            }
+            this.$emit('related-rec',simiRec)
+          });break;
+        case 0:
+          mvurl(item.vid).then(res=> {
+            //console.log(res.data.url);
+               let simiRec= {
+              url: res.data.url,
+              mvId: item.vid
+            }
+            this.$emit('related-rec',simiRec)
+          });break;
+        default:
+          console.log("err")
+      }
+
     }
   }
 }

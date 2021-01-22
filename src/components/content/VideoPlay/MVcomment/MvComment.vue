@@ -1,6 +1,6 @@
-<!--视频品论-->
+<!--mv评论-->
 <template>
-  <div class="video-comment">
+  <div class="mv-comment">
     <h5>精彩评论</h5>
     <comment :comments="hotComments" comments-width="500px"/>
     <h4 class="newComment">最新评论</h4>
@@ -9,29 +9,29 @@
 </template>
 
 <script>
-import {videoComm} from "@/network/vision/vis/visList";
-import Comment from "@/components/content/comment/Comment";
-
+import {mvComment} from "@/network/vision/mv/mvList";
+import Comment from '@/components/content/comment/Comment'
 export default {
-  name: "VideoComment",
-  components: {Comment},
+  name: "MvComment",
+  components:{
+    Comment
+  },
   data()
   {
     return {
-      hotComments:[],
-      comments:[]
+         hotComments:[],
+         comments:[]
     }
   },
   props:{
-    vId:{
+    mvId:{
       type:String,
       default:''
     }
   },
   created() {
-    console.log(this.vId)
-    videoComm(this.vId).then(data=>{
-      //console.log(data);
+    mvComment(this.mvId).then(data=>{
+     // console.log(data);
       this.hotComments=data.hotComments;
       this.comments=data.comments;
     })
@@ -40,14 +40,15 @@ export default {
 </script>
 
 <style scoped>
-  .video-comment
-  {
-    position: relative;
-  }
-  h5{
-    margin: 20px 0 10px 0;
-  }
-  h4{
-    margin: 30px 0 10px 0;
-  }
+.mv-comment {
+  position: relative;
+}
+
+h5 {
+  margin: 20px 0 10px 0;
+}
+
+h4 {
+  margin: 30px 0 10px 0;
+}
 </style>

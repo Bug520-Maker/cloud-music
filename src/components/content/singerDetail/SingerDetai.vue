@@ -39,7 +39,7 @@
                         <img src="../../../assets/img/singerSongs/top50.png" />
                     </div>
                 </AlbumCpn>
-                <AlbumCpn v-for="(item,index) in hotAlbum" :key="index" :album-name="item.name" :songs="albumContent[index]">
+                <AlbumCpn v-for="(item,index) in hotAlbum" :key="item.id" :album-name="item.name" :songs="albumContent[index]">
                     <div slot="album-img">
                         <img :src="item.picUrl+'?param=148y148'"/>
                     </div>
@@ -62,9 +62,8 @@
 </template>
 
 <script>
-    import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50,simiArtist} from "../../../network/singer/singer";
+    import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50,simiArtist} from "@/network/singer/singer";
     import SongLists from "../songList/SongLists";
-    import {mvurl} from "../../../network/vision/mv/mvList";
     import DetailsPage from "../../common/detailsPage/DetailsPage";
     import TabControl from "../../common/tabController/TabControl";
     import AlbumCpn from "./album/AlbumCpn";
@@ -90,7 +89,7 @@
         },
         created() {
             this.singerBaseMsg=this.$route.query.singerBaseMsg;
-          /*console.log(this.singerBaseMsg);*/
+          console.log(this.singerBaseMsg);
           this.networkOperate();
         },
         methods: {
@@ -99,42 +98,7 @@
             this.singerBaseMsg=item;
             this.networkOperate();
             this.$refs.tabControl.liClick(0);
-          }
-            /* liCLick(index)
-            {
-                this.currentIndex=index;
-                if(index==1)
-                {
-                    mvofsinger(this.singerBaseMsg.singerId).then(data=>{
-                        console.log(data.mvs);
-                        this.singerMvs=data.mvs;
-                    })
-                }
-                if(index==2)
-                {/!*获取歌手描述*!/
-                    singerDesc(this.singerBaseMsg.singerId).then(data=>{
-                        this.singerDesc=data.briefDesc;
-                    })
-                }
-
-            },
-            pClick()
-            {
-                this.$refs.checkmore.style.display="none";
-                this.$refs.checkmore.previousSibling.children[1].style.overflow="visible";
-            },
-            mvplay(index)
-            {
-                mvurl(this.singerMvs[index].id).then(res=>{
-                    this.$router.push({
-                        path:'/videoPlay',
-                        query:{
-                            url:res.data.url
-                        }
-                    })
-                })
-            }
-        },*/,
+          },
           networkOperate()
           {
             /*获取歌手热门50首歌曲*/
@@ -144,15 +108,20 @@
             })
             /*获取歌手专辑*/
             singeralbum(this.singerBaseMsg.artist.id).then(data=>{
-              // console.log(data.hotAlbums);
+              //console.log(data.hotAlbums);
+              this.hotAlbum=[];
+              this.albumContent=[];
               this.hotAlbum=data.hotAlbums;
 
               /*获取专辑内容*/
               for(let index in this.hotAlbum)
               {
+                //console.log(this.hotAlbum[index].id);
                 albumContent(this.hotAlbum[index].id).then(data=>{
-                  // console.log(data.songs);
+                  //console.log(data.songs);
+                  //console.log(this.albumContent.length)
                   this.albumContent.push(data.songs);
+                  //console.log(this.albumContent[index]);
                 })
               }
             })

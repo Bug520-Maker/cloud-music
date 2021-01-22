@@ -14,7 +14,10 @@ const albumMsg=()=>import('../../components/content/albumDetail/AlbumDetail');
 export const videoplayRuoter = {
     path: '/videoPlay',
     name: 'videoPlay',
-    component: videoplay
+    component: videoplay,
+    beforeEnter:(to,from,next)=>{
+        next()
+    }
 };
 /*歌单详情*/
 export const sheetMsgRuoter =

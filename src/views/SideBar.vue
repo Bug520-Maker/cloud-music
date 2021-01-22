@@ -3,8 +3,8 @@
     <div class="sild-bar">
         <navigate>
             <nav-item><!--设置发现音乐，视频，私人FM等结构-->
-                <my-list :list="['发现音乐','视频','朋友','直播','私人FM']" :path="['/findMusic','/vision','/friend','/zhibo','/perFM']"></my-list>
-                <router-view class="routerView"></router-view><!--在navItem中设置routerView的位置样式-->
+                <my-list :list="['发现音乐','视频','朋友','直播','私人FM']"
+                         :path="['/findMusic','/vision','/friend','/zhibo','/perFM']"></my-list>
             </nav-item>
             <nav-item>
                 <div class="title">我的音乐</div>

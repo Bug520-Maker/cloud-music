@@ -1,5 +1,5 @@
 <template>
-    <div class="video-play"><!--视频播放组件容器-->
+    <div class="video-play" :key="key"><!--视频播放组件容器-->
         <div class="video-container">
           <video :volume="0.2"
                  :src="mvurl|| this.$store.state.mvurldata.url"
@@ -8,14 +8,16 @@
                  autoplay="autoplay"
                  v-show="this.$store.state.mvurldata.url!=null||mvurl!=null">
           </video>
-          <div class="charge"  v-show="this.$store.state.mvurldata.url==null && mvurl==null"></div>
+          <div class="charge"  v-show="this.$store.state.mvurldata.url===null && mvurl===null"></div>
           <!--MV简略介绍-->
-          <video-msg :mvId="mvId"/>
+          <video-msg :mvId="mvId" v-if="path!==''" :path="path"/>
         </div>
       <!--相关Mv推荐-->
-      <related-rec :mvId="mvId"/>
+      <related-rec :mvId="mvId" @related-rec="changeVideo"/>
       <!--视频评论-->
-      <video-comment :vId="mvId"/>
+      <video-comment :vId="mvId" v-if="path==='/vision/vis'"/>
+      <!--MV评论-->
+      <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'"/>
     </div>
 </template>
 <script>
@@ -23,23 +25,31 @@
     import RelatedRec from "@/components/content/VideoPlay/relatedRec/relatedRec";
     import VideoMsg from "@/components/content/VideoPlay/videoMsg/VideoMsg";
     import VideoComment from "@/components/content/VideoPlay/videoComment/VideoComment";
+    import MvComment from "@/components/content/VideoPlay/MVcomment/MvComment";
     export default {
         name: "videoPlay",
-      components: {VideoComment, Comment, VideoMsg, RelatedRec},
+      components: {MvComment, VideoComment, Comment, VideoMsg, RelatedRec},
       data()
         {
             return {
                 isCharge:true,
                 mvurl:'',
                 mvId:'',
+                path:'',
+                key:0
             }
         },
-        methods:{
-            controlVolume(num)
-            {
-                this.$refs.videoPlay.volume=num
-            }
+      methods: {
+        controlVolume(num) {
+          this.$refs.videoPlay.volume = num
         },
+        changeVideo(simiMsg) {
+          this.mvurl=simiMsg.url;
+          this.mvId=simiMsg.mvId;
+          this.key++;
+            //console.log(simiMsg)
+        }
+      },
         created() {
             this.mvurl=this.$route.query.url;
             this.mvId=this.$route.query.mvId;
@@ -47,6 +57,13 @@
         mounted() {
             this.controlVolume(0.1);
         },
+        beforeRouteEnter(to,from,next)/*获取*/
+        {
+          next(vm=>{
+              vm.path=from.path;
+              console.log(vm.path)
+          })
+        }
     }
 </script>
 

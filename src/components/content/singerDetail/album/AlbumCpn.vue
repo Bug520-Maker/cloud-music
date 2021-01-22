@@ -37,7 +37,10 @@
                     return []
                 }
             }
-        }
+        },
+      created() {
+         // console.log(this.songs)
+      }
     }
 </script>
 
