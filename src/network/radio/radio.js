@@ -88,3 +88,34 @@ export function cateTop(id)
         }
     })
 }
+/*节目*/
+export function program(rid)
+{
+    return request({
+        url:'/dj/program',
+        params:{
+            rid,
+            asc:false
+        }
+    })
+}
+/*电台订阅者列表*/
+export function djsubscribe(id)
+{
+    return request({
+        url:'/dj/subscriber',
+        params:{
+            id
+        }
+    })
+}
+/*节目详情*/
+export function programmMsg(id)
+{
+    return request({
+        url:'/dj/program/detail',
+        params:{
+            id
+        }
+    })
+}

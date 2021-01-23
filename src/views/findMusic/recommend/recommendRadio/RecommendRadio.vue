@@ -1,24 +1,17 @@
 <template>
-    <div class="rec-radio">
-        <recommend-cpn>
-            <div slot="title">
-                主播电台
-              <i class="iconfont icon-arrow-right1"></i>
-            </div>
-            <div slot="list">
-                <ul>
-                    <li v-for="(item,index) in radios" :key="item">
-
-                    </li>
-                </ul>
-            </div>
-        </recommend-cpn>
+  <div class="rec-radio">
+    <div @click="djRadio">
+      主播电台
+      <i class="iconfont icon-arrow-right1"></i>
     </div>
+    <radio-cpn :list="radios"/>
+  </div>
 </template>
 
 <script>
     import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
-    import {recRadio, PersonalizedRec, Rec, catrgoryRadio} from "@/network/radio/radio";
+    import {Rec} from "@/network/radio/radio";
+    import RadioCpn from "@/components/content/RadioCpn/RadioCpn";
     export default {
         name: "RecommendRadio",
         data()
@@ -28,25 +21,30 @@
           }
         },
         components: {
+          RadioCpn,
             RecommendCpn
         },
         created() {
-           /* recRadio().then(data=>{
-                console.log(data);
-            })*/
-            /*PersonalizedRec().then(data=>{
-                console.log(data);
-            })*/
-           /* Rec().then(data=>{
-                console.log(data);
-            })*/
-            catrgoryRadio().then(data=>{
-               // console.log(data);
+            Rec().then(data=>{
+             // console.log(data.djRadios);
+              this.radios=data.djRadios.slice(0,5);
             })
+        },
+      methods:{
+        djRadio()
+        {
+          this.$router.push('/findMusic/radion')
         }
+      }
     }
 </script>
 
 <style scoped>
-
+.rec-radio
+{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0 20px 0;
+  cursor:pointer;
+}
 </style>

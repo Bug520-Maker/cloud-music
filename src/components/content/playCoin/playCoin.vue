@@ -78,14 +78,20 @@
             },
              pClick()
              {
-               singerMsg(this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/).then(res=>{
-                 /*路由至歌手详情页*/
+               /*singerMsg(this.$store.state.singleDetails.artists[0].id/!*当前歌手ID*!/).then(res=>{
+                 /!*路由至歌手详情页*!/
                  this.$router.push({
                    path:'/singerDetails',
                    query:{
                      singerBaseMsg:res.data
                    }
                  })
+               })*/
+               this.$router.push({
+                 path:'/singerDetails',
+                 query:{
+                   artistId:this.$store.state.singleDetails.artists[0].id
+                 }
                })
              },
 

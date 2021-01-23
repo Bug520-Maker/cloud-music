@@ -67,24 +67,20 @@
               default: {}
             }
         },
-        methods:{
-            singerClick()
-            {
-                this.$refs.playPage.classList.remove("active");
-                /*获取歌手详细信息*/
-                singerMsg(this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/).then(res=>{
-                    /*路由至歌手详情页*/
-                    this.$router.push({
-                        path:'/singerDetails',
-                        query:{
-                            singerBaseMsg:res.data
-                        }
-                    })
-                    //console.log(res.data);
-                })
-            },
+      methods: {
+        singerClick() {
+          this.$refs.playPage.classList.remove("active");
+          /*路由至歌手详情页*/
+          this.$router.push({
+            path: '/singerDetails',
+            query: {
+              artistId: this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/
+            }
+          })
+          //console.log(res.data);
+        },
 
-        }
+      }
     }
 </script>
 

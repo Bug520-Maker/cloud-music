@@ -34,15 +34,15 @@
         methods:{
           singerClick(item)
           {
-            singerMsg(item.id).then(res=>{
+            console.log(item)
               /*路由至歌手详情页*/
               this.$router.push({
                 path:'/singerDetails',
                 query:{
-                  singerBaseMsg:res.data
+                  artistId:item.id
                 }
               })
-            })
+
           }
         }
     }

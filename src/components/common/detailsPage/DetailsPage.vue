@@ -33,8 +33,10 @@
 </template>
 
 <script>
+    import TabControl from "@/components/common/tabController/TabControl";
     export default {
-        name: "DetailsPage"
+        name: "DetailsPage",
+      components: {TabControl}
     }
 </script>
 

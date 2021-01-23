@@ -16,7 +16,7 @@
                       {{item.name}}
                       <span v-show="item.song.alias.length>0">({{item.song.alias[0]}})</span>
                     </p>
-                    <p class="name">{{toString(item.song.artists)}}</p>
+                    <p class="name" @click="artistRoute(item.song)">{{toString(item.song.artists)}}</p>
                 </div>
             </li>
         </ul>
@@ -74,6 +74,17 @@
           newMusicRoute()
           {
             this.$router.push('/findMusic/newMusic');
+          },
+          artistRoute(item)
+          {
+            /*路由至歌手详情页*/
+            this.$router.push({
+              path: '/singerDetails',
+              query: {
+                artistId:item.artists[0].id/*当前歌手ID*/
+              }
+            })
+
           }
         }
     }
@@ -153,6 +164,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       cursor: pointer;
+      margin: 5px 0 5px 0;
     }
     .songName span{
       color: #929292;

@@ -78,7 +78,12 @@
         data()
         {
             return {
-                singerBaseMsg:{},/*当前歌手信息*/
+                singerBaseMsg:{
+                  artist:{
+                    cover:'',
+                    transNames:[{}]
+                  }
+                },/*当前歌手信息*/
                 top520Msg:[],    /*歌手热门50首歌曲*/
                 hotAlbum:[],/*歌手专辑*/
                 albumContent:[],/*专辑内容*/
@@ -88,9 +93,15 @@
             }
         },
         created() {
-            this.singerBaseMsg=this.$route.query.singerBaseMsg;
-          console.log(this.singerBaseMsg);
-          this.networkOperate();
+
+           /* this.singerBaseMsg=this.$route.query.singerBaseMsg;
+          console.log(this.singerBaseMsg);*/
+          console.log(this.$route.query.artistId);
+          singerMsg(this.$route.query.artistId).then(res=>{
+            this.singerBaseMsg=res.data
+            this.networkOperate();
+          })
+
         },
         methods: {
           simiMsg(item)

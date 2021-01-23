@@ -24,13 +24,11 @@
             liClick(index)
             {
                 let singerId=this.$store.state.singerLists[index].id;
-                singerMsg(singerId).then(res=>{
                   this.$router.push({
                     path:"/singerDetails",
                     query:{
-                      singerBaseMsg:res.data
+                     artistId:singerId
                     }
-                  });
                 })
             }
         }

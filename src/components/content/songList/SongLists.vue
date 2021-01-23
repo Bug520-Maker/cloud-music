@@ -71,15 +71,13 @@
             /*歌手详情*/
           singerDetail(item,index)
           {
-            singerMsg(this.songLists[index].artists[0].id).then(res=>{
               /*路由至歌手详情页*/
               this.$router.push({
                 path:'/singerDetails',
                 query:{
-                  singerBaseMsg:res.data
+                  artistId:this.songLists[index].artists[0].id
                 }
               })
-            })
           }
         },
     }

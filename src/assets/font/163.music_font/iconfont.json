@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11175131",
+      "name": "五角星 星型 ",
+      "font_class": "wujiaoxingxingxing",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
       "icon_id": "16578017",
       "name": "点赞",
       "font_class": "zanpress1",

@@ -7,7 +7,7 @@
             </div>
             <div slot="list">
                 <ul class="radio">
-                    <li v-for="(item,index) in list">
+                    <li v-for="(item,index) in list" @click="djRouter(item)">
                         <img v-lazy="item.picUrl+'?param=140y140'" />
                         <p>{{item.rcmdText}}</p>
                         <div class="name">{{item.name}}</div>
@@ -37,7 +37,18 @@
                     return '';
                 }
             }
+        },
+      methods:{
+        djRouter(item)
+        {
+          this.$router.push({
+            path:'/djradioMsg',
+            query:{
+              anchorId:item.id/*主播ID*/
+            }
+          })
         }
+      }
     }
 </script>
 

@@ -4,8 +4,12 @@ import VueRouter from 'vue-router'
 import findMusic from "@/router/findMusic/findMusic";
 import video from "@/router/video/video";
 import search from "@/router/search/search";
-import {localMusicRouter,downloadManageRouter,myCollectionRouter,myRadioRouter,myYunPanRouter,UserPlayListRouter} from "@/router/myMusic/myMusic";
-import {sheetMsgRuoter,singerDetailsRuoter,solePlayRuoter,videoplayRuoter,allMvRuoter,albumMsgRouter} from '@/router/features/features';
+import {localMusicRouter,
+        downloadManageRouter,
+        myCollectionRouter,
+        myRadioRouter,
+        myYunPanRouter,UserPlayListRouter} from "@/router/myMusic/myMusic";
+import {sheetMsgRuoter,singerDetailsRuoter,solePlayRuoter,videoplayRuoter,allMvRuoter,albumMsgRouter,djRadioRouter} from '@/router/features/features';
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -47,6 +51,7 @@ const routes = [
   videoplayRuoter,
   allMvRuoter,
   albumMsgRouter,
+   djRadioRouter,
   /*搜索*/
   search,
   /*我的音乐*/
