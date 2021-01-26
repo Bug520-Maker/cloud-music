@@ -19,7 +19,7 @@
               {{playCount(item.playCount)}}
             </div>
             <!--使用组件的user替换duration-->
-            <div slot="duration" class="user">
+            <div slot="duration" class="user" @click="userRouter(item)">
               <i class="iconfont icon-ttpodicon"></i>
               {{item.creator.nickname}}</div>
             <div slot="playIcon" class="play-icon">
@@ -75,6 +75,16 @@
           playCount(item)
           {
             return formatPlayCount(item);
+          },
+          userRouter(item)
+          {
+            this.$router.push({
+              path:'/userDetail',
+              query:{
+                userId:item.creator.userId
+              }
+            })
+            //console.log(item.creator.userId)
           }
         }
     }
@@ -128,6 +138,10 @@
         margin: 7px 0 0 0;
         color: #373737;
     }
+     .user
+     {
+       cursor: pointer;
+     }
     .user i
     {
       font-size: 12px;

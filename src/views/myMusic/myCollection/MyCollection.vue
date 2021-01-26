@@ -1,15 +1,43 @@
 <template>
     <div class="my-collection">
-        我的收藏
+        <tab-control :list="['专辑','歌手','视频','专栏']" class="collect-tab-control">
+          <div slot="专辑">
+            <collect-album/>
+          </div>
+          <div slot="歌手">
+            <collect-artist/>
+          </div>
+          <div slot="视频">
+            <collect-video/>
+          </div>
+          <div slot="专栏"></div>
+        </tab-control>
     </div>
 </template>
 
 <script>
+    import TabControl from "@/components/common/tabController/TabControl";
+    import CollectAlbum from "@/views/myMusic/myCollection/collectAlbum/CollectAlbum";
+    import CollectArtist from "@/views/myMusic/myCollection/collectArtist/CollectArtist";
+    import CollectVideo from "@/views/myMusic/myCollection/collectVideo/CollectVideo";
     export default {
-        name: "MyCollection"
+        name: "MyCollection",
+      components: {CollectVideo, CollectArtist, CollectAlbum, TabControl}
     }
 </script>
 
 <style scoped>
-
+  .my-collection
+  {
+    height: 535px;
+    overflow-y: auto;
+  }
+  .my-collection::-webkit-scrollbar
+  {
+    width: 2px;
+  }
+  .collect-tab-control
+  {
+    margin: 25px 0 0px 30px;
+  }
 </style>

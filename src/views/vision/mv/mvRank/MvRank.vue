@@ -11,8 +11,9 @@
     <ul class="mv-content">
       <li v-for="(item,index) in mvRank" :key="item.id">
         <div class="sign">{{index+1<10? '0'+(index+1) :index+1}}</div>
-        <div class="img-container">
-          <img v-lazy="item.cover+'?param=172y96.7'" />
+        <div class="img-container" v-lazy-container="{ selector: 'img' }">
+          <img :data-src="item.cover+'?param=172y96.7'"
+               :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
         </div>
         <div class="msg">
           <div class="name">{{item.name}}</div>
@@ -107,6 +108,7 @@ export default {
   .mv-content .img-container img
   {
     width: 172px;
+    height:96px;
     border-radius: 5px;
   }
   .sign

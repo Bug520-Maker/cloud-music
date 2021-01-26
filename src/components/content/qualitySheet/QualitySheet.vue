@@ -22,7 +22,7 @@
                 </div>
                 <ul class="sheetInfo">
                     <li @click="liClick(index,item)">{{qualitySheet[index].name}}</li>
-                    <li>{{qualitySheet[index].creator.nickname}}</li>
+                    <li @click="userRouter(item)">by {{qualitySheet[index].creator.nickname}}</li>
                     <li>{{qualitySheet[index].copywriter}}</li>
                 </ul>
             </li>
@@ -79,6 +79,16 @@
               })
             }
           },
+          userRouter(item)
+          {
+            this.$router.push({
+              path:'/userDetail',
+              query:{
+                userId:item.creator.userId
+              }
+            })
+            //console.log(item.creator)
+          }
         }
     }
 </script>
@@ -165,6 +175,7 @@
   font-size: 12px;
   margin: 0 0 20px 0;
   color: rgb(159, 159, 159);
+  cursor:pointer;
 }
 
 .sheetInfo li:nth-of-type(3) {

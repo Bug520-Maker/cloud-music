@@ -53,90 +53,90 @@
 </template>
 
 <script>
-    import tabbar from "../components/common/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
-    import tabbarItem from "../components/common/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
-    import search from "../components/content/search/search";
-    import Login from "@/components/content/login/Login";
-    import Profile from "@/components/content/profile/Profile";
-    import {loginStatus, logout, refreshLogin} from "@/network/login/login";
-    export default {
-        name: "Header",
-        data(){
-          return {
-            isShow:false,/*扫码登录界面*/
-           // nickname:'未登录',
-            isLive:false,/*用户登录成功小窗口*/
-          }
-        },
-      created() {
-      },
-      components:{
-          Profile,
-          Login,
-            tabbar,
-            tabbarItem,
-            search,
-        },
-      methods:{
-            leftBack()
-            {
-                history.back();
-            },
-            imgClick()/*点击logo回到首页*/
-            {
-                this.$router.push('/findMusic/recommend');
-            },
-            disappear()
-            {
-                this.$refs.dis.offsetParent.classList.add('active');
-                this.$refs.dis.offsetParent.nextSibling.style.display="block";
-            },
-            /*点击昵称弹出扫码登录*/
-            nickNameLoginClick()
-           {
+import tabbar from "../components/common/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
+import tabbarItem from "../components/common/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
+import search from "../components/content/search/search";
+import Login from "@/components/content/login/Login";
+import Profile from "@/components/content/profile/Profile";
+import {loginStatus, logout, refreshLogin} from "@/network/login/login";
 
-             if(this.$store.state.loginType===0)/*如果是未登录状态*/
-             {
-               setTimeout(()=>{/*弹出扫码登录*/
-                 this.isShow=true;
-               },800)
-             }
-             else if(this.$store.state.loginType===1)/*如果是登录状态*/
-             {
-               //console.log(this.$store.state.loginType)
-                this.isLive=!this.isLive;/*弹出用户成功登录后的小窗口*/
-             }
-          },
-          /*点击头像*/
-          avatarLoginClick()
-          {
-            if(this.$store.state.loginType===0)/*如果是未登录状态*/
-            {
-              setTimeout(()=>{/*弹出扫码登录*/
-                this.isShow=true;
-              },800)
-            }
-            else if(this.$store.state.loginType===1)/*如果是登录状态*/
-            {
-              return null;
-            }
-          },
-          /*登录成功后，退出扫码登录界面*/
-          exitClick()
-          {
-            this.isShow=false;
-            /*if(this.$store.state.loginType===1)
-            {
-              this.nickName=this.$store.state.userMsg.profile.nickname;
-            }*/
-          },
-          /*退出登录状态 ，用户登陆成功后的小窗口消失*/
-          exitLogin()
-          {
-            this.isLive=false;
-          }
-        }
+export default {
+  name: "Header",
+  data() {
+    return {
+      isShow: false,/*扫码登录界面*/
+      // nickname:'未登录',
+      isLive: false,/*用户登录成功小窗口*/
     }
+  },
+  created() {
+  },
+  components: {
+    Profile,
+    Login,
+    tabbar,
+    tabbarItem,
+    search,
+  },
+  methods: {
+    leftBack() {
+      history.back();
+    },
+    imgClick()/*点击logo回到首页*/ {
+      this.$router.push('/findMusic/recommend');
+    },
+    disappear() {
+      /*logout().then(data => {
+        console.log(data)
+      })*/
+      this.$refs.dis.offsetParent.parentNode.classList.add('active');
+      this.$refs.dis.offsetParent.parentNode.nextSibling.style.display = "block";
+    },
+    /*点击昵称弹出扫码登录*/
+    nickNameLoginClick() {
+
+      if (this.$store.state.loginType === 0)/*如果是未登录状态*/
+      {
+        setTimeout(() => {/*弹出扫码登录*/
+          this.isShow = true;
+        }, 800)
+      } else if (this.$store.state.loginType === 1)/*如果是登录状态*/
+      {
+        //console.log(this.$store.state.loginType)
+        this.isLive = !this.isLive;/*弹出用户成功登录后的小窗口*/
+      }
+    },
+    /*点击头像*/
+    avatarLoginClick() {
+      if (this.$store.state.loginType === 0)/*如果是未登录状态*/
+      {
+        setTimeout(() => {/*弹出扫码登录*/
+          this.isShow = true;
+        }, 800)
+      } else if (this.$store.state.loginType === 1)/*如果是登录状态*/
+      {
+        this.$router.push({
+          path: '/userDetail',
+          query: {
+            userId: this.$store.state.userMsg.profile.userId
+          }
+        })
+      }
+    },
+    /*登录成功后，退出扫码登录界面*/
+    exitClick() {
+      this.isShow = false;
+      /*if(this.$store.state.loginType===1)
+      {
+        this.nickName=this.$store.state.userMsg.profile.nickname;
+      }*/
+    },
+    /*退出登录状态 ，用户登陆成功后的小窗口消失*/
+    exitLogin() {
+      this.isLive = false;
+    }
+  }
+}
 </script>
 
 <style scoped>

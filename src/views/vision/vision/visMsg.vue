@@ -6,7 +6,7 @@
         <span>请先登录</span>
       </div>
       <!--视频内容-->
-      <ul class="video-body" v-show="this.$store.state.loginType===1">
+      <ul class="video-body" v-if="this.$store.state.loginType===1">
         <li v-for="(item,index) in videoMsg" :key="item.data.threadId">
           <msg-list play-count-l="75%"
                     :duration-x-y="{x:'80%',y:'82%'}">
@@ -17,7 +17,7 @@
             <div slot="state" class="state">
               {{item.data.title}}
             </div>
-            <div slot="creator" class="creator">
+            <div slot="creator" class="creator" @click="userRouter(item.data.creator)">
               {{item.data.creator.nickname}}
             </div>
             <div slot="duration">{{duration(item.data.durationms)}}</div>
@@ -66,6 +66,15 @@
                 mvId:item.data.vid
               }
             })
+          })
+        },
+        userRouter(item)
+        {
+          this.$router.push({
+            path:'/userDetail',
+            query:{
+              userId:item.userId
+            }
           })
         }
       }
@@ -131,5 +140,6 @@
   {
     font-size: 12px;
     color: #cfcfcf;
+    cursor: pointer;
   }
 </style>

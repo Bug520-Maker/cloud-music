@@ -9,7 +9,14 @@ import {localMusicRouter,
         myCollectionRouter,
         myRadioRouter,
         myYunPanRouter,UserPlayListRouter} from "@/router/myMusic/myMusic";
-import {sheetMsgRuoter,singerDetailsRuoter,solePlayRuoter,videoplayRuoter,allMvRuoter,albumMsgRouter,djRadioRouter} from '@/router/features/features';
+import {sheetMsgRuoter,
+  singerDetailsRuoter,
+  solePlayRuoter,
+  videoplayRuoter,
+  allMvRuoter,
+  albumMsgRouter,
+  djRadioRouter,
+  userMsgRouter} from '@/router/features/features';
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -52,6 +59,7 @@ const routes = [
   allMvRuoter,
   albumMsgRouter,
    djRadioRouter,
+  userMsgRouter,
   /*搜索*/
   search,
   /*我的音乐*/

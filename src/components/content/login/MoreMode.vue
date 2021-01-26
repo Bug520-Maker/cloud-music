@@ -95,9 +95,6 @@ export default {
             type:'userMsg',
             userMsg:JSON.parse(window.sessionStorage.getItem('userMsg'))
           })
-          loginStatus().then(data=>{
-            console.log(data);
-          })
           refreshLogin().then(data=>{
             console.log(data);
           })

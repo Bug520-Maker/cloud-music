@@ -10,7 +10,10 @@ const sheetMsg=()=>import('../../components/content/songSheetList/songSheetList'
 const solePlay=()=>import('../../components/content/solePlay/SolePlay');
 /*专辑详情*/
 const albumMsg=()=>import('../../components/content/albumDetail/AlbumDetail');
+/*电台详情*/
 const djradioMsg=()=>import('../../components/content/djRadioDetail/DjRadioDetail')
+/*用户详情*/
+const userMsg=()=>import('@/components/content/userDetail/UserDetail')
 
 /*视频播放*/
 export const videoplayRuoter = {
@@ -59,4 +62,10 @@ export const djRadioRouter={
     path:'/djradioMsg',
     name:'djradioMsg',
     component:djradioMsg
+}
+/*用户详情页*/
+export const userMsgRouter={
+    path:'/userDetail',
+    name:'userDetail',
+    component:userMsg
 }

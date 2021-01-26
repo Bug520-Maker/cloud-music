@@ -9,7 +9,7 @@
                         :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
                 </div>
                 <div slot="state" class="name">{{item.name}}</div>
-                <div slot="creator" class="artist">{{item.artistName}}</div>
+                <div slot="creator" class="artist" @click="singerRouter(item)">{{item.artistName}}</div>
                 <div slot="playCount">{{playCount(item.playCount)}}</div>
               </msg-list>
             </li>
@@ -48,6 +48,15 @@
                 mvId:item.id
               }
             })
+          })
+        },
+        singerRouter(item)
+        {
+          this.$router.push({
+            path:'/singerDetails',
+            query:{
+              artistId:item.artistId
+            }
           })
         }
       }
@@ -88,5 +97,7 @@
     {
         font-size: 12px;
         color: rgb(103,103,103);
+        cursor:pointer;
+        margin-top: 3px;
     }
 </style>
