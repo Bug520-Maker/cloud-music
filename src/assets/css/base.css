@@ -50,3 +50,9 @@ button
 {
     color :#4b4b4b;
 }
+.single-text-overflow
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
