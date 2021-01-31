@@ -10,3 +10,25 @@ export function hotTopic()
         }
     })
 }
+/*获取用户动态*/
+export function userDynamic(uid)
+{
+    return request({
+        url:'/user/event',
+        params:{
+            uid,
+            cookie:store.state.userMsg.cookie
+        }
+    })
+}
+/*获取话题详情*/
+export function topicMsg(actid)
+{
+    return request({
+        url:'/topic/detail',
+        method:'post',
+        data:{
+            actid,
+        }
+    })
+}

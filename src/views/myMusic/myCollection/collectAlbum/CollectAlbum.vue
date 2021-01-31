@@ -8,7 +8,7 @@
        <li v-for="(item,index) in collectAlbums" :key="item.id">
          <list-info is-flex="flex">
            <div slot="imgContainer" class="collect-album-img">
-             <img :src="item.picUrl" />
+             <img :src="item.picUrl+'?param=60y60'" />
            </div>
            <div slot="state" class="collect-album-state">
              {{item.name}}

@@ -3,17 +3,17 @@ const allMv=()=>import('../../views/vision/mv/allMv/AllMv');
 /*视频播放组件路由*/
 const videoplay=()=>import('../../components/content/VideoPlay/videoPlay');
 /*导入歌手信息详情页*/
-const singerDetails=()=>import("../../components/content/singerDetail/SingerDetai");
+const singerDetails=()=>import("../../components/content/details/singerDetail/SingerDetai");
 /*歌单详情组件*/
-const sheetMsg=()=>import('../../components/content/songSheetList/songSheetList')
+const sheetMsg=()=>import('../../components/content/details/songSheetList/songSheetList')
 /*独家放送*/
 const solePlay=()=>import('../../components/content/solePlay/SolePlay');
 /*专辑详情*/
-const albumMsg=()=>import('../../components/content/albumDetail/AlbumDetail');
+const albumMsg=()=>import('../../components/content/details/albumDetail/AlbumDetail');
 /*电台详情*/
-const djradioMsg=()=>import('../../components/content/djRadioDetail/DjRadioDetail')
+const djradioMsg=()=>import('../../components/content/details/djRadioDetail/DjRadioDetail')
 /*用户详情*/
-const userMsg=()=>import('@/components/content/userDetail/UserDetail')
+const userMsg=()=>import('@/components/content/details/userDetail/UserDetail');
 
 /*视频播放*/
 export const videoplayRuoter = {

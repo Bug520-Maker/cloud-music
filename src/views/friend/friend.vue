@@ -1,8 +1,10 @@
 <!--朋友-->
 <template>
     <div class="friend">
+
       <div class="main-content">
-        <ul class="dynamic">
+        <router-view/>
+        <ul class="dynamic" v-if="!isShowDynamic">
           <li>
             动态
           </li>
@@ -14,7 +16,9 @@
           </li>
         </ul>
         <div v-show="this.$store.state.loginType===0" class="no-dynamic">暂无动态</div>
+        <dynamic-msg v-if="isShowDynamic&&flag" @topic-msg="topicRouter"/>
       </div>
+
       <div class="side">
         <div class="askLogin">
           <img src="../../assets/img/login/loginPC.png" />
@@ -24,7 +28,7 @@
         <!--热门话题-->
         <div class="top-title" v-show="this.$store.state.loginType===1">
           <div>热门话题</div>
-          <div class="more">更多 ></div>
+          <div class="more" @click="moreClick" v-if="!isShowDynamic">更多 ></div>
         </div>
         <topic :list="top" v-show="this.$store.state.loginType===1" />
       </div>
@@ -34,14 +38,18 @@
 <script>
     import {hotTopic} from "@/network/friends/hotTopic";
     import Topic from "@/views/friend/topic/Topic";
+    import UserDynamic from "@/views/friend/userDynamic/UserDynamic";
+    import DynamicMsg from "@/views/friend/dynamicMsg/DynamicMsg";
 
     export default {
         name: "friend",
-      components: {Topic},
+      components: {DynamicMsg, UserDynamic, Topic},
       data()
       {
         return {
-          top:[]
+          top:[],
+          isShowDynamic:false,
+          flag:true/*参与控制话题列表的显示*/
         }
       },
       created() {
@@ -52,6 +60,16 @@
              this.top=data.hot;
            })
          }
+      },
+      methods:{
+        moreClick()
+        {
+          this.isShowDynamic=true;
+        },
+        topicRouter()
+        {
+          this.flag=false
+        }
       }
     }
 </script>
@@ -66,6 +84,11 @@
     {
       border-right: 1px solid #e0e0e0;
       width: 585px;
+      overflow:auto;
+    }
+    .main-content::-webkit-scrollbar
+    {
+      width: 2px;
     }
     /*动态*/
     .dynamic

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import MsgList from "../../../common/msgList/MsgList";
+    import MsgList from "../../../../common/msgList/MsgList";
     import {formatDt, formatPlayCount} from "@/utils/format/format";
     import {mvurl} from "@/network/vision/mv/mvList";
     export default {

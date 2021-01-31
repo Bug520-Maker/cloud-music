@@ -75,6 +75,7 @@ h4{
   .collect-video-img img
   {
     width: 234px;
+    height: 133px;
   }
   .collect-video-state
   {

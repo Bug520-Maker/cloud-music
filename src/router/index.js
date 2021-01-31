@@ -16,7 +16,11 @@ import {sheetMsgRuoter,
   allMvRuoter,
   albumMsgRouter,
   djRadioRouter,
-  userMsgRouter} from '@/router/features/features';
+  userMsgRouter,
+  } from '@/router/features/features';
+
+/*话题详情页*/
+const topicMsg=()=>import('@/views/friend/dynamicMsg/topicDetails');
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -38,7 +42,14 @@ const routes = [
   {/*朋友路由*/
     path: '/friend',
     name: 'friend',
-    component: friend
+    component:friend,
+    children: [
+      {
+        path:'topicMsg',
+        name:'topicMsg',
+        component:topicMsg
+      }
+    ]
   },
   {/*私人FM路由*/
     path: '/perFM',

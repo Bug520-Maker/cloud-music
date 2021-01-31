@@ -73,12 +73,12 @@
 </template>
 
 <script>
-    import DetailsPage from "../../common/detailsPage/DetailsPage";
-    import TabControl from "../../common/tabController/TabControl";
-    import SongLists from "../songList/SongLists";
+    import DetailsPage from "../../../common/detailsPage/DetailsPage";
+    import TabControl from "../../../common/tabController/TabControl";
+    import SongLists from "../../songList/SongLists";
     import {songSheetComm,songSheetCollect} from "@/network/songsheet/songSheet";
     import Comment from "@/components/content/comment/Comment";
-    import Subscribers from "@/components/content/songSheetList/subscribers/Subscribers";
+    import Subscribers from "@/components/content/details/songSheetList/subscribers/Subscribers";
     import {songDetailes} from "@/network/playCoin/songDetal";
 
     export default {
@@ -187,7 +187,7 @@
 </script>
 
 <style scoped>
-    @import "../../../assets/font/163.music_font/iconfont.css";
+    @import "../../../../assets/font/163.music_font/iconfont.css";
     .sheetMsg
     {
         height: 535px;

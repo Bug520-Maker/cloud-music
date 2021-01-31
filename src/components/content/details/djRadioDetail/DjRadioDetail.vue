@@ -52,8 +52,8 @@
 import {RadioMsg} from "@/network/radio/radio";
 import DetailsPage from "@/components/common/detailsPage/DetailsPage";
 import TabControl from "@/components/common/tabController/TabControl";
-import Programmer from "@/components/content/djRadioDetail/program/Programmer";
-import Subscriber from "@/components/content/djRadioDetail/subscribe/Subscriber";
+import Programmer from "@/components/content/details/djRadioDetail/program/Programmer";
+import Subscriber from "@/components/content/details/djRadioDetail/subscribe/Subscriber";
 
 export default {
   name: "DjRadioDetail",

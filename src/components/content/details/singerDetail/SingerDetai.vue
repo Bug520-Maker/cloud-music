@@ -36,7 +36,7 @@
             <div slot="专辑">
                 <AlbumCpn album-name="热门50首" :songs="top520Msg">
                     <div slot="album-img">
-                        <img src="../../../assets/img/singerSongs/top50.png" />
+                        <img src="../../../../assets/img/singerSongs/top50.png" />
                     </div>
                 </AlbumCpn>
                 <AlbumCpn v-for="(item,index) in hotAlbum" :key="item.id" :album-name="item.name" :songs="albumContent[index]">
@@ -63,14 +63,14 @@
 
 <script>
     import {albumContent, mvofsinger, singeralbum, singerDesc, singerMsg, top50,simiArtist} from "@/network/singer/singer";
-    import SongLists from "../songList/SongLists";
-    import DetailsPage from "../../common/detailsPage/DetailsPage";
-    import TabControl from "../../common/tabController/TabControl";
+    import SongLists from "../../songList/SongLists";
+    import DetailsPage from "../../../common/detailsPage/DetailsPage";
+    import TabControl from "../../../common/tabController/TabControl";
     import AlbumCpn from "./album/AlbumCpn";
-    import MsgList from "../../common/msgList/MsgList";
+    import MsgList from "../../../common/msgList/MsgList";
     import Mvs from "./mvs/Mvs";
     import SingerDescription from "./desc/SingerDescription";
-    import SimilarSinger from "@/components/content/singerDetail/similarSinger/SimilarSinger";
+    import SimilarSinger from "@/components/content/details/singerDetail/similarSinger/SimilarSinger";
 
     export default {
         name: "SingerDetai",

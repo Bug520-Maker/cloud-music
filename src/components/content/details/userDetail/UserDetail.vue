@@ -53,10 +53,10 @@
 <script>
 import {userDetail} from "@/network/user/user";
 import DetailsPage from "@/components/common/detailsPage/DetailsPage";
-import UserColumn from "@/components/content/userDetail/userColumn/UserColumn";
-import UserRadio from "@/components/content/userDetail/userRadio/UserRadio";
-import UserPlaylist from "@/components/content/userDetail/userPlaylist/UserPlaylist";
-import UserCollect from "@/components/content/userDetail/userCollect/UserCollect";
+import UserColumn from "@/components/content/details/userDetail/userColumn/UserColumn";
+import UserRadio from "@/components/content/details/userDetail/userRadio/UserRadio";
+import UserPlaylist from "@/components/content/details/userDetail/userPlaylist/UserPlaylist";
+import UserCollect from "@/components/content/details/userDetail/userCollect/UserCollect";
 
 export default {
   name: "UserDetail",

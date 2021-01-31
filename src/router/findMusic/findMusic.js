@@ -11,7 +11,7 @@ const qualitySheet=()=>import('../../components/content/qualitySheet/QualityShee
 export default {
     path: '/findMusic',
     name: 'findMusic',
-    component: findMusic,
+    component:findMusic,
     children: [
         {
             path: '/findMusic',
@@ -20,7 +20,7 @@ export default {
         {
             path: 'recommend',
             name: 'recommend',
-            component: recommend
+            component:recommend
         },
         {
             path: 'songSheet',
