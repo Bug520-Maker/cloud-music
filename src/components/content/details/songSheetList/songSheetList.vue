@@ -73,117 +73,118 @@
 </template>
 
 <script>
-    import DetailsPage from "../../../common/detailsPage/DetailsPage";
-    import TabControl from "../../../common/tabController/TabControl";
-    import SongLists from "../../songList/SongLists";
-    import {songSheetComm,songSheetCollect} from "@/network/songsheet/songSheet";
-    import Comment from "@/components/content/comment/Comment";
-    import Subscribers from "@/components/content/details/songSheetList/subscribers/Subscribers";
-    import {songDetailes} from "@/network/playCoin/songDetal";
+import DetailsPage from "../../../common/detailsPage/DetailsPage";
+import TabControl from "../../../common/tabController/TabControl";
+import SongLists from "../../songList/SongLists";
+import {songSheetComm, songSheetCollect} from "@/network/songsheet/songSheet";
+import Comment from "@/components/content/comment/Comment";
+import Subscribers from "@/components/content/details/songSheetList/subscribers/Subscribers";
+import {songDetailes} from "@/network/playCoin/songDetal";
+import {songListMsg} from "@/network/playlist/playlist";
 
-    export default {
-        name: "songSheetList",
-        components: {Subscribers, Comment, SongLists, TabControl, DetailsPage},
-        data()
-        {
-            return {
-                songListMsg:{},
-                songLists:[],
-              comments:[],/*用户评论*/
-              subscribers:[]
-            }
-        },
-        methods:{
-            toString(arr)
-            {
-                return arr.join(" / ")
-            },
-            playNum(playCount)
-            {
-                if(playCount<=10000)
-                {
-                    return playCount
-                }
-                else
-                {
-                    return parseInt((playCount/10000))+'万';
-                }
-            },
-          formatNum(count)
-          {
-            if(count>=10000)
-            {
-              return Math.floor(count/10000)+'万'
-            }
-            else
-            {
-              return count;
-            }
-          },
-          songlistNet()
-          {
-            //console.log(tmp);
-            /*获取歌单评论*/
-            songSheetComm(this.songListMsg.id).then(data=>{
-              //console.log(data);
-              this.comments=data.comments;
-            })
-            /*获取歌单收藏者*/
-            songSheetCollect(this.songListMsg.id).then(data=>{
-              // console.log(data.subscribers);
-              this.subscribers=data.subscribers;
-            })
-          },
-          setSongList()/*生成歌单信息*/
-          {
-            //this.songListMsg=[];
-            for (let item of this.songListMsg.trackIds.slice(0,30))
-            {
-              let song = {
-                name: '',
-                alias: [{}],
-                artists: [{
-                  name: ''
-                }],
-                album: {
-                  name: ''
-                },
-                duration: 0
-              };
-              songDetailes(item.id).then(data => {
-                //console.log(data.songs[0]);
-                song.name = data.songs[0].name;
-                song.alias[0] = data.songs[0].alia[0];
-                song.artists[0].name = data.songs[0].ar[0].name;
-                song.artists[0].id = data.songs[0].ar[0].id;
-                song.album.name = data.songs[0].al.name;
-                song.duration = data.songs[0].dt;
-                song.id = data.songs[0].id;
-                song.album.id = data.songs[0].al.id;
-                this.songLists.push(song);
-              })
-            }
-          }
-        },
-        created() {
-            /*监听store中的数据是否发生变化*/
-            this.$store.watch((state,getters)=>{
-              return state.userSongListMsg;
-            },()=>{
-              this.songLists=[];
-              this.songListMsg=this.$store.state.userSongListMsg;
-              //console.log(this.songListMsg);
-              this.setSongList();/*生成歌单信息*/
-              this.songlistNet();/*调用网络请求*/
-            })
-
-            this.songListMsg=this.$route.query.songListMsg||this.$store.state.userSongListMsg;
-           //console.log(this.songListMsg);
-
-            this.setSongList();/*生成歌单信息*/
-            this.songlistNet();/*调用网络请求*/
-        }
+export default {
+  name: "songSheetList",
+  components: {Subscribers, Comment, SongLists, TabControl, DetailsPage},
+  data() {
+    return {
+      songListMsg: {
+        creator:{},
+        tags:[]
+      },
+      songLists: [],
+      comments: [],/*用户评论*/
+      subscribers: []
     }
+  },
+  methods: {
+    toString(arr) {
+      return arr.join(" / ")
+    },
+    playNum(playCount) {
+      if (playCount <= 10000) {
+        return playCount
+      } else {
+        return parseInt((playCount / 10000)) + '万';
+      }
+    },
+    formatNum(count) {
+      if (count >= 10000) {
+        return Math.floor(count / 10000) + '万'
+      } else {
+        return count;
+      }
+    },
+    songListNet() {
+      //console.log(tmp);
+      /*获取歌单评论*/
+      songSheetComm(this.songListMsg.id).then(data => {
+        //console.log(data);
+        this.comments = data.comments;
+      })
+      /*获取歌单收藏者*/
+      songSheetCollect(this.songListMsg.id).then(data => {
+        // console.log(data.subscribers);
+        this.subscribers = data.subscribers;
+      })
+    },
+    setSongList(){/*生成歌曲列表*/
+      //this.songListMsg=[];
+      for (let item of this.songListMsg.trackIds.slice(0, 30)) {
+        let song = {
+          name: '',
+          alias: [{}],
+          artists: [{
+            name: ''
+          }],
+          album: {
+            name: ''
+          },
+          duration: 0
+        };
+        songDetailes(item.id).then(data => {
+          //console.log(data.songs[0]);
+          song.name = data.songs[0].name;
+          song.alias[0] = data.songs[0].alia[0];
+          song.artists[0].name = data.songs[0].ar[0].name;
+          song.artists[0].id = data.songs[0].ar[0].id;
+          song.album.name = data.songs[0].al.name;
+          song.duration = data.songs[0].dt;
+          song.id = data.songs[0].id;
+          song.album.id = data.songs[0].al.id;
+          this.songLists.push(song);
+        })
+      }
+    }
+  },
+  created() {
+    /*监听store中的数据是否发生变化*/
+    this.$store.watch((state, getters) => {
+      return state.userSongListMsg;
+    }, () => {
+      this.songLists = [];
+      this.songListMsg = this.$store.state.userSongListMsg;
+      //console.log(this.songListMsg);
+      this.setSongList();/*生成歌单信息*/
+      this.songListNet();/*调用网络请求*/
+    })
+    /*获取歌单信息*/
+    if(this.$route.query.playListId!==undefined)
+    {
+      songListMsg(this.$route.query.playListId).then(res=>{
+        //console.log(res.playlist);
+        this.songListMsg=res.playlist;
+        this.setSongList();/*生成歌曲列表*/
+        this.songListNet();/*调用网络请求*/
+      })
+    }
+    else{
+      this.songListMsg =this.$store.state.userSongListMsg;
+      this.setSongList();/*生成歌曲列表*/
+      this.songListNet();/*调用网络请求*/
+    }
+    //console.log(this.songListMsg);
+  }
+}
 </script>
 
 <style scoped>
@@ -209,23 +210,6 @@
         margin: 0 0 0 10px;
         cursor: pointer;
     }
-    /*按钮*/
-   /* .controlBtn button
-    {
-        border: 1px solid #d8d8d8;
-        padding:3px 15px;
-        font-size: 14px;
-        border-radius: 18px;
-        background-color: #ffffff;
-        margin: 0 10px 0 0 ;
-        outline: none;
-    }
-    .controlBtn button:nth-child(1)
-    {
-        background-color: #ec4141;
-        color: #ffffff;
-        border-color:#ec4141 ;
-    }*/
     #targetMsg ul li
     {
         margin: 0 0 7px 0;

@@ -31,66 +31,58 @@
 </template>
 
 <script>
-    import {songListMsg} from "@/network/playlist/playlist";
-    import Category from "@/components/common/category/Category";
-    import {highquality} from "@/network/songsheet/songSheet";
+import {songListMsg} from "@/network/playlist/playlist";
+import Category from "@/components/common/category/Category";
+import {highquality} from "@/network/songsheet/songSheet";
 
-    export default {
-        name: "QualitySheet",
-      components: {Category},
-      data()
-        {
-           return {
-               qualitySheet:[],
-               category:'华语',
-               tags:[],/*标签列表*/
-               isShow:false
-           }
-        },
-        created() {
-            this.qualitySheet=this.$route.query.hightSheet;
-            this.category=this.$route.query.tagName;
-            this.tags=this.$route.query.tags;
-        },
-        methods:{
-            liClick(index,item)
-            {
-                songListMsg(this.qualitySheet[index].id).then(res=>{
-                    console.log(res.playlist);
-                    this.$router.push({
-                        path:'/sheetMsg',
-                        query:{
-                            songListMsg:res.playlist
-                        }
-                    });
-                });
-            },
-          cateClick(item)
-          {
-            this.category=item;
-          },
-          titleCate()
-          {
-            this.isShow=!(this.isShow);
-            if(!this.isShow)
-            {
-              highquality(this.category).then(data=>{
-                this.qualitySheet=data.playlists;
-              })
-            }
-          },
-          userRouter(item)
-          {
-            this.$router.push({
-              path:'/userDetail',
-              query:{
-                userId:item.creator.userId
-              }
-            })
-            //console.log(item.creator)
-          }
-        }
+export default {
+  name: "QualitySheet",
+  components: {Category},
+  data() {
+    return {
+      qualitySheet: [],
+      category: '华语',
+      tags: [],/*标签列表*/
+      isShow: false
     }
+  },
+  created() {
+    this.qualitySheet = this.$route.query.hightSheet;
+    this.category = this.$route.query.tagName;
+    this.tags = this.$route.query.tags;
+  },
+  methods: {
+    liClick(index, item)/*路由直歌单详情页*/
+    {
+        this.$router.push({
+          path: '/sheetMsg',
+          query: {
+            playListId: this.qualitySheet[index].id
+          }
+      });
+    },
+    cateClick(item) {
+      this.category = item;
+    },
+    titleCate() {
+      this.isShow = !(this.isShow);
+      if (!this.isShow) {
+        highquality(this.category).then(data => {
+          this.qualitySheet = data.playlists;
+        })
+      }
+    },
+    userRouter(item) {
+      this.$router.push({
+        path: '/userDetail',
+        query: {
+          userId: item.creator.userId
+        }
+      })
+      //console.log(item.creator)
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -82,12 +82,5 @@ export default{
     {
         state.token=payload.data;
         window.sessionStorage.setItem('token',payload.data);
-    },
-    /*******************************************************路由传参保存************************************************/
-    getSessionSongList(state,payload)
-    {
-        state.sessionSongListMsg=payload.data;
-        window.sessionStorage.setItem('songList',JSON.stringify(payload.data) )
     }
-    /*******************************************************路由传参保存************************************************/
 }

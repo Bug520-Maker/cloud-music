@@ -9,74 +9,62 @@
         <banner :category="cateList" @itemClick="banClick"></banner>
         <pay-fantastic/><!--付费精品-->
         <persional-rec/><!--个性推荐电台-->
-        <innovate-sing :innovateSing="innovate"/><!--创作翻唱-->
-        <voice-theatre/>  <!--声之剧场-->
-        <music-story/>    <!--音乐故事-->
-        <emtion-channel/>  <!--情感调频-->
-        <music-lover/>      <!--音乐恋人-->
+
+        <category-cpn cate="创作翻唱"></category-cpn><!--创作翻唱-->
+        <category-cpn cate="声之剧场"/> <!--声之剧场-->
+        <category-cpn cate="音乐故事" />   <!--音乐故事-->
+        <category-cpn cate="情感调频" />  <!--情感调频-->
+        <category-cpn cate="声音恋人" />      <!--音乐恋人-->
     </div>
 </template>
 
 <script>
-    import {catrgoryRadio, radionBanner} from "../../../network/radio/radio";
-    import banner from "./childCpn/banner"
-    import {catelistType} from "../../../network/radio/radio";
+import {catrgoryRadio, notHot, radionBanner} from "@/network/radio/radio";
+import banner from "./childCpn/banner"
+import {catelistType} from "@/network/radio/radio";
+import categoryCpn from "@/views/findMusic/radion/categoryCpn/categoryCpn";
 
-    import lunbo from "./lunbo";
-    import Lunbo from "./lunbo";
-    import PayFantastic from "./payFantastic/PayFantastic";
-    import PersionalRec from "./persionalRec/PersionalRec";
-    import InnovateSing from "./innovateSing/InnovateSing";
-    import VoiceTheatre from "./voiceTheatre/VoiceTheatre";
-    import MusicStory from "./MusicStory/MusicStory";
-    import EmtionChannel from "./emotionChannel/EmtionChannel";
-    import MusicLover from "./musicLover/MusicLover";
-    export default {
-        name: "radion",
-        components:{
-            MusicLover,
-            EmtionChannel,
-            MusicStory,
-            VoiceTheatre,
-            InnovateSing,
-            PersionalRec,
-            PayFantastic,
-            Lunbo,
-            banner
-        },
-        data()
-        {
-            return {
-                cateList: {},
-                innovate:{}
-            }
+import Lunbo from "./lunbo";
+import PayFantastic from "./payFantastic/PayFantastic";
+import PersionalRec from "./persionalRec/PersionalRec";
 
-        },
-        created() {/*获取电台分类*/
-            catrgoryRadio().then(data=>{
-                //console.log(data.categories);
-                this.cateList=data;
-                for(let item of this.cateList.categories)
-                {
-                    if(item.name==="创作翻唱")
-                    {
-                        console.log(item);
-                        this.innovate=item;
-                    }
-                }
-            })
-
-        },
-       methods:{
-           banClick(item)
-           {
-               console.log(item);
-               catelistType(item.id).then(data=>{
-                   console.log(data);
-               })
-           }
-       }
+export default {
+  name: "radion",
+  components: {
+    categoryCpn,
+    PersionalRec,
+    PayFantastic,
+    Lunbo,
+    banner
+  },
+  data() {
+    return {
+      cateList: {},
+      innovate: {}
     }
+
+  },
+  created() {/*获取电台分类*/
+    catrgoryRadio().then(data => {
+      //console.log(data.categories);
+      this.cateList = data;
+      for (let item of this.cateList.categories) {
+        if (item.name === "创作翻唱") {
+          console.log(item);
+          this.innovate = item;
+        }
+      }
+    })
+
+  },
+  methods: {
+    banClick(item) {
+      catelistType(item.id).then(data => {
+        console.log(data);
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

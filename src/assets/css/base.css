@@ -56,3 +56,8 @@ button
     white-space: nowrap;
     overflow: hidden;
 }
+/*设置轮播图全局样式*/
+div.el-carousel__container
+{
+    height: 210px;
+}

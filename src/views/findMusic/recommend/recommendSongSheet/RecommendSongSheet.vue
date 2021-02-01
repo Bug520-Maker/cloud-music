@@ -28,52 +28,43 @@
 </template>
 
 <script>
-    import {songListMsg} from "@/network/playlist/playlist";
-    import {recommendList} from "@/network/recommend/recommendList";
-    import MsgList from "@/components/common/msgList/MsgList";
-    import {formatPlayCount} from "@/utils/format/format";
+import {recommendList} from "@/network/recommend/recommendList";
+import MsgList from "@/components/common/msgList/MsgList";
+import {formatPlayCount} from "@/utils/format/format";
 
-    export default {
-        name: "recommendSongSheet",
-      components: {MsgList},
-      data()
-        {
-            return {
-                recList: [],
-            }
-        },
-        created() {
-            recommendList(10).then(data => {
-                this.recList = data.result;
-                //console.log(data.result);
-            })
-        },
-        methods:{
-            sheetRouter(index,item)
-            {
-
-                songListMsg(this.recList[index].id).then(res=>{
-                   // console.log(res.playlist);
-                    this.$router.push({
-                        path:'/sheetMsg',
-                        query:{
-                            songListMsg:res.playlist
-                        }
-                    });
-                });
-
-            },
-            /*推荐歌单*/
-            recClick()
-            {
-                this.$router.push('/findMusic/songSheet');
-            },
-          playCount(item)
-          {
-            return formatPlayCount(item);
-          }
-        }
+export default {
+  name: "recommendSongSheet",
+  components: {MsgList},
+  data() {
+    return {
+      recList: [],
     }
+  },
+  created() {
+    recommendList(10).then(data => {
+      this.recList = data.result;
+      //console.log(data.result);
+    })
+  },
+  methods: {
+    sheetRouter(index, item) {/*路由直歌单详情页*/
+      this.$router.push({
+        path: '/sheetMsg',
+        query: {
+          playListId: this.recList[index].id
+        }
+      })
+    },
+
+    /*推荐歌单*/
+    recClick() {
+      this.$router.push('/findMusic/songSheet');
+    },
+    playCount(item) {
+      return formatPlayCount(item);
+    }
+  }
+}
 </script>
 
 <style scoped>

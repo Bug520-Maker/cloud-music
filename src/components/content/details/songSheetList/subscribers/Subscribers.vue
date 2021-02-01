@@ -4,7 +4,7 @@
       <ul>
         <li v-for="(item,index) in collector" :key="index">
           <msg-list>
-            <div slot="imgContainer" class="img-container">
+            <div slot="imgContainer" class="img-container" @click="userRouter(item)">
               <img v-lazy="item.avatarUrl+'?param=91y91'" />
             </div>
             <div slot="state" class="state">
@@ -28,6 +28,17 @@ export default {
       {
         return []
       }
+    }
+  },
+  methods:{
+    userRouter(item)
+    {
+      this.$router.push({
+        path:'/userDetail',
+        query:{
+          userId:item.userId
+        }
+      })
     }
   }
 }

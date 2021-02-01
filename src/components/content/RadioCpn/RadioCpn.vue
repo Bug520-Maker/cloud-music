@@ -2,8 +2,9 @@
 <template>
     <div class="radio-cpn">
         <recommend-cpn>
-            <div slot="title">
+            <div slot="title" @click="radioRouter">
                 {{titleText}}
+                <i class="iconfont icon-arrow-right1" v-show="isShow"></i>
             </div>
             <div slot="list">
                 <ul class="radio">
@@ -19,37 +20,57 @@
 </template>
 
 <script>
-    import RecommendCpn from "../recommendCpn/RecommendCpn";
-    export default {
-        name: "RadioCpn",
-        components: {RecommendCpn},
-        props:{
-            list:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            },
-            titleText:{
-                type:String,
-                default() {
-                    return '';
-                }
-            }
-        },
-      methods:{
-        djRouter(item)
-        {
-          this.$router.push({
-            path:'/djradioMsg',
-            query:{
-              anchorId:item.id/*主播ID*/
-            }
-          })
-        }
+import RecommendCpn from "../recommendCpn/RecommendCpn";
+
+export default {
+  name: "RadioCpn",
+  components: {RecommendCpn},
+  props: {
+    list: {
+      type: Array,
+      default() {
+        return []
       }
+    },
+    titleText: {
+      type: String,
+      default() {
+        return '';
+      }
+    },
+    isShow: {
+      type: Boolean,
+      default: true
+    },
+    categoryId:{
+      type:Number,
+      default:0
     }
+  },
+  methods: {
+    djRouter(item) {
+      this.$router.push({
+        path: '/djradioMsg',
+        query: {
+          anchorId: item.id/*主播ID*/
+        }
+      })
+    },
+    radioRouter()
+    {
+      if(this.titleText==='电台个性推荐')
+      {
+        return ;
+      }
+      this.$router.push({
+        path:'/radioCateMsg',
+        query:{
+          categoryId:this.categoryId
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -79,12 +79,14 @@ export function cateRec()
     })
 }
 /*类别热门*/
-export function cateTop(id)
+export function cateTop(id,limit,offset)
 {
     return request({
         url:'/dj/radio/hot',
         params:{
-            cateId:id
+            cateId:id,
+            limit,
+            offset
         }
     })
 }
@@ -116,6 +118,16 @@ export function programmMsg(id)
         url:'/dj/program/detail',
         params:{
             id
+        }
+    })
+}
+/*电台非热门类型 侃侃而谈，电音*/
+export function notHot()
+{
+    return request({
+        url:'/dj/category/excludehot',
+        params:{
+
         }
     })
 }

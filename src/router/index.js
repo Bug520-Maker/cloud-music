@@ -21,6 +21,8 @@ import {sheetMsgRuoter,
 
 /*话题详情页*/
 const topicMsg=()=>import('@/views/friend/dynamicMsg/topicDetails');
+/*电台分类推荐详情*/
+const radioCateMsg=()=>import('@/components/content/RadioCpn/radionCateMsg/RadioCateMsg')
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -79,7 +81,12 @@ const routes = [
   myCollectionRouter,
   myRadioRouter,
   myYunPanRouter,
-  UserPlayListRouter
+  UserPlayListRouter,
+  {
+    path:'/radioCateMsg',
+    name:'radioCateMsg',
+    component:radioCateMsg
+  }
 ]
 
 const router = new VueRouter({

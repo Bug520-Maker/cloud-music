@@ -5,9 +5,9 @@
        <play-coin></play-coin>
        <!--左侧导航栏路由视图-->
        <div id="sidebar-router-view">
-           <keep-alive>
+
              <router-view></router-view>
-           </keep-alive>
+
        </div>
    </div>
 </template>

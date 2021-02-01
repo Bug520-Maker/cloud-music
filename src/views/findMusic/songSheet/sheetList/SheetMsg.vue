@@ -32,62 +32,50 @@
 </template>
 
 <script>
-    import {songListMsg} from "@/network/playlist/playlist";
-    import MsgList from "@/components/common/msgList/MsgList";
-    import {formatPlayCount} from "@/utils/format/format";
-    export default {
-        name: "SheetMsg",
-      components: {MsgList},
-      data()
-        {
-          return {
-            loading:true,
-            src:'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
-          }
-        },
-        props:{
-            huayuList:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            }
-        },
-        methods:{
-            sheetRouter(index)
-            {
-                songListMsg(this.huayuList[index].id).then(res=>{
-                   // console.log(res.playlist);
-                    this.$router.push({
-                        path:'/sheetMsg',
-                        query:{
-                            songListMsg:res.playlist
-                        }
-                    });
-                    this.$store.commit({
-                      type:'getSessionSongList',
-                      data:res.playlist
-                    })
+import {songListMsg} from "@/network/playlist/playlist";
+import MsgList from "@/components/common/msgList/MsgList";
+import {formatPlayCount} from "@/utils/format/format";
 
-                });
-            },
-          playCount(item)
-          {
-            return formatPlayCount(item);
-          },
-          userRouter(item)
-          {
-            this.$router.push({
-              path:'/userDetail',
-              query:{
-                userId:item.creator.userId
-              }
-            })
-            //console.log(item.creator.userId)
-          }
-        }
+export default {
+  name: "SheetMsg",
+  components: {MsgList},
+  data() {
+    return {
+      loading: true,
+      src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
     }
+  },
+  props: {
+    huayuList: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
+  methods: {
+    sheetRouter(index) {/*路由直歌单详情页*/
+      this.$router.push({
+        path: '/sheetMsg',
+        query: {
+          playListId: this.huayuList[index].id
+        }
+      })
+    },
+    playCount(item) {
+      return formatPlayCount(item);
+    },
+    userRouter(item) {
+      this.$router.push({
+        path: '/userDetail',
+        query: {
+          userId: item.creator.userId
+        }
+      })
+      //console.log(item.creator.userId)
+    }
+  }
+}
 </script>
 
 <style scoped>

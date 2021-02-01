@@ -1,7 +1,7 @@
 <!--个性电台推荐-->
 <template>
     <div class="per-rec">
-        <radio-cpn :list=" recRadioList" title-text="电台个性推荐" />
+        <radio-cpn :list=" recRadioList" title-text="电台个性推荐" :is-show="false"/>
     </div>
 </template>
 
