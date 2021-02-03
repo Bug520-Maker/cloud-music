@@ -96,27 +96,9 @@ export default {
             userMsg:JSON.parse(window.sessionStorage.getItem('userMsg'))
           })
           refreshLogin().then(data=>{
-            console.log(data);
+            //console.log(data);
           })
         })
-         /* userLogin(this.number,this.password).then(data=>{
-          console.log(data);
-            /!*手动设置cookie*!/
-          this.$store.commit({
-            type:'getLoginCookie',
-            cookie:data.cookie
-          });
-           /!*用户信息*!/
-          this.$store.commit({
-            type:'userMsg',
-            userMsg:data
-          })
-            /!*保持登录状态*!/
-            this.$store.commit({
-              type:'setToken',
-              data:data.token
-            })
-          })*/
 
         /*设置登录状态*/
         window.sessionStorage.setItem('loginType','1')

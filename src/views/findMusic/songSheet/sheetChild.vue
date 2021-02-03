@@ -6,49 +6,58 @@
                 {{item.name}}
             </li>
         </ul>
-        <SheetMsg :huayuList="sheetMsg"></SheetMsg>
+        <SheetMsg :huayuList="sheetMsg" @pagination="pageClick"></SheetMsg>
+
     </div>
 </template>
 
 <script>
-    import {playlist,hotlist,songListMsg,songList} from "@/network/playlist/playlist";
-    /*导入子组件*/
-    import SheetMsg from "./sheetList/SheetMsg";
-    export default {
-        name: "sheetChild",
-        components: {
-            SheetMsg
-        },
-        data()
-        {
-            return {
-                hotList:[],
-                currentIndex:0,
-               sheetMsg:[]
-            }
-        },
-        methods:{
-            btnClick(index,item)
-            {
-                this.currentIndex=index;
+import {playlist, hotlist, songListMsg, songList} from "@/network/playlist/playlist";
+/*导入子组件*/
+import SheetMsg from "./sheetList/SheetMsg";
 
-                hotlist().then(data=>{
-                    this.hotList=data.tags;          /*获取分类标题 华语，流行，摇滚，民谣，电子等*/
-                    songList(data.tags[index].name).then(data=>{
-                        //console.log(data.playlists.slice(0,28));
-                        this.sheetMsg=data.playlists.slice(0,24);
-                    })
-                });
-                this.$emit('sheetchild',item.name);
-            }
-        },
-        created() {
-            hotlist().then(data=>{
-                this.hotList=data.tags;  /*获取分类标题 华语，流行，摇滚，民谣，电子等*/
-            })
-            this.btnClick(0, {name:"华语"});
-        }
+export default {
+  name: "sheetChild",
+  components: {
+    SheetMsg
+  },
+  data() {
+    return {
+      hotList: [],
+      currentIndex: 0,
+      sheetMsg: [],
+      tagName:''
     }
+  },
+  methods: {
+    getPlayLists(name, limit, offset)
+    {
+      songList(name, limit, offset).then(data => {
+        this.sheetMsg = data.playlists;
+      })
+    },
+    btnClick(index, item)
+    {
+      this.currentIndex = index;
+      hotlist().then(data => {/*获取分类标题 华语，流行，摇滚，民谣，电子等*/
+        this.hotList = data.tags;
+        this.tagName=data.tags[index].name
+        this.getPlayLists(this.tagName,60);
+      });
+      this.$emit('sheetchild', item.name);
+    },
+    pageClick(pageIndex) {
+      this.getPlayLists(this.tagName,60,60*(pageIndex-1));
+      this.$emit('back-top');
+    }
+  },
+  created() {
+    hotlist().then(data => {
+      this.hotList = data.tags;  /*获取分类标题 华语，流行，摇滚，民谣，电子等*/
+    })
+    this.btnClick(0, {name: "华语"});
+  }
+}
 </script>
 
 <style scoped>

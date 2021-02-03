@@ -30,12 +30,14 @@ export function songListMsg(id)
     })
 }
 /*推荐网友精选歌单*/
-export function songList(cat)
+export function songList(cat,limit,offset)
 {
     return request({
         url:'/top/playlist',
         params:{
-            cat
+            cat,
+            limit,
+            offset
         }
     })
 }

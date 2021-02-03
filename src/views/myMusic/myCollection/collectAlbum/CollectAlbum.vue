@@ -40,10 +40,13 @@ export default {
     }
   },
   created() {
-    collectAlbum().then(res=>{
-      //console.log(res.data);
-      this.collectAlbums=res.data;
-    })
+    if(this.$store.state.loginType===1)
+    {
+      collectAlbum().then(res=>{
+        //console.log(res.data);
+        this.collectAlbums=res.data;
+      })
+    }
   }
 }
 </script>

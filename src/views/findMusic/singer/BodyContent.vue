@@ -1,5 +1,6 @@
 <template>
-    <div class="body-content" v-loading="this.$store.state.loading"
+    <div class="body-content"
+         v-loading="this.$store.state.loading"
          element-loading-text="载入中..."
          element-loading-spinner="el-icon-loading"
          element-loading-background="#ffffff">
@@ -11,13 +12,10 @@
                 </div>
             </li>
         </ul>
-        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import {singerMsg} from "@/network/singer/singer";
-
     export default {
         name: "BodyContent",
         methods:{

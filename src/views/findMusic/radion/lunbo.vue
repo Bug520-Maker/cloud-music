@@ -9,11 +9,7 @@
 </template>
 
 <script>
-    import { Swiper, SwiperSlide} from 'vue-awesome-swiper'
-    import 'swiper/swiper-bundle.css'
-    import 'swiper/swiper-bundle.min.css'
-
-    import {radionBanner} from "../../../network/radio/radio";
+    import {radionBanner} from "@/network/radio/radio";
     export default {
         name: "lunbo",
         data() {
@@ -22,7 +18,7 @@
             }
         },
         components:{
-            Swiper, SwiperSlide
+
         }
         ,
         computed: {

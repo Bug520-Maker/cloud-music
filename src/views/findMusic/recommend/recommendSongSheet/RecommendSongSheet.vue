@@ -11,7 +11,7 @@
                    <msg-list play-count-l="55%"
                              :show-play="{show:true}">
                      <div slot="imgContainer">
-                       <img v-lazy="item.picUrl+'?param=137y137'"
+                       <img v-lazy="item.picUrl+'?param=137y137&quality=100'"
                             @click="sheetRouter(index,item)"/>
                      </div>
                      <div slot="state" class="recommend-song-list-state">

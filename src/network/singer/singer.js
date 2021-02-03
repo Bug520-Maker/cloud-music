@@ -10,12 +10,13 @@ export function topsinger()
     })
 }
 /*获取歌手分类*/
-export function singerCategory(area,type,initial)
+export function singerCategory(area,type,initial,limit,offset)
 {
     return request({
         url:'/artist/list',
         params:{
-            limit:30,
+            limit,
+            offset,
             area:area || -1,
             type:type || -1,
             initial:initial || -1

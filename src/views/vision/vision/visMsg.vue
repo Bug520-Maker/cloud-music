@@ -2,8 +2,8 @@
 <template>
     <div class="vis-msg">
       <div class="loginTip" :class="{isShow:this.$store.state.loginType===1}">
-        <i class="iconfont icon-yonghuxinxi"></i>
-        <span>请先登录</span>
+<!--        <i class="iconfont icon-yonghuxinxi"></i>
+        <span>请先登录</span>-->
       </div>
       <!--视频内容-->
       <ul class="video-body" v-if="this.$store.state.loginType===1">
@@ -85,12 +85,14 @@
 /*是否显示登录提示*/
   .loginTip
   {
-    height:200px;
-    width: 200px;
+    height:270px;
+    width:750px;
     text-align: center;
-    margin: 90px auto 0;
+    margin: 30px auto 0;
     transform: scale(1);
     transition: all 0.3s;
+    background-image: url("../../../assets/img/video-mv/mymusic.png");
+    background-repeat: no-repeat;
   }
   .loginTip span
   {

@@ -1,6 +1,6 @@
 <template>
     <div class="my-collection">
-        <tab-control :list="['专辑','歌手','视频','专栏']" class="collect-tab-control">
+        <tab-control :list="['专辑','歌手','视频','专栏']" class="collect-tab-control" v-if="this.$store.state.loginType===1">
           <div slot="专辑">
             <collect-album/>
           </div>
@@ -12,6 +12,7 @@
           </div>
           <div slot="专栏"></div>
         </tab-control>
+      <div class="ask-login" v-if="this.$store.state.loginType===0"></div>
     </div>
 </template>
 
@@ -39,5 +40,13 @@
   .collect-tab-control
   {
     margin: 25px 0 0px 30px;
+  }
+  .ask-login
+  {
+    width: 750px;
+    height: 270px;
+    margin: 100px auto 0;
+    background-image: url("../../../assets/img/video-mv/mymusic.png");
+    background-repeat: no-repeat;
   }
 </style>

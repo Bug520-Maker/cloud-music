@@ -4,7 +4,7 @@
       主播电台
       <i class="iconfont icon-arrow-right1"></i>
     </div>
-    <radio-cpn :list="radios"/>
+    <radio-cpn :list="radios" :is-show="false"/>
   </div>
 </template>
 

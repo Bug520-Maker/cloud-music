@@ -1,18 +1,13 @@
 import axios from "axios";
-import { Loading } from 'element-ui';
 import store from "@/store";
-let loadingInstance;
+import loading from '@/utils/loading/index';
 export function request(config)
 {
     const instance=axios.create({
         baseURL:/*'http://123.207.32.32:9001'*/'http://localhost:3000',
-        timeout:10000,
-        //withCredentials:true
+        timeout:5000,
     })
     instance.interceptors.request.use(config=>{
-     /*   loadingInstance = Loading.service({
-            text:'加载中',
-        })*/
         store.commit({
             type:'changeLoadingStatus',
             loadStatus:true
@@ -22,9 +17,6 @@ export function request(config)
         //console.log(err)
     })
     instance.interceptors.response.use(res=>{
-       /* if (loadingInstance) {
-            loadingInstance.close()
-        }*/
         store.commit({
             type:'changeLoadingStatus',
             loadStatus:false

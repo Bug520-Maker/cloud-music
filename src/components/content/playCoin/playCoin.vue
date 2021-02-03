@@ -2,7 +2,7 @@
 <template>
     <div class="play-coin">
         <div id="img-container">
-            <img :src="((this.$store.state.albumImgUrl=='') ? this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=50y50' )|| normalUrl"
+            <img :src="((this.$store.state.albumImgUrl=='') ? this.$store.state.albumImgUrl='':this.$store.state.albumImgUrl+'?param=50y50' )|| normalUrl+'?param=50y50'"
                  class="albumImg"
                  @click="imgClick"
             /><!--获取歌曲封面图片-->

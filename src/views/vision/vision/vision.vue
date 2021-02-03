@@ -1,6 +1,6 @@
 <template>
-    <div class="vis">
-        <div class="head">
+    <div class="vis" >
+        <div class="head" v-if="this.$store.state.loginType===1">
             <div class="title" @click="titleClick">
               {{title}}
               <i class="iconfont icon-arrow-r"></i>

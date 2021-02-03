@@ -1,11 +1,10 @@
 <!--分别显示内地，流行，摇滚，电子，民谣，轻音乐下分类的歌单-->
 <template>
-    <div class="sheet-msg"
-         v-loading="this.$store.state.loading"
-         element-loading-text="载入中..."
-         element-loading-spinner="el-icon-loading"
-         element-loading-background="#ffffff">
-      <ul>
+    <div class="sheet-msg">
+      <ul v-loading="this.$store.state.loading"
+          element-loading-text="载入中..."
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="#ffffff">
         <li v-for="(item,index) in huayuList" :key="index">
           <msg-list :duration-x-y="{x:'7%',y:'80%'}"
                     :show-play="{show:true,width:'45px',height:'45px'}">
@@ -28,11 +27,16 @@
           </msg-list>
         </li>
       </ul>
+      <el-pagination v-if="this.huayuList.length!==0"
+          background
+          layout="prev, pager, next"
+          :total="100"
+          @current-change="currentClick">
+      </el-pagination>
     </div>
 </template>
 
 <script>
-import {songListMsg} from "@/network/playlist/playlist";
 import MsgList from "@/components/common/msgList/MsgList";
 import {formatPlayCount} from "@/utils/format/format";
 
@@ -73,13 +77,16 @@ export default {
         }
       })
       //console.log(item.creator.userId)
+    },
+    currentClick(currentIndex)/*分页*/
+    {
+      this.$emit('pagination',currentIndex)
     }
   }
 }
 </script>
 
 <style scoped>
-     @import '../../../../assets/css/base.css';
     .sheet-msg
     {
         position: absolute;
@@ -95,15 +102,6 @@ export default {
        /* height: 225px;*/
         scrollbar-color: transparent transparent;
     }
-    /*.sheet-msg ul::-webkit-scrollbar
-    {
-        width: 5px;
-    }
-    .sheet-msg ul::-webkit-scrollbar-thumb
-    {
-        height: 30px;
-        background-color: rgb(225, 225, 225);
-    }*/
     .sheet-msg ul li
     {
         margin: 0 0 15px 0;
@@ -137,5 +135,10 @@ export default {
     .play-icon i
     {
       font-size: 24px;
+    }
+    .el-pagination
+    {
+      width: 400px;
+     margin: 0 auto;
     }
 </style>

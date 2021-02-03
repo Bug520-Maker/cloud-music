@@ -1,5 +1,9 @@
 <template>
- <div class="dj-radio-detail">
+ <div class="dj-radio-detail"
+      v-loading="this.$store.state.loading"
+      element-loading-text="载入中..."
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="#ffffff">
   <details-page>
     <div slot="imgContainer">
       <img v-lazy="radioMsg.picUrl+'?param=184y184'" class="dj-img"/>

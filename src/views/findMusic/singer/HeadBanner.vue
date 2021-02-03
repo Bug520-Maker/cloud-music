@@ -23,72 +23,55 @@
 </template>
 
 <script>
-    import ChooseList from "../../../components/common/chooseList/ChooseList";
-    import {singerCategory} from "@/network/singer/singer";
-    export default {
-        name: "HeadBanner",
-        components: {ChooseList},
-        methods:{
-            areaClick(index)
-            {
-                this.param.set(0,"-1");
-                this.param.set(1,"7");
-                this.param.set(2,"96");
-                this.param.set(3,"8");
-                this.param.set(4,"16");
-                this.param.set(5,"0");
-                this.areaParam=this.param.get(index);
-                this.singerList();
-            },
-            typeClick(index)
-            {
-                if(index==0)
-                {
-                    index=-1;
-                }
-                this.typeParam=index;
-                this.singerList();
-            },
-            initClick(index)
-            {
-                let param=index;
-                if(index==0)
-                {
-                    param=-1;
-                }
-                else
-                {
-                    param=String.fromCharCode(index+64);
-                }
-                this.initParam=param;
-                this.singerList();
-            },
-            singerList()
-            {
-                singerCategory(this.areaParam,this.typeParam,this.initParam).then(data=>{
-                   // console.log(data.artists);
-                    this.singer=data.artists;
-                    this.$store.commit({
-                        type:'getSingerList',
-                        singers:data.artists
-                    })
-                })
-            }
-        },
-        data()
-        {
-            return {
-                singer: [],
-                areaParam:'',
-                typeParam:'',
-                initParam:'',
-                param:new Map()
-            }
-        },
-        created() {
-            this.singerList();
-        }
+import ChooseList from "../../../components/common/chooseList/ChooseList";
+export default {
+  name: "HeadBanner",
+  components: {ChooseList},
+  data() {
+    return {
+      singer: [],
+      areaParam: '',
+      typeParam: '',
+      initParam: '',
+      param: new Map(),
     }
+  },
+  methods: {
+    areaClick(index)
+    {
+      this.param.set(0, "-1");
+      this.param.set(1, "7");
+      this.param.set(2, "96");
+      this.param.set(3, "8");
+      this.param.set(4, "16");
+      this.param.set(5, "0");
+      this.areaParam = this.param.get(index);
+      this.$emit('area',{area:this.areaParam,type:this.typeParam,init:this.initParam});
+    },
+    typeClick(index)
+    {
+      if (index === 0)
+      {
+        index = -1;
+      }
+      this.typeParam = index;
+      this.$emit('type',{area:this.areaParam,type:this.typeParam,init:this.initParam} );
+    },
+    initClick(index)
+    {
+      let param = index;
+      if (index === 0) {
+        param = -1;
+      }
+      else
+        {
+        param = String.fromCharCode(index + 64);
+      }
+      this.initParam = param;
+      this.$emit('init',{area:this.areaParam,type:this.typeParam,init:this.initParam});
+    }
+  }
+}
 </script>
 
 <style scoped>
