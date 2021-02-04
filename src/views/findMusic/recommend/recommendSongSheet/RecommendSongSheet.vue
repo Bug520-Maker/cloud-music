@@ -8,11 +8,11 @@
        <div class="rec-list">
            <ul>
                <li v-for="(item,index) in recList" :key="index">
+                 <div class="cover" @click="sheetRouter(index,item)"></div>
                    <msg-list play-count-l="55%"
                              :show-play="{show:true}">
                      <div slot="imgContainer">
-                       <img v-lazy="item.picUrl+'?param=137y137&quality=100'"
-                            @click="sheetRouter(index,item)"/>
+                       <img v-lazy="item.picUrl+'?param=137y137&quality=100'"/>
                      </div>
                      <div slot="state" class="recommend-song-list-state">
                        {{item.name}}
@@ -84,6 +84,15 @@ export default {
     {
         width: 137px;
         border-radius:5px ;
+    }
+    .cover
+    {
+      width: 140px;
+      height:140px;
+      position: absolute;
+      top: 0;
+      background-image: url("../../../../assets/img/cover/coverall.png");
+      z-index: 99;
     }
     .rec-title
     {

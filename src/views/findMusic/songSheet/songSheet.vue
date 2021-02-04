@@ -7,8 +7,9 @@
          element-loading-text="载入中..."
          element-loading-spinner="el-icon-loading"
          element-loading-background="#ffffff">
-      <div>
-        <img v-lazy="highquality[0].coverImgUrl+'?param=140y140'">
+      <div class="quality">
+        <div class="cover"></div>
+        <img v-lazy="highquality[0].coverImgUrl+'?param=140y140&quality=100'">
       </div>
       <ul>
         <li>精品歌单</li>
@@ -147,5 +148,16 @@
 .quality-song-list ul li:nth-of-type(3) {
   color: black; /*rgb(173, 164, 163);*/
   font-size: 13px;
+}
+.quality{
+  position: relative;
+}
+.quality .cover{
+  background-image: url("../../../assets/img/cover/coverall.png");
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 15px;
+  left: 15px;
 }
 </style>

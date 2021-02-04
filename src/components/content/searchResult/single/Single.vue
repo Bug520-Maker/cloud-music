@@ -7,9 +7,7 @@
             <div>时长</div>
             <div>热度</div>
         </div>
-        <song-lists :songLists="this.$store.state.searchList.songs"  v-loading="this.$store.state.loading"
-                    element-loading-text="载入中..."
-                    element-loading-spinner="el-icon-loading"></song-lists><!--提取搜索结果中的歌曲列表-->
+        <song-lists :songLists="this.$store.state.searchList.songs"></song-lists><!--提取搜索结果中的歌曲列表-->
     </div>
 </template>
 
@@ -30,7 +28,7 @@
         display: flex;
         width: 730px;
         position: absolute;
-        top: 113px ;
+        top: -20px ;
         left: 0;
         padding: 0 0px 10px 68px;
     }
@@ -63,5 +61,6 @@
         float: left;
         margin: 30px 0 0 0;
         width: 100%;
+      position: relative;
     }
 </style>

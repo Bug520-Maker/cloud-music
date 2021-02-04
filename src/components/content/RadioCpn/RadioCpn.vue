@@ -9,6 +9,7 @@
             <div slot="list">
                 <ul class="radio">
                     <li v-for="(item,index) in list" @click="djRouter(item)">
+                       <div class="cover"></div>
                         <img v-lazy="item.picUrl+'?param=140y140'" />
                         <p>{{item.rcmdText}}</p>
                         <div class="name">{{item.name}}</div>
@@ -83,11 +84,18 @@ export default {
     {
         position: relative;
     }
+    .cover{
+      background-image: url("../../../assets/img/cover/coverall.png");
+      width: 140px;
+      height: 140px;
+      position: absolute;
+      background-position: 3px 0;
+      top: 0;
+    }
     .radio li img
     {
         width: 140px;
         border: 1px solid rgba(153,153,153,.3);
-        border-radius:8px ;
     }
     .radio li p
     {

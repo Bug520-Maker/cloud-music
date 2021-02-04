@@ -15,9 +15,10 @@
     <!--新碟上架内容-->
     <ul class="new-albums">
       <li v-for="(item,index) in allNewAlbum" :key="item.id">
+        <div class="cover" @click="imgClick(item,index)"></div>
         <msg-list :is-show="false">
           <div slot="imgContainer">
-            <img v-lazy="item.blurPicUrl+'?param=137y137'" @click="imgClick(item,index)"/>
+            <img v-lazy="item.blurPicUrl+'?param=130y130'" />
           </div>
           <div slot="state" class="state">{{item.name}}</div>
           <div slot="creator" class="creator">{{item.artist.name}}</div>
@@ -128,7 +129,7 @@ export default {
 }
 .new-albums li img
 {
-  width: 137px;
+  width: 130px;
   border-radius: 5px;
 }
 
@@ -150,6 +151,16 @@ export default {
 .new-albums li
 {
   margin: 0 0 10px 0;
+  position: relative;
+}
+.cover{
+  background-image: url("../../../../assets/img/cover/coverall.png");
+  width: 150px;
+  height:140px;
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  background-position: 0 -844px;
 }
 .new-albums li .creator
 {

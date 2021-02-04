@@ -7,7 +7,7 @@
                </li>
            </ul>
        </div>
-       <router-view></router-view>
+       <router-view></router-view><!--单曲，歌单，歌词视图-->
    </div>
 </template>
 

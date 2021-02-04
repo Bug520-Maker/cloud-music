@@ -22,7 +22,9 @@ import {sheetMsgRuoter,
 /*话题详情页*/
 const topicMsg=()=>import('@/views/friend/dynamicMsg/topicDetails');
 /*电台分类推荐详情*/
-const radioCateMsg=()=>import('@/components/content/RadioCpn/radionCateMsg/RadioCateMsg')
+const radioCateMsg=()=>import('@/components/content/RadioCpn/radionCateMsg/RadioCateMsg');
+/*数字专辑排行榜*/
+const digitalTop=()=>import('@/views/digitalAlbum/childCpn/topList/TopList');
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
@@ -33,7 +35,7 @@ Vue.use(VueRouter)
 
 const friend=()=> import('../views/friend/friend');
 const perFM=()=>import('../views/perFM/perFM');
-const zhibo=()=>import ('../views/zhibo/zhibo')
+const digitalAlbum=()=>import ('../views/digitalAlbum/DigitalAlbum')
 
 const routes = [
   {
@@ -60,9 +62,14 @@ const routes = [
   },
   video,
   {/*直播路由*/
-    path: '/zhibo',
-    name: 'zhibo',
-    component: zhibo
+    path: '/digitalAlbum',
+    name: 'digitalAlbum',
+    component: digitalAlbum,
+  },
+  {
+    path:'/digitalTop',
+    name:'digitalTop',
+    component:digitalTop
   },
   /*独立组件*/
   sheetMsgRuoter,

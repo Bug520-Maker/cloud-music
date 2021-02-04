@@ -8,8 +8,8 @@
         <li v-for="(item,index) in huayuList" :key="index">
           <msg-list :duration-x-y="{x:'7%',y:'80%'}"
                     :show-play="{show:true,width:'45px',height:'45px'}">
-            <div slot="imgContainer">
-              <img v-lazy="item.coverImgUrl+'?param=177y177'" @click="sheetRouter(index)"/>
+            <div slot="imgContainer" @click="sheetRouter(index)">
+              <img v-lazy="item.coverImgUrl+'?param=177y177&quality=100'" />
             </div>
             <div slot="state" class="name">
               {{item.name}}
@@ -20,7 +20,8 @@
             <!--使用组件的user替换duration-->
             <div slot="duration" class="user" @click="userRouter(item)">
               <i class="iconfont icon-ttpodicon"></i>
-              {{item.creator.nickname}}</div>
+              {{item.creator.nickname}}
+            </div>
             <div slot="playIcon" class="play-icon">
               <i class="iconfont icon-play3"></i>
             </div>

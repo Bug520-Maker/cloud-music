@@ -73,7 +73,7 @@
     import SimilarSinger from "@/components/content/details/singerDetail/similarSinger/SimilarSinger";
 
     export default {
-        name: "SingerDetai",
+        name: "SingerDetail",
         components: {SimilarSinger, SingerDescription, Mvs, MsgList, AlbumCpn, TabControl, DetailsPage, SongLists},
         data()
         {

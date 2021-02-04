@@ -23,7 +23,7 @@
                    {{item.title}}
                  </div>
                  <!--视频作者-->
-                 <div slot="creator" class="creator">
+                 <div slot="creator" class="creator" @click="artistRouter(item)">
                    {{item.creator[0].userName||''}}
                  </div>
                </msg-list>
@@ -86,6 +86,28 @@
                     }
                 })
             },
+          artistRouter(item)
+          {
+            console.log(item);
+            if(item.type===0)
+            {
+              this.$router.push({
+                path:'/singerDetails',
+                query:{
+                  artistId:item.creator[0].userId
+                }
+              })
+            }
+            else if(item.type===1)
+            {
+              this.$router.push({
+                path:'/userDetail',
+                query:{
+                  userId:item.creator[0].userId
+                }
+              })
+            }
+          },
             playCount(item)
             {
               return formatPlayCount(item);
@@ -135,6 +157,11 @@
     }
     .creator
     {
-        color: rgb(223, 207, 223);
+        color: #cfcfcf;
+    }
+    .creator:hover
+    {
+      color:#9f9f9f;
+      cursor:pointer;
     }
 </style>

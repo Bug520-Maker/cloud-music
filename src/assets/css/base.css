@@ -66,3 +66,10 @@ div.el-carousel__container
 {
     background-color: #ec4141!important;
 }
+
+/*公共样式*/
+.text-nowrap{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

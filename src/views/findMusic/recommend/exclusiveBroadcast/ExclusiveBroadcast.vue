@@ -7,7 +7,7 @@
         <div class="broadcast">
             <ul>
                 <li v-for="(item,index) in broadcastList" :key="index">
-                    <img :src="item.sPicUrl+'?param=240y135'"  @click="mvClick(index)" />
+                    <img :src="item.sPicUrl+'?param=240y135&quality=100'"  @click="mvClick(index)" />
                     <p>{{item.name}}</p>
                 </li>
             </ul>

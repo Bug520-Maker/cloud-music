@@ -6,7 +6,10 @@
          element-loading-background="#ffffff">
         <ul >
             <li v-for="(item,index) in this.$store.state.singerLists" :key="index" @click="liClick(index)">
-                <div><img v-lazy="item.img1v1Url+'?param=139y139'" /></div>
+              <div class="cover"></div>
+                <div>
+                  <img v-lazy="item.img1v1Url+'?param=139y139'" />
+                </div>
                 <div>
                     {{item.name}}
                 </div>
@@ -58,5 +61,14 @@
     .body-content ul li
     {
         margin: 0 0  10px 0;
+      position: relative;
+    }
+    .cover{
+      background-image: url("../../../assets/img/cover/coverall.png");
+      background-position: 0 -3px;
+      position: absolute;
+      top: 0;
+      width: 139px;
+      height: 130px;
     }
 </style>

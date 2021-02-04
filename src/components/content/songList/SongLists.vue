@@ -3,6 +3,7 @@
     <div id="song-list">
         <ul>
             <li v-for="(item,index) in songLists">
+               <span class="song-index">{{index>8?index+1:'0'+(index+1)}}</span>
                 <i class="iconfont icon-love love" ></i>
                 <i class="iconfont icon-download down" ></i>
                 <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
@@ -16,7 +17,6 @@
 </template>
 
 <script>
-    import {singerMsg} from "@/network/singer/singer";
     import {formatDt} from "@/utils/format/format";
 
     export default {
@@ -100,6 +100,11 @@
     {
         margin: 2px 0 0 0;
         width: 100%;
+    }
+    .song-index
+    {
+      margin: 0 20px 0 10px;
+      color: #cfcfcf;
     }
     #song-list ul li div
     {
