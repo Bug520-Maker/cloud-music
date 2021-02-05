@@ -13,7 +13,7 @@
             <div class="cover"></div>
             <msg-list :is-show="false">
               <div slot="imgContainer" class="digital-img">
-                <img :src="item.coverUrl+'?param=129y129'" />
+                <img :src="resetImgSize(item.coverUrl,140,140)" />
               </div>
               <div slot="state" class="digital-state">{{item.albumName}}</div>
               <div slot="creator" class="digital-creator">{{item.artistName}}</div>
@@ -26,6 +26,7 @@
 <script>
 import {digitalAlbum} from "@/network/digitalAlbum/digitalAlbum";
 import MsgList from "@/components/common/msgList/MsgList";
+import {resetImgSize} from "@/utils/format/format";
 
 export default {
   name: "DigitalAlbum",
@@ -48,6 +49,10 @@ export default {
       this.$router.push({
         path:'/digitalTop'
       })
+    },
+    resetImgSize(imgURL,width,height)
+    {
+      return resetImgSize(imgURL,width,height)
     }
   }
 }

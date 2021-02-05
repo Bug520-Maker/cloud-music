@@ -7,8 +7,8 @@
          >
         <div class="recommend">
             <div id="swiper-outer" :style="{backgroundImage:`url(${swiperBgc})`}"><!--设置轮播图-->
-              <el-carousel indicator-position="outside" @change="bgcChange">
-                <el-carousel-item v-for="(item,index) in imgList" :key="item.imageUrl">
+              <el-carousel indicator-position="outside" @change="bgcChange" >
+                <el-carousel-item v-for="(item,index) in imgList" :key="item.imageUrl" >
                   <img :src="item.imageUrl+'?imageView&quality=89'" />
                 </el-carousel-item>
               </el-carousel>
@@ -112,4 +112,5 @@
       vertical-align:bottom;
       /*border-radius: 10px;*/
     }
+
 </style>

@@ -4,6 +4,9 @@ export function perFM()
 {
     return request({
         url:'/personal_fm',
-        cookie:store.state.userMsg.cookie
+        params:{
+            cookie:store.state.userMsg.cookie,
+            timp:new Date().getTime()
+        }
     })
 }

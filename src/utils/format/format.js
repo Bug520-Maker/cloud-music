@@ -1,6 +1,6 @@
 export function formatDt(item)
 {
-    if(item==undefined||item==null)
+    if(item===undefined||item===null)
     {
         return 0;
     }
@@ -42,4 +42,9 @@ export function formatPlayCount(count)
 export function rand(m,n)
 {
     return Math.ceil(Math.random()*(n-m+1)+m-1);
+}
+/*设置图片大小*/
+export const resetImgSize=(imgUrl,width,height)=>
+{
+    return `${imgUrl}?param=${width}y${height}&quality=100`
 }
