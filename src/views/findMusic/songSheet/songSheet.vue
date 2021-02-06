@@ -21,18 +21,18 @@
     <!--设置 歌单导航 华语-流行-摇滚-民谣-电子-另类/独立-轻音乐等-->
     <div id="header">
       <div class="title">{{ title }} ></div>
-      <sheet-child @sheetchild="btnClick" @back-top="backTop"></sheet-child>
+      <sheet-nav @sheetchild="btnClick" @back-top="backTop"></sheet-nav>
     </div>
   </div>
 </template>
 
 <script>
-    import SheetChild from "./sheetChild";
+    import SheetNav from "./childCpn/SheetNav";
     import {highquality,highTags} from "@/network/songsheet/songSheet";
 
     export default {
         name: "songSheet",
-        components: {SheetChild},
+        components: {SheetNav},
         data()
         {
             return {
@@ -159,5 +159,6 @@
   height: 140px;
   top: 15px;
   left: 15px;
+  border-radius: 8px;
 }
 </style>

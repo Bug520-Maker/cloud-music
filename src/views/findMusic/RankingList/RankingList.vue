@@ -1,19 +1,19 @@
 <template>
     <div class="ranking-list clearfix">
-        <child-cpn :rank-list="officialList" title="官方榜" :songList="allRank"/>
+        <offical-rank :rank-list="officialList" title="官方榜" :songList="allRank"/>
         <global-rank :globalRank="globalRank"></global-rank>
     </div>
 </template>
 
 <script>
     import {allList, listcontentDetail} from "@/network/recommend/topList/toplist";
-    import ChildCpn from "./childCpn/ChildCpn";
+    import OfficalRank from "./childCpn/OfficalRank";
     import {songListMsg} from "@/network/playlist/playlist";
     import GlobalRank from "./childCpn/GlobalRank";
 
     export default {
         name: "RankingList",
-        components: {GlobalRank, ChildCpn},
+        components: {GlobalRank, OfficalRank},
         data()
         {
           return {
@@ -70,7 +70,6 @@
                         else if(key==='热歌榜')
                         {
                             this.hotSong=data.playlist.tracks.slice(0,5);
-
                         }
                     }).then(()=>{
                       this.allRank.splice(0,0,this.soar,this.newSong,this.original,this.hotSong)

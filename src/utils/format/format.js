@@ -48,3 +48,29 @@ export const resetImgSize=(imgUrl,width,height)=>
 {
     return `${imgUrl}?param=${width}y${height}&quality=100`
 }
+export function formatDate(time ,iShowhms)
+{
+    function addZoer(timE)
+    {
+        if(timE<10)
+        {
+            return '0'+timE
+        }
+        else{
+            return timE
+        }
+    }
+    let year=time.getFullYear();
+    let month=addZoer(time.getMonth()+1);
+    let date=addZoer(time.getDate());
+    let hour=addZoer(time.getHours());
+    let minute=addZoer(time.getMinutes());
+    let second=addZoer(time.getSeconds());
+    if(iShowhms)
+    {
+        return year+"-"+month+"-"+date+"-"+hour+"-"+minute+"-"+second;
+    }
+    else{
+        return year+"-"+month+"-"+date
+    }
+}

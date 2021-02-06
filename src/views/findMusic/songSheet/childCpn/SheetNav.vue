@@ -7,17 +7,16 @@
             </li>
         </ul>
         <SheetMsg :huayuList="sheetMsg" @pagination="pageClick"></SheetMsg>
-
     </div>
 </template>
 
 <script>
 import {playlist, hotlist, songListMsg, songList} from "@/network/playlist/playlist";
 /*导入子组件*/
-import SheetMsg from "./sheetList/SheetMsg";
+import SheetMsg from "./SheetMsg";
 
 export default {
-  name: "sheetChild",
+  name: "SheetNav",
   components: {
     SheetMsg
   },

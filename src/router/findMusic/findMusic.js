@@ -8,6 +8,7 @@ const singer=()=> import('../../views/findMusic/singer/singer');
 const songSheet=()=>import('../../views/findMusic/songSheet/songSheet')
 /*精品歌单*/
 const qualitySheet=()=>import('../../components/content/qualitySheet/QualitySheet');
+
 export default {
     path: '/findMusic',
     name: 'findMusic',

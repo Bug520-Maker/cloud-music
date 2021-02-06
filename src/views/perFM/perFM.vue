@@ -67,8 +67,40 @@ export default {
     })
   },
   methods: {
+    setSong(index)
+    {
+      let song={
+        id:this.perSong[index].id,
+        name:this.perSong[index].name,
+        alias:[this.perSong[index].alias[0]],
+        artists:[
+          {
+            id:this.perSong[index].artists[0].id,
+            name:this.perSong[index].artists[0].name
+          }
+        ],
+        album:{
+          name:this.perSong[index].album.name
+        }
+      }
+      return song;
+    },
     activeChange(activeIndex, prevIndex) {
       this.currentIndex=activeIndex;
+      console.log(this.perSong[activeIndex]);
+      this.$store.dispatch({
+        type:'getMusicUrl',
+        songId:this.perSong[activeIndex].id
+      })
+      this.$store.dispatch({
+        type:'getMusicAlbum',
+        albumId:this.perSong[activeIndex].album.id
+      })
+
+      this.$store.commit({
+        type:'getSingleInfo',
+        details:this.setSong(activeIndex)
+      })
     },
     playNext() {
       this.$refs.swiper.next();

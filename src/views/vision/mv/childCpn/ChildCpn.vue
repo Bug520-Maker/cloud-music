@@ -3,7 +3,7 @@
     <div class="mv-child-cpn">
         <ul class="mv-details">
             <li v-for="(item,index) in mvList" :key="index">
-              <msg-list play-count-l="78%">
+              <msg-list play-count-l="95%">
                 <div slot="imgContainer" v-lazy-container="{ selector: 'img' }">
                   <img  :data-src="item.cover+'?param=240y136'" @click="playmv(item)"
                         :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>

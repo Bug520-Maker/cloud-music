@@ -12,8 +12,8 @@
             </div>
             <!--playCount-->
             <div class="playCount" :style="{left:playCountL}">
-                <i class="iconfont icon-play2" v-show="isShow"></i>
-                <slot name="playCount"></slot>
+              <i class="iconfont icon-play2" v-show="isShow"></i>
+              <slot name="playCount"></slot>
             </div>
           <div class="play" v-show="showPlay.show"
                :style="{width:showPlay.width,height:showPlay.height,lineHeight:showPlay.height}">
@@ -61,7 +61,7 @@
           },
           playCountL:{
               type:String,
-              default:'60%'
+              default:'95%'
           },
           isShow:{
               type:Boolean,
@@ -88,7 +88,6 @@
     }
 </script>
 <style scoped>
-
     .img-container img
     {
         border-radius: 7px;
@@ -115,6 +114,9 @@
         position: absolute;
         display: flex;
         top: 3%;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      transform: translateX(-100%);
     }
     .play
     {

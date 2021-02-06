@@ -61,7 +61,7 @@ export default {
   methods: {
     sheetRouter(index) {/*路由直歌单详情页*/
       this.$router.push({
-        path: '/sheetMsg',
+        path: '/playListMsg',
         query: {
           playListId: this.huayuList[index].id
         }

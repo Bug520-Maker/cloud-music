@@ -41,7 +41,6 @@
 </template>
 
 <script>
-    import {singerMsg} from "@/network/singer/singer";
     import SongComment from "@/components/content/playCoin/songComment/SongComment";
     import SimiSongs from "@/components/content/playCoin/simiSongs/SimiSongs";
     export default {

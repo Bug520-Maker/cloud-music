@@ -1,5 +1,5 @@
 <template>
-    <div class="singer-details">
+    <div class="singer-details" v-if="singerBaseMsg.artist.name!==''">
         <details-page>
             <!--歌手封面-->
             <div slot="imgContainer">
@@ -81,7 +81,8 @@
                 singerBaseMsg:{
                   artist:{
                     cover:'',
-                    transNames:[{}]
+                    transNames:[{}],
+                    name:''
                   }
                 },/*当前歌手信息*/
                 top520Msg:[],    /*歌手热门50首歌曲*/
@@ -93,12 +94,10 @@
             }
         },
         created() {
-
-           /* this.singerBaseMsg=this.$route.query.singerBaseMsg;
-          console.log(this.singerBaseMsg);*/
           console.log(this.$route.query.artistId);
           singerMsg(this.$route.query.artistId).then(res=>{
             this.singerBaseMsg=res.data
+            console.log(res.data)
             this.networkOperate();
           })
 
@@ -127,12 +126,8 @@
               /*获取专辑内容*/
               for(let index in this.hotAlbum)
               {
-                //console.log(this.hotAlbum[index].id);
                 albumContent(this.hotAlbum[index].id).then(data=>{
-                  //console.log(data.songs);
-                  //console.log(this.albumContent.length)
                   this.albumContent.push(data.songs);
-                  //console.log(this.albumContent[index]);
                 })
               }
             })

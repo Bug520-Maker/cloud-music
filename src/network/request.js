@@ -4,7 +4,7 @@ import loading from '@/utils/loading/index';
 export function request(config)
 {
     const instance=axios.create({
-        baseURL:/*'http://123.207.32.32:9001'*/'http://localhost:3000',
+        baseURL:/*'http://123.207.32.32:9001'*/'http://81.68.208.125:3000',
         timeout:5000,
     })
     instance.interceptors.request.use(config=>{

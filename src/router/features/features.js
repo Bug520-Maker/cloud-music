@@ -5,7 +5,7 @@ const videoplay=()=>import('../../components/content/VideoPlay/videoPlay');
 /*导入歌手信息详情页*/
 const singerDetails=()=>import("../../components/content/details/singerDetail/SingerDetai");
 /*歌单详情组件*/
-const sheetMsg=()=>import('../../components/content/details/songSheetList/songSheetList')
+const playListMsg=()=>import('../../components/content/details/playListDetail/PlayListDetail')
 /*独家放送*/
 const solePlay=()=>import('../../components/content/solePlay/SolePlay');
 /*专辑详情*/
@@ -25,11 +25,11 @@ export const videoplayRuoter = {
     }
 };
 /*歌单详情*/
-export const sheetMsgRuoter =
+export const playListMsgRouter =
     {
-        path: '/sheetMsg',
-        name: '/sheetMsg',
-        component: sheetMsg
+        path: '/playListMsg',
+        name: '/playListMsg',
+        component: playListMsg
     };
 /*独家放送*/
 export const solePlayRuoter =

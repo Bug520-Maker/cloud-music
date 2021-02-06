@@ -91,11 +91,13 @@ export default {
       position: absolute;
       background-position: 3px 0;
       top: 0;
+      border-radius: 5px;
     }
     .radio li img
     {
         width: 140px;
         border: 1px solid rgba(153,153,153,.3);
+      border-radius: 5px;
     }
     .radio li p
     {

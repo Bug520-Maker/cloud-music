@@ -2,7 +2,7 @@
     <div class="created-play-list">
       <favorite-music/>
       <my-list-cpn :list="userPlayList"
-                   :path="['/sheetMsg']"
+                   :path="['/playListMsg']"
                    :songListId="songListId">
         <div slot="left-0">
           <i class="iconfont icon-love"></i>

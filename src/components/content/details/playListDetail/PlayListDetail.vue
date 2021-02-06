@@ -78,12 +78,12 @@ import TabControl from "../../../common/tabController/TabControl";
 import SongLists from "../../songList/SongLists";
 import {songSheetComm, songSheetCollect} from "@/network/songsheet/songSheet";
 import Comment from "@/components/content/comment/Comment";
-import Subscribers from "@/components/content/details/songSheetList/subscribers/Subscribers";
+import Subscribers from "@/components/content/details/playListDetail/subscribers/Subscribers";
 import {songDetailes} from "@/network/playCoin/songDetal";
 import {songListMsg} from "@/network/playlist/playlist";
 
 export default {
-  name: "songSheetList",
+  name: "PlayListDetail",
   components: {Subscribers, Comment, SongLists, TabControl, DetailsPage},
   data() {
     return {

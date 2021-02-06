@@ -55,7 +55,7 @@ export default {
     liClick(index, item)/*路由直歌单详情页*/
     {
         this.$router.push({
-          path: '/sheetMsg',
+          path: '/playListMsg',
           query: {
             playListId: this.qualitySheet[index].id
           }

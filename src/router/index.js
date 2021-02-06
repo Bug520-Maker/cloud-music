@@ -4,12 +4,12 @@ import VueRouter from 'vue-router'
 import findMusic from "@/router/findMusic/findMusic";
 import video from "@/router/video/video";
 import search from "@/router/search/search";
-import {localMusicRouter,
+import {
         downloadManageRouter,
         myCollectionRouter,
         myRadioRouter,
         myYunPanRouter,UserPlayListRouter} from "@/router/myMusic/myMusic";
-import {sheetMsgRuoter,
+import {playListMsgRouter,
   singerDetailsRuoter,
   solePlayRuoter,
   videoplayRuoter,
@@ -25,7 +25,7 @@ const topicMsg=()=>import('@/views/friend/dynamicMsg/topicDetails');
 const radioCateMsg=()=>import('@/components/content/RadioCpn/radionCateMsg/RadioCateMsg');
 /*数字专辑排行榜*/
 const digitalTop=()=>import('@/views/digitalAlbum/childCpn/topList/TopList');
-
+const artistRank=()=>import('@/views/artistRank/ArtistRank')
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
@@ -71,8 +71,13 @@ const routes = [
     name:'digitalTop',
     component:digitalTop
   },
+  {
+    path:'/artistRank',
+    name:'artistRank',
+    component:artistRank
+  },
   /*独立组件*/
-  sheetMsgRuoter,
+  playListMsgRouter,
   singerDetailsRuoter,
   solePlayRuoter,
   videoplayRuoter,
@@ -83,7 +88,6 @@ const routes = [
   /*搜索*/
   search,
   /*我的音乐*/
-  localMusicRouter,
   downloadManageRouter,
   myCollectionRouter,
   myRadioRouter,

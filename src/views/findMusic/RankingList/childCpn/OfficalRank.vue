@@ -25,7 +25,7 @@
     import {songListMsg} from "@/network/playlist/playlist";
 
     export default {
-        name: "ChildCpn",
+        name: "OfficalRank",
         props:{
             rankList:{
                 type:Array,
@@ -55,7 +55,7 @@
                 songListMsg(this.rankList[index].id).then(res=> {
                     //console.log(res.playlist);
                   this.$router.push({
-                    path:'/sheetMsg',
+                    path:'/playListMsg',
                     query:{
                       songListMsg:res.playlist
                     }

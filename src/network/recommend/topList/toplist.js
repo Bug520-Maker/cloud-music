@@ -19,3 +19,13 @@ export function listcontentDetail()
         }
     })
 }
+/*获取歌手榜*/
+export function artistToplist(type)
+{
+    return request({
+        url:'/toplist/artist',
+        params:{
+            type
+        }
+    })
+}

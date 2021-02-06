@@ -2,7 +2,7 @@
     <div class="search-result-video">
         <ul>
             <li v-for="(item,index) in videos" :key="index">
-               <msg-list play-count-l="74%"
+               <msg-list play-count-l="95%"
                          :duration-x-y="{x:'80%',y:'80%'}">
                  <div slot="imgContainer"
                       @click="playVideo(item,index)"
