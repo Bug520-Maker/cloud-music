@@ -6,8 +6,8 @@
           <div slot="imgContainer" class="img-container">
             <img v-lazy="item.cover+'?param=242y136.8'" />
           </div>
-          <div slot="state" class="mv-name">{{item.name}}</div>
-          <div slot="creator" class="artist-name">{{item.artistName}}</div>
+          <div slot="state" class="mv-name text-nowrap">{{item.name}}</div>
+          <div slot="creator" class="artist-name text-nowrap">{{item.artistName}}</div>
           <div slot="playCount">{{playCount(item.playCount)}}</div>
         </msg-list>
       </li>
@@ -60,9 +60,6 @@ export default {
 .mv-name,.artist-name
 {
   width: 240px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 .artist-name
 {

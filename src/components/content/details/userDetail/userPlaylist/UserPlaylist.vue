@@ -7,7 +7,7 @@
           <div slot="imgContainer" class="user-playlist-img">
             <img v-lazy="item.coverImgUrl+'?param=177y177'" />
           </div>
-          <div slot="state" class="user-playlist-state">
+          <div slot="state" class="user-playlist-state text-nowrap">
             {{item.name}}
           </div>
           <div slot="duration" class="count">{{item.trackCount}}首</div>
@@ -76,9 +76,6 @@ export default {
   .user-playlist-state
   {
     width: 177px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
   .user-playlist .user-playlist-icon i
   {

@@ -20,9 +20,12 @@
           }
         },
       created() {
-          userRadio(this.$store.state.userMsg.profile.userId).then(data=>{
-            console.log(data);
-          })
+          if(this.$store.state.loginType===1)
+          {
+            userRadio(this.$store.state.userMsg.profile.userId).then(data=>{
+              console.log(data);
+            })
+          }
       }
     }
 </script>

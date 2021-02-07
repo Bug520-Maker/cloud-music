@@ -21,10 +21,10 @@
         </ul>
         <div id="songMsg">
             <p>{{this.$store.state.singleDetails.name}}</p>
-            <p>{{this.$store.state.singleDetails.alias[0]}}</p>
+            <p class="text-nowrap">{{this.$store.state.singleDetails.alias[0]}}</p>
             <ul>
-                <li>专辑：<span>{{this.$store.state.singleDetails.album.name||'无'}}</span></li>
-                <li @click="singerClick">歌手：
+                <li class="text-nowrap">专辑：<span>{{this.$store.state.singleDetails.album.name||'无'}}</span></li>
+                <li @click="singerClick" class="text-nowrap">歌手：
                     <span>
                     {{this.$store.state.singleDetails.artists[0].name||'无'}}
                   </span>
@@ -194,11 +194,6 @@
     #songMsg p:nth-of-type(2)
     {
         color: rgb(76, 76, 76);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
         font-size: 14px;
         margin: 0 0 15px 0;
     }
@@ -216,20 +211,10 @@
     #songMsg ul li:nth-of-type(1)
     {
         width: 147px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
     }
     #songMsg ul li:nth-of-type(2)
     {
         width: 130px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
     }
 
     #songMsg ul li span

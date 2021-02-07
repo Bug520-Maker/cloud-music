@@ -11,7 +11,7 @@
           <div slot="imgContainer" class="collect-video-img">
             <img v-lazy="item.coverUrl+'?param=236y133'" />
           </div>
-          <div slot="state" class="collect-video-state">
+          <div slot="state" class="collect-video-state text-nowrap">
             {{item.title}}
           </div>
           <div slot="creator" class="collect-video-creator">
@@ -80,9 +80,6 @@ h4{
   .collect-video-state
   {
     width: 234px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
   .collect-video-creator
   {

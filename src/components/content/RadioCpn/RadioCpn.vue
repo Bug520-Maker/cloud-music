@@ -12,7 +12,7 @@
                        <div class="cover"></div>
                         <img v-lazy="item.picUrl+'?param=140y140'" />
                         <p>{{item.rcmdText}}</p>
-                        <div class="name">{{item.name}}</div>
+                        <div class="name text-nowrap">{{item.name}}</div>
                     </li>
                 </ul>
             </div>
@@ -113,9 +113,6 @@ export default {
         font-size: 13px;
         width: 100%;
         background-color: #795da3;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
         padding: 5px 0px;
         background-color:rgba(0,0,0,.3);
         border-radius: 3px;

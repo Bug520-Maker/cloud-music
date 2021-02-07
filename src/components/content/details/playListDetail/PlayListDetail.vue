@@ -53,7 +53,7 @@
                     </li>
                     <li>
                         <span class="tag-name">简介: </span>
-                        <span class="description">{{songListMsg.description}}</span>
+                        <span class="description text-nowrap">{{songListMsg.description}}</span>
                     </li>
                 </ul>
             </div>
@@ -232,10 +232,7 @@ export default {
     }
     .description
     {
-        white-space: nowrap;
-        text-overflow: ellipsis;
         width: 150px;
-        overflow:hidden;
         display: inline-block;
     }
 </style>

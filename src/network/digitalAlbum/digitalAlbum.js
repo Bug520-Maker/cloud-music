@@ -16,9 +16,20 @@ export function digitalTop(albumType,type)
         url:'/album/songsaleboard',
         params:{
             limit:60,
-            offset:1,
+            offset:0,
             albumType,
             type
+        }
+    })
+}
+/*语种风格馆*/
+export function languageStyle(area)
+{
+    return request({
+        url:'/album/list/style',
+        params:{
+           area,
+            limit:30
         }
     })
 }

@@ -8,7 +8,7 @@
                 <div class="recImg" @click="playMv(item,index)">
                     <img :src="item.picUrl+'?param=240y134.88'" />
                 </div>
-                <div class="rec-name">{{item.name}}</div>
+                <div class="rec-name text-nowrap">{{item.name}}</div>
                 <div class="rec-artist">
                     {{item.artistName}}
                 </div>
@@ -88,11 +88,6 @@
         font-size: 14px;
         margin: 5px 0;
         width: 240px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
     }
     .rec-title + .recommend-mv li .rec-artist
     {

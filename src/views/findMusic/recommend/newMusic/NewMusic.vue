@@ -12,11 +12,11 @@
                     </div>
                 </div>
                 <div>
-                    <p class="songName">
+                    <p class="songName text-nowrap">
                       {{item.name}}
                       <span v-show="item.song.alias.length>0">({{item.song.alias[0]}})</span>
                     </p>
-                    <p class="name" @click="artistRoute(item.song)">{{toString(item.song.artists)}}</p>
+                    <p class="name text-nowrap" @click="artistRoute(item.song)">{{toString(item.song.artists)}}</p>
                 </div>
             </li>
         </ul>
@@ -148,9 +148,6 @@
     {
         width: 170px;
         color: rgb(153,153,153);
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
         cursor: pointer;
     }
     .new-song-list li .name:hover
@@ -159,10 +156,7 @@
     }
     .songName
     {
-      white-space: nowrap;
       width: 170px;
-      text-overflow: ellipsis;
-      overflow: hidden;
       cursor: pointer;
       margin: 5px 0 5px 0;
     }

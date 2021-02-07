@@ -48,14 +48,12 @@
           },
         imgClick(item,index)
         {
-          songListMsg(item.id).then(res=> {
             this.$router.push({
               path: '/playListMsg',
               query: {
-                songListMsg: res.playlist
+                playListId: item.id
                 }
               })
-          })
         },
       }
     }

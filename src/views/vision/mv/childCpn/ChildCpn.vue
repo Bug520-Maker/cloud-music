@@ -8,7 +8,7 @@
                   <img  :data-src="item.cover+'?param=240y136'" @click="playmv(item)"
                         :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
                 </div>
-                <div slot="state" class="name">{{item.name}}</div>
+                <div slot="state" class="name text-nowrap">{{item.name}}</div>
                 <div slot="creator" class="artist" @click="singerRouter(item)">{{item.artistName}}</div>
                 <div slot="playCount">{{playCount(item.playCount)}}</div>
               </msg-list>
@@ -87,11 +87,6 @@
         font-size: 14px;
         color:rgb(55, 55, 55);
         width: 240px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
     }
     .mv-child-cpn .mv-details .artist
     {

@@ -74,7 +74,3 @@
         font-weight: bold;
     }
 </style>
-<!--
-{{$store.state.keywords}}
-        {{$store.state.songCount}}
--->

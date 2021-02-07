@@ -11,12 +11,13 @@
         <ul>
           <li v-for="(item,index) in products" :key="item.albumId">
             <div class="cover"></div>
-            <msg-list :is-show="false">
+            <msg-list :is-show="false" :duration-x-y="{x:'0%',y:'133%'}">
               <div slot="imgContainer" class="digital-img">
                 <img :src="resetImgSize(item.coverUrl,140,140)" />
               </div>
-              <div slot="state" class="digital-state">{{item.albumName}}</div>
+              <div slot="state" class="digital-state text-nowrap">{{item.albumName}}</div>
               <div slot="creator" class="digital-creator">{{item.artistName}}</div>
+              <div slot="duration" class="price">￥{{item.price}}</div>
             </msg-list>
           </li>
         </ul>
@@ -99,7 +100,7 @@ export default {
     }
     .digital-album ul li
     {
-      margin: 0 20px 10px 0;
+      margin: 0 20px 30px 0;
       position: relative;
     }
     .digital-album .digital-img
@@ -125,10 +126,7 @@ export default {
     .digital-state
     {
       width: 140px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      margin: 10px 0 5px 0;
+      margin: 5px 0 5px 0;
     }
     .digital-creator
     {
@@ -139,5 +137,9 @@ export default {
       color: #999999;
       font-size: 13px;
 
+    }
+    .price{
+      color:#ec4141;
+      font-size: 16px;
     }
 </style>

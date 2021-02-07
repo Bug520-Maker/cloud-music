@@ -14,7 +14,7 @@
               <img :data-src="item.data.coverUrl+'?param=243y137.6'"
                    :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
             </div>
-            <div slot="state" class="state">
+            <div slot="state" class="state text-nowrap">
               {{item.data.title}}
             </div>
             <div slot="creator" class="creator" @click="userRouter(item.data.creator)">
@@ -127,9 +127,6 @@
     .state
     {
       width: 241px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
       font-size: 12px;
       color: #373737;
       margin: 5px 0 5px 0;

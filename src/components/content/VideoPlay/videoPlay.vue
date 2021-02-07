@@ -10,12 +10,12 @@
           </video>
           <div class="charge"  v-show="this.$store.state.mvurldata.url===null && mvurl===null"></div>
           <!--MV简略介绍-->
-          <video-msg :mvId="mvId" v-if="path!==''" :path="path"/>
+          <video-msg :mvId="mvId" v-if="path!==''" :path="path" :type="type"/>
         </div>
       <!--相关Mv推荐-->
       <related-rec :mvId="mvId" @related-rec="changeVideo"/>
       <!--视频评论-->
-      <video-comment :vId="mvId" v-if="path==='/vision/vis'"/>
+      <video-comment :vId="mvId" v-if="path==='/vision/vis'||this.type===1"/>
       <!--MV评论-->
       <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'"/>
     </div>
@@ -36,7 +36,8 @@
                 mvurl:'',
                 mvId:'',
                 path:'',
-                key:0
+                key:0,
+              type:0
             }
         },
       methods: {
@@ -46,8 +47,8 @@
         changeVideo(simiMsg) {
           this.mvurl=simiMsg.url;
           this.mvId=simiMsg.mvId;
+          this.type=simiMsg.type
           this.key++;
-            //console.log(simiMsg)
         }
       },
         created() {
@@ -61,7 +62,7 @@
         {
           next(vm=>{
               vm.path=from.path;
-              console.log(vm.path)
+              //console.log(vm.path)
           })
         }
     }
@@ -90,6 +91,7 @@
       width:480px;
       height:320px;
       display: inline-block;
+      outline: none;
     }
     .charge
     {

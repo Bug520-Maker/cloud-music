@@ -6,7 +6,7 @@
         <div slot="imgContainer" class="program-img" @click="playdj(item)">
           <img :src="item.coverUrl+'?param=60y60'" />
         </div>
-        <div slot="state" class="program-name">{{item.name}}</div>
+        <div slot="state" class="program-name text-nowrap">{{item.name}}</div>
         <div slot="creator" class="sub">
           <i class="iconfont icon-play4"> </i>
           <span> {{item.listenerCount}}</span>
@@ -14,7 +14,7 @@
           <span> {{item.likedCount}}</span>
         </div>
         <div slot="time" class="time-dur">
-          <div>{{item.scheduledPublishTime}}</div>
+          <div class="text-nowrap">{{item.scheduledPublishTime}}</div>
           <div>{{duration(item.duration)}}</div>
         </div>
       </list-info>
@@ -110,9 +110,6 @@ export default {
     color: #363636;
     margin: 20px 10px 0 0;
     width:330px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
   /*播放次数，点赞数*/
   .sub{
@@ -137,9 +134,6 @@ export default {
   .time-dur div:nth-child(1)
   {
     width: 50px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     margin: 0 30px 0 0;
   }
 </style>

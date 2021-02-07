@@ -13,7 +13,7 @@
                     <div slot="playCount">
                         {{playCount(item.playCount)}}
                     </div>
-                    <div slot="state" class="state">
+                    <div slot="state" class="state text-nowrap">
                         {{item.name}}
                     </div>
                 </MsgList>
@@ -85,8 +85,5 @@
     .state
     {
         width: 242px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
     }
 </style>

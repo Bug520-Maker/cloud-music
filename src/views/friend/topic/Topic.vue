@@ -7,7 +7,7 @@
          <div slot="imgContainer" class="img-container">
            <img :src="item.sharePicUrl+'?param=50y50'" />
          </div>
-         <div slot="state" class="title">
+         <div slot="state" class="title text-nowrap">
            {{item.title}}
          </div>
          <div slot="creator">
@@ -45,9 +45,6 @@ export default {
   .title
   {
     width:153px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
   }
   .hot-topic ul li
   {

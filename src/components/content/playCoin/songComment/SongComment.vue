@@ -1,12 +1,17 @@
 <!--歌曲评论-->
 <template>
   <div class="song-comment">
-    <p>评论</p>
-    <div></div>
-    <h5>精彩评论</h5>
-    <comment :comments="hotComments" comments-width="500px"/>
-    <h4 class="newComment">最新评论</h4>
-    <comment :comments="comments" comments-width="500px" />
+   <div v-if="this.$store.state.songId!==''">
+     <p>评论</p>
+     <div></div>
+     <h5>精彩评论</h5>
+     <comment :comments="hotComments" comments-width="500px"/>
+     <h4 class="newComment">最新评论</h4>
+     <comment :comments="comments" comments-width="500px" />
+   </div>
+    <div v-if="this.$store.state.songId===''" class="no-comment">
+      暂时没有评论哦
+    </div>
   </div>
 </template>
 
@@ -28,7 +33,7 @@ export default {
     this.$store.watch((state,getters)=>{
       return state.songId
     },()=>{
-      //console.log(this.$store.state.songId);
+      console.log(this.$store.state.songId);
       songComment(this.$store.state.songId).then(data=>{
         //console.log(data);
         this.comments=data.comments;
@@ -54,6 +59,11 @@ export default {
   .newComment
   {
     margin: 50px 0 0 0;
+  }
+  .no-comment{
+    font-size: 18px;
+    color:#ec4141;
+    margin: 100px 0 0 40px;
   }
 
 </style>

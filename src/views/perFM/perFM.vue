@@ -125,7 +125,7 @@ export default {
 }
 
 .per-fm ul {
-  margin: 40px 0 0 20px;
+  margin: 70px 0 0 20px;
   width: 347px;
 }
 
@@ -137,6 +137,7 @@ export default {
 .per-fm ul img {
   width: 277px;
   border-radius: 5px;
+  border: 1px solid rgba(153,153,153,.4);
 }
 
 /*设置控制按钮样式 如删除，下一首*/

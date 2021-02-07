@@ -6,11 +6,11 @@
                <span class="song-index">{{index>8?index+1:'0'+(index+1)}}</span>
                 <i class="iconfont icon-love love" ></i>
                 <i class="iconfont icon-download down" ></i>
-                <div class="songName" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
-                <div class="singerName" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
-                <div class="albumName">{{item.album.name}}</div>
-                <div class="duartion">{{duration(item.duration)}}</div>
-                <div v-show="isShowHot" class="hotStatus"></div>
+                <div class="songName text-nowrap" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
+                <div class="singerName text-nowrap" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
+                <div class="albumName text-nowrap">{{item.album.name}}</div>
+                <div class="duartion text-nowrap">{{duration(item.duration)}}</div>
+                <div v-show="isShowHot" class="hotStatus text-nowrap"></div>
             </li>
         </ul>
     </div>
@@ -109,9 +109,6 @@
     #song-list ul li div
     {
         flex:1;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
     }
     #song-list ul li div:nth-child(1) span
     {

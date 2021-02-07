@@ -21,7 +21,7 @@
             <img v-lazy="item.blurPicUrl+'?param=130y130'" />
           </div>
           <div slot="state" class="state">{{item.name}}</div>
-          <div slot="creator" class="creator">{{item.artist.name}}</div>
+          <div slot="creator" class="creator text-nowrap">{{item.artist.name}}</div>
         </msg-list>
       </li>
     </ul>
@@ -168,9 +168,6 @@ export default {
   color: #9f9f9f;
   margin: 5px 0 0 0;
   width: 137px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 /*推荐，全部*/
 #nav

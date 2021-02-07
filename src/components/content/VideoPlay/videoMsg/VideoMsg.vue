@@ -53,10 +53,15 @@ export default {
     path:{
       type:String,
       default:''
+    },
+    type:{
+      type:Number,
+      default:0
     }
   },
   created() {
-    if(this.path==='/vision/mv'||this.path==='/singerDetails')/*MV*/
+    console.log(this.type);
+    if((this.path==='/vision/mv'||this.path==='/singerDetails')&&this.type===0)/*MV*/
     {
       mvData(this.mvId).then(data=>{
      // console.log(data.data);
@@ -67,7 +72,7 @@ export default {
         })
     })
     }
-    else if(this.path==='/vision/vis')/*视频*/
+    else if(this.path==='/vision/vis'||this.type===1)/*视频*/
     {
       videoData(this.mvId).then(data=>{
         //console.log(data.data)

@@ -7,7 +7,9 @@
         <div class="broadcast">
             <ul>
                 <li v-for="(item,index) in broadcastList" :key="index">
-                    <img :src="item.sPicUrl+'?param=240y135&quality=100'"  @click="mvClick(index)" />
+                    <div>
+                      <img :src="item.sPicUrl+'?param=240y135&quality=100'"  @click="mvClick(index)" />
+                    </div>
                     <p>{{item.name}}</p>
                 </li>
             </ul>
@@ -29,7 +31,7 @@
         },
         created() {
             broadcast().then(data => {
-                //console.log(data.result)
+                console.log(data.result)
                 this.broadcastList = data.result;
             })
         },
@@ -43,7 +45,7 @@
             mvClick(index)
             {
                 mvurl(this.broadcastList[index].id).then(res=>{
-                    //console.log(res.data.url);
+                   // console.log(res.data.url);
                     this.$router.push({
                         path:'/videoPlay',
                         query:{
@@ -73,6 +75,7 @@
     .broadcast ul li
     {
         flex: 1;
+      border-radius: 5px;
     }
     .broadcast ul li p
     {
@@ -83,5 +86,17 @@
         border-radius:5px ;
         border: 1px solid rgba(153,153,153,.4);
         width: 240px;
+      transform: scale(1);
+      transition: transform 0.3s;
+    }
+    .broadcast ul li img:hover
+    {
+      transform: scale(1.1);
+    }
+    .broadcast ul li div{
+      width: 240px;
+      height: 135px;
+      overflow: hidden;
+      border-radius: 5px;
     }
 </style>

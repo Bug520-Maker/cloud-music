@@ -159,7 +159,7 @@
     }
     .title .all-video ul li
     {
-        width: 100px;
+        /*width: 100px;*/
         border-radius: 20px;
         margin: 0px 10px 10px 0;
         width:85px;

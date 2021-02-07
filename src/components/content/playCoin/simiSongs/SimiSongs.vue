@@ -1,6 +1,6 @@
 <!--相似歌曲-->
 <template>
-  <div class="simi-song">
+  <div class="simi-song" v-if="this.$store.state.songId!==''">
     <h5>相似歌曲</h5>
     <ul>
       <li v-for="(item,index) in simiSongs" :key="item.id">

@@ -2,7 +2,9 @@
     <div class="my-list">
         <ul>
             <li v-for="(item,index) in list" :key="index" @click="aclick(index,$event)" :class="{active:currentIndex==index}">
-                <div class="left-icon"><slot :name="'left-'+index"></slot></div>
+                <div class="left-icon">
+                  <slot :name="'left-'+index"></slot>
+                </div>
                 <div class="context" >
                     {{item.name||item}}
                 </div>
@@ -15,53 +17,48 @@
 </template>
 
 <script>
-    export default {
-        name: "MyListCpn",
-        data()
-        {
-            return {
-                currentIndex:0
-            }
-        },
-        props:{
-            list:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            },
-            path:{
-                type:Array,
-                default() {
-                    return [];
-                }
-            },
-        },
-        methods:{
-            aclick(index,event)
-            {
-                this.currentIndex=index;
-                //this.$emit('item-click',index);
-                if (this.path.length === 1)
-                {
-                  this.$store.dispatch({
-                    type:"userSongList",
-                    songListId:this.list[index].id
-                  }).then(()=>{
-                    this.$router.push({
-                      path:this.path[0],
-                    });
-                  })
-
-                }
-                else {
-                  this.$router.push(this.path[index]);
-                }
-
-            }
-        }
+export default {
+  name: "MyListCpn",
+  data() {
+    return {
+      currentIndex: 0
     }
+  },
+  props: {
+    list: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    path: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+  },
+  methods: {
+    aclick(index, event) {
+      this.currentIndex = index;
+      //this.$emit('item-click',index);
+      if (this.path.length === 1) {
+        this.$store.dispatch({
+          type: "userSongList",
+          songListId: this.list[index].id
+        }).then(() => {
+          this.$router.push({
+            path: this.path[0],
+          });
+        })
+
+      } else {
+        this.$router.push(this.path[index]);
+      }
+
+    }
+  }
+}
 </script>
 
 <style scoped>

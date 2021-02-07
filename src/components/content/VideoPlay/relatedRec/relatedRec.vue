@@ -7,7 +7,7 @@
         <msg-list
             is-flex="flex"
             :duration-x-y="{x:'65%',y:'75%'}"
-            play-count-l="60%">
+            play-count-l="90%">
           <div slot="imgContainer" class="img-container" @click="playVideo(item)">
             <img :src="item.coverUrl+'?param=140y80'" />
           </div>
@@ -65,16 +65,17 @@ export default {
             //console.log(data.urls[0].url);
               let simiRec={
               url:data.urls[0].url,
-              mvId:item.vid
+              mvId:item.vid,
+                type:item.type
             }
             this.$emit('related-rec',simiRec)
           });break;
         case 0:
           mvurl(item.vid).then(res=> {
-            //console.log(res.data.url);
                let simiRec= {
               url: res.data.url,
-              mvId: item.vid
+              mvId: item.vid,
+                 type:item.type
             }
             this.$emit('related-rec',simiRec)
           });break;

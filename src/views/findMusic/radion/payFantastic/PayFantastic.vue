@@ -11,7 +11,7 @@
                         <img v-lazy="item.picUrl+'?param=135y135'" />
                         <div>
                             <p>{{item.name}}</p>
-                            <p>{{radioMsg[index].rcmdText}}</p>
+                            <p class="text-nowrap">{{radioMsg[index].rcmdText}}</p>
                             <p>￥{{radioMsg[index].feeInfo.price/100}}</p>
                         </div>
                     </div>
@@ -87,9 +87,6 @@
          font-size: 13px;
          color: rgb(159, 159, 159);
          width: 200px;
-         text-overflow: ellipsis;
-         overflow: hidden;
-         white-space: nowrap;
          margin: 0 10px 0 0;
      }
      .msg-detail div p:nth-of-type(3)

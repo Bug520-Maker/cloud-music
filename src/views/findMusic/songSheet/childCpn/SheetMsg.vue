@@ -8,7 +8,7 @@
         <li v-for="(item,index) in huayuList" :key="index">
           <msg-list :duration-x-y="{x:'7%',y:'80%'}"
                     :show-play="{show:true,width:'45px',height:'45px'}">
-            <div slot="imgContainer" @click="sheetRouter(index)">
+            <div slot="imgContainer" @click="sheetRouter(index)" class="play-list-img-container">
               <img v-lazy="item.coverImgUrl+'?param=177y177&quality=100'" />
             </div>
             <div slot="state" class="name">
@@ -112,6 +112,17 @@ export default {
         width: 177px;
         border-radius:8px ;
         border: 1px solid rgba(153,153,153,.4);
+      transform: scale(1);
+      transition: transform 0.3s;
+    }
+    .sheet-msg ul img:hover{
+      transform: scale(1.1);
+    }
+    .play-list-img-container{
+      width: 179px;
+      height: 179px;
+      overflow: hidden;
+      border-radius: 8px;
     }
     .sheet-msg ul .name
     {

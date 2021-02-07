@@ -6,7 +6,8 @@
          v-loading="this.$store.state.loading"
          element-loading-text="载入中..."
          element-loading-spinner="el-icon-loading"
-         element-loading-background="#ffffff">
+         element-loading-background="#ffffff"
+         :style="{backgroundImage:`url(${highquality[0].coverImgUrl}?imageView&blur=40x20)`}">
       <div class="quality">
         <div class="cover"></div>
         <img v-lazy="highquality[0].coverImgUrl+'?param=140y140&quality=100'">
@@ -16,8 +17,8 @@
         <li>{{ highquality[0].name }}</li>
         <li>{{ highquality[0].copywriter }}</li>
       </ul>
-
     </div>
+
     <!--设置 歌单导航 华语-流行-摇滚-民谣-电子-另类/独立-轻音乐等-->
     <div id="header">
       <div class="title">{{ title }} ></div>
@@ -117,7 +118,9 @@
   margin: 30px 0 0 0;
   border-radius: 10px;
   display: flex;
-  background-image: linear-gradient(to right, rgb(118, 115, 115) 50px, rgba(45, 42, 41, .6) 450px, rgb(147, 119, 115) 750px);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size:6000px;
   cursor: pointer;
 }
 

@@ -21,9 +21,9 @@
                   <img v-lazy="qualitySheet[index].coverImgUrl+'?param=134y134'">
                 </div>
                 <ul class="sheetInfo">
-                    <li @click="liClick(index,item)">{{qualitySheet[index].name}}</li>
+                    <li @click="liClick(index,item)" class="text-nowrap">{{qualitySheet[index].name}}</li>
                     <li @click="userRouter(item)">by {{qualitySheet[index].creator.nickname}}</li>
-                    <li>{{qualitySheet[index].copywriter}}</li>
+                    <li class="text-nowrap">{{qualitySheet[index].copywriter}}</li>
                 </ul>
             </li>
         </ul>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import {songListMsg} from "@/network/playlist/playlist";
 import Category from "@/components/common/category/Category";
 import {highquality} from "@/network/songsheet/songSheet";
 
@@ -155,11 +154,6 @@ export default {
   margin: 30px 0 15px;
   font-size: 14px;
   width: 210px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   cursor: pointer;
 }
 
@@ -173,11 +167,6 @@ export default {
 .sheetInfo li:nth-of-type(3) {
   font-size: 12px;
   width: 210px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   color: rgb(207, 207, 207);
 }
 </style>

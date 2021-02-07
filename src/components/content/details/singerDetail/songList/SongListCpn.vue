@@ -7,7 +7,7 @@
                 <i class="iconfont icon-love"></i>
                 <i class="iconfont icon-download"></i>
 
-                <span class="outer">
+                <span class="outer text-nowrap">
                      <span class="name" @click="playSong(item,index)">{{item.name}}</span>  <!--歌曲名称-->
                      <span class="alia" v-show="typeof item.alia[0]!='undefined'"> ({{item.alia[0]}})</span> <!--歌曲描述-->
                 </span>

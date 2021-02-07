@@ -6,7 +6,7 @@
            <div slot="imgContainer">
              <img :src="item.coverImgUrl+'?param=60y60'" />
            </div>
-           <div slot="stateName" class="playlist-state-name">
+           <div slot="stateName" class="playlist-state-name text-nowrap">
              {{item.name}}
            </div>
            <div slot="count" class="playlist-count">{{item.trackCount}}首</div>
@@ -65,9 +65,6 @@
 
 .playlist-state-name {
   width: 275px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .playlist-count {

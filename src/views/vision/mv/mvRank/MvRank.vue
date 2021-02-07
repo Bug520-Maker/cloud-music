@@ -16,8 +16,8 @@
                :data-loading="require('@/assets/img/placeholder/placeholder02.png')"/>
         </div>
         <div class="msg">
-          <div class="name">{{item.name}}</div>
-          <div class="artist-name">{{toString(item.artists)}}</div>
+          <div class="name text-nowrap">{{item.name}}</div>
+          <div class="artist-name text-nowrap">{{toString(item.artists)}}</div>
         </div>
       </li>
     </ul>
@@ -123,17 +123,11 @@ export default {
   }
   .msg .name
   {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow:hidden ;
     width: 148px;
     margin: 0 0 30px 0;
   }
   .artist-name
   {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow:hidden ;
     width: 148px;
   }
   .msg .name,.artist-name

@@ -75,7 +75,6 @@ export default {
 }
 
 .rec-list ul li {
-
   margin: 0px 0 15px 0;
   position: relative;
 }

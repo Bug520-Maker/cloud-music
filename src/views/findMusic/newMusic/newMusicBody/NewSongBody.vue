@@ -21,7 +21,7 @@
                 <div>
                     {{item.artists[0].name}}
                 </div>
-                <div :title="item.album.name">
+                <div :title="item.album.name" class="text-nowrap">
                     {{item.album.name}}
                 </div>
                 <div>{{duration(item.duration)}}</div>
@@ -169,9 +169,6 @@
         line-height: 60px;
         color: rgb(103,103,103);
         cursor: default;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
     }
     #new-song-body .newsong-list li div:nth-of-type(5)
     {

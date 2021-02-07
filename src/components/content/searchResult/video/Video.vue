@@ -19,7 +19,7 @@
                    {{duration(item.durationms)}}
                  </p>
                  <!--视频title-->
-                 <div slot="state" class="state">
+                 <div slot="state" class="state text-nowrap">
                    {{item.title}}
                  </div>
                  <!--视频作者-->
@@ -150,9 +150,6 @@
     .state
     {
         width: 232px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
         color: rgb(80, 145, 202);
     }
     .creator

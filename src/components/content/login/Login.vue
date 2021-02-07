@@ -68,7 +68,7 @@ export default {
   width: 349px;
   height: 530px;
   background-color: #ffffff;
-  z-index: 999999;
+  z-index: 9999999;
   box-shadow: 0 0 10px rgba(0, 0, 0, .4);
   transform: scale(0);
   transition: all 0.4s;
