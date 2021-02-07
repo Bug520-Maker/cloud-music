@@ -52,15 +52,12 @@
             imgClick(index)
             {
                 //console.log(this.officialList[index].id);
-                songListMsg(this.rankList[index].id).then(res=> {
-                    //console.log(res.playlist);
                   this.$router.push({
                     path:'/playListMsg',
                     query:{
-                      songListMsg:res.playlist
+                      playListId:this.rankList[index].id
                     }
                   });
-                })
             },
             ergodic(arr)//遍历
             {
