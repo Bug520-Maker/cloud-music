@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "400303",
+      "name": "菜单",
+      "font_class": "htmal5icon35",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "8423784",
+      "name": "心跳心动",
+      "font_class": "huaban",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "18963668",
+      "name": "随机播放",
+      "font_class": "suijibofang",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "18965480",
+      "name": "单曲循环",
+      "font_class": "danquxunhuan",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "18965481",
+      "name": "列表循环",
+      "font_class": "liebiaoxunhuan",
+      "unicode": "e6a3",
+      "unicode_decimal": 59043
+    },
+    {
+      "icon_id": "513185",
+      "name": "play",
+      "font_class": "custom-play",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "737076",
+      "name": "skip-next",
+      "font_class": "skipnext",
+      "unicode": "e769",
+      "unicode_decimal": 59241
+    },
+    {
+      "icon_id": "11981965",
+      "name": "pause",
+      "font_class": "pause",
+      "unicode": "e98f",
+      "unicode_decimal": 59791
+    },
+    {
       "icon_id": "11175131",
       "name": "五角星 星型 ",
       "font_class": "wujiaoxingxingxing",

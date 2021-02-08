@@ -56,16 +56,37 @@ button
     white-space: nowrap;
     overflow: hidden;
 }
+/****************element-ui全局样式*********************/
 /*设置轮播图全局样式*/
 div.el-carousel__container
 {
     height: 210px;
 }
-
 .el-pagination.is-background .el-pager li:not(.disabled).active
 {
     background-color: #ec4141!important;
 }
+/*设置播放器*/
+.el-slider__runway{
+    margin: 0px!important;
+}
+.el-slider__button{
+    width: 5px!important;
+    height: 5px!important;
+    background-color: #ec4141!important;
+    border: 2px solid #ec4141!important;
+}
+.el-slider__button.hover{
+    cursor: pointer!important;
+}
+.el-slider__button-wrapper.hover{
+    cursor: pointer!important;
+}
+.el-slider__bar
+{
+    background-color: #ff4e4e!important;
+}
+/**************************element-ui全局样式************************************/
 
 /*公共样式*/
 .text-nowrap{

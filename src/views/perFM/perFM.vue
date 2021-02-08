@@ -62,7 +62,7 @@ export default {
   },
   created() {
     perFM().then(data => {
-      console.log(data.data);
+     // console.log(data.data);
       this.perSong = data.data;
     })
   },

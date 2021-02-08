@@ -3,10 +3,10 @@
         <div id="title">全球榜</div>
       <ul>
         <li v-for="(item,index) in globalRank">
-          <msg-list play-count-l="95%">
+          <msg-list play-count-l="95%" :show-play="{show:false,width:'45px',height:'45px'}">
             <div slot="imgContainer" class="img-container">
               <img v-lazy="item.coverImgUrl+'?param=137y137'" @click="imgClick(item,index)"/>
-              <div class="play">
+              <div id="play">
                 <i class="iconfont icon-play3"></i>
               </div>
             </div>
@@ -75,6 +75,7 @@
     .global-rank ul li img
     {
         width: 137px;
+        height: 137px;
         border-radius: 5px;
         border: 1px solid rgba(153,153,153,.4);
     }
@@ -90,11 +91,11 @@
         white-space: nowrap;
       line-height: 14px;
     }
-    .img-container:hover .play
+    .img-container:hover #play
     {
       display: block;
     }
-    .play
+    #play
     {
       position: absolute;
       left: 50%;
@@ -108,7 +109,7 @@
       text-align: center;
       display: none;
     }
-    .play i
+    #play i
     {
       font-size: 24px;
       color: #ec4141;

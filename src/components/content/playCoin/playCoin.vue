@@ -15,30 +15,24 @@
             </p>
             <p @click="pClick">{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
         </div>
-        <audio :src="this.$store.state.songUrl"
-                controls="controls"
-               class="play-song"
-               ref="playSong"
-               autoplay="autoplay">
-        </audio>
+      <player/>
         <PlayPage id="play-page"  :isActive="{isLive:isActive}" :oLRC="oLRC" :class="{active:isActive}"/>
     </div>
 </template>
 
 <script>
-import PlayPage from "./PlayPage";
+import PlayPage from "./playPage/PlayPage";
 import {songLyric} from "@/network/playCoin/songDetal";
+import Player from "@/components/content/playCoin/player";
 
 export default {
   name: "playCoin",
   components: {
+    Player,
     PlayPage
   },
   created() {
 
-  },
-  mounted() {
-    this.$refs.playSong.volume = 0.1;
   },
   data() {
     return {
@@ -135,17 +129,11 @@ export default {
         height: 70px;
         border-top: 1px solid rgb(225, 225, 225);
         position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
-    .play-song
-    {
-        width: 500px;
-        position:absolute;
-        left: 50%;
-        top:50%;
-        transform: translate(-50%,-50%);
-        outline: none;
-        height: 50px;
-    }
+
     #img-container
     {
         width: 50px;

@@ -33,7 +33,7 @@ export default {
     this.$store.watch((state,getters)=>{
       return state.songId
     },()=>{
-      console.log(this.$store.state.songId);
+      //console.log(this.$store.state.songId);
       songComment(this.$store.state.songId).then(data=>{
         //console.log(data);
         this.comments=data.comments;

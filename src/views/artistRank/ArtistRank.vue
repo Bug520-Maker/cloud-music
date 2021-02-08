@@ -11,7 +11,7 @@
         </ul>
         <div class="update">
           更新时间:
-          {{formatDate(new Date(this.topList.updateTime))}}
+          {{formatDate(this.topList.updateTime,"MM月-dd日")}}
         </div>
       </div>
       <div class="top-list-header" v-if="topList.length!==0">
@@ -64,9 +64,9 @@ export default {
       this.currentIndex=index;
       this.getArtistTopList((index+1))
     },
-    formatDate(time)
+    formatDate(time,ft)
     {
-      return formatDate(time,false);
+      return formatDate(time,ft);
     },
     singerRouter(item)
     {

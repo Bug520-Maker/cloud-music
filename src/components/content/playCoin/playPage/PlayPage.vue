@@ -41,8 +41,8 @@
 </template>
 
 <script>
-    import SongComment from "@/components/content/playCoin/songComment/SongComment";
-    import SimiSongs from "@/components/content/playCoin/simiSongs/SimiSongs";
+    import SongComment from "@/components/content/playCoin/playPage/songComment/SongComment";
+    import SimiSongs from "@/components/content/playCoin/playPage/simiSongs/SimiSongs";
     export default {
         name: "PlayPage",
       components: {SimiSongs, SongComment},

@@ -18,7 +18,7 @@ export default {
     getMusicAlbum(context,payload)
     {
         albumContent(payload.albumId).then(data=> {
-            console.log(data);
+           // console.log(data);
                 context.commit({
                 type: 'getAlbumImg',
                 albumImgUrl:data.album.blurPicUrl

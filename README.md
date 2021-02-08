@@ -1,6 +1,10 @@
 
 # cloud-music
 
+仿网易云UI界面
+主要使用vuex,vueRouter,axios,接口数据来源于开源接口[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
+###效果图
+![Image text](https://github.com/Bug520-Maker/imgList/blob/master/comment.png)
 ## Project setup
 ```
 npm install
@@ -15,14 +19,18 @@ npm run serve
 ```
 npm run build
 ```
-##Illustration
+##illustration
 
 * 不兼容```IE9```以下浏览器
 * 使用```NeteaseCloudMusicApi```<br>
-* ```基本完成```<br>
-**用户登录、歌曲、歌手、专辑搜索**，<br>
-***歌手信息***，***专辑信息***，***歌单信息***，<br>***mv***,***视频***，***排行榜***等功能
-
+* ```基本完成```:<br>
+**用户登录、<br>
+  歌曲、歌手、专辑搜索**，<br>
+**歌手信息**，<br>
+  **专辑信息**，<br>**歌单信息**，<br>**用户信息**<br>**mv播放**,<br>**视频播放**，
+  <br>**排行榜**,<br>**歌曲播放**<br>**私人FM**<br>
+  **歌曲评论**<br>**视频品论** 等功能
+* ``主要用到第三方库：``<br>***element-ui***<br>***vue-lazyLoad***<br>***axios***
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 

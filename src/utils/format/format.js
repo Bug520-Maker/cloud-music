@@ -48,29 +48,27 @@ export const resetImgSize=(imgUrl,width,height)=>
 {
     return `${imgUrl}?param=${width}y${height}&quality=100`
 }
-export function formatDate(time ,iShowhms)
-{
-    function addZoer(timE)
-    {
-        if(timE<10)
-        {
-            return '0'+timE
+/*时间解析*/
+export function formatDate(date, fmt) {
+    date=new Date(date);
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+    }
+    let o = {
+        'M+': date.getMonth() + 1,
+        'd+': date.getDate(),
+        'h+': date.getHours(),
+        'm+': date.getMinutes(),
+        's+': date.getSeconds()
+    };
+    for (let k in o) {
+        if (new RegExp(`(${k})`).test(fmt)) {
+            let str = o[k] + '';
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
         }
-        else{
-            return timE
-        }
     }
-    let year=time.getFullYear();
-    let month=addZoer(time.getMonth()+1);
-    let date=addZoer(time.getDate());
-    let hour=addZoer(time.getHours());
-    let minute=addZoer(time.getMinutes());
-    let second=addZoer(time.getSeconds());
-    if(iShowhms)
-    {
-        return year+"-"+month+"-"+date+"-"+hour+"-"+minute+"-"+second;
-    }
-    else{
-        return year+"-"+month+"-"+date
-    }
+    return fmt;
+}
+function padLeftZero(str) {
+    return ('00' + str).substr(str.length);
 }

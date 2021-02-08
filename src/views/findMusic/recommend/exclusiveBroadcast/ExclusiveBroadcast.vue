@@ -31,7 +31,7 @@
         },
         created() {
             broadcast().then(data => {
-                console.log(data.result)
+                //console.log(data.result)
                 this.broadcastList = data.result;
             })
         },

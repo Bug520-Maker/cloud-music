@@ -21,7 +21,8 @@ const store= new Vuex.Store({
       album:{
         name:''
       },
-      id:''
+      id:'',
+      duration:0
     },
     /*-----------------------playCoin---------------------------------------*/
     mvlist:[],/*mv排行*/

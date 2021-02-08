@@ -47,7 +47,7 @@
                     }
                 }
                 this.officialList=[...listLink];
-                console.log(this.officialList);
+                //console.log(this.officialList);
                 /*console.log(this.rankMap);*/
                 for(let key of this.rankMap.keys())
                 {
@@ -78,7 +78,7 @@
 
                 this.globalRank=data.list;
                 this.globalRank.splice(0,4);
-               console.log(this.globalRank)
+              // console.log(this.globalRank)
             })
         },
     }
