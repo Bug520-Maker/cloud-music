@@ -50,17 +50,11 @@
                   type:'getMusicUrl',
                    songId:this.songId
                 })
-                /*向专辑发送封面*/
-                this.$store.dispatch({
-                  type:'getMusicAlbum',
-                  albumId:this.songLists[index].album.id
-                })
-               /*搜索结果中的单曲详细信息(一首歌)*/
-                this.$store.commit({
-                    type:'getSingleInfo',
-                    details:this.songLists[index]
-                })
-              console.log(this.songLists[index]);
+                /*歌曲详细信息*/
+              this.$store.dispatch({
+                type:'getSongDetail',
+                id:this.songId
+              })
             },
             duration(item)
             {

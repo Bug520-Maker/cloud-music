@@ -82,5 +82,11 @@ export default{
     {
         state.token=payload.data;
         window.sessionStorage.setItem('token',payload.data);
+    },
+
+    /*获取歌曲详情*/
+    changeSongDetail(state,payload)
+    {
+        state.songDetail=payload.song
     }
 }

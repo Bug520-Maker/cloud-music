@@ -1,6 +1,7 @@
 import {musicUrl} from "@/network/public/musicUrl";
 import {albumContent} from "@/network/singer/singer";
 import {songListMsg} from "@/network/playlist/playlist";
+import {songDetailes} from "@/network/playCoin/songDetal";
 
 export default {
     /*获取音乐的播放地址*/
@@ -38,6 +39,15 @@ export default {
                 resolve()
             })
         })
+    },
+    /*获取歌曲详情*/
+    getSongDetail(context,payload)
+    {
+        songDetailes(payload.id).then(data=>{
+            context.commit({
+                type:'changeSongDetail',
+                song:data.songs[0]
+            })
+        })
     }
-
 }

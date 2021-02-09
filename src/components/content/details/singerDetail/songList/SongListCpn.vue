@@ -51,44 +51,21 @@
             /*播放歌曲*/
           playSong(item,index)
           {
-            console.log(item);
+            //console.log(item);
             this.$store.dispatch({
               type:'getMusicUrl',
               songId:item.id
             })
-            this.$store.dispatch({
-              type:'getMusicAlbum',
-              albumId:item.al.id
-            })
-            let tmp={
-              name:'',
-              alias:[],
-              artists:[{name:''}],
-              album:{
-                name:'',
-                id:''
-              },
-              duration:0
-            };
-            tmp.name=item.name;
-            tmp.alias[0]=item.alia[0];
-            tmp.artists[0].name=item.ar[0].name;
-            tmp.album.name=item.al.name;
-            tmp.album.id=item.al.id;
-            tmp.duration=item.dt;
-            tmp.id=item.id
-            /*搜索结果中的单曲详细信息(一首歌)*/
-            this.$store.commit({
-              type:'getSingleInfo',
-              details:tmp
-            })
-
+           this.$store.dispatch({
+             type:'getSongDetail',
+             id:item.id
+           })
           }
         },
       mounted() {
          this.$nextTick(()=>{
            this.listHeight='291px';
-           console.log(this.$refs.listOuter.offsetHeight);
+           //console.log(this.$refs.listOuter.offsetHeight);
          })
       }
 

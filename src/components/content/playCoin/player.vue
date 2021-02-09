@@ -21,7 +21,7 @@
           <el-slider v-model="value" :show-tooltip="false" @input="sliderChange" @change="sliderEnd"></el-slider>
         </div>
         <div class="totalTime">
-          {{formatDate(this.$store.state.singleDetails.duration,"mm:ss")}}
+          {{formatDate(this.$store.state.songDetail.dt,"mm:ss")}}
         </div>
       </div>
     </div>
@@ -55,13 +55,13 @@ export default {
       {
         this.isChange=true;
         this.value=value;
-        this.currentTime=value/100*this.$store.state.singleDetails.duration;
+        this.currentTime=value/100*this.$store.state.songDetail.dt;
       }
     },
     sliderEnd(value)
     {
-      this.$refs.playSong.currentTime=value/100*this.$store.state.singleDetails.duration/1000;
-      this.currentTime=value/100*this.$store.state.singleDetails.duration;
+      this.$refs.playSong.currentTime=value/100*this.$store.state.songDetail.dt/1000;
+      this.currentTime=value/100*this.$store.state.songDetail.dt;
       this.isChange=false;
       this.isMove=false;
     },
@@ -75,7 +75,7 @@ export default {
       if(!this.isChange)
       {
         this.currentTime=e.target.currentTime*1000;
-        const totalTime=this.$store.state.singleDetails.duration;
+        const totalTime=this.$store.state.songDetail.dt;
         this.value=this.currentTime/totalTime*100;
       }
     },

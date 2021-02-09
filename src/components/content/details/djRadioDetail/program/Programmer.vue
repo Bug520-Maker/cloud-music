@@ -60,6 +60,7 @@ export default {
       //console.log(item)
       programmMsg(item.id).then(data => {
         //console.log(data.program);
+        const {mainSong}=data.program.mainSong
         this.$store.dispatch({
           type: 'getMusicUrl',
           songId: data.program.mainSong.id

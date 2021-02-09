@@ -3,17 +3,17 @@
     <div class="play-coin">
         <div id="img-container">
           <div class="cover" @click="imgClick"></div>
-            <img :src="((this.$store.state.albumImgUrl=='') ? this.$store.state.albumImgUrl='':
-                         this.$store.state.albumImgUrl+'?param=50y50' )|| normalUrl+'?param=50y50'"
+            <img :src="((this.$store.state.songDetail.al.picUrl==='') ? this.$store.state.songDetail.al.picUrl='':
+                         this.$store.state.songDetail.al.picUrl+'?param=50y50' )|| normalUrl+'?param=50y50'"
                  class="albumImg"/><!--获取歌曲封面图片-->
         </div>
         <div id="songInfo">
-            <p class="text-nowrap">{{this.$store.state.singleDetails.name||'网易云'}}   <!--获取歌曲名称-->
-                <span :title="this.$store.state.singleDetails.alias[0]">
-                    {{this.$store.state.singleDetails.alias[0]}}    <!--获取歌曲简介-->
+            <p class="text-nowrap">{{this.$store.state.songDetail.name||'网易云'}}   <!--获取歌曲名称-->
+                <span :title="this.$store.state.songDetail.alia[0]">
+                    {{this.$store.state.songDetail.alia[0]}}    <!--获取歌曲简介-->
                 </span>
             </p>
-            <p @click="pClick">{{this.$store.state.singleDetails.artists[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
+            <p @click="pClick">{{this.$store.state.songDetail.ar[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
         </div>
       <player/>
         <PlayPage id="play-page"  :isActive="{isLive:isActive}" :oLRC="oLRC" :class="{active:isActive}"/>
@@ -57,8 +57,8 @@ export default {
   methods: {
     imgClick() {
       this.isActive ? this.isActive = false : this.isActive = true;
-      if (this.$store.state.singleDetails.id !== '') {
-        songLyric(this.$store.state.singleDetails.id).then(data => {
+      if (this.$store.state.songDetail.id !== '') {
+        songLyric(this.$store.state.songDetail.id).then(data => {
           try {
             this.lyric = data.lrc.lyric;
             this.createLrcObj(data.lrc.lyric);
@@ -70,11 +70,11 @@ export default {
       }
     },
     pClick() {
-      if (this.$store.state.singleDetails.artists[0].id !== '') {
+      if (this.$store.state.songDetail.ar[0].id !== '') {
         this.$router.push({
           path: '/singerDetails',
           query: {
-            artistId: this.$store.state.singleDetails.artists[0].id
+            artistId: this.$store.state.songDetail.ar[0].id
           }
         })
       }

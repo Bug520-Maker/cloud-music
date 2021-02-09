@@ -4,7 +4,7 @@
 仿网易云UI界面
 主要使用vuex,vueRouter,axios,接口数据来源于开源接口[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 ###效果图
-![Image text](https://github.com/Bug520-Maker/imgList/blob/master/comment.png)
+![Image text](https://gitee.com/Bug520-Maker/imgList/blob/master/comment.png?raw=true)
 ## Project setup
 ```
 npm install
