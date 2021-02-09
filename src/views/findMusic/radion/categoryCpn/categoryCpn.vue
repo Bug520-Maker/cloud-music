@@ -6,43 +6,41 @@
 </template>
 
 <script>
-    import {cateRec, cateTop} from "@/network/radio/radio";
-    import RadioCpn from "../../../../components/content/RadioCpn/RadioCpn";
-    export default {
-        name: "categoryCpn",
-        props:{
-            cate:{
-                type:String,
-                default:''
-            }
-        },
-        data()
-        {
-           return {
-               cateMsg:[],
-               categoryId:0
-           }
-        },
-        components:{
-          RadioCpn
-        },
-        created() {
-            cateRec().then(res=>{
-                //console.log(res.data);
-                for(let item of res.data)
-                {
-                    if(item.categoryName===this.cate)
-                    {
-                      this.categoryId=item.categoryId;
-                        cateTop(item.categoryId,5).then(data=>{
-                             //console.log(data.djRadios)
-                            this.cateMsg=data.djRadios.slice(0,5);
-                        })
-                    }
-                }
-            })
-        }
+import {cateRec, cateTop} from "@/network/radio/radio";
+import RadioCpn from "../../../../components/content/RadioCpn/RadioCpn";
+
+export default {
+  name: "categoryCpn",
+  components: {
+    RadioCpn
+  },
+  props: {
+    cate: {
+      type: String,
+      default: ''
     }
+  },
+  data() {
+    return {
+      cateMsg: [],
+      categoryId: 0
+    }
+  },
+  created() {
+    cateRec().then(res => {
+      //console.log(res.data);
+      for (let item of res.data) {
+        if (item.categoryName === this.cate) {
+          this.categoryId = item.categoryId;
+          cateTop(item.categoryId, 5).then(data => {
+            //console.log(data.djRadios)
+            this.cateMsg = data.djRadios.slice(0, 5);
+          })
+        }
+      }
+    })
+  }
+}
 </script>
 
 <style scoped>

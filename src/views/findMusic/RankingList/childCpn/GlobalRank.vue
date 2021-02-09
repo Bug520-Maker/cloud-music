@@ -25,38 +25,34 @@
 </template>
 
 <script>
-    import MsgList from "@/components/common/msgList/MsgList";
-    import {formatPlayCount} from "@/utils/format/format";
-    import {songListMsg} from "@/network/playlist/playlist";
+import MsgList from "@/components/common/msgList/MsgList";
+import {formatPlayCount} from "@/utils/format/format";
 
-    export default {
-        name: "GlobalRank",
-      components: {MsgList},
-      props:{
-            globalRank:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            }
-        },
-      methods:{
-          playCount(count)
-          {
-            return formatPlayCount(count);
-          },
-        imgClick(item,index)
-        {
-            this.$router.push({
-              path: '/playListMsg',
-              query: {
-                playListId: item.id
-                }
-              })
-        },
+export default {
+  name: "GlobalRank",
+  components: {MsgList},
+  props: {
+    globalRank: {
+      type: Array,
+      default() {
+        return []
       }
     }
+  },
+  methods: {
+    playCount(count) {
+      return formatPlayCount(count);
+    },
+    imgClick(item, index) {
+      this.$router.push({
+        path: '/playListMsg',
+        query: {
+          playListId: item.id
+        }
+      })
+    },
+  }
+}
 </script>
 
 <style scoped>

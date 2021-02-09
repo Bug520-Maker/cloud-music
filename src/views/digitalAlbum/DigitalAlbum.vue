@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import {digitalAlbum} from "@/network/digitalAlbum/digitalAlbum";
 import MsgList from "@/components/common/msgList/MsgList";
 import {resetImgSize} from "@/utils/format/format";
 
+import {digitalAlbum} from "@/network/digitalAlbum/digitalAlbum";
 export default {
   name: "DigitalAlbum",
   components: {MsgList},

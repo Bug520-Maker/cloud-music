@@ -33,6 +33,7 @@
 <script>
 
 import {artistToplist} from "@/network/recommend/topList/toplist";
+
 import {formatDate, resetImgSize} from "@/utils/format/format";
 import ChildCpn from "./childCpn/ChildCpn";
 

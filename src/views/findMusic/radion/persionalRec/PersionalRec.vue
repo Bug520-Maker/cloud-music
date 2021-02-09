@@ -6,25 +6,27 @@
 </template>
 
 <script>
-    import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
-    import {PersionalizedRec} from "../../../../network/radio/radio";
-    import RadioCpn from "../../../../components/content/RadioCpn/RadioCpn";
-    export default {
-        name: "PersionalRec",
-        components: {RadioCpn, RecommendCpn},
-        data()
-        {
-            return {
-                recRadioList:[]
-            }
-        },
-        created() {
-            PersionalizedRec().then(res=>{
-                //console.log(res.data);
-                this.recRadioList=res.data;
-            })
-        }
+import {PersionalizedRec} from "@/network/radio/radio";
+
+import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
+
+import RadioCpn from "../../../../components/content/RadioCpn/RadioCpn";
+
+export default {
+  name: "PersionalRec",
+  components: {RadioCpn, RecommendCpn},
+  data() {
+    return {
+      recRadioList: []
     }
+  },
+  created() {
+    PersionalizedRec().then(res => {
+      //console.log(res.data);
+      this.recRadioList = res.data;
+    })
+  }
+}
 </script>
 
 <style scoped>

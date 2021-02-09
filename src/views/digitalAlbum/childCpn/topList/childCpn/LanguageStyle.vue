@@ -25,10 +25,10 @@
 </template>
 
 <script>
-import {languageStyle} from "@/network/digitalAlbum/digitalAlbum";
 import ListInfo from "@/components/common/ListInfo/ListInfo";
 import {resetImgSize} from "@/utils/format/format";
 
+import {languageStyle} from "@/network/digitalAlbum/digitalAlbum";
 export default {
   name: "LanguageStyle",
   components: {ListInfo},

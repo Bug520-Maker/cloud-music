@@ -30,8 +30,8 @@
 
 <script>
 import {allNewDish, newDish,albumConent} from "@/network/newMusic/newMusic";
-import MsgList from "@/components/common/msgList/MsgList";
 
+import MsgList from "@/components/common/msgList/MsgList";
 export default {
   name: "NewDishBody",
   components: {MsgList},
@@ -65,6 +65,9 @@ export default {
         return []
       }
     }
+  },
+  created() {
+    this.liClick(0,'ALL');
   },
   methods:{
     liClick(index,item)
@@ -103,9 +106,6 @@ export default {
         })
       })
     }
-  },
-  created() {
-    this.liClick(0,'ALL');
   }
 }
 </script>

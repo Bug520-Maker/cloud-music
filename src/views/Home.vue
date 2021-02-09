@@ -5,17 +5,16 @@
        <play-coin></play-coin>
        <!--左侧导航栏路由视图-->
        <div id="sidebar-router-view">
-
-             <router-view></router-view>
-
+         <router-view></router-view>
        </div>
    </div>
 </template>
 
 <script>
     import playCoin from "../components/content/playCoin/playCoin";
+
     import Header from "./Header";
-    import SideBar from "./SideBar";        //playCoin from "./components/playCoin/playCoin";/*导入底部播放容器*/
+    import SideBar from "./SideBar";
     export default {
         name: "Home",
         components:

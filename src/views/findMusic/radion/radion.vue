@@ -20,10 +20,10 @@
 
 <script>
 import {catrgoryRadio, notHot, radionBanner} from "@/network/radio/radio";
-import banner from "./childCpn/banner"
 import {catelistType} from "@/network/radio/radio";
-import categoryCpn from "@/views/findMusic/radion/categoryCpn/categoryCpn";
 
+import banner from "./childCpn/banner"
+import categoryCpn from "@/views/findMusic/radion/categoryCpn/categoryCpn";
 import Lunbo from "./lunbo";
 import PayFantastic from "./payFantastic/PayFantastic";
 import PersionalRec from "./persionalRec/PersionalRec";

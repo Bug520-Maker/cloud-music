@@ -22,34 +22,33 @@
 </template>
 
 <script>
-    import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
-    import {PayFan, RadioMsg} from "../../../../network/radio/radio";
-    export default {
-        name: "PayFantastic",
-        components: {RecommendCpn},
-        data()
-        {
-          return {
-              payList:[],
-              radioMsg:[],
-          }
-        },
-        created() {
-            PayFan().then(res=>{
-               // console.log(res.data.list.slice(0,4));
-                this.payList=res.data.list.slice(0,4);
-                for(let i in this.payList)
-                {
-                    RadioMsg(this.payList[i].id).then(res=>{
-                        //console.log(res.data);
-                        this.radioMsg.push(res.data);
-                    })
-                }
-                //console.log(this.radioMsg)
-            })
+import {PayFan, RadioMsg} from "@/network/radio/radio";
+import RecommendCpn from "../../../../components/content/recommendCpn/RecommendCpn";
 
-        }
+export default {
+  name: "PayFantastic",
+  components: {RecommendCpn},
+  data() {
+    return {
+      payList: [],
+      radioMsg: [],
     }
+  },
+  created() {
+    PayFan().then(res => {
+      // console.log(res.data.list.slice(0,4));
+      this.payList = res.data.list.slice(0, 4);
+      for (let i in this.payList) {
+        RadioMsg(this.payList[i].id).then(res => {
+          //console.log(res.data);
+          this.radioMsg.push(res.data);
+        })
+      }
+      //console.log(this.radioMsg)
+    })
+
+  }
+}
 </script>
 
 <style scoped>

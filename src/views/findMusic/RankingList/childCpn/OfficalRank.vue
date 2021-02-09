@@ -22,55 +22,51 @@
 </template>
 
 <script>
-    import {songListMsg} from "@/network/playlist/playlist";
-
-    export default {
-        name: "OfficalRank",
-        props:{
-            rankList:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            },
-            title:{
-                type:String,
-                default() {
-                    return '歌手榜';
-                }
-            },
-            songList:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            }
-        },
-        methods:{
-            imgClick(index)
-            {
-                //console.log(this.officialList[index].id);
-                  this.$router.push({
-                    path:'/playListMsg',
-                    query:{
-                      playListId:this.rankList[index].id
-                    }
-                  });
-            },
-            ergodic(arr)//遍历
-            {
-                let newArr=arr.map((n)=>{
-                    return n.name
-                })
-                return newArr.join(' / ');
-            }
-        },
-      created() {
-          console.log(this.songList)
+export default {
+  name: "OfficalRank",
+  props: {
+    rankList: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    title: {
+      type: String,
+      default() {
+        return '歌手榜';
+      }
+    },
+    songList: {
+      type: Array,
+      default() {
+        return []
       }
     }
+  },
+  created() {
+    console.log(this.songList)
+  },
+  methods: {
+    imgClick(index) {
+      //console.log(this.officialList[index].id);
+      this.$router.push({
+        path: '/playListMsg',
+        query: {
+          playListId: this.rankList[index].id
+        }
+      });
+    },
+    ergodic(arr)//遍历
+    {
+      let newArr = arr.map((n) => {
+        return n.name
+      })
+      return newArr.join(' / ');
+    }
+  },
+
+}
 </script>
 
 <style scoped>

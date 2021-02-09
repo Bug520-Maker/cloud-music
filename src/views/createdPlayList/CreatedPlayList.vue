@@ -19,8 +19,9 @@
 
 <script>
 import FavoriteMusic from "@/views/createdPlayList/FavoriteMusic";
-import {userFavorite} from "@/network/myMusic/myFavoriteMusic/favoriteMusic";
 import MyListCpn from "@/components/common/myListCpn/MyListCpn";
+
+import {userFavorite} from "@/network/myMusic/myFavoriteMusic/favoriteMusic";
 export default {
   name: "CreatedPlayList",
   data()

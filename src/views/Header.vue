@@ -53,12 +53,12 @@
 </template>
 
 <script>
-import tabbar from "../components/common/tabbar/tabbar";              /*tabbar from "./components/tabbar/tabbar";*//*导入头部*/
-import tabbarItem from "../components/common/tabbar/tabbarItem";      //tabbarItem from "./components/tabbar/tabbarItem";/*导入头部Item*/
+import tabbar from "../components/common/tabbar/tabbar";
+import tabbarItem from "../components/common/tabbar/tabbarItem";
+
 import search from "../components/content/search/search";
 import Login from "@/components/content/login/Login";
 import Profile from "@/components/content/profile/Profile";
-import {loginStatus, logout, refreshLogin} from "@/network/login/login";
 
 export default {
   name: "Header",

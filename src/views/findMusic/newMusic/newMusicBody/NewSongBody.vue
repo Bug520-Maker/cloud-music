@@ -31,70 +31,74 @@
 </template>
 
 <script>
-    import {newSong} from "@/network/newMusic/newMusic";
-    import {musicUrl} from "@/network/public/musicUrl";
-    import {formatDt} from "@/utils/format/format";
+import {newSong} from "@/network/newMusic/newMusic";
+import {formatDt} from "@/utils/format/format";
 
-    export default {
-        name: "NewSongBody",
-        data()
-        {
-            return {
-                newSong:[],
-                songUrl:"",
-                songId:'',
-                currentIndex:0,
-                newSongs:[]
-            }
-        },
-        props:{
-          navList:{
-              type:Array,
-              default() {
-              return [];
-            }
-          }
-        },
-        methods:{
-            duration(item)
-            {
-                return formatDt(item);
-            },
-            imgClick(item)
-            {
-              this.$store.dispatch({
-                type:'getMusicUrl',
-                songId:item.id
-              })
-               this.$store.dispatch({
-                 type:'getSongDetail',
-                 id:item.id
-               })
-            },
-          liClick(index)
-          {
-            this.currentIndex=index;
-            let type=0;
-            switch(index)
-            {
-              case 0:type=0;break;
-              case 1:type=7;break;
-              case 2:type=96;break;
-              case 3:type=16;break;
-              case 4:type=8;break;
-            }
-            newSong(type).then(res=>{
-              this.newSongs=res.data.slice(0,40);
-              for(let i in this.newSongs)
-                this.newSongs[i].album.picUrl+="?param=60y60";
-              //console.log(this.newSongs);
-            })
-          }
-        },
-      created() {
-          this.liClick(0);
+export default {
+  name: "NewSongBody",
+  data() {
+    return {
+      newSong: [],
+      songUrl: "",
+      songId: '',
+      currentIndex: 0,
+      newSongs: []
+    }
+  },
+  props: {
+    navList: {
+      type: Array,
+      default() {
+        return [];
       }
     }
+  },
+  created() {
+    this.liClick(0);
+  },
+  methods: {
+    duration(item) {
+      return formatDt(item);
+    },
+    imgClick(item) {
+      this.$store.dispatch({
+        type: 'getMusicUrl',
+        songId: item.id
+      })
+      this.$store.dispatch({
+        type: 'getSongDetail',
+        id: item.id
+      })
+    },
+    liClick(index) {
+      this.currentIndex = index;
+      let type = 0;
+      switch (index) {
+        case 0:
+          type = 0;
+          break;
+        case 1:
+          type = 7;
+          break;
+        case 2:
+          type = 96;
+          break;
+        case 3:
+          type = 16;
+          break;
+        case 4:
+          type = 8;
+          break;
+      }
+      newSong(type).then(res => {
+        this.newSongs = res.data.slice(0, 40);
+        for (let i in this.newSongs)
+          this.newSongs[i].album.picUrl += "?param=60y60";
+        //console.log(this.newSongs);
+      })
+    }
+  },
+}
 </script>
 
 <style scoped>

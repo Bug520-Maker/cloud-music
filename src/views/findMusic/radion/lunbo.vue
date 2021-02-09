@@ -9,30 +9,28 @@
 </template>
 
 <script>
-    import {radionBanner} from "@/network/radio/radio";
-    export default {
-        name: "lunbo",
-        data() {
-            return {
-                imgList: [],/*轮播图*/
-            }
-        },
-        components:{
+import {radionBanner} from "@/network/radio/radio";
 
-        }
-        ,
-        computed: {
-            swiper() {
-                return this.$refs.mySwiper.$swiper
-            }
-        },
-        created() {
-            radionBanner().then(result=>{
-                this.imgList=result.data;
-                //console.log(result.data)
-            })
-        }
+export default {
+  name: "lunbo",
+  data() {
+    return {
+      imgList: [],/*轮播图*/
     }
+  },
+  created() {
+    radionBanner().then(result => {
+      this.imgList = result.data;
+      //console.log(result.data)
+    })
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    }
+  },
+
+}
 </script>
 
 <style scoped>

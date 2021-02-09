@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import {digitalTop, languageStyle} from "@/network/digitalAlbum/digitalAlbum";
 import MsgList from "@/components/common/msgList/MsgList";
 import LanguageStyle from "@/views/digitalAlbum/childCpn/topList/childCpn/LanguageStyle";
 
+import {digitalTop, languageStyle} from "@/network/digitalAlbum/digitalAlbum";
 export default {
   name: "TopList",
   components: {LanguageStyle, MsgList},
