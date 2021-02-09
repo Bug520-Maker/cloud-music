@@ -1,23 +1,25 @@
 <template>
     <div class="video-play" :key="key"><!--视频播放组件容器-->
-        <div class="video-container">
-          <video :volume="0.2"
-                 :src="mvurl|| this.$store.state.mvurldata.url"
-                 controls="controls"
-                 ref="videoPlay"
-                 autoplay="autoplay"
-                 v-show="this.$store.state.mvurldata.url!=null||mvurl!=null">
-          </video>
-          <div class="charge"  v-show="this.$store.state.mvurldata.url===null && mvurl===null"></div>
-          <!--MV简略介绍-->
-          <video-msg :mvId="mvId" v-if="path!==''" :path="path" :type="type"/>
+        <div class="main-content">
+          <div class="video-container">
+            <video :volume="0.2"
+                   :src="mvurl|| this.$store.state.mvurldata.url"
+                   controls="controls"
+                   ref="videoPlay"
+                   autoplay="autoplay"
+                   v-show="this.$store.state.mvurldata.url!=null||mvurl!=null">
+            </video>
+            <div class="charge"  v-show="this.$store.state.mvurldata.url===null && mvurl===null"></div>
+            <!--MV简略介绍-->
+            <video-msg :mvId="mvId" v-if="path!==''" :path="path" :type="type"/>
+          </div>
+          <!--相关Mv推荐-->
+          <related-rec :mvId="mvId" @related-rec="changeVideo"/>
         </div>
-      <!--相关Mv推荐-->
-      <related-rec :mvId="mvId" @related-rec="changeVideo"/>
       <!--视频评论-->
       <video-comment :vId="mvId" v-if="path==='/vision/vis'||this.type===1"/>
       <!--MV评论-->
-      <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'"/>
+      <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'||path==='/findMusic/recommend'||path==='/solePlay'"/>
     </div>
 </template>
 <script>
@@ -62,7 +64,7 @@
         {
           next(vm=>{
               vm.path=from.path;
-              //console.log(vm.path)
+             // console.log(vm.path)
           })
         }
     }
@@ -103,5 +105,9 @@
         background-image: url("../../../assets/img/video-mv/charge.png");
         background-size:cover;
         background-position: -2px 0;
+    }
+    .main-content{
+      display: flex;
+      flex-wrap: nowrap;
     }
 </style>

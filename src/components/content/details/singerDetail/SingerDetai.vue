@@ -94,7 +94,7 @@
             }
         },
         created() {
-          console.log(this.$route.query.artistId);
+          //console.log(this.$route.query.artistId);
           singerMsg(this.$route.query.artistId).then(res=>{
             this.singerBaseMsg=res.data
             console.log(res.data)

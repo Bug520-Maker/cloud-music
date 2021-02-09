@@ -91,7 +91,7 @@ export default {
     this.$store.watch((state,getter)=>{
       return state.songUrl
     },(newArg,oldArg)=>{
-
+      this.isPlay=false
     })
   }
 }

@@ -142,7 +142,7 @@ export default {
           duration: 0
         };
         songDetailes(item.id).then(data => {
-          console.log(data.songs[0]);
+         // console.log(data.songs[0]);
           song.name = data.songs[0].name;
           song.alias[0] = data.songs[0].alia[0];
           song.artists[0].name = data.songs[0].ar[0].name;

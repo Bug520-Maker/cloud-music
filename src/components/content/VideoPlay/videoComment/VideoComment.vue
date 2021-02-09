@@ -29,7 +29,7 @@ export default {
     }
   },
   created() {
-   // console.log(this.vId)
+     console.log(this.vId)
     videoComm(this.vId).then(data=>{
       //console.log(data);
       this.hotComments=data.hotComments;

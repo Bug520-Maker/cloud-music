@@ -2,6 +2,7 @@ import {musicUrl} from "@/network/public/musicUrl";
 import {albumContent} from "@/network/singer/singer";
 import {songListMsg} from "@/network/playlist/playlist";
 import {songDetailes} from "@/network/playCoin/songDetal";
+import {programmMsg} from "@/network/radio/radio";
 
 export default {
     /*获取音乐的播放地址*/
@@ -31,7 +32,7 @@ export default {
     {
         return new Promise((resolve,reject)=>{
             songListMsg(payload.songListId).then(data=>{
-                console.log(data);
+               // console.log(data);
                 context.commit({
                     type:'getUserSongListMsg',
                     userSongListMsg:data.playlist
@@ -47,6 +48,36 @@ export default {
             context.commit({
                 type:'changeSongDetail',
                 song:data.songs[0]
+            })
+        })
+    },
+    getDjRadioDetail(context,payload)
+    {
+        return new Promise((resolve,reject)=>{
+            programmMsg(payload.id).then(data=>{
+                const {mainSong}=data.program;
+                let song = {
+                    ar: [{name: ''}],
+                    alia: [{}],
+                    name: '',
+                    al: {
+                        name: '',
+                        picUrl:''
+                    },
+                    dt:0
+                };
+
+                song.name = mainSong.name;
+                song.ar[0].name = mainSong.artists[0].name;
+                song.alia[0] =mainSong.alias[0];
+                song.al.name = mainSong.album.name;
+                song.al.picUrl=payload.picUrl;
+                song.dt=mainSong.duration;
+                context.commit({
+                    type: 'changeSongDetail',
+                    song: song
+                })
+                resolve(mainSong.id);
             })
         })
     }

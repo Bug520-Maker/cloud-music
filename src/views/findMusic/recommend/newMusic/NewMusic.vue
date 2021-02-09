@@ -45,22 +45,14 @@
         methods:{
             playSong(item,index)
             {
-                musicUrl(item.id).then(res=>{
-                    this.songUrl=res.data[0].url;
-                    this.$store.commit({
-                        type:'getSongUrl',
-                        url:this.songUrl,
-                        songId:this.songId
-                    })
-                })
-                this.$store.commit({
-                    type:'getAlbumImg',
-                    albumImgUrl:item.picUrl
-                })
-                this.$store.commit({
-                    type:'getSingleInfo',
-                    details:item.song
-                })
+              this.$store.dispatch({
+                type:'getMusicUrl',
+                songId:item.id
+              })
+              this.$store.dispatch({
+                type:'getSongDetail',
+                id:item.id
+              })
             },
             toString(artists)
             {

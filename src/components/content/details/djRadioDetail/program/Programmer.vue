@@ -44,7 +44,7 @@ export default {
     }
   },
   created() {
-    console.log(this.rid)
+    //console.log(this.rid)
     program(this.rid).then(data=>{
       //console.log(data.programs);
       this.programs=data.programs;
@@ -57,35 +57,16 @@ export default {
     },
     playdj(item)/*播放电台*/
     {
-      //console.log(item)
-      programmMsg(item.id).then(data => {
-        //console.log(data.program);
-        const {mainSong}=data.program.mainSong
+      /*console.log(item)*/
+      this.$store.dispatch({
+        type: 'getDjRadioDetail',
+        id: item.id,
+        picUrl:item.coverUrl
+      }).then(id=>{
         this.$store.dispatch({
           type: 'getMusicUrl',
-          songId: data.program.mainSong.id
-        })/*向playCoin发送url*/
-        let song = {
-          artists: [{name: ''}],
-          alias: [{}],
-          name: '',
-          album: {
-            name: ''
-          }
-        };
-        song.name = data.program.mainSong.name;
-        song.artists[0].name = data.program.mainSong.artists[0].name;
-        song.alias[0] = data.program.mainSong.alias[0];
-        song.album.name = data.program.mainSong.album.name;
-        this.$store.commit({
-          type: 'getSingleInfo',
-          details: song
+          songId: id
         })
-      })
-      /*发送封面图片*/
-      this.$store.commit({
-        type: 'getAlbumImg',
-        albumImgUrl: item.coverUrl
       })
     }
   }

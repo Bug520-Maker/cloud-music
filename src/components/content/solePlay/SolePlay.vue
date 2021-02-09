@@ -44,7 +44,8 @@
                     this.$router.push({
                         path:'/videoPlay',
                         query:{
-                            url:res.data.url
+                            url:res.data.url,
+                          mvId:this.broadcastList[index].id
                         }
                     })
                 })
