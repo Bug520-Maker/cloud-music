@@ -52,10 +52,6 @@
           playSong(item,index)
           {
             //console.log(item);
-            this.$store.dispatch({
-              type:'getMusicUrl',
-              songId:item.id
-            })
            this.$store.dispatch({
              type:'getSongDetail',
              id:item.id

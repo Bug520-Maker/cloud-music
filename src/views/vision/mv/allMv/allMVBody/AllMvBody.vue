@@ -56,6 +56,7 @@ export default {
 }
 .img-container img {
   width: 240px;
+  height: 137px;
 }
 .mv-name,.artist-name
 {

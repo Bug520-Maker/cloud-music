@@ -39,7 +39,7 @@
           return formatPlayCount(item)
         },
         playmv(item) {
-          console.log(item);
+          //console.log(item);
           mvurl(item.id).then(data => {
             this.$router.push({
               path: '/videoPlay',

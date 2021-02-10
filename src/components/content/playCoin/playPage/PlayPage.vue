@@ -2,8 +2,8 @@
 <template>
     <div  class="playPage" ref="playPage" ><!--:class="{active:isActive.isLive}-->
         <div class="album-container" :class="{disappear:isActive.isLive}">
-            <img :src="((this.$store.state.songDetail.al.picUrl==='')?
-                        this.$store.state.songDetail.al.picUrl='':this.$store.state.songDetail.al.picUrl+'?param=210y210')||
+            <img :src="((this.$store.state.currentSong.al.picUrl==='')?
+                        this.$store.state.currentSong.al.picUrl='':this.$store.state.currentSong.al.picUrl+'?param=210y210')||
                         normalUrl" :class="{appear:isActive.isLive}"/>  <!--封面旋转图片-->
         </div>
         <!--控制按钮-->
@@ -22,19 +22,20 @@
           </li>
         </ul>
         <div id="songMsg">
-            <p>{{this.$store.state.songDetail.name}}</p>
-            <p class="text-nowrap">{{this.$store.state.songDetail.alia[0]}}</p>
+            <p>{{this.$store.state.currentSong.name}}</p>
+            <p class="text-nowrap">{{this.$store.state.currentSong.alia[0]}}</p>
             <ul>
-                <li class="text-nowrap">专辑：<span>{{this.$store.state.songDetail.al.name||'无'}}</span></li>
+                <li class="text-nowrap">专辑：<span>{{this.$store.state.currentSong.al.name||'无'}}</span></li>
                 <li @click="singerClick" class="text-nowrap">歌手：
                     <span>
-                    {{this.$store.state.songDetail.ar[0].name||'无'}}
+                    {{this.$store.state.currentSong.ar[0].name||'无'}}
                   </span>
                 </li>
                 <li>来源 <span></span></li>
             </ul>
+          <!--歌词-->
             <div class="lyric">
-                <pre v-for="(item,index) in oLRC.ms" :key="index">{{item.c}}</pre>
+
             </div>
         </div>
       <song-comment/>
@@ -62,11 +63,7 @@
               {
                   return {}
               }
-          },
-           oLRC: {
-              type:Object,
-              default: {}
-            }
+          }
         },
       methods: {
         singerClick() {
@@ -75,7 +72,7 @@
           this.$router.push({
             path: '/singerDetails',
             query: {
-              artistId: this.$store.state.singleDetails.artists[0].id/*当前歌手ID*/
+              artistId: this.$store.state.currentSong.ar[0].id/*当前歌手ID*/
             }
           })
           //console.log(res.data);

@@ -60,7 +60,7 @@ export default {
     }
   },
   created() {
-    console.log(this.type);
+    //console.log(this.type);
     if((this.path==='/vision/mv'||this.path==='/singerDetails')&&this.type===0)/*MV*/
     {
       mvData(this.mvId).then(data=>{

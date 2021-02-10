@@ -58,7 +58,7 @@ export default {
     getListStyle(area)
     {
       languageStyle(area).then(data=>{
-        console.log(data.albumProducts);
+        //console.log(data.albumProducts);
         this.listStyle=data.albumProducts
       })
     },

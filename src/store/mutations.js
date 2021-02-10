@@ -38,11 +38,11 @@ export default{
     {
         state.mvurldata=payload.mvurldata
     },
-    /*获取歌单详情*/
-    songListMsg(state,payload)
+
+   /* songListMsg(state,payload)
     {
         state.playlist=payload.playlist
-    },
+    },*/
 
     getSingerList(state,payload)
     {
@@ -85,8 +85,37 @@ export default{
     },
 
     /*获取歌曲详情*/
-    changeSongDetail(state,payload)
+   /* changeSongDetail(state,payload)
     {
         state.songDetail=payload.song
+    },*/
+    /*更改用户播放模式*/
+    changePlayMode(state,payload) {
+        state.playMode=payload.playMode
+    },
+    //更改当前播放歌曲
+    changeCurrentSong(state,payload)
+    {
+        state.currentSong=payload.song;
+    },
+    //更改当前播放歌曲索引
+    changeCurrentSongIndex(state,payload)
+    {
+        state.currentSongIndex=payload.songIndex;
+    },
+    //更改当前用户播放列表中
+    changePlayList(state,payload)
+    {
+        state.playList.push(payload.song)
+    },
+    //更改歌词数组
+    changeLyricList(state,payload)
+    {
+        state.lyricList=payload.lyricList
+    },
+    //更改某一句歌词
+    changeLineLyric(state,payload)
+    {
+        state.lyric=payload.lineLyric
     }
 }

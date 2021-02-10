@@ -53,7 +53,7 @@
         font-family: "微软雅黑";
         font-size: 14px;
     }
-    .body-content ul li div:nth-of-type(1) img
+    .body-content ul li div:nth-of-type(2) img
     {
         width: 139px;
         border-radius: 8px;
@@ -67,8 +67,9 @@
       background-image: url("../../../assets/img/cover/coverall.png");
       background-position: 0 -3px;
       position: absolute;
-      top: 0;
+      top: 3px;
       width: 139px;
       height: 130px;
+      overflow: hidden;
     }
 </style>

@@ -89,7 +89,7 @@ export default {
         window.sessionStorage.removeItem('loginType');
 
         userLogin(this.number,this.password).then(data=>{
-          console.log(data);
+          //console.log(data);
           window.sessionStorage.setItem('userMsg',JSON.stringify(data))
           this.$store.commit({
             type:'userMsg',

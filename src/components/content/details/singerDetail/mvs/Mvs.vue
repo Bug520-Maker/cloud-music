@@ -2,7 +2,7 @@
     <div class="mvs">
         <ul>
             <li v-for="(item,index) in list" :key="index">
-                <MsgList play-count-l="76%"
+                <MsgList play-count-l="95%"
                          :duration-x-y="{x:'80%',y:'80%'}">
                     <div slot="imgContainer" class="imgContainer">
                         <img v-lazy="item.imgurl+'?param=242y136'" @click="playMv(item)"/>

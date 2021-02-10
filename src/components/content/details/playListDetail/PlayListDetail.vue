@@ -11,7 +11,7 @@
             <!--作者-->
             <div slot="creator" class="creator">
                 <div class="profile">
-                    <img :src="songListMsg.creator.avatarUrl+'?param=24y24'" />
+                    <img v-lazy="songListMsg.creator.avatarUrl+'?param=24y24'" />
                 </div>
                 <div class="creator-name">
                     {{songListMsg.creator.nickname}}

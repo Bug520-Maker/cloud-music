@@ -44,9 +44,6 @@ export default {
       }
     }
   },
-  created() {
-    console.log(this.songList)
-  },
   methods: {
     imgClick(index) {
       //console.log(this.officialList[index].id);

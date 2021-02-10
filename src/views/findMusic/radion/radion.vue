@@ -50,7 +50,7 @@ export default {
       this.cateList = data;
       for (let item of this.cateList.categories) {
         if (item.name === "创作翻唱") {
-          console.log(item);
+          //console.log(item);
           this.innovate = item;
         }
       }

@@ -34,7 +34,7 @@ export default {
   },
   created() {
     cateTop(this.$route.query.categoryId,30,0).then(data=>{
-      console.log(data.djRadios);
+     // console.log(data.djRadios);
       this.djRadios=data.djRadios;
     })
   },
@@ -48,7 +48,7 @@ export default {
           this.djRadios=[...this.djRadios,...data.djRadios];
         })
       }
-      console.log(this.djRadios.length)
+     // console.log(this.djRadios.length)
     }
   }
 }

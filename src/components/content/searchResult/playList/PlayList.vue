@@ -12,7 +12,7 @@
            <div slot="count" class="playlist-count">{{item.trackCount}}首</div>
            <div slot="creator" class="playlist-creator">
              <span>by </span>
-             {{item.creator.nickname}}
+             {{item.creator&&item.creator.nickname}}
            </div>
          </search-result-cpn>
        </li>

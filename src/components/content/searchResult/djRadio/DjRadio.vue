@@ -30,7 +30,7 @@ export default {
   },
   components: {SearchResultCpn},
   created() {
-    console.log(this.$store.state.searchList.djRadios);
+    //console.log(this.$store.state.searchList.djRadios);
     this.djRadios=this.$store.state.searchList.djRadios
   },
   methods:{

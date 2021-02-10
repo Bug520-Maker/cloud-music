@@ -44,12 +44,7 @@
         methods:{
             playSong(index)
             {
-                /*向PlayCoin发送歌曲的URL*/
-                this.songId=this.songLists[index].id;
-                this.$store.dispatch({
-                  type:'getMusicUrl',
-                   songId:this.songId
-                })
+               this.songId=this.songLists[index].id;
                 /*歌曲详细信息*/
               this.$store.dispatch({
                 type:'getSongDetail',
@@ -60,8 +55,6 @@
             {
                 return formatDt(item);
             },
-
-
             /*歌手详情*/
           singerDetail(item,index)
           {

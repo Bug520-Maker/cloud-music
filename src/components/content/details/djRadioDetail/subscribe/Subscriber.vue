@@ -35,7 +35,7 @@ export default {
   },
   created() {
     djsubscribe(this.rid).then(data=>{
-      console.log(data.subscribers);
+      //console.log(data.subscribers);
       this.subscribers=data.subscribers
     })
   }

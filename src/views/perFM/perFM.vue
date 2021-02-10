@@ -71,10 +71,6 @@ export default {
       this.currentIndex=activeIndex;
       //console.log(this.perSong[activeIndex]);
       this.$store.dispatch({
-        type:'getMusicUrl',
-        songId:this.perSong[activeIndex].id
-      })
-      this.$store.dispatch({
         type:'getSongDetail',
         id:this.perSong[activeIndex].id
       })
