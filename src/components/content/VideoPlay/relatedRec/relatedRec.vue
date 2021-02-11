@@ -13,7 +13,7 @@
           </div>
             <div slot="state" class="state">{{item.title}}</div>
             <div slot="creator" class="creator">{{item.creator[0].userName}}</div>
-          <div slot="duration">{{duration(item.durationms)}}</div>
+          <div slot="duration">{{duration(item.durationms,"mm:ss")}}</div>
           <div slot="playCount">{{playCount(item.playTime)}}</div>
         </msg-list>
       </li>
@@ -24,7 +24,7 @@
 <script>
 import {relatedVideo, videoUrl} from "@/network/vision/vis/visList";
 import MsgList from "@/components/common/msgList/MsgList";
-import {formatDt, formatPlayCount} from "@/utils/format/format";
+import {formatDate, formatPlayCount} from "@/utils/format/format";
 import {mvurl} from "@/network/vision/mv/mvList";
 
 export default {
@@ -49,9 +49,9 @@ export default {
     })
   },
   methods:{
-    duration(item)
+    duration(item,ft)
     {
-      return formatDt(item)
+      return formatDate(item,ft)
     },
     playCount(item)
     {

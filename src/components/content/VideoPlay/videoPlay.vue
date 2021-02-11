@@ -7,9 +7,9 @@
                    controls="controls"
                    ref="videoPlay"
                    autoplay="autoplay"
-                   v-show="this.$store.state.mvurldata.url!=null||mvurl!=null">
+                   v-show="mvurl!=null">
             </video>
-            <div class="charge"  v-show="this.$store.state.mvurldata.url===null && mvurl===null"></div>
+            <div class="charge"  v-show=" mvurl===null"></div>
             <!--MV简略介绍-->
             <video-msg :mvId="mvId" v-if="path!==''" :path="path" :type="type"/>
           </div>

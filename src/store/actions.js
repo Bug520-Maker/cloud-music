@@ -123,7 +123,7 @@ export default {
                 song.al.picUrl=payload.picUrl;
                 song.dt=mainSong.duration;
                 context.commit({
-                    type: 'changeSongDetail',
+                    type: 'changeCurrentSong',
                     song: song
                 })
                 resolve(mainSong.id);
@@ -185,5 +185,55 @@ export default {
                 })
             }
         })
-    }
+    },
+    //获取歌单详情
+    getSongListMsgAction(context,payload)
+    {
+        songListMsg(payload.id).then(data=>{
+            context.commit({
+                type:'changePlayListDetail',
+                playListDetail:data.playlist
+            })
+        })
+    },
+    //飙升榜
+    getUpRankingAction(context,payload)
+    {
+        songListMsg(payload.id).then(data=>{
+            context.commit({
+                type:'changeUpRanking',
+                upRanking:data.playlist
+            })
+        })
+    },
+    //新歌榜
+    getNewRankingAction(context,payload)
+    {
+        songListMsg(payload.id).then(data=>{
+            context.commit({
+                type:'changeNewRanking',
+                newRanking:data.playlist
+            })
+        })
+    },
+    //原创榜
+    getOriginRankingAction(context,payload)
+    {
+        songListMsg(payload.id).then(data=>{
+            context.commit({
+                type:'changeOriginRanking',
+                originRanking:data.playlist
+            })
+        })
+    },
+    //热歌榜
+    getHotRankingAction(context,payload)
+    {
+        songListMsg(payload.id).then(data=>{
+            context.commit({
+                type:'changeHotRanking',
+                hotRanking:data.playlist
+            })
+        })
+    },
 }

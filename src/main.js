@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 /*图片懒加载*/
 Vue.use(VueLazyload, {
   loading:require('./assets/img/placeholder/placeholder01.png'),
+  error:require('./assets/img/placeholder/placeholder01.png'),
   preLoad:1.3
 })
 new Vue({

@@ -20,7 +20,7 @@
             <div slot="creator" class="creator" @click="userRouter(item.data.creator)">
               {{item.data.creator.nickname}}
             </div>
-            <div slot="duration">{{duration(item.data.durationms)}}</div>
+            <div slot="duration">{{duration(item.data.durationms,"mm:ss")}}</div>
             <div slot="playCount">{{playCount(item.data.playTime)}}</div>
           </msg-list>
         </li>
@@ -32,7 +32,7 @@
 
 <script>
     import MsgList from "../../../components/common/msgList/MsgList";
-    import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import {formatDate, formatPlayCount} from "@/utils/format/format";
     import {videoUrl} from "@/network/vision/vis/visList";
 
     export default {
@@ -48,9 +48,9 @@
           }
       },
       methods:{
-          duration(item)
+          duration(item,ft)
           {
-            return formatDt(item);
+            return formatDate(item,ft);
           },
         playCount(item)
         {

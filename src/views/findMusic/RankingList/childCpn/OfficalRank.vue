@@ -1,36 +1,33 @@
 <!--新歌榜，飙升榜cpn-->
 <template>
-    <div class="child-cpn"  v-loading="this.$store.state.loading"
-         element-loading-text="载入中..."
-         element-loading-spinner="el-icon-loading">
-        <div id="title">{{title}}</div>
-        <ul id="list">
-            <li v-for="(item,i) in rankList" :key="i">
-                <div>
-                    <img v-lazy="item.coverImgUrl+'?param=172y172'" @click="imgClick(i)"/>
-                </div>
-                <ul class="songlist-container" >
-                    <li v-for="(item,index) in songList[i]" class="songlist" :key="item.id">
-                        <p><span>{{index+1 }}</span> {{ item.name}}</p>
-                        <p>{{ergodic(item.ar)}}</p>
-                    </li>
-                    <li>查看全部 > </li>
-                </ul>
-            </li>
-        </ul>
+  <div class="child-cpn">
+    <div id="title">{{ title }}</div>
+    <div id="list">
+     <ul>
+       <li v-for="(item,index) in songList" :key="index">
+         <div>
+           <img v-lazy="item.coverImgUrl+'?param=172y172'" @click="imgClick(item.id)" alt="暂无图片"/>
+         </div>
+         <ul class="songlist-container">
+           <li v-for="(iten,i) in item.tracks.slice(0,5)" class="songlist" :key="iten.id">
+             <p>
+               <span>{{ i + 1 }}</span>
+               <span class="song-name" @click="playSong(iten)">{{ iten.name }}</span>
+             </p>
+             <p>{{ ergodic(iten.ar) }}</p>
+           </li>
+           <li>查看全部 ></li>
+         </ul>
+       </li>
+     </ul>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "OfficalRank",
   props: {
-    rankList: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
     title: {
       type: String,
       default() {
@@ -45,12 +42,12 @@ export default {
     }
   },
   methods: {
-    imgClick(index) {
+    imgClick(id) {
       //console.log(this.officialList[index].id);
       this.$router.push({
         path: '/playListMsg',
         query: {
-          playListId: this.rankList[index].id
+          playListId:id
         }
       });
     },
@@ -60,9 +57,15 @@ export default {
         return n.name
       })
       return newArr.join(' / ');
+    },
+    playSong(iten)
+    {
+      this.$store.dispatch({
+        type:'getSongDetail',
+        id:iten.id
+      })
     }
   },
-
 }
 </script>
 
@@ -73,12 +76,12 @@ export default {
         font-weight: 700;
         margin: 40px 0 20px 0;
     }
-    #list > li
+    #list >ul >li
     {
         margin: 0 0 20px 0;
         display: flex;
     }
-    #list li >div img
+    #list >ul>li>div img
     {
         width: 172px;
         vertical-align: bottom;
@@ -95,12 +98,12 @@ export default {
         padding: 5px 0;
         margin: 0 0 0 20px;
     }
-    .songlist-container li p:nth-child(1) span
+    .songlist-container li p:nth-child(1) span:nth-of-type(1)
     {
         color: rgb(236, 65, 65);
         margin: 0 10px 0 0 ;
     }
-    .songlist-container li p:nth-child(2)
+    .songlist-container li p:nth-child(3)
     {
         color: rgb(155, 155, 155);
     }
@@ -120,5 +123,8 @@ export default {
         padding: 10px;
         font-size: 12px;
     }
-
+    .song-name
+    {
+      cursor: pointer;
+    }
 </style>

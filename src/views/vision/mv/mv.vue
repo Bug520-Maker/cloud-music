@@ -28,6 +28,7 @@
    import WangYiPro from "./wangYiPro/WangYiPro";
    import {rand} from "@/utils/format/format";
    import MvRank from "@/views/vision/mv/mvRank/MvRank";
+   import {getRandom} from "@/utils/random.util";
 
    export default {
         name: "mv",
@@ -52,7 +53,7 @@
             },
             divClick()
             {
-                let index=(rand(0, 4));
+                let index=(getRandom(0, 4));
                 let area=this.mvArea[index];
                 this.$router.push({
                   path:'/allMv',

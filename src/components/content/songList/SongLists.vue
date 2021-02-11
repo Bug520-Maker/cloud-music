@@ -9,7 +9,7 @@
                 <div class="songName text-nowrap" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName text-nowrap" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
                 <div class="albumName text-nowrap">{{item.album.name}}</div>
-                <div class="duartion text-nowrap">{{duration(item.duration)}}</div>
+                <div class="duartion text-nowrap">{{duration(item.duration,'mm:ss')}}</div>
                 <div v-show="isShowHot" class="hotStatus text-nowrap"></div>
             </li>
         </ul>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import {formatDt} from "@/utils/format/format";
+    import {formatDate} from "@/utils/format/format";
 
     export default {
         name: "SongLists",
@@ -51,9 +51,9 @@
                 id:this.songId
               })
             },
-            duration(item)
+            duration(item,ft)
             {
-                return formatDt(item);
+                return formatDate(item,ft);
             },
             /*歌手详情*/
           singerDetail(item,index)

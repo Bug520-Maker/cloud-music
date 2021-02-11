@@ -1,87 +1,83 @@
+
 <template>
     <div class="ranking-list clearfix">
-        <offical-rank :rank-list="officialList" title="官方榜" :songList="allRank"/>
-        <global-rank :globalRank="globalRank"></global-rank>
+        <offical-rank title="官方榜"
+                      :songList="[this.$store.state.upRanking,this.$store.state.newRanking,this.$store.state.originRanking,this.$store.state.hotRanking]"
+                      v-if="this.$store.state.upRanking.tracks&&
+                            this.$store.state.newRanking.tracks&&this.$store.state.originRanking.tracks&&this.$store.state.hotRanking.tracks"/>
+        <global-rank :globalRank="globalRank" />
     </div>
 </template>
 
 <script>
-    import {allList, listcontentDetail} from "@/network/recommend/topList/toplist";
-    import OfficalRank from "./childCpn/OfficalRank";
-    import {songListMsg} from "@/network/playlist/playlist";
-    import GlobalRank from "./childCpn/GlobalRank";
+import {allList, listcontentDetail} from "@/network/recommend/topList/toplist";
+import OfficalRank from "./childCpn/OfficalRank";
+import GlobalRank from "./childCpn/GlobalRank";
 
-    export default {
-        name: "RankingList",
-        components: {GlobalRank, OfficalRank},
-        data()
-        {
-          return {
-              officialList:[],
-              listMsg:{},
-              rankMap:new Map(),
-              soar:[],//飙升
-              newSong:[],//新歌
-              original:[],//原创
-              hotSong:[],//热歌
-              allRank:[],
-              globalRank:[]
-          }
-        },
-        created() {
-            allList().then(data=>{
-              //console.log(data);
-                let rise="飙升榜";
-                let newSong="新歌榜";
-                let original="原创榜";
-                let hotSong="热歌榜";
-                let singer="歌手榜";
-                let listLink=[];
-
-                for(let list of data.list)
-                {
-                    if(rise===list.name||newSong===list.name||original===list.name||hotSong===list.name||singer===list.name)
-                    {
-                        listLink.push(list);
-                        this.rankMap.set(list.name,list.id);
-                    }
-                }
-                this.officialList=[...listLink];
-                //console.log(this.officialList);
-                /*console.log(this.rankMap);*/
-                for(let key of this.rankMap.keys())
-                {
-                    songListMsg(this.rankMap.get(key)).then(data=>{
-                        if(key==='飙升榜')
-                        {
-                            this.soar=data.playlist.tracks.slice(0,5);
-
-                        }
-                        else if(key==='新歌榜')
-                        {
-                            this.newSong=data.playlist.tracks.slice(0,5);
-
-                        }
-                        else if(key==='原创榜')
-                        {
-                            this.original=data.playlist.tracks.slice(0,5);
-
-                        }
-                        else if(key==='热歌榜')
-                        {
-                            this.hotSong=data.playlist.tracks.slice(0,5);
-                        }
-                    }).then(()=>{
-                      this.allRank.splice(0,0,this.soar,this.newSong,this.original,this.hotSong)
-                    })
-                }
-
-                this.globalRank=data.list;
-                this.globalRank.splice(0,4);
-              // console.log(this.globalRank)
-            })
-        },
+export default {
+  name: "RankingList",
+  components: {GlobalRank, OfficalRank},
+  data() {
+    return {
+      officialList: [],
+      listMsg: {},
+      rankMap: new Map(),
+      allRank: [],
+      globalRank: []
     }
+  },
+  created() {
+    allList().then(data => {
+      //console.log(data);
+      let rise = "飙升榜";
+      let newSong = "新歌榜";
+      let original = "原创榜";
+      let hotSong = "热歌榜";
+      let listLink = [];
+
+      for (let list of data.list) {
+        if (rise === list.name || newSong === list.name || original === list.name || hotSong === list.name) {
+          listLink.push(list);
+          this.rankMap.set(list.name, list.id);
+        }
+      }
+      this.officialList = [...listLink];
+      //console.log(this.officialList);
+      /*console.log(this.rankMap);*/
+      Array.from(this.rankMap.keys()).forEach((key, index) => {
+        switch (key) {
+          case '飙升榜':
+            this.$store.dispatch({
+              type: 'getUpRankingAction',
+              id: this.rankMap.get('飙升榜')
+            });
+            break;
+          case '新歌榜':
+            this.$store.dispatch({
+              type: 'getNewRankingAction',
+              id: this.rankMap.get('新歌榜')
+            });
+            break;
+          case '原创榜':
+            this.$store.dispatch({
+              type: 'getOriginRankingAction',
+              id: this.rankMap.get('原创榜')
+            });
+            break;
+          case '热歌榜':
+            this.$store.dispatch({
+              type: 'getHotRankingAction',
+              id: this.rankMap.get('热歌榜')
+            });
+            break;
+        }
+      })
+      this.globalRank = data.list;
+      this.globalRank.splice(0, 4);
+      // console.log(this.globalRank)
+    })
+  }
+}
 </script>
 
 <style scoped>

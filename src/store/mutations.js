@@ -1,49 +1,25 @@
 export default{
-    /*----------------------搜索--------------------------------*/
-    getSearchKeyWord(state,payload) /*头部搜索框输入的关键字*/
+    //获取搜索关键字
+    getSearchKeyWord(state,payload)
     {
         state.keyword=payload.keyword;
     },
-    getSearchList(state,payload)/*获取搜索后的分类*/
+    getSearchList(state,payload)
     {
-        state.searchList=payload.searchList
+      state.searchList=payload.searchList
     },
-    /*------------------------搜索--------------------------------*/
-
-    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
-    getSongUrl(state,payload)//获取歌曲URL
+    //获取歌曲URL
+    getSongUrl(state,payload)
     {
         state.songUrl=payload.url;
         state.songId=payload.songId
     },
-    getAlbumImg(state,payload)//获取歌曲封面
+    //获取歌曲封面
+    getAlbumImg(state,payload)
     {
         state.albumImgUrl=payload.albumImgUrl
     },
-    getSingleInfo(state,payload)/*获取一首歌的详细信息*/
-    {
-        state.singleDetails=payload.details
-    },
-    /*-------------------单曲歌曲列表组件SongSheet-----------------------------------*/
-
-    mvList(state,payload)/*获取mv排行*/
-    {
-        state.mvlist=payload.mvlist
-    },
-    /* newMv(state,payload)/!*获取最新mv*!/
-     {
-       state.newmv=payload.newmv
-     },*/
-    mvPlay(state,payload)
-    {
-        state.mvurldata=payload.mvurldata
-    },
-
-   /* songListMsg(state,payload)
-    {
-        state.playlist=payload.playlist
-    },*/
-
+    //获取推荐页面下的歌手中歌手列表
     getSingerList(state,payload)
     {
         state.singerLists=payload.singers;
@@ -62,34 +38,12 @@ export default{
     {
         state.loading=payload.loadStatus
     },
-    /**********************************************************/
-
     /******************获取用户歌单信息*******************/
     getUserSongListMsg(state,payload)
     {
         state.userSongListMsg=payload.userSongListMsg
     },
-    /***************************************************/
-
-    /******************获取登录的cookie*******************/
-    getLoginCookie(state,payload)
-    {
-      state.loginCookie=payload.cookie
-    },
-
-    /*******************token**********************************/
-    setToken(state,payload)
-    {
-        state.token=payload.data;
-        window.sessionStorage.setItem('token',payload.data);
-    },
-
-    /*获取歌曲详情*/
-   /* changeSongDetail(state,payload)
-    {
-        state.songDetail=payload.song
-    },*/
-    /*更改用户播放模式*/
+    //更改用户播放模式
     changePlayMode(state,payload) {
         state.playMode=payload.playMode
     },
@@ -117,5 +71,30 @@ export default{
     changeLineLyric(state,payload)
     {
         state.lyric=payload.lineLyric
-    }
+    },
+    //更改歌单详细信息
+    changePlayListDetail(state,payload)
+    {
+        state.playListDetail=payload.playListDetail
+    },
+    //飙升榜
+    changeUpRanking(state,payload)
+    {
+        state.upRanking=payload.upRanking
+    },
+    //新歌榜
+    changeNewRanking(state,payload)
+    {
+        state.newRanking=payload.newRanking
+    },
+    //原创帮
+    changeOriginRanking(state,payload)
+    {
+        state.originRanking=payload.originRanking
+    },
+    //热歌榜
+    changeHotRanking(state,payload)
+    {
+        state.hotRanking=payload.hotRanking
+    },
 }

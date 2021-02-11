@@ -31,6 +31,8 @@
     import SheetNav from "./childCpn/SheetNav";
     import {highquality,highTags} from "@/network/songsheet/songSheet";
 
+    import {getRandom} from "@/utils/random.util";
+
     export default {
         name: "songSheet",
         components: {SheetNav},
@@ -76,7 +78,7 @@
         },
         /*生成随机数*/
         random(min, max) {
-          return Math.floor(Math.random() * (max - min)) + min;
+          return getRandom(min,max);
         },
         backTop()
         {

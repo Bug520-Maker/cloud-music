@@ -11,7 +11,7 @@
                      <span class="name" @click="playSong(item,index)">{{item.name}}</span>  <!--歌曲名称-->
                      <span class="alia" v-show="typeof item.alia[0]!='undefined'"> ({{item.alia[0]}})</span> <!--歌曲描述-->
                 </span>
-                <span class="dt">{{duration(item.dt)}}</span>  <!--持续时间-->
+                <span class="dt">{{duration(item.dt,'mm:ss')}}</span>  <!--持续时间-->
             </li>
         </ul>
         <div class="more" v-show="songList.length>10" @click="moreClick" ref="more">查看全部 ></div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import {formatDt} from "@/utils/format/format";
+    import {formatDate} from "@/utils/format/format";
     export default {
         name: "SongListCpn",
         data()
@@ -38,9 +38,9 @@
             }
         },
         methods:{
-            duration(item)
+            duration(item,ft)
             {
-                return formatDt(item);
+                return formatDate(item,ft);
             },
             moreClick()
             {

@@ -3,13 +3,16 @@
     <div class="searh-coin" @mousedown.stop>
         <div class="search">
             <i class="iconfont icon-sw_sousuo" @click="enter"></i>
-            <input type="text" placeholder="搜索" @keydown.enter="enter" v-model="keyword" @focus="changeShow" @blur="changeShowStatus"/><!--设置搜索框-->
+            <input type="text" placeholder="搜索"
+                   @keydown.enter="enter"
+                   v-model="keyword"
+                   @focus="changeShow"
+                   @blur="changeShowStatus"/><!--设置搜索框-->
             <transition name="search-match">
               <search-match :searchMatch="searchMatch"
                             :keyword="keyword"
                             v-show="isShow && keyword!==''"
-                            @search-match="matchRes"
-                            />
+                            @search-match="matchRes"/>
             </transition>
         </div>
         <div class="micrphone"><!--语音搜索麦克风-->

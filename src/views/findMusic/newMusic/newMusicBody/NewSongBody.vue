@@ -24,7 +24,7 @@
                 <div :title="item.album.name" class="text-nowrap">
                     {{item.album.name}}
                 </div>
-                <div>{{duration(item.duration)}}</div>
+                <div>{{duration(item.duration,"mm:ss")}}</div>
             </li>
         </ul>
     </div>
@@ -32,7 +32,7 @@
 
 <script>
 import {newSong} from "@/network/newMusic/newMusic";
-import {formatDt} from "@/utils/format/format";
+import {formatDate} from "@/utils/format/format";
 
 export default {
   name: "NewSongBody",
@@ -57,8 +57,8 @@ export default {
     this.liClick(0);
   },
   methods: {
-    duration(item) {
-      return formatDt(item);
+    duration(item,ft) {
+      return formatDate(item,ft);
     },
     imgClick(item) {
       this.$store.dispatch({

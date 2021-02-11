@@ -14,8 +14,8 @@
           <span> {{item.likedCount}}</span>
         </div>
         <div slot="time" class="time-dur">
-          <div class="text-nowrap">{{item.scheduledPublishTime}}</div>
-          <div>{{duration(item.duration)}}</div>
+          <div class="text-nowrap">{{duration(item.scheduledPublishTime,"MM-dd")}}</div>
+          <div>{{duration(item.duration,"mm:ss")}}</div>
         </div>
       </list-info>
     </li>
@@ -26,7 +26,7 @@
 <script>
 import {program, programmMsg} from "@/network/radio/radio";
 import ListInfo from "@/components/common/ListInfo/ListInfo";
-import {formatDt} from "@/utils/format/format";
+import {formatDate} from "@/utils/format/format";
 import {checkMusic} from "@/network/public/checkMusic";
 export default {
   name: "Programmer",
@@ -51,9 +51,9 @@ export default {
     })
   },
   methods:{
-    duration(item)
+    duration(item,ft)
     {
-      return formatDt(item)
+      return formatDate(item,ft)
     },
     playdj(item)/*播放电台*/
     {

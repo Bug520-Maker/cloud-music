@@ -16,7 +16,7 @@
                  </div>
                  <!--视频时长-->
                  <p slot="duration">
-                   {{duration(item.durationms)}}
+                   {{duration(item.durationms,"mm:ss")}}
                  </p>
                  <!--视频title-->
                  <div slot="state" class="state text-nowrap">
@@ -35,7 +35,7 @@
 <script>
     import {mvurl} from "@/network/vision/mv/mvList";
     import {videoUrl} from "@/network/vision/vis/visList";
-    import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import {formatDate, formatPlayCount} from "@/utils/format/format";
     import MsgList from "@/components/common/msgList/MsgList";
     export default {
         name: "Video",
@@ -112,9 +112,9 @@
             {
               return formatPlayCount(item);
             },
-            duration(item)
+            duration(item,ft)
             {
-              return formatDt(item);
+              return formatDate(item,ft);
             }
         },
 

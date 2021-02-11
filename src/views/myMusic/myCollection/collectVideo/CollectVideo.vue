@@ -17,7 +17,7 @@
           <div slot="creator" class="collect-video-creator">
             {{item.creator[0].userName}}
           </div>
-          <div slot="duration">{{duration(item.durationms)}}</div>
+          <div slot="duration">{{duration(item.durationms,"mm:ss")}}</div>
           <div slot="playCount">{{playCount(item.playTime)}}</div>
         </msg-list>
       </li>
@@ -29,7 +29,7 @@
 <script>
 import MsgList from "@/components/common/msgList/MsgList";
 import {collectVideo} from "@/network/myMusic/myCollection/myCollection";
-import {formatDt, formatPlayCount} from "@/utils/format/format";
+import {formatDate, formatPlayCount} from "@/utils/format/format";
 export default {
   name: "CollectVideo",
   components: {MsgList},
@@ -41,14 +41,14 @@ export default {
   },
   created() {
     collectVideo().then(res=>{
-      console.log(res.data)
+      //console.log(res.data)
       this.collectVideos=res.data;
     })
   },
   methods:{
-    duration(item)
+    duration(item,ft)
     {
-      return formatDt(item)
+      return formatDate(item,ft)
     },
     playCount(item)
     {

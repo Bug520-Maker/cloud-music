@@ -8,7 +8,7 @@
                         <img v-lazy="item.imgurl+'?param=242y136'" @click="playMv(item)"/>
                     </div>
                     <div slot="duration">
-                        {{duration(item.duration)}}
+                        {{duration(item.duration,"mm:ss")}}
                     </div>
                     <div slot="playCount">
                         {{playCount(item.playCount)}}
@@ -24,7 +24,7 @@
 
 <script>
     import MsgList from "../../../../common/msgList/MsgList";
-    import {formatDt, formatPlayCount} from "@/utils/format/format";
+    import {formatDate, formatPlayCount} from "@/utils/format/format";
     import {mvurl} from "@/network/vision/mv/mvList";
     export default {
         name: "Mvs",
@@ -43,9 +43,9 @@
             {
                 return formatPlayCount(count);
             },
-            duration(duration)
+            duration(duration,ft)
             {
-                return formatDt(duration);
+                return formatDate(duration,ft);
             },
             playMv(item)
             {
