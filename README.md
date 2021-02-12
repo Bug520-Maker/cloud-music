@@ -5,9 +5,9 @@
 主要使用vuex,vueRouter,axios,接口数据来源于开源接口[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 ###效果图<br>
 **首页**
-<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/playVideo.png?token=AQWR3JRRCYBIKZ2OACDRX3LAEK6YO" width="400" height="" alt="暂无图片" /><br><br>
+<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/comment.png?token=AQWR3JVGY5CU554UIUQPOW3AEYRN4" width="400" height="" alt="暂无图片" /><br><br>
 **mv列表**
-<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/mvList.png?token=AQWR3JXDCBA2J2KI63BBHODAEK3LG" width="400" height="" alt="暂无图片" /><br>
+<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/playVideo.png?token=AQWR3JRF5IUFKX66BSFHEH3AEYRDQ" width="400" height="" alt="暂无图片" /><br>
 ## Project setup
 ```
 npm install
