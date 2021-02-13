@@ -1,5 +1,5 @@
 <template>
-    <div class="singer-details" v-if="singerBaseMsg.artist.name!==''">
+    <div class="singer-details" v-if="singerBaseMsg.artist.name!==''" @scroll="loadMore" ref="singerDetail" :key="this.singerBaseMsg.artist.id">
         <details-page>
             <!--歌手封面-->
             <div slot="imgContainer">
@@ -34,7 +34,7 @@
         <tab-control :list="['专辑','MV','歌手详情','相似歌手']" ref="tabControl">
             <!--专辑组件-->
             <div slot="专辑">
-                <AlbumCpn album-name="热门50首" :songs="top520Msg">
+                <AlbumCpn album-name="热门50首" :songs="top520Msg" :loadingAll="loadingAll">
                     <div slot="album-img">
                         <img src="../../../../assets/img/singerSongs/top50.png" />
                     </div>
@@ -71,6 +71,7 @@
     import Mvs from "./mvs/Mvs";
     import SingerDescription from "./desc/SingerDescription";
     import SimilarSinger from "@/components/content/details/singerDetail/similarSinger/SimilarSinger";
+    import {isScrollBottom} from "@/utils/scroll-to-bottom";
 
     export default {
         name: "SingerDetail",
@@ -91,64 +92,88 @@
                 mvs:[]/*歌手MV*/,
                 singerDescription:[],/*歌手描述*/
                 similarSinger:[],/*相似歌手*/
+              hasMore:true,
+              isScroll:false,
+              loadingAll:false
             }
         },
         created() {
-          //console.log(this.$route.query.artistId);
           singerMsg(this.$route.query.artistId).then(res=>{
             this.singerBaseMsg=res.data
             //console.log(res.data)
             this.networkOperate();
           })
-
         },
         methods: {
           simiMsg(item)
           {
+            this.hotAlbum=[];
+            this.hasMore=true
             this.singerBaseMsg=item;
             this.networkOperate();
             this.$refs.tabControl.liClick(0);
+          },
+          getArtistAlbum(id,limit,offset)
+          {
+            if(this.hasMore)
+            {
+              singeralbum(id,limit,offset).then(data=>{
+                //this.hotAlbum=[];
+                this.hasMore=data.more;
+                //console.log(data)
+                this.albumContent=[];
+                let newAlbum=[...this.hotAlbum,...data.hotAlbums];
+                this.hotAlbum=newAlbum;
+                /*获取专辑内容*/
+                let promise=this.hotAlbum.map((item,index)=>{
+                  return albumContent(this.hotAlbum[index].id)
+                })
+                 Promise.all(promise).then(data=>{
+                   //console.log(data);
+                   this.albumContent=data.map((item,index)=>{
+                     return item.songs
+                   })
+                 })
+
+                this.isScroll=true
+              })
+            }
           },
           networkOperate()
           {
             /*获取歌手热门50首歌曲*/
             top50(this.singerBaseMsg.artist.id).then(data=>{
-              //console.log(data.songs);
               this.top520Msg=data.songs;
             })
             /*获取歌手专辑*/
-            singeralbum(this.singerBaseMsg.artist.id).then(data=>{
-              //console.log(data.hotAlbums);
-              this.hotAlbum=[];
-              this.albumContent=[];
-              this.hotAlbum=data.hotAlbums;
-
-              /*获取专辑内容*/
-              for(let index in this.hotAlbum)
-              {
-                albumContent(this.hotAlbum[index].id).then(data=>{
-                  this.albumContent.push(data.songs);
-                })
-              }
-            })
+            this.getArtistAlbum(this.singerBaseMsg.artist.id,10,0)
             /*获取歌手MV*/
             mvofsinger(this.singerBaseMsg.artist.id).then(data=>{
-              //console.log(data.mvs);
               this.mvs=data.mvs;
             })
             /*歌手描述*/
             singerDesc(this.singerBaseMsg.artist.id).then(data=>{
-              // console.log(data.introduction);
               this.singerDescription=data.introduction;
             })
             /*获取相似歌手*/
             simiArtist(this.singerBaseMsg.artist.id).then(data=>{
-              //console.log(data.artists);
               this.similarSinger=data.artists;
             })
+          },
+          loadMore() {
+              if(this.isScroll)
+              {
+                let isBottom= isScrollBottom(this.$refs.singerDetail.scrollTop,this.$refs.singerDetail.scrollHeight,this.$refs.singerDetail.offsetHeight)
+                // console.log(isBottom)
+                if(isBottom&&this.hasMore)
+                {
+                 // console.log("滚动到地步了")
+                  this.isScroll=false
+                  this.getArtistAlbum(this.singerBaseMsg.artist.id,10,this.hotAlbum.length);
+                }
+              }
           }
-        }
-
+        },
     }
 </script>
 
@@ -161,7 +186,13 @@
     }
     .singer-details::-webkit-scrollbar
     {
-        width: 2px;
+        width: 5px;
+    }
+    .singer-details::-webkit-scrollbar-thumb
+    {
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
     }
     .creator
     {

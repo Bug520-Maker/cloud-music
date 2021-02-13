@@ -11,7 +11,6 @@
             </li>
             <song-list-cpn :song-list="songs"/>
         </ul>
-
     </div>
 </template>
 
@@ -37,10 +36,7 @@
                     return []
                 }
             }
-        },
-      created() {
-         // console.log(this.songs)
-      }
+        }
     }
 </script>
 
@@ -78,5 +74,8 @@
         font-size: 16px;
         margin: 0 10px;
         line-height: 16px;
+    }
+    .album-cpn{
+      margin: 30px 0 0 0;
     }
 </style>

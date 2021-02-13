@@ -63,12 +63,14 @@ export function singerMsg(id)
     })
 }
 /*获取歌手专辑*/
-export function singeralbum(singerId)
+export function singeralbum(singerId,limit,offset)
 {
     return request({
         url:'/artist/album',
         params:{
-            id:singerId
+            id:singerId,
+            limit,
+            offset
         }
     })
 }

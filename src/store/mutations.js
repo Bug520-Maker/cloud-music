@@ -97,4 +97,8 @@ export default{
     {
         state.hotRanking=payload.hotRanking
     },
+    changeTest(state,payload)
+    {
+        state.test=payload.test;
+    }
 }

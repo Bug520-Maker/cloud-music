@@ -7,5 +7,6 @@ export default{
     //原创帮
     originRanking:{},
     //热歌榜
-    hotRanking:{}
+    hotRanking:{},
+    test:true
 }

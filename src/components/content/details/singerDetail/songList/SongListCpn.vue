@@ -46,7 +46,7 @@
             {
                 this.$refs.listOuter.style.overflow='visible';
                 this.$refs.more.style.display='none';
-                this.listHeight=this.$refs.listOuter.children.length*(this.$refs.listOuter.children[0].offsetHeight)+"px";
+                this.$refs.listOuter.style.height=this.$refs.listOuter.children.length*(this.$refs.listOuter.children[0].offsetHeight)+"px";
             },
             /*播放歌曲*/
           playSong(item,index)
@@ -59,12 +59,8 @@
           }
         },
       mounted() {
-         this.$nextTick(()=>{
-           this.listHeight='291px';
-           //console.log(this.$refs.listOuter.offsetHeight);
-         })
+          this.listHeight='291px'
       }
-
     }
 </script>
 
@@ -86,9 +82,6 @@
     .outer
     {
         width: 344px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
         display: inline-block;
     }
     .alia

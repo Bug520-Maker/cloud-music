@@ -7,7 +7,8 @@
 **首页**
 <img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/comment.png?token=AQWR3JVGY5CU554UIUQPOW3AEYRN4" width="400" height="" alt="暂无图片" /><br><br>
 **mv列表**
-<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/playVideo.png?token=AQWR3JRF5IUFKX66BSFHEH3AEYRDQ" width="400" height="" alt="暂无图片" /><br>
+<img src="https://raw.githubusercontent.com/Bug520-Maker/imgList/master/mvList.png" width="400" height="" alt="暂无图片" /><br>
+![text ](https://github.com/Bug520-Maker/imgList/raw/master/mvList.png)
 ## Project setup
 ```
 npm install
