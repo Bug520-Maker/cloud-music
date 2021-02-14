@@ -5,7 +5,7 @@
          element-loading-spinner="el-icon-loading"
          element-loading-background="#ffffff">
         <ul >
-            <li v-for="(item,index) in this.$store.state.singerLists" :key="index" @click="liClick(index)">
+            <li v-for="(item,index) in this.$store.state.singerLists" :key="item.id" @click="liClick(index)">
               <div class="cover"></div>
                 <div>
                   <img v-lazy="item.img1v1Url+'?param=139y139'" />

@@ -30,7 +30,24 @@
         </div>
       </div>
     </div>
-    <div class="right-control"></div>
+    <div class="right-control">
+      <div class="music-effect">
+        <div>标准</div>
+      </div>
+      <!--设置音量-->
+      <div class="vol">
+        <div>
+          <i class="iconfont icon-yangshengqi"></i>
+        </div>
+        <div id="vol-progress">
+          <el-slider v-model="vol"></el-slider>
+        </div>
+      </div>
+      <!--设置播放列表-->
+      <div class="play-list">
+        <i class="iconfont icon-play-list-2-fill"></i>
+      </div>
+    </div>
     <div class="lyric-container" :class="{live:isShowLyric}" v-if="this.$store.state.lyric!==''">{{this.$store.state.lyric}}</div>
   </div>
 </template>
@@ -44,6 +61,7 @@ export default {
   {
     return {
       value: 0,
+      vol:20,
       isChange: false,
       currentTime: 0,
       isMove: false,
@@ -170,19 +188,49 @@ export default {
 .play{
   display: flex;
 }
-.play-control
-{
+.play-control {
   width: 490px;
   height: 50px;
   /*border:1px solid skyblue;*/
   margin: 0 30px 0 0;
 }
+/*设置标准，音量，播放列表*/
 .right-control{
   width: 200px;
-  background-color: #42b983;
   height: 50px;
   margin-right: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.right-control i{
+  font-size: 20px;
+  color: #313132;
+}
+.right-control .music-effect div{
+  border: 1px solid #000;
+  font-size: 12px;
+  color: #353536;
+  padding: 1px 2px;
+}
+/*音量条*/
+#vol-progress{
+  margin:-6px 0 0 0;
+}
+#vol-progress .el-slider{
+  width: 70px;
+  height: 3px;
+}
+#vol-progress div.el-slider__button-wrapper{
+  height: 6px !important;
+}
+.vol{
+  display: flex;
+  align-items: center;
+  width: 120px;
+  justify-content: space-evenly;
+}
+/*歌词*/
 .lyric-container{
   position: fixed;
   padding: 10px 20px;

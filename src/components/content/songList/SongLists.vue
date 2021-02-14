@@ -4,7 +4,7 @@
         <ul>
             <li v-for="(item,index) in songLists">
                <span class="song-index">{{index>8?index+1:'0'+(index+1)}}</span>
-                <i class="iconfont icon-love love" ></i>
+                <i class="iconfont icon-love love" @click="addToLove"></i>
                 <i class="iconfont icon-download down" ></i>
                 <div class="songName text-nowrap" @dblclick="playSong(index)">{{item.name }}  <span>{{item.alias[0]}}</span></div>
                 <div class="singerName text-nowrap" @click="singerDetail(item,index)">{{item.artists[0].name}}</div>
@@ -17,57 +17,55 @@
 </template>
 
 <script>
-    import {formatDate} from "@/utils/format/format";
+import {formatDate} from "@/utils/format/format";
 
-    export default {
-        name: "SongLists",
-        props:{
-            songLists:{
-                type:Array,
-                default()
-                {
-                    return []
-                }
-            },
-            isShowHot:{
-              type:Boolean,
-              default:true
-            }
-        },
-        data()
-        {
-            return {
-                songUrl:'',
-                songId:''
-            }
-        },
-        methods:{
-            playSong(index)
-            {
-               this.songId=this.songLists[index].id;
-                /*歌曲详细信息*/
-              this.$store.dispatch({
-                type:'getSongDetail',
-                id:this.songId
-              })
-            },
-            duration(item,ft)
-            {
-                return formatDate(item,ft);
-            },
-            /*歌手详情*/
-          singerDetail(item,index)
-          {
-              /*路由至歌手详情页*/
-              this.$router.push({
-                path:'/singerDetails',
-                query:{
-                  artistId:this.songLists[index].artists[0].id
-                }
-              })
-          }
-        },
+export default {
+  name: "SongLists",
+  props: {
+    songLists: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    isShowHot: {
+      type: Boolean,
+      default: true
     }
+  },
+  data() {
+    return {
+      songUrl: '',
+      songId: ''
+    }
+  },
+  methods: {
+    playSong(index) {
+      this.songId = this.songLists[index].id;
+      /*歌曲详细信息*/
+      this.$store.dispatch({
+        type: 'getSongDetail',
+        id: this.songId
+      })
+    },
+    duration(item, ft) {
+      return formatDate(item, ft);
+    },
+    /*歌手详情*/
+    singerDetail(item, index) {
+      /*路由至歌手详情页*/
+      this.$router.push({
+        path: '/singerDetails',
+        query: {
+          artistId: this.songLists[index].artists[0].id
+        }
+      })
+    },
+    addToLove() {
+      this.$toast.show('已添加到我喜欢的音乐')
+    }
+  },
+}
 </script>
 
 <style scoped>

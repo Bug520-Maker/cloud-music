@@ -9,6 +9,7 @@
 import HeadBanner from "./HeadBanner";
 import BodyContent from "./BodyContent";
 import {singerCategory} from "@/network/singer/singer";
+import {isScrollBottom} from "@/utils/scroll-to-bottom";
 
 export default {
   name: "singer",
@@ -16,28 +17,39 @@ export default {
   data() {
     return {
       singers: [],
-      types:{}
+      types:{},
+      isScroll:false,
+      hasMore:true
     }
   },
   methods:
       {
         getArtists(cate,limit,offset)
         {
-          singerCategory(cate.area,cate.type,cate.init,limit,offset).then(data => {
-            this.singers=[...this.singers,...data.artists];
-             this.$store.commit({
-              type: 'getSingerList',
-              singers: this.singers
+          if(this.hasMore)
+          {
+            singerCategory(cate.area,cate.type,cate.init,limit,offset).then(data => {
+              console.log(data)
+              this.hasMore=data.more;
+              this.singers=[...this.singers,...data.artists];
+              this.$store.commit({
+                type: 'getSingerList',
+                singers: this.singers
+              })
+              this.isScroll=true;
             })
-          })
+          }
         },
         loadMore() {
-          const slide1Bottom=this.$refs.artists.scrollHeight-this.$refs.artists.offsetHeight===(Math.floor(this.$refs.artists.scrollTop));
-          const slide2Bottom=this.$refs.artists.scrollHeight-this.$refs.artists.offsetHeight===(Math.ceil(this.$refs.artists.scrollTop));
-          if(slide1Bottom||slide2Bottom)
+          if(this.isScroll)
           {
-            console.log(this.singers.length)
-            this.getArtists({...this.types},30,this.singers.length);
+            const isBottom=isScrollBottom(this.$refs.artists.scrollTop,this.$refs.artists.scrollHeight,this.$refs.artists.offsetHeight)
+            if(isBottom)
+            {
+              console.log("滚到底部")
+              this.isScroll=false;
+              this.getArtists({...this.types},30,this.singers.length);
+            }
           }
 
         },
@@ -50,6 +62,7 @@ export default {
               type: 'getSingerList',
               singers:data.artists
             })
+            this.isScroll=true;
           })
         }
       }

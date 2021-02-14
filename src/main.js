@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueLazyload from "vue-lazyload";
-
+import toast from './components/common/toast/index';
 /*element-ui*/
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -16,6 +16,7 @@ Vue.use(VueLazyload, {
   error:require('./assets/img/placeholder/placeholder01.png'),
   preLoad:1.3
 })
+Vue.use(toast);
 new Vue({
   router,
   store,

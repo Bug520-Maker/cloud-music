@@ -94,3 +94,17 @@ div.el-carousel__container
     overflow: hidden;
     white-space: nowrap;
 }
+#vol-progress div.el-slider__button-wrapper{
+    height: 6px !important;
+}
+#vol-progress .el-tooltip{
+    width: 3px!important;
+    height: 3px!important;
+    margin: 13.6px 0 0 0 ;
+}
+#vol-progress .el-slider__runway{
+    height: 4px;
+}
+#vol-progress  .el-slider__bar{
+    height: 4px;
+}
