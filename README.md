@@ -41,6 +41,6 @@ npm run build
   **歌曲评论**<br>**视频品论** 等功能
 * ``主要用到第三方库：``<br>***element-ui***<br>***vue-lazyLoad***<br>***axios***
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+``@仅供学习交流``
 
 
