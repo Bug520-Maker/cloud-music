@@ -80,33 +80,33 @@ name: "SearchMatch",
       switch(item)
       {
         case 'songs':
-          console.log(i)
           this.$store.dispatch({
-            type:'getMusicUrl',
-            songId:i.id
-          });
-          this.$store.dispatch({
-            type:'getMusicAlbum',
-            albumId:i.album.id
-          });
-          this.$store.commit({
-            type:'getSingleInfo',
-            details:i
+            type:'getSongDetail',
+            id:i.id
           });break;
-        case 'albums': ;break;
-        case 'playlists': ;break;
+        case 'albums':
+          this.$router.push({
+            path:'/albumMsg',
+            query:{
+              albumId:i.id
+            }
+          });break;
+        case 'playlists':
+          this.$router.push({
+            path:'/playListMsg',
+            query:{
+              playListId:i.id
+            }
+          });break;
         case 'artists':
           //console.log(i);
-          singerMsg(i.id).then(res=>{
             /*路由至歌手详情页*/
             this.$router.push({
               path:'/singerDetails',
               query:{
-                singerBaseMsg:res.data
+                artistId:i.id
               }
-            })
-          });break;
-
+            });break;
       }
     }
   },

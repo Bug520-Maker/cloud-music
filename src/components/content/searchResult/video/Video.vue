@@ -65,24 +65,25 @@
                 {
                     mvurl(item.vid).then(result=>{
                         this.url=result.data.url;
-                        this.videoRouter(this.url,item.vid);
+                        this.videoRouter(this.url,item.vid,item.type);
                    })
                 }
                 if(item.type===1)
                 {
                     videoUrl(item.vid).then(data=>{
                         this.url=data.urls[0].url;
-                        this.videoRouter(this.url,item.vid);
+                        this.videoRouter(this.url,item.vid,item.type);
                     })
                 }
             },
-            videoRouter(url,mvId)
+            videoRouter(url,mvId,type)
             {
                 this.$router.push({
                     path:'/videoPlay',
                     query:{
                         url,
-                        mvId
+                        mvId,
+                      type
                     }
                 })
             },

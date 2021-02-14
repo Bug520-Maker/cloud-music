@@ -77,6 +77,7 @@ export default {
   .user-comment
   {
     font-size: 12px;
+    line-height: 20px;
   }
   .user-comment span:nth-child(1)
   {
@@ -86,6 +87,7 @@ export default {
   .user-reply
   {
     margin: 10px 0;
+    line-height: 10px;
   }
   .user-reply > li span
   {

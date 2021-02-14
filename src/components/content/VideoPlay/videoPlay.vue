@@ -9,7 +9,7 @@
                    autoplay="autoplay"
                    v-show="mvurl!=null">
             </video>
-            <div class="charge"  v-show=" mvurl===null"></div>
+            <div class="charge"  v-show="mvurl===null"></div>
             <!--MV简略介绍-->
             <video-msg :mvId="mvId" v-if="path!==''" :path="path" :type="type"/>
           </div>
@@ -19,7 +19,7 @@
       <!--视频评论-->
       <video-comment :vId="mvId" v-if="path==='/vision/vis'||this.type===1"/>
       <!--MV评论-->
-      <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'||path==='/findMusic/recommend'||path==='/solePlay'"/>
+      <mv-comment :mvId="mvId" v-if="path==='/vision/mv'||path==='/singerDetails'||path==='/findMusic/recommend'||path==='/solePlay'||this.type===0"/>
     </div>
 </template>
 <script>
@@ -42,6 +42,14 @@
               type:0
             }
         },
+      created() {
+        this.mvurl=this.$route.query.url;
+        this.mvId=this.$route.query.mvId;
+        if(!this.$route.query.type)
+        {
+          this.type=this.$route.query.type
+        }
+      },
       methods: {
         controlVolume(num) {
           this.$refs.videoPlay.volume = num
@@ -53,10 +61,7 @@
           this.key++;
         }
       },
-        created() {
-            this.mvurl=this.$route.query.url;
-            this.mvId=this.$route.query.mvId;
-        },
+
         mounted() {
             this.controlVolume(0.1);
         },

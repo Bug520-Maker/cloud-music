@@ -1,8 +1,8 @@
 <template>
- <div class="alnum-detail">
+ <div class="album-detail">
   <details-page>
     <div slot="imgContainer">
-      <img :src="albumMsg.album.picUrl+'?param=184y184'" />
+      <img v-lazy="albumMsg.album.picUrl+'?param=184y184'" />
     </div>
     <div slot="title">
       {{albumMsg.album.name}}
@@ -27,7 +27,7 @@
       </button>
     </div>
     <div slot="targetMsg" class="target-msg">
-      <div class="singer">
+      <div class="singer" @click="artistRouter(albumMsg.album.artist.id)">
         <span>歌手</span>{{albumMsg.album.artist.name}}
       </div>
       <div class="time">
@@ -35,26 +35,59 @@
       </div>
     </div>
   </details-page>
-   <tab-control :list="['歌曲列表','评论','收藏者']">
+   <tab-control :list="['歌曲列表','评论','专辑详情']">
       <div slot="歌曲列表">
         <song-lists :song-lists="songList" />
       </div>
+     <div slot="评论">
+       <comment :comments="AlbumComments"/>
+     </div>
+     <div slot="专辑详情" class="album-desc">
+       {{desc}}
+     </div>
    </tab-control>
  </div>
 </template>
 
 <script>
+import {albumComment, albumDetail} from "@/network/newMusic/newMusic";
+import {albumContent} from "@/network/singer/singer";
+
 import DetailsPage from "@/components/common/detailsPage/DetailsPage";
 import TabControl from "@/components/common/tabController/TabControl";
 import SongLists from "@/components/content/songList/SongLists";
+import Comment from "@/components/content/comment/Comment";
+
 export default {
 name: "AlbumDetail",
   data()
   {
     return {
-      albumMsg:{},
-      songList:[]
+      albumMsg:{
+        album:{
+          artist:''
+        }},
+      songList:[],
+      AlbumComments:[],
+      desc:''
     }
+  },
+  components: {
+    Comment,
+    SongLists,
+    TabControl,
+    DetailsPage
+  },
+  created() {
+    this.albumId=this.$route.query.albumId;
+    albumContent(this.albumId).then(data=>{
+      this.desc=data.album.description
+     this.albumMsg=data;
+      this.setSongList();
+   })
+    albumComment(this.albumId).then(data=>{
+      this.AlbumComments=data.comments
+    })
   },
   methods:{
    setSongList() {
@@ -81,18 +114,29 @@ name: "AlbumDetail",
        song.duration = item.dt;
        this.songList.push(song);
      }
-   }
-  },
-  components: {SongLists, TabControl, DetailsPage},
-  created() {
-    this.albumMsg=this.$route.query.albumMsg;
-    //console.log(this.albumMsg)
-    this.setSongList();
+   },
+    //路由至歌手详情页
+    artistRouter(id)
+    {
+      this.$router.push({
+        path:'/singerDetails',
+        query:{
+          artistId:id
+        }
+      })
+    }
   }
 }
 </script>
 
 <style scoped>
+  .album-detail{
+    height: 535px;
+    overflow-y: auto;
+  }
+  .album-detail::-webkit-scrollbar{
+    width: 2px;
+  }
   .target-msg span
   {
     color: #373737;
@@ -105,5 +149,12 @@ name: "AlbumDetail",
   }
   .target-msg .time{
     color: #676767;
+  }
+  .album-desc{
+    color: #676767;
+    font-size: 14px;
+    line-height: 28px;
+    text-indent: 2em;
+    padding: 20px 30px 0 0;
   }
 </style>

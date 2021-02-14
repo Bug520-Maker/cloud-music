@@ -96,15 +96,12 @@ export default {
     },
     imgClick(item,index)
     {
-      albumConent(this.allNewAlbum[index].id).then(data=>{
-        //console.log(data);
         this.$router.push({
           path:'/albumMsg',
           query:{
-            albumMsg:data
+            albumId:this.allNewAlbum[index].id
           }
         })
-      })
     }
   }
 }

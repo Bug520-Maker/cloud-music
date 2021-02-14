@@ -25,7 +25,7 @@
             <p>{{this.$store.state.currentSong.name}}</p>
             <p class="text-nowrap">{{this.$store.state.currentSong.alia[0]}}</p>
             <ul>
-                <li class="text-nowrap">专辑：<span>{{this.$store.state.currentSong.al.name||'无'}}</span></li>
+                <li class="text-nowrap" @click="albumRouter">专辑：<span>{{this.$store.state.currentSong.al.name||'无'}}</span></li>
                 <li @click="singerClick" class="text-nowrap">歌手：
                     <span>
                     {{this.$store.state.currentSong.ar[0].name||'无'}}
@@ -104,6 +104,16 @@
           })
           //console.log(res.data);
         },
+        albumRouter()
+        {
+          this.$refs.playPage.classList.remove("active");
+          this.$router.push({
+            path:'/albumMsg',
+            query:{
+              albumId:this.$store.state.currentSong.al.id
+            }
+          })
+        }
 
       }
     }
@@ -252,7 +262,7 @@
         width: 400px;
         height: 280px;
         border-right: 1px solid rgb(230, 230, 230);
-        overflow-y: auto;
+        overflow-y: scroll;
     }
     .lyric ul{
       color: #666666;

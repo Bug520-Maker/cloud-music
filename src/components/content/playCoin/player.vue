@@ -44,19 +44,25 @@
         </div>
       </div>
       <!--设置播放列表-->
-      <div class="play-list">
+      <div class="play-list" @click="showPlayList" >
         <i class="iconfont icon-play-list-2-fill"></i>
       </div>
     </div>
     <div class="lyric-container" :class="{live:isShowLyric}" v-if="this.$store.state.lyric!==''">{{this.$store.state.lyric}}</div>
+    <!--用户播放列表-->
+    <transition name="playEffect">
+      <play-list v-show="isShowPlayList" />
+    </transition>
   </div>
 </template>
 
 <script>
 import {formatDate} from "@/utils/format/format";
+import PlayList from "@/components/content/playCoin/playList/PlayList";
 
 export default {
   name: "player",
+  components: {PlayList},
   data()
   {
     return {
@@ -72,6 +78,7 @@ export default {
         [2, '单曲循环']
       ]),
       isShowLyric:false,//是否显示歌词
+      isShowPlayList:false,//是否显示用户播放列表
     }
   },
   methods:{
@@ -139,6 +146,11 @@ export default {
     isLyric()
     {
       this.isShowLyric=!this.isShowLyric
+    },
+    //是否显示用户播放列表
+    showPlayList()
+    {
+      this.isShowPlayList=!this.isShowPlayList
     },
     changePlayMode()//改变播放模式 单曲循环 随机播放 顺序播放
     {
@@ -324,5 +336,18 @@ i.custom-play{
   margin: 5px auto 0;
   width: 420px;
 }
-
+/*用户播放列表的显示效果*/
+.playEffect-enter{
+  width:0;
+  opacity:0;
+}
+.playEffect-enter-active{
+  width: 0px;
+  opacity:0;
+}
+.playEffect-enter-to{
+  transition: all 0.2s;
+  width: 420px;
+  opacity:1;
+}
 </style>

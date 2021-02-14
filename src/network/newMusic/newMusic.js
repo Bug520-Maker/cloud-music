@@ -43,3 +43,14 @@ export function albumConent(id)
         }
     })
 }
+/*获取专辑评论*/
+export function albumComment(id)
+{
+    return request({
+        url:'/comment/album',
+        params:{
+            id,
+            limit:50
+        }
+    })
+}
