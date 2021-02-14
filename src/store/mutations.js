@@ -100,5 +100,9 @@ export default{
     changeTest(state,payload)
     {
         state.test=payload.test;
+    },
+    changeCurrentTime(state,payload)
+    {
+        state.currentTime=payload.currentTime
     }
 }

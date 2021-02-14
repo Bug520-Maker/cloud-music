@@ -15,7 +15,9 @@
             </p>
             <p @click="pClick">{{this.$store.state.currentSong.ar[0].name||'青春不散'}}</p>  <!--获取单曲 歌手-->
         </div>
-      <player/>
+       <!--底部播放控制-->
+        <player/>
+       <!--播放页面-->
         <PlayPage id="play-page" :isActive="{isLive:isActive}" :class="{active:isActive}"/>
     </div>
 </template>

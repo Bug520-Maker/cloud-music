@@ -40,7 +40,6 @@ button
 .el-loading-parent--relative .el-loading-spinner
 {
     top:20% ;
-
 }
 .el-loading-parent--relative .el-loading-spinner i
 {
@@ -86,14 +85,8 @@ div.el-carousel__container
 {
     background-color: #ff4e4e!important;
 }
-/**************************element-ui全局样式************************************/
 
-/*公共样式*/
-.text-nowrap{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
+/*设置音量条*/
 #vol-progress div.el-slider__button-wrapper{
     height: 6px !important;
 }
@@ -107,4 +100,12 @@ div.el-carousel__container
 }
 #vol-progress  .el-slider__bar{
     height: 4px;
+}
+/**************************element-ui全局样式************************************/
+
+/*公共样式*/
+.text-nowrap{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

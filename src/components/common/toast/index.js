@@ -8,9 +8,9 @@ obj.install=(Vue)=>{
     //将组件对象挂载到元素上
     toast.$mount(document.createElement('div'));
     //document.querySelector('#app').appendChild(toast.$el);
-    console.log(document.querySelector('#app'));
+    //console.log(document.querySelector('#app'));
     document.body.appendChild(toast.$el)
     Vue.prototype.$toast=toast;
-    console.log(toast.$el);
+    //console.log(toast.$el);
 }
 export default obj;

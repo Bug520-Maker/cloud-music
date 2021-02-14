@@ -40,7 +40,7 @@
           <i class="iconfont icon-yangshengqi"></i>
         </div>
         <div id="vol-progress">
-          <el-slider v-model="vol"></el-slider>
+          <el-slider v-model="vol" @input="changeVol" />
         </div>
       </div>
       <!--设置播放列表-->
@@ -61,7 +61,7 @@ export default {
   {
     return {
       value: 0,
-      vol:20,
+      vol:10,
       isChange: false,
       currentTime: 0,
       isMove: false,
@@ -107,6 +107,11 @@ export default {
         this.currentTime=e.target.currentTime*1000;
         const totalTime=this.$store.state.currentSong.dt;
         this.value=this.currentTime/totalTime*100;
+
+        this.$store.commit({
+          type:'changeCurrentTime',
+          currentTime:this.currentTime
+        })
       }
       //实时歌词
       let songIndex=0;
@@ -169,6 +174,11 @@ export default {
       else{
         this.changeSong(1)
       }
+    },
+    //设置音量
+    changeVol(value)
+    {
+      this.$refs.playSong.volume =value/100;
     }
   },
   mounted() {

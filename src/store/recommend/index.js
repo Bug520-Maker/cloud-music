@@ -8,5 +8,6 @@ export default{
     originRanking:{},
     //热歌榜
     hotRanking:{},
-    test:true
+    test:true,
+    currentTime:0
 }

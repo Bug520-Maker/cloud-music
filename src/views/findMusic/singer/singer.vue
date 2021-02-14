@@ -29,7 +29,6 @@ export default {
           if(this.hasMore)
           {
             singerCategory(cate.area,cate.type,cate.init,limit,offset).then(data => {
-              console.log(data)
               this.hasMore=data.more;
               this.singers=[...this.singers,...data.artists];
               this.$store.commit({

@@ -34,8 +34,12 @@
                 <li>来源 <span></span></li>
             </ul>
           <!--歌词-->
-            <div class="lyric">
-
+            <div class="lyric" ref="lyricContainer">
+              <ul class="clearfix">
+                <li v-for="(item,index) in this.$store.state.lyricList" :class="{active:currentIndex===index}">
+                  {{item.content}}
+                </li>
+              </ul>
             </div>
         </div>
       <song-comment/>
@@ -54,6 +58,8 @@
           return{
               albumMsg:{},
               normalUrl:'http://p1.music.126.net/evuHH8Wjhl5DJOXaCFOMVA==/109951165545747317.jpg?param=400y400',
+            currentTime:0,
+            currentIndex:0
           }
         },
         props:{
@@ -65,6 +71,27 @@
               }
           }
         },
+      created() {
+        this.$store.watch((state,getters)=>{
+          return state.currentTime
+        },(newVal)=>{
+         // console.log(newVal)
+          this.currentTime=newVal;
+          //console.log('当前时间'+newVal)
+          //console.log(this.$store.state.lyricList[this.index].duration,this.$store.state.lyricList[this.index].content);
+          if(this.$store.state.lyricList[this.currentIndex+1]===undefined)
+          {
+            return ;
+          }
+          if(this.$store.state.lyricList[this.currentIndex+1].duration<this.currentTime)
+          {
+              this.currentIndex++
+            //console.log(this.$store.state.lyricList[this.currentIndex].content)
+              this.$refs.lyricContainer.scrollTop=26.8*this.currentIndex;
+          }
+
+        })
+      },
       methods: {
         singerClick() {
           this.$refs.playPage.classList.remove("active");
@@ -196,27 +223,27 @@
         font-size: 14px;
         margin: 0 0 15px 0;
     }
-    #songMsg ul
+    #songMsg > ul
     {
         display: flex;
         margin: 0 0 30px 0;
     }
-    #songMsg ul li
+    #songMsg > ul li
     {
         margin: 0 30px 0 0;
         font-size: 12px;
         color:  rgb(136, 150, 150);
     }
-    #songMsg ul li:nth-of-type(1)
+    #songMsg > ul li:nth-of-type(1)
     {
         width: 147px;
     }
-    #songMsg ul li:nth-of-type(2)
+    #songMsg > ul li:nth-of-type(2)
     {
         width: 130px;
     }
 
-    #songMsg ul li span
+    #songMsg > ul li span
     {
         color: rgb(80, 145, 202);
         cursor:pointer;
@@ -225,15 +252,17 @@
         width: 400px;
         height: 280px;
         border-right: 1px solid rgb(230, 230, 230);
-        overflow: auto;
-
+        overflow-y: auto;
     }
-    .lyric pre
+    .lyric ul{
+      color: #666666;
+      margin: 110px 0 0 0;
+    }
+    .lyric ul li
     {
-        font-family: "微软雅黑";
-        font-size: 13px;
-        line-height: 30px;
-
+      margin: 10px 0 0 0;
+      font-family: "微软雅黑";
+      font-size: 13px;
     }
     .lyric::-webkit-scrollbar
     {
@@ -246,5 +275,9 @@
         width: 5px;
         background-color: rgb(233, 233, 235);
         border-radius: 5px;
+    }
+    .lyric ul li.active{
+      color: #ec4141;
+      font-size: 16px;
     }
 </style>
