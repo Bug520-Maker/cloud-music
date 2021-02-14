@@ -4,16 +4,16 @@
 仿网易云UI界面
 主要使用vuex,vueRouter,axios,接口数据来源于开源接口[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 ###效果图<br>
-**首页**<br>
-<img src="http://81.68.208.125:7878/home.png" width="400" height="" alt="暂无图片" /><br><br>
-**歌手专辑**<br>
-<img src="http://81.68.208.125:7878/album.png" width="400" alt="歌手专辑"/><br><br>
-**歌手详情**<br>
-<img src="http://81.68.208.125:7878/artist.png" width="400" alt="歌手详情"/><br><br>
-**歌手排行榜**<br>
-<img src="http://81.68.208.125:7878/artistTop.png" width="400" alt="歌手专辑"/><br><br>
-**mv播放**<br>
-<img src="http://81.68.208.125:7878/play-mv.png" width="400" alt="歌手专辑"/><br><br>
+**首页:**<br>
+<img src="http://8.140.110.78:7878/home.png" width="400" height="" alt="暂无图片" /><br><br>
+**歌手专辑:**<br>
+<img src="http://8.140.110.78:7878/album.png" width="400" alt="歌手专辑"/><br><br>
+**歌手详情:**<br>
+<img src="http://8.140.110.78:7878/artist.png" width="400" alt="歌手详情"/><br><br>
+**歌手排行榜:**<br>
+<img src="http://8.140.110.78:7878/artistTop.png" width="400" alt="歌手专辑"/><br><br>
+**mv播放:**<br>
+<img src="http://8.140.110.78:7878/play-mv.png" width="400" alt="歌手专辑"/><br><br>
 ## Project setup
 ```
 npm install
