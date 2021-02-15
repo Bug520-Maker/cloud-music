@@ -5,15 +5,15 @@
 主要使用vuex,vueRouter,axios,接口数据来源于开源接口[NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 ###效果图<br>
 **首页:**<br>
-<img src="https://ae03.alicdn.com/kf/H9104169754c74b6993b6da408a8782b1X.jpg" width="400" height="" alt="暂无图片" /><br><br>
+<img src="https://gitee.com/bug-producer/img-container/raw/master/home.png" width="400" height="" alt="暂无图片" /><br><br>
 **歌手专辑:**<br>
-<img src="https://ae04.alicdn.com/kf/Hf0a0526e5d114e83a34c41fd23f03eb1M.jpg" width="400" alt="歌手专辑"/><br><br>
+<img src="https://gitee.com/bug-producer/img-container/raw/master/album.png" width="400" alt="歌手专辑"/><br><br>
 **歌手详情:**<br>
-<img src="https://ae02.alicdn.com/kf/Hf49ca7e728bb45f19e5b90e730d050a7H.jpg" width="400" alt="歌手详情"/><br><br>
+<img src="https://gitee.com/bug-producer/img-container/raw/master/artist.png" width="400" alt="歌手详情"/><br><br>
 **歌手排行榜:**<br>
-<img src="https://ae04.alicdn.com/kf/H3233c4a7681a434d9b7789912d9fd10e3.jpg" width="400" alt="歌手专辑"/><br><br>
+<img src="https://gitee.com/bug-producer/img-container/raw/master/artistTop.png" width="400" alt="歌手专辑"/><br><br>
 **mv播放:**<br>
-<img src="https://ae02.alicdn.com/kf/H0fc144e374fe42f19bbfc8393edd7d25Z.jpg" width="400" alt="歌手专辑"/><br><br>
+<img src="https://gitee.com/bug-producer/img-container/raw/master/play-mv.png" width="400" alt="歌手专辑"/><br><br>
 ## Project setup
 ```
 npm install
