@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {musicUrl} from "@/network/public/musicUrl";
 import {albumContent} from "@/network/singer/singer";
 import {songListMsg} from "@/network/playlist/playlist";
@@ -6,6 +7,7 @@ import {programmMsg} from "@/network/radio/radio";
 
 import {getRandom} from "@/utils/random.util";
 import {getFormatLyric} from "@/utils/lyric.format.util";
+import {checkMusic} from "@/network/public/checkMusic";
 export default {
     /*获取音乐的播放地址*/
     getMusicUrl(context,payload)
@@ -46,59 +48,71 @@ export default {
     /*获取歌曲详情*/
     getSongDetail(context,payload)
     {
-        //判断当前歌曲是否在用户的播放列表中
-        const songIndex=context.state.playList.findIndex((item,index)=>{
-            return item.id===payload.id
+        checkMusic(payload.id).then(data=>{
+            if(!data.message)
+            {
+                Vue.prototype.$toast.show('该歌曲暂时无法播放');
+                return ;
+            }
+            else{
+                //判断当前歌曲是否在用户的播放列表中
+                const songIndex=context.state.playList.findIndex((item,index)=>{
+                    return item.id===payload.id
+                })
+                //存在
+                if(songIndex!==-1)
+                {
+                    context.commit({
+                        type:'changeCurrentSongIndex',
+                        songIndex:songIndex
+                    })
+                    context.commit({
+                        type:'changeCurrentSong',
+                        song:context.state.playList[songIndex]
+                    })
+                    context.dispatch({
+                        type:'getLyricList',
+                    })
+                    //获取歌曲url
+                    context.dispatch({
+                        type:'getMusicUrl',
+                        songId:payload.id
+                    })
+                }
+                else if(songIndex===-1)
+                {
+                    songDetailes(payload.id).then(data=>{
+                        //当前歌曲加入到用户播放列表
+                        context.commit({
+                            type:'changePlayList',
+                            song:data.songs[0]
+                        });
+                        //获取歌曲url
+                        context.dispatch({
+                            type:'getMusicUrl',
+                            songId:payload.id
+                        })
+                        //更改播放列表歌曲索引
+                        context.commit({
+                            type:'changeCurrentSongIndex',
+                            songIndex:context.state.playList.length-1
+                        })
+                        //更换当前歌曲
+                        context.commit({
+                            type:'changeCurrentSong',
+                            song:data.songs[0]
+                        })
+                        //获取歌词
+                        context.dispatch({
+                            type:'getLyricList',
+                        })
+                    })
+                }
+            }
+        }).catch(err=>{
+            Vue.prototype.$toast.show('该歌曲暂时无法播放')
         })
-        //存在
-        if(songIndex!==-1)
-        {
-            context.commit({
-                type:'changeCurrentSongIndex',
-                songIndex:songIndex
-            })
-            context.commit({
-                type:'changeCurrentSong',
-                song:context.state.playList[songIndex]
-            })
-            context.dispatch({
-                type:'getLyricList',
-            })
-            //获取歌曲url
-            context.dispatch({
-                type:'getMusicUrl',
-                songId:payload.id
-            })
-        }
-        else if(songIndex===-1)
-        {
-            songDetailes(payload.id).then(data=>{
-                //当前歌曲加入到用户播放列表
-                context.commit({
-                    type:'changePlayList',
-                    song:data.songs[0]
-                });
-                //获取歌曲url
-                context.dispatch({
-                    type:'getMusicUrl',
-                    songId:payload.id
-                })
-                //更改播放列表歌曲索引
-                context.commit({
-                    type:'changeCurrentSongIndex',
-                    songIndex:context.state.playList.length-1
-                })
-                //更换当前歌曲
-                context.commit({
-                    type:'changeCurrentSong',
-                    song:data.songs[0]
-                })
-                //获取歌词
-                context.dispatch({
-                    type:'getLyricList',
-                })
-            })
-        }
+
     },
     getDjRadioDetail(context,payload)
     {

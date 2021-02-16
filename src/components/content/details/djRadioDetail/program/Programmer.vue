@@ -90,12 +90,12 @@ export default {
   {
     font-size: 14px;
     color: #363636;
-    margin: 20px 10px 0 0;
+    margin: 0px 10px 0 0;
     width:330px;
   }
   /*播放次数，点赞数*/
   .sub{
-    margin: 20px 0 0 0;
+
   }
   .sub i
   {
@@ -111,7 +111,7 @@ export default {
     display: flex;
     font-size: 12px;
     color:#9b9b9b;
-    margin: 24px 0 0 20px;
+    margin: 0px 0 0 20px;
   }
   .time-dur div:nth-child(1)
   {

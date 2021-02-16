@@ -4,7 +4,7 @@
        <side-bar/>
        <play-coin></play-coin>
        <!--左侧导航栏路由视图-->
-       <div id="sidebar-router-view">
+       <div class="sidebar-router-view clearfix">
          <router-view></router-view>
        </div>
    </div>
@@ -33,12 +33,17 @@
     {
       position: relative;
     }
-    #sidebar-router-view
+    #home .sidebar-router-view
     {
       position: absolute;
       width: 820px;
       height:536px;
       top: 60px;
       left: 201px;
+      /*background-color: #42b983;*/
+      overflow-y: scroll;
+    }
+    #home .sidebar-router-view::-webkit-scrollbar{
+      width: 2px;
     }
 </style>

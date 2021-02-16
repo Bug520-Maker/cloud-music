@@ -68,18 +68,16 @@ export default {
   {
     font-size: 14px;
     width: 300px;
-    margin: 23px 0 0 10px;
+    margin: 0px 0 0 10px;
   }
   .collect-album-creator
   {
     width: 200px;
     color: #9b9b9b;
-    margin: 24px 0 0 0;
   }
   .collect-album-count
   {
     font-size: 12px;
-    margin: 24px 0 0 0;
     color: #9b9b9b;
   }
 </style>

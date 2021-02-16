@@ -109,3 +109,14 @@ div.el-carousel__container
     overflow: hidden;
     white-space: nowrap;
 }
+/*提示用户登录*/
+.ask-to-login {
+    width: 600px;
+    height: 200px;
+    background-color: #fff;
+    margin: 150px auto 0;
+    overflow: hidden;
+}
+.ask-to-login img{
+    width: 600px;
+}

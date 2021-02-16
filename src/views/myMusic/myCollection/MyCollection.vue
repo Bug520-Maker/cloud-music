@@ -12,7 +12,9 @@
           </div>
           <div slot="专栏"></div>
         </tab-control>
-      <div class="ask-login" v-if="this.$store.state.loginType===0"></div>
+      <div class="ask-to-login" v-if="this.$store.state.loginType===0">
+        <img src="../../../assets/img/video-mv/mymusic.png" />
+      </div>
     </div>
 </template>
 
@@ -40,13 +42,5 @@
   .collect-tab-control
   {
     margin: 25px 0 0px 30px;
-  }
-  .ask-login
-  {
-    width: 750px;
-    height: 270px;
-    margin: 100px auto 0;
-    background-image: url("../../../assets/img/video-mv/mymusic.png");
-    background-repeat: no-repeat;
   }
 </style>

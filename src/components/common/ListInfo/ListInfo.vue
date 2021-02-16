@@ -87,4 +87,7 @@ export default {
 {
   color: #ec4141;
 }
+.msg{
+  align-items: center;
+}
 </style>

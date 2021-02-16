@@ -58,18 +58,15 @@ h4{
   .collect-artist-state
   {
     font-size: 14px;
-    margin: 23px 0 0 0;
     width: 300px;
   }
   .collect-artist-creator
   {
     width: 260px;
-    margin: 24px 0 0 0;
   }
   .collect-artist-count
   {
     font-size: 12px;
-    margin: 24px 0 0 0;
     color: #9b9b9b;
   }
 </style>
