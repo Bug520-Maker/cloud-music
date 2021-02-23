@@ -22,7 +22,7 @@
                 </div>
                 <ul class="sheetInfo">
                     <li @click="liClick(index,item)" class="text-nowrap">{{qualitySheet[index].name}}</li>
-                    <li @click="userRouter(item)">by {{qualitySheet[index].creator.nickname}}</li>
+                    <li @click="userRouter(item)">by {{qualitySheet[index].creator&&qualitySheet[index].creator.nickname}}</li>
                     <li class="text-nowrap">{{qualitySheet[index].copywriter}}</li>
                 </ul>
             </li>

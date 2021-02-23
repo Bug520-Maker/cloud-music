@@ -1,10 +1,11 @@
 <!--获取创作翻唱，声音恋人等分类具体内容-->
 <template>
   <div class="radio-cate-msg clearfix" @scroll="loadMore" ref="radioCateMsg">
+    <h3>{{this.$route.query.titleText}}</h3>
    <ul>
      <li v-for="(item,index) in djRadios" :key="item.id">
        <msg-list is-flex="flex" :is-show="false" :duration-x-y="{x:'105%',y:'70%'}">
-         <div slot="imgContainer" class="dj-img">
+         <div slot="imgContainer" class="dj-img" @click="djRouter(item)">
            <img :src="item.picUrl+'?param=133y133'" />
          </div>
          <div slot="state" class="dj-state">{{item.name}}</div>
@@ -22,6 +23,7 @@
 <script>
 import {cateTop} from "@/network/radio/radio";
 import MsgList from "@/components/common/msgList/MsgList";
+import {isScrollBottom} from "@/utils/scroll-to-bottom";
 
 export default {
   name: "RadioCateMsg",
@@ -29,26 +31,43 @@ export default {
   data()
   {
     return {
-      djRadios:[]
+      djRadios:[],
+      more:true,
+      isScroll:true,
     }
   },
   created() {
     cateTop(this.$route.query.categoryId,30,0).then(data=>{
-     // console.log(data.djRadios);
+      this.more=data.hasMore;
       this.djRadios=data.djRadios;
     })
   },
   methods:{
     loadMore()
     {
-      let flag=this.$refs.radioCateMsg.scrollHeight-Math.ceil(this.$refs.radioCateMsg.scrollTop)===this.$refs.radioCateMsg.clientHeight;
-      if(flag)
+      let flag=isScrollBottom(this.$refs.radioCateMsg.scrollTop,this.$refs.radioCateMsg.scrollHeight,this.$refs.radioCateMsg.offsetHeight)
+      if(flag&&this.more)
       {
-        cateTop(this.$route.query.categoryId,30,34).then(data=>{
-          this.djRadios=[...this.djRadios,...data.djRadios];
-        })
+        if(this.isScroll)
+        {
+          this.isScroll=false
+          cateTop(this.$route.query.categoryId,30,this.djRadios.length).then(data=>{
+            this.more=data.hasMore;
+            this.djRadios=[...this.djRadios,...data.djRadios];
+            this.isScroll=true;
+          })
+        }
       }
      // console.log(this.djRadios.length)
+    },
+    djRouter(item){
+      console.log(item)
+      this.$router.push({
+        path:"/djradioMsg",
+        query:{
+          anchorId:item.id
+        }
+      })
     }
   }
 }
@@ -62,7 +81,15 @@ export default {
   }
   .radio-cate-msg::-webkit-scrollbar
   {
-    width: 2px;
+    width: 5px;
+  }
+  .radio-cate-msg::-webkit-scrollbar-thumb{
+    background-color:#e1e1e1;
+    height: 50px;
+    border-radius: 10px;
+  }
+  .radio-cate-msg h3{
+    margin: 30px 0 0 30px;
   }
   .dj-img img
   {
@@ -74,7 +101,7 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap:wrap ;
-    margin: 30px 0 0 30px;
+    margin: 20px 0 0 30px;
   }
   .radio-cate-msg ul li
   {

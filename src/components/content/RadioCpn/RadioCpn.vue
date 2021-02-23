@@ -2,7 +2,7 @@
 <template>
     <div class="radio-cpn">
         <recommend-cpn>
-            <div slot="title" @click="radioRouter">
+            <div slot="title" @click="radioRouter(titleText)">
                 {{titleText}}
                 <i class="iconfont icon-arrow-right1" v-show="isShow"></i>
             </div>
@@ -57,7 +57,7 @@ export default {
         }
       })
     },
-    radioRouter()
+    radioRouter(titleText)
     {
       if(this.titleText==='电台个性推荐')
       {
@@ -66,7 +66,8 @@ export default {
       this.$router.push({
         path:'/radioCateMsg',
         query:{
-          categoryId:this.categoryId
+          categoryId:this.categoryId,
+          titleText
         }
       })
     }

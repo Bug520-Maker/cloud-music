@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item,index) in list" :key="index">
         <msg-list>
-          <div slot="imgContainer" class="img-container">
+          <div slot="imgContainer" class="img-container" @click="playMv(item)">
             <img v-lazy="item.cover+'?param=242y136.8'" />
           </div>
           <div slot="state" class="mv-name text-nowrap">{{item.name}}</div>
@@ -18,6 +18,7 @@
 <script>
 import MsgList from "@/components/common/msgList/MsgList";
 import {formatPlayCount} from "@/utils/format/format";
+import {mvurl} from "@/network/vision/mv/mvList";
 
 export default {
   name: "AllMvBody",
@@ -35,6 +36,20 @@ export default {
     playCount(item)
     {
       return formatPlayCount(item);
+    },
+    playMv(item)
+    {
+      mvurl(item.id).then(res=>{
+        this.$router.push({
+          path:'/videoPlay',
+          query:{
+            url:res.data.url,
+            mvId:item.id,
+            type:0
+          }
+        })
+      })
+
     }
   }
 }

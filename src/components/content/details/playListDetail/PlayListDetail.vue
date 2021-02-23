@@ -13,7 +13,7 @@
                 <div class="profile">
                     <img v-lazy="songListMsg.creator.avatarUrl+'?param=24y24'" />
                 </div>
-                <div class="creator-name">
+                <div class="creator-name" @click="userRouter(songListMsg.creator)">
                     {{songListMsg.creator.nickname}}
                 </div>
             </div>
@@ -154,6 +154,15 @@ export default {
           this.songLists.push(song);
         })
       }
+    },
+    userRouter(item)
+    {
+      this.$router.push({
+        path:'/userDetail',
+        query:{
+          userId:item.userId
+        }
+      })
     }
   },
   created() {

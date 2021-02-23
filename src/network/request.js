@@ -4,7 +4,7 @@ import loading from '@/utils/loading/index';
 export function request(config)
 {
     const instance=axios.create({
-        baseURL:'http://localhost:3000',//'http://81.68.208.125:3000;,'http://localhost:3000','http://123.207.32.32:9001',
+        baseURL:'http://8.140.110.78:3000',//'http://81.68.208.125:3000;,'http://localhost:3000','http://123.207.32.32:9001',
         timeout:10000,
         //withCredentials:true
     })

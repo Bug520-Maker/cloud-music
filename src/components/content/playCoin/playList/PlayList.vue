@@ -9,7 +9,7 @@
         <div class="artist text-nowrap"
              :class="{active:index===_this.$store.state.currentSongIndex}"
              @click="artistRouter(item)">{{item.ar[0].name}}</div>
-        <div class="duration">{{formatDate(item.dt,"mm:ss")}}</div>
+        <div class="duration" :class="{active:index===_this.$store.state.currentSongIndex}">{{formatDate(item.dt,"mm:ss")}}</div>
       </li>
     </ul>
  </div>
@@ -86,9 +86,9 @@ export default {
   .song-list li
   {
     font-size: 13px;
-    height: 30px;
-    line-height: 30px;
-    margin: 0 0 10px 0;
+    height: 35px;
+    line-height: 35px;
+    margin: 0 0 5px 0;
     cursor: pointer;
   }
   .song-list li:nth-child(even)
@@ -96,20 +96,28 @@ export default {
     background-color: #fafafa;
   }
   .song-list li .song-name{
-    width: 50%;
-    padding: 0 0 0 5px;
+    width: 40%;
+    padding: 0 0 0 15px;
   }
   .song-list li .artist{
     width: 30%;
     color: #666666;
   }
+  .song-list li:hover div{
+    background-color: #f4f4f4;
+    color: #000000;
+  }
   .song-list li div.active{
     color: #ec4141;
     background-color: #e6e6e6;
   }
+  .song-list li div.active.duration{
+    color:#cccccc
+  }
   .song-list li .duration{
-    width: 10%;
+    width: 20%;
     padding: 0 10px;
     color: #cccccc;
   }
+
 </style>

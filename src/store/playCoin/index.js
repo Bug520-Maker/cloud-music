@@ -1,5 +1,5 @@
 export default{
-    songUrl:'http://m8.music.126.net/20210214233546/6fab7107370bc1d33b6f7e67c6e7f31c/ymusic/12ca/05c1/e5b7/c58c9f85a602e16983271f86f565f2e4.mp3',
+    songUrl:`https://music.163.com/song/media/outer/url?id=29567193.mp3`,
     albumImgUrl:'',/*专辑URL*/
     //当前播放歌曲信息
     currentSong:{

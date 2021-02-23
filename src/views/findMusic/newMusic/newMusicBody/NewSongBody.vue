@@ -15,13 +15,13 @@
                         </div>
                     </div>
                 </div>
-                <div :title="item.name">
+                <div :title="item.name" class="text-nowrap">
                     {{item.name}}
                 </div>
-                <div>
+                <div @click="artistRouter(item.artists[0])">
                     {{item.artists[0].name}}
                 </div>
-                <div :title="item.album.name" class="text-nowrap">
+                <div :title="item.album.name" class="text-nowrap" @click="albumRouter(item.album)">
                     {{item.album.name}}
                 </div>
                 <div>{{duration(item.duration,"mm:ss")}}</div>
@@ -92,104 +92,119 @@ export default {
           this.newSongs[i].album.picUrl += "?param=60y60";
         //console.log(this.newSongs);
       })
+    },
+    artistRouter(artist)
+    {
+      this.$router.push({
+        path:'/singerDetails',
+        query:{
+          artistId:artist.id
+        }
+      })
+    },
+    albumRouter(album)
+    {
+      this.$router.push({
+        path:'/albumMsg',
+        query:{
+          albumId:album.id
+        }
+      })
     }
   },
 }
 </script>
 
 <style scoped>
-.bannerNav
-{
+.bannerNav {
   display: flex;
   margin: 0 0 20px 0;
 }
-.bannerNav li
-{
+
+.bannerNav li {
   margin: 0 0 0 20px;
-  color: rgb(103,103,103);
+  color: rgb(103, 103, 103);
   font-size: 14px;
   cursor: pointer;
 }
-.bannerNav .active
-{
+
+.bannerNav .active {
   font-weight: 700;
   color: #000000;
 }
-    #new-song-body .newsong-list li
-    {
-        display: flex;
-        padding: 8px 0;
-    }
-    #new-song-body .newsong-list li:nth-child(odd)
-    {
-        background-color: rgb(249,249,249);
-    }
-    #new-song-body .newsong-list li div:nth-of-type(1) img
-    {
-        width:60px;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-   /* #new-song-body .newsong-list li div:nth-child(even)
-    {
-        background-color: pink;
-    }*/
-    #new-song-body .newsong-list li div:nth-of-type(2)
-    {
-        color: rgb(55, 55, 55);
-        font-size: 14px;
-        width: 260px;
-        padding: 0 20px;
-        line-height: 60px;
-        cursor: default;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-    #new-song-body .newsong-list li div:nth-of-type(3)
-    {
-        font-size: 12px;
-        width: 150px;
-        line-height: 60px;
-        color: rgb(103,103,103);
-        cursor: default;
-    }
-    #new-song-body .newsong-list li div:nth-of-type(4)
-    {
-        font-size: 12px;
-        width: 200px;
-        line-height: 60px;
-        color: rgb(103,103,103);
-        cursor: default;
-    }
-    #new-song-body .newsong-list li div:nth-of-type(5)
-    {
-        width: 50px;
-        font-size: 12px;
-        line-height: 60px;
-        color: rgb(103,103,103);
-        cursor: default;
-    }
-    .img-container
-    {
-        position: relative;
-    }
-    .img-container .play
-    {
-        position: absolute;
-        width: 25px;
-        height:25px;
-        background-color: #ffffff;
-        top: 17px;
-        left: 17px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 25px;
-    }
-    .play div i
-    {
-        color:rgb(236, 65, 65);
-    }
 
+#new-song-body .newsong-list li {
+  display: flex;
+  padding: 8px 0;
+}
 
+#new-song-body .newsong-list li:nth-child(odd) {
+  background-color: rgb(249, 249, 249);
+}
+
+#new-song-body .newsong-list li:hover {
+  background-color: #efefef;
+}
+
+#new-song-body .newsong-list li div:nth-of-type(1) img {
+  width: 60px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#new-song-body .newsong-list li div:nth-of-type(2) {
+  color: #676767;
+  font-size: 14px;
+  width: 260px;
+  padding: 0 20px;
+  line-height: 60px;
+  cursor: default;
+}
+/*歌手*/
+#new-song-body .newsong-list li div:nth-of-type(3) {
+  font-size: 12px;
+  width: 150px;
+  line-height: 60px;
+  color: rgb(103, 103, 103);
+  cursor: pointer;
+}
+#new-song-body .newsong-list li div:nth-of-type(3):hover,#new-song-body .newsong-list li div:nth-of-type(4):hover{
+  color: #343434;
+}
+/*专辑*/
+#new-song-body .newsong-list li div:nth-of-type(4) {
+  font-size: 12px;
+  width: 200px;
+  line-height: 60px;
+  color:#676767;
+  cursor: pointer;
+}
+
+#new-song-body .newsong-list li div:nth-of-type(5) {
+  width: 50px;
+  font-size: 12px;
+  line-height: 60px;
+  color: rgb(103, 103, 103);
+  cursor: default;
+}
+
+.img-container {
+  position: relative;
+}
+
+.img-container .play {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #ffffff;
+  top: 17px;
+  left: 17px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+}
+
+.play div i {
+  color: rgb(236, 65, 65);
+}
 </style>

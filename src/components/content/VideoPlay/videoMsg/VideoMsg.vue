@@ -61,7 +61,7 @@ export default {
   },
   created() {
     //console.log(this.type);
-    if((this.path==='/vision/mv'||this.path==='/singerDetails'||this.path==='/searchResult/video')&&this.type===0)/*MV*/
+    if((this.path==='/vision/mv'||this.path==='/singerDetails'||this.path==='/searchResult/video'||this.path==='/allMv')&&this.type===0)/*MV*/
     {
       mvData(this.mvId).then(data=>{
      // console.log(data.data);

@@ -69,7 +69,7 @@
         {
           next(vm=>{
               vm.path=from.path;
-             // console.log(vm.path)
+             //console.log(vm.path)
           })
         }
     }

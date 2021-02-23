@@ -21,7 +21,7 @@
             <img v-lazy="item.blurPicUrl+'?param=130y130'" />
           </div>
           <div slot="state" class="state">{{item.name}}</div>
-          <div slot="creator" class="creator text-nowrap">{{item.artist.name}}</div>
+          <div slot="creator" class="creator text-nowrap" @click="artistRouter(item.artist)">{{item.artist.name}}</div>
         </msg-list>
       </li>
     </ul>
@@ -102,6 +102,15 @@ export default {
             albumId:this.allNewAlbum[index].id
           }
         })
+    },
+    artistRouter(artist)
+    {
+      this.$router.push({
+        path:'/singerDetails',
+        query:{
+          artistId:artist.id
+        }
+      })
     }
   }
 }
@@ -165,6 +174,10 @@ export default {
   color: #9f9f9f;
   margin: 5px 0 0 0;
   width: 137px;
+  cursor: pointer;
+}
+.new-albums li .creator:hover{
+  color: #676767;
 }
 /*推荐，全部*/
 #nav

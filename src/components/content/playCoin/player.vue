@@ -350,4 +350,17 @@ i.custom-play{
   width: 420px;
   opacity:1;
 }
+.playEffect-leave-from{
+  width: 420px;
+  opacity:1;
+}
+.playEffect-leave-active{
+  transition: all 0.2s;
+  width:0px;
+  opacity:0;
+}
+.playEffect-leave{
+  width: 0px;
+  opacity:0;
+}
 </style>

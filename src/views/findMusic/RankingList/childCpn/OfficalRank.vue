@@ -14,7 +14,7 @@
                <span>{{ i + 1 }}</span>
                <span class="song-name" @click="playSong(iten)">{{ iten.name }}</span>
              </p>
-             <p>{{ ergodic(iten.ar) }}</p>
+             <p @click="artistRouter(iten.ar)">{{ ergodic(iten.ar) }}</p>
            </li>
            <li>查看全部 ></li>
          </ul>
@@ -64,6 +64,15 @@ export default {
         type:'getSongDetail',
         id:iten.id
       })
+    },
+    artistRouter(artist)
+    {
+      this.$router.push({
+        path:'/singerDetails',
+        query:{
+          artistId:artist[0].id
+        }
+      })
     }
   },
 }
@@ -103,9 +112,12 @@ export default {
         color: rgb(236, 65, 65);
         margin: 0 10px 0 0 ;
     }
-    .songlist-container li p:nth-child(3)
-    {
-        color: rgb(155, 155, 155);
+    .songlist-container li p:nth-child(2) {
+      color: #9f9f9f;
+    }
+    .songlist-container li p:nth-child(2):hover{
+      color: #636363;
+      cursor:pointer;
     }
    .songlist-container .songlist:nth-child(odd)
    {

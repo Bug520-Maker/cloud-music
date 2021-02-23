@@ -9,7 +9,7 @@
                     <img :src="item.picUrl+'?param=240y134.88'" />
                 </div>
                 <div class="rec-name text-nowrap">{{item.name}}</div>
-                <div class="rec-artist">
+                <div class="rec-artist" @click="artistRouter(item)">
                     {{item.artistName}}
                 </div>
                 <div class="tip">{{item.copywriter}}</div>
@@ -55,7 +55,17 @@
                         }
                     })
                 })
-            }
+            },
+          artistRouter(item)
+          {
+            //console.log(item.artists[0].id);
+            this.$router.push({
+              path:'/singerDetails',
+              query:{
+                artistId:item.artists[0].id
+              }
+            })
+          }
         }
     }
 </script>
@@ -92,6 +102,11 @@
     .rec-title + .recommend-mv li .rec-artist
     {
         font-size: 13px;
+      cursor: pointer;
+      color:#676767;
+    }
+    .rec-title + .recommend-mv li .rec-artist:hover{
+      color:#000;
     }
     .rec-title + .recommend-mv li .tip
     {
